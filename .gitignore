@@ -1,0 +1,8 @@
+# Finder
+.DS_Store
+
+# Vim sessions
+*.vim
+
+# Xcode stuff
+xcuserdata
