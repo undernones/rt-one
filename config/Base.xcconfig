@@ -6,6 +6,7 @@
 ALWAYS_SEARCH_USER_PATHS = NO
 
 HEADER_SEARCH_PATHS = /opt/local/include
+LIBRARY_SEARCH_PATHS = /opt/local/lib
 
 CODE_SIGN_IDENTITY = -
 

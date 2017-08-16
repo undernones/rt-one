@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
+		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libembree.2.16.4.dylib; path = ../../../../opt/local/lib/libembree.2.16.4.dylib; sourceTree = "<group>"; };
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		F71B88CA1F44883400D4F3A4 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
+		F71B88CF1F44890100D4F3A4 /* libgeom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgeom.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,12 +42,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F71B88CC1F44890100D4F3A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		F71B88A81F43379000D4F3A4 = {
 			isa = PBXGroup;
 			children = (
+				F71B88C91F4487DB00D4F3A4 /* geom */,
 				F71B88C61F43CC9300D4F3A4 /* config */,
 				F71B88B31F43379000D4F3A4 /* wrender */,
 				F71B88B21F43379000D4F3A4 /* Products */,
@@ -56,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				F71B88B11F43379000D4F3A4 /* one */,
+				F71B88CF1F44890100D4F3A4 /* libgeom.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,7 +97,27 @@
 			path = config;
 			sourceTree = "<group>";
 		};
+		F71B88C91F4487DB00D4F3A4 /* geom */ = {
+			isa = PBXGroup;
+			children = (
+				F71B88CA1F44883400D4F3A4 /* Vec3.h */,
+			);
+			name = geom;
+			path = lib/geom;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F71B88CD1F44890100D4F3A4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		F71B88B01F43379000D4F3A4 /* one */ = {
@@ -105,6 +137,23 @@
 			productReference = F71B88B11F43379000D4F3A4 /* one */;
 			productType = "com.apple.product-type.tool";
 		};
+		F71B88CE1F44890100D4F3A4 /* geom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F71B88D01F44890100D4F3A4 /* Build configuration list for PBXNativeTarget "geom" */;
+			buildPhases = (
+				F71B88CB1F44890100D4F3A4 /* Sources */,
+				F71B88CC1F44890100D4F3A4 /* Frameworks */,
+				F71B88CD1F44890100D4F3A4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = geom;
+			productName = geom;
+			productReference = F71B88CF1F44890100D4F3A4 /* libgeom.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -115,6 +164,10 @@
 				ORGANIZATIONNAME = Undernones;
 				TargetAttributes = {
 					F71B88B01F43379000D4F3A4 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					F71B88CE1F44890100D4F3A4 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
@@ -133,6 +186,7 @@
 			projectRoot = "";
 			targets = (
 				F71B88B01F43379000D4F3A4 /* one */,
+				F71B88CE1F44890100D4F3A4 /* geom */,
 			);
 		};
 /* End PBXProject section */
@@ -143,6 +197,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F71B88B51F43379000D4F3A4 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F71B88CB1F44890100D4F3A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,10 +299,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/opt/local/lib,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -250,10 +307,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/opt/local/lib,
-				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F71B88D11F44890100D4F3A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_DYNAMIC_NO_PIC = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F71B88D21F44890100D4F3A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -275,6 +351,15 @@
 			buildConfigurations = (
 				F71B88B91F43379000D4F3A4 /* Debug */,
 				F71B88BA1F43379000D4F3A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F71B88D01F44890100D4F3A4 /* Build configuration list for PBXNativeTarget "geom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F71B88D11F44890100D4F3A4 /* Debug */,
+				F71B88D21F44890100D4F3A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
