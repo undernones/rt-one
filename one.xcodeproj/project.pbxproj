@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
+		F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		F71B88B11F43379000D4F3A4 /* one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = one; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libembree.2.16.4.dylib; path = ../../../../opt/local/lib/libembree.2.16.4.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +46,7 @@
 			children = (
 				F71B88B31F43379000D4F3A4 /* wrender */,
 				F71B88B21F43379000D4F3A4 /* Products */,
+				F71B88C31F43CC2D00D4F3A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +65,14 @@
 			);
 			name = wrender;
 			path = cmd/wrender;
+			sourceTree = "<group>";
+		};
+		F71B88C31F43CC2D00D4F3A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +187,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /opt/local/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -224,6 +237,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /opt/local/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -234,6 +248,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -242,6 +260,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

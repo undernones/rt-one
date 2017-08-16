@@ -3,11 +3,14 @@
 //
 
 #include <iostream>
+#include <embree2/rtcore.h>
+#include <embree2/rtcore_ray.h>
 
 int
 main(int argc, const char * argv[])
 {
-    // insert code here...
+    RTCDevice device = rtcNewDevice(NULL);
+    rtcDeleteDevice(device);
     std::cout << "Hello, World!\n";
     return 0;
 }
