@@ -1,0 +1,43 @@
+//
+//  Copyright © 2017 Undernones. All rights reserved.
+//
+
+// If enabled both #include <header.h>-style and #include "header.h"-style directives will search the paths in "User Header Search Paths" before "Header Search Paths", with the consequence that user headers (such as your own String.h header) would have precedence over system headers when using #include <header.h>. This is done using the -iquote flag for the paths provided in "User Header Search Paths". If disabled and your compiler fully supports separate user paths, user headers will only be accessible with #include "header.h"-style preprocessor directives.
+ALWAYS_SEARCH_USER_PATHS = NO
+
+HEADER_SEARCH_PATHS = /opt/local/include
+
+CODE_SIGN_IDENTITY = -
+
+// In C, allocate even uninitialized global variables in the data section of the object file, rather than generating them as common blocks.  This has the effect that if the same variable is declared (without extern ) in two different compilations, you will get an error when you link them. [GCC_NO_COMMON_BLOCKS, -fno-common]
+GCC_NO_COMMON_BLOCKS = YES
+
+// None: Do not optimize. [-O0]
+// With this setting, the compiler's goal is to reduce the cost of compilation and to make debugging produce the expected results.  Statements are independent: if you stop the program with a breakpoint between statements, you can then assign a new value to any variable or change the program counter to any other statement in the function and get exactly the results you would expect from the source code.
+// Fast: Optimizing compilation takes somewhat more time, and a lot more memory for a large function. [-O, -O1]
+// With this setting, the compiler tries to reduce code size and execution time, without performing any optimizations that take a great deal of compilation time. In Apple's compiler, strict aliasing, block reordering, and inter-block scheduling are disabled by default when optimizing.
+// Faster: The compiler performs nearly all supported optimizations that do not involve a space-speed tradeoff. [-O2]
+//With this setting, the compiler does not perform loop unrolling or function inlining, or register renaming.  As compared to the 'Fast' setting, this setting increases both compilation time and the performance of the generated code.
+//Fastest: Turns on all optimizations specified by the 'Faster' setting and also turns on function inlining and register renaming options. This setting may result in a larger binary. [-O3]
+//Fastest, Smallest: Optimize for size.  This setting enables all 'Faster' optimizations that do not typically increase code size.  It also performs further optimizations designed to reduce code size. [-Os]
+//Fastest, Aggressive Optimizations: This setting enables 'Fastest' but also enables aggressive optimizations that may break strict standards compliance but should work well on well-behaved code.  [-Ofast]
+GCC_OPTIMIZATION_LEVEL = $(GCC_OPTIMIZATION_LEVEL_$(CONFIGURATION))
+GCC_OPTIMIZATION_LEVEL_Debug = 0 // -O0, no optims
+GCC_OPTIMIZATION_LEVEL_Release = s // For most Mac OS X projects -Os should be used. For more information, see <http://howto.apple.com/groups/howto/wiki/2d8c9/Compiler_Flag_Verifier.html>.
+
+// Choose a standard or non-standard C language dialect.
+GCC_C_LANGUAGE_STANDARD = gnu11
+
+// Choose a standard or non-standard C++ language dialect.
+CLANG_CXX_LANGUAGE_STANDARD = c++17
+
+// Choose a version of the C++ standard library to use.
+CLANG_CXX_LIBRARY = libc++
+
+// Space-separated list of preprocessor macros of the form "foo" or "foo=bar".
+GCC_PREPROCESSOR_DEFINITIONS = $(GCC_PREPROCESSOR_DEFINITIONS_$(CONFIGURATION)) $(inherited)
+GCC_PREPROCESSOR_DEFINITIONS_Debug = DEBUG=1
+GCC_PREPROCESSOR_DEFINITIONS_Release = RELEASE=1
+
+// Enabling this option causes all warnings to be treated as errors.
+GCC_TREAT_WARNINGS_AS_ERRORS = NO
