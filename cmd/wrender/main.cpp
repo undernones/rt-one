@@ -79,6 +79,9 @@ main(int argc, const char * argv[])
     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
     _MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 
+    const auto NX = 200;
+    const auto NY = 100;
+
     auto device = DeviceHandle();
     if (!device) {
         auto error = rtcDeviceGetError(NULL);
@@ -86,13 +89,25 @@ main(int argc, const char * argv[])
         return error;
     }
 
-    auto scene = SceneHandle(device, RTC_SCENE_DYNAMIC, RTC_INTERSECT1);
+    auto scene = SceneHandle(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
     if (!scene) {
         auto error = rtcDeviceGetError(device);
         std::cerr << "Failed to initialize device: " << EmbreeErrorToString(error) << std::endl;
         return error;
     }
 
-    std::cout << "Hello, World!\n";
+    std::cout << "P3\n" << NX << " " << NY << "\n255\n";
+    for (auto j = NY - 1; j >= 0; --j) {
+        for (auto i = 0; i < NX; ++i) {
+            auto r = float(i) / NX;
+            auto g = float(j) / NY;
+            auto b = 0.2f;
+            auto ir = int(255.99*r);
+            auto ig = int(255.99*g);
+            auto ib = int(255.99*b);
+            std::cout << ir << " " << ig << " " << ib << "\n";
+        }
+    }
+
     return 0;
 }
