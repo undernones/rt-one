@@ -27,6 +27,25 @@ private:
     RTCDevice mDevice;
 };
 
+class SceneHandle
+{
+public:
+    SceneHandle(RTCDevice device, RTCSceneFlags flags, RTCAlgorithmFlags aflags) : SceneHandle(rtcDeviceNewScene(device, flags, aflags)) {}
+    SceneHandle(RTCScene scene) : mScene(scene) {}
+
+    ~SceneHandle() {
+        if (mScene != nullptr) {
+            rtcDeleteScene(mScene);
+        }
+    }
+
+    operator RTCScene() const { return mScene; }
+    operator bool() const { return mScene != nullptr; }
+
+private:
+    RTCScene mScene;
+};
+
 std::string
 EmbreeErrorToString(RTCError error)
 {
@@ -63,6 +82,13 @@ main(int argc, const char * argv[])
     auto device = DeviceHandle();
     if (!device) {
         auto error = rtcDeviceGetError(NULL);
+        std::cerr << "Failed to initialize device: " << EmbreeErrorToString(error) << std::endl;
+        return error;
+    }
+
+    auto scene = SceneHandle(device, RTC_SCENE_DYNAMIC, RTC_INTERSECT1);
+    if (!scene) {
+        auto error = rtcDeviceGetError(device);
         std::cerr << "Failed to initialize device: " << EmbreeErrorToString(error) << std::endl;
         return error;
     }
