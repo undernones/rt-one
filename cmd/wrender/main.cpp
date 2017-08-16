@@ -8,6 +8,8 @@
 #include <xmmintrin.h>
 #include <pmmintrin.h>
 
+#include <geom/Vec3.h>
+
 class DeviceHandle
 {
 public:
@@ -99,12 +101,10 @@ main(int argc, const char * argv[])
     std::cout << "P3\n" << NX << " " << NY << "\n255\n";
     for (auto j = NY - 1; j >= 0; --j) {
         for (auto i = 0; i < NX; ++i) {
-            auto r = float(i) / NX;
-            auto g = float(j) / NY;
-            auto b = 0.2f;
-            auto ir = int(255.99*r);
-            auto ig = int(255.99*g);
-            auto ib = int(255.99*b);
+            auto col = geom::Vec3(float(i) / NX, float(j) / NY, 0.2f);
+            auto ir = int(255.99*col[0]);
+            auto ig = int(255.99*col[1]);
+            auto ib = int(255.99*col[2]);
             std::cout << ir << " " << ig << " " << ib << "\n";
         }
     }
