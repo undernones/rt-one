@@ -8,6 +8,7 @@
 #include <xmmintrin.h>
 #include <pmmintrin.h>
 
+#include <geom/Ray.h>
 #include <geom/Vec3.h>
 
 class DeviceHandle
@@ -75,6 +76,14 @@ EmbreeErrorToString(RTCError error)
     }
 }
 
+geom::Vec3
+color(const geom::Ray& r)
+{
+    auto unitDir = r.direction().normalized();
+    auto t = 0.5 * (unitDir.y() + 1.0);
+    return (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
+}
+
 int
 main(int argc, const char * argv[])
 {
@@ -99,9 +108,18 @@ main(int argc, const char * argv[])
     }
 
     std::cout << "P3\n" << NX << " " << NY << "\n255\n";
+
+    auto lowerLeft = geom::Vec3(-2, -1, -1);
+    auto horizontal = geom::Vec3(4, 0, 0);
+    auto vertical = geom::Vec3(0, 2, 0);
+    auto origin = geom::Vec3(0, 0, 0);
+
     for (auto j = NY - 1; j >= 0; --j) {
         for (auto i = 0; i < NX; ++i) {
-            auto col = geom::Vec3(float(i) / NX, float(j) / NY, 0.2f);
+            auto u = float(i) / NX;
+            auto v = float(j) / NY;
+            auto r = geom::Ray(origin, lowerLeft + u*horizontal + v*vertical);
+            auto col = color(r);
             auto ir = int(255.99*col[0]);
             auto ig = int(255.99*col[1]);
             auto ib = int(255.99*col[2]);

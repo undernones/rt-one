@@ -10,7 +10,20 @@
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F71B88D71F448A8100D4F3A4 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88D51F448A7D00D4F3A4 /* Ray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88D41F448A7D00D4F3A4 /* Ray.cpp */; };
+		F71B88DB1F448ED300D4F3A4 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F71B88D91F448E8200D4F3A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F71B88A91F43379000D4F3A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F71B88CE1F44890100D4F3A4;
+			remoteInfo = geom;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F71B88AF1F43379000D4F3A4 /* CopyFiles */ = {
@@ -31,6 +44,8 @@
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		F71B88CA1F44883400D4F3A4 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
 		F71B88CF1F44890100D4F3A4 /* libgeom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgeom.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F71B88D41F448A7D00D4F3A4 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
+		F71B88D51F448A7D00D4F3A4 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71B88DB1F448ED300D4F3A4 /* libgeom.a in Frameworks */,
 				F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +116,8 @@
 		F71B88C91F4487DB00D4F3A4 /* geom */ = {
 			isa = PBXGroup;
 			children = (
+				F71B88D41F448A7D00D4F3A4 /* Ray.cpp */,
+				F71B88D51F448A7D00D4F3A4 /* Ray.h */,
 				F71B88CA1F44883400D4F3A4 /* Vec3.h */,
 			);
 			name = geom;
@@ -114,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */,
+				F71B88D71F448A8100D4F3A4 /* Ray.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +150,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F71B88DA1F448E8200D4F3A4 /* PBXTargetDependency */,
 			);
 			name = one;
 			productName = one;
@@ -204,10 +224,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F71B88DA1F448E8200D4F3A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F71B88CE1F44890100D4F3A4 /* geom */;
+			targetProxy = F71B88D91F448E8200D4F3A4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F71B88B61F43379000D4F3A4 /* Debug */ = {
