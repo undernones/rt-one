@@ -76,9 +76,23 @@ EmbreeErrorToString(RTCError error)
     }
 }
 
+bool
+hitSphere(const geom::Vec3& center, float radius, const geom::Ray& r)
+{
+    auto oc = r.origin() - center;
+    auto a = r.direction().dot(r.direction());
+    auto b = 2.0 * oc.dot(r.direction());
+    auto c = oc.dot(oc) - radius*radius;
+    auto discriminant = b*b - 4*a*c;
+    return discriminant > 0;
+}
+
 geom::Vec3
 color(const geom::Ray& r)
 {
+    if (hitSphere(geom::Vec3(0, 0, -1), 0.5, r)) {
+        return geom::Vec3(1, 0, 0);
+    }
     auto unitDir = r.direction().normalized();
     auto t = 0.5 * (unitDir.y() + 1.0);
     return (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
