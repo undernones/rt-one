@@ -145,29 +145,39 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
     auto discriminant = b*b - 4*a*c;
 
     if (discriminant > 0) {
-        bool isHit = false;
-        auto t = (-b - sqrt(b*b - a*c)) / a;
-        if (ray.tnear < t && t < ray.tfar) {
-            isHit = true;
-        } else {
-            t = (-b + sqrt(b*b - a*c)) / a;
-            if (ray.tnear < t && t < ray.tfar) {
-                isHit = true;
-            }
-        }
+        auto t = (-b -sqrt(discriminant)) / (2.f*a);
+        auto r = geom::Ray(geom::Vec3(ray.org), geom::Vec3(ray.dir));
+        auto normal = (r.pointAt(t) - sphere.center());
 
-        if (isHit) {
-            auto r = geom::Ray(geom::Vec3(ray.org), geom::Vec3(ray.dir));
-            auto hitPoint = r.pointAt(t);
-            auto normal = (hitPoint - sphere.center()) / sphere.radius();
+        ray.tfar = t;
+        ray.Ng[0] = normal.x();
+        ray.Ng[1] = normal.y();
+        ray.Ng[2] = normal.z();
+        ray.geomID = static_cast<unsigned int>(item);
 
-            std::tie(ray.u, ray.v) = sphere.uv(hitPoint);
-            ray.tfar = t;
-            ray.Ng[0] = normal.x();
-            ray.Ng[1] = normal.y();
-            ray.Ng[2] = normal.z();
-            ray.geomID = static_cast<unsigned int>(item);
-        }
+//        bool isHit = false;
+//        auto t = (-b - sqrt(b*b - a*c)) / a;
+//        if (ray.tnear < t && t < ray.tfar) {
+//            isHit = true;
+//        } else {
+//            t = (-b + sqrt(b*b - a*c)) / a;
+//            if (ray.tnear < t && t < ray.tfar) {
+//                isHit = true;
+//            }
+//        }
+//
+//        if (isHit) {
+//            auto r = geom::Ray(geom::Vec3(ray.org), geom::Vec3(ray.dir));
+//            auto hitPoint = r.pointAt(t);
+//            auto normal = (hitPoint - sphere.center()) / sphere.radius();
+//
+//            std::tie(ray.u, ray.v) = sphere.uv(hitPoint);
+//            ray.tfar = t;
+//            ray.Ng[0] = normal.x();
+//            ray.Ng[1] = normal.y();
+//            ray.Ng[2] = normal.z();
+//            ray.geomID = static_cast<unsigned int>(item);
+//        }
     }
 }
 
@@ -194,7 +204,7 @@ color(RTCScene scene, const geom::Ray& r)
 
     rtcIntersect(scene, ray);
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
-        return geom::Vec3(1, 0, 0);
+        return 0.5 * geom::Vec3(ray.Ng[0]+1, ray.Ng[1]+1, ray.Ng[2]+1);
     }
     auto unitDir = r.direction().normalized();
     auto t = 0.5 * (unitDir.y() + 1.0);
