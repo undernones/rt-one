@@ -124,59 +124,17 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
         ray.Ng[1] = normal.y();
         ray.Ng[2] = normal.z();
         ray.geomID = static_cast<unsigned int>(item);
-
-//        bool isHit = false;
-//        auto t = (-b - sqrt(b*b - a*c)) / a;
-//        if (ray.tnear < t && t < ray.tfar) {
-//            isHit = true;
-//        } else {
-//            t = (-b + sqrt(b*b - a*c)) / a;
-//            if (ray.tnear < t && t < ray.tfar) {
-//                isHit = true;
-//            }
-//        }
-//
-//        if (isHit) {
-//            auto r = geom::Ray(geom::Vec3(ray.org), geom::Vec3(ray.dir));
-//            auto hitPoint = r.pointAt(t);
-//            auto normal = (hitPoint - sphere.center()) / sphere.radius();
-//
-//            std::tie(ray.u, ray.v) = sphere.uv(hitPoint);
-//            ray.tfar = t;
-//            ray.Ng[0] = normal.x();
-//            ray.Ng[1] = normal.y();
-//            ray.Ng[2] = normal.z();
-//            ray.geomID = static_cast<unsigned int>(item);
-//        }
     }
 }
 
 geom::Vec3
-color(RTCScene scene, const geom::Ray& r)
+color(RTCScene scene, RTCRay ray)
 {
-    const auto& origin = r.origin();
-    const auto& direction = r.direction();
-
-    auto ray = RTCRay();
-    ray.org[0] = origin.x();
-    ray.org[1] = origin.y();
-    ray.org[2] = origin.z();
-    ray.dir[0] = direction.x();
-    ray.dir[1] = direction.y();
-    ray.dir[2] = direction.z();
-    ray.tnear = 0.f;
-    ray.tfar = MAXFLOAT;
-    ray.instID = RTC_INVALID_GEOMETRY_ID;
-    ray.geomID = RTC_INVALID_GEOMETRY_ID;
-    ray.primID = RTC_INVALID_GEOMETRY_ID;
-    ray.mask = 0xFFFFFFFF;
-    ray.time = 0.f;
-
     rtcIntersect(scene, ray);
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
         return 0.5 * geom::Vec3(ray.Ng[0]+1, ray.Ng[1]+1, ray.Ng[2]+1);
     }
-    auto unitDir = r.direction().normalized();
+    auto unitDir = geom::Vec3(ray.dir).normalized();
     auto t = 0.5 * (unitDir.y() + 1.0);
     return (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
 }
@@ -223,8 +181,8 @@ main(int argc, const char * argv[])
         for (auto i = 0; i < NX; ++i) {
             auto u = float(i) / NX;
             auto v = float(j) / NY;
-            auto r = geom::Ray(origin, lowerLeft + u*horizontal + v*vertical);
-            auto col = color(scene, r);
+            auto ray = newRay(origin, lowerLeft + u*horizontal + v*vertical);
+            auto col = color(scene, ray);
             auto ir = int(255.99*col[0]);
             auto ig = int(255.99*col[1]);
             auto ib = int(255.99*col[2]);
