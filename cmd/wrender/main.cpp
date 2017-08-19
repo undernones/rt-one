@@ -9,6 +9,7 @@
 #include <pmmintrin.h>
 
 #include <geom/Ray.h>
+#include <geom/Sphere.h>
 #include <geom/Vec3.h>
 
 class DeviceHandle
@@ -76,36 +77,6 @@ EmbreeErrorToString(RTCError error)
     }
 }
 
-class Sphere
-{
-public:
-    Sphere() : Sphere(geom::Vec3(0, 0, 0), 1.f) {}
-    Sphere(const geom::Vec3& center, float radius) : mCenter(center), mRadius(radius) {}
-    ~Sphere() = default;
-
-    geom::Vec3 center() const { return mCenter; }
-    float radius() const { return mRadius; }
-
-    std::tuple<float, float> uv(const geom::Vec3& p) const;
-
-private:
-    geom::Vec3 mCenter;
-    float mRadius;
-};
-
-std::tuple<float, float>
-Sphere::uv(const geom::Vec3 &p) const
-{
-    auto normalizedPt = (p - mCenter) / mRadius;
-
-    auto phi = atan2f(normalizedPt.z(), normalizedPt.x());
-    auto theta = asinf(normalizedPt.y());
-
-    auto u = 1.f - (phi + M_PI) / (2 * M_PI);
-    auto v = (theta + M_PI_2) / M_PI;
-    return { u, v };
-}
-
 void
 RTCSphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
                     void* geomUserPtr,     /*!< pointer to geometry user data */
@@ -113,7 +84,7 @@ RTCSphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
                     RTCBounds* bounds_o    /*!< returns calculated bounds */)
 {
     // Assume we can dereference geomUserPtr
-    const auto& sphere = *(static_cast<Sphere*>(userPtr));
+    const auto& sphere = *(static_cast<geom::Sphere*>(userPtr));
 
     auto lower = sphere.center() - geom::Vec3(sphere.radius());
     auto upper = sphere.center() + geom::Vec3(sphere.radius());
@@ -133,7 +104,7 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
                        size_t item          /*!< item to intersect */)
 {
     // Assume we can dereference ptr
-    const auto& sphere = *(static_cast<Sphere*>(ptr));
+    const auto& sphere = *(static_cast<geom::Sphere*>(ptr));
 
     auto origin = geom::Vec3(ray.org);
     auto direction = geom::Vec3(ray.dir);
@@ -146,8 +117,7 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
 
     if (discriminant > 0) {
         auto t = (-b -sqrt(discriminant)) / (2.f*a);
-        auto r = geom::Ray(geom::Vec3(ray.org), geom::Vec3(ray.dir));
-        auto normal = (r.pointAt(t) - sphere.center());
+        auto normal = geom::pointAlongRay(ray.org, ray.dir, t) - sphere.center();
 
         ray.tfar = t;
         ray.Ng[0] = normal.x();
@@ -217,8 +187,8 @@ main(int argc, const char * argv[])
     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
     _MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
 
-    const auto NX = 200;
-    const auto NY = 100;
+    const auto NX = 800;
+    const auto NY = 400;
 
     auto device = DeviceHandle();
     if (!device) {
@@ -235,7 +205,7 @@ main(int argc, const char * argv[])
     }
 
     auto sphereId = rtcNewUserGeometry3(scene, RTC_GEOMETRY_STATIC, 1);
-    auto sphere = Sphere(geom::Vec3(0, 0, -1), 0.5);
+    auto sphere = geom::Sphere(geom::Vec3(0, 0, -1), 0.5);
     rtcSetUserData(scene, sphereId, &sphere);
     rtcSetBoundsFunction2(scene, sphereId, RTCSphereBoundsFunc, &sphere);
     rtcSetIntersectFunction(scene, sphereId, RTCSphereIntersectFunc);

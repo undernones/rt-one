@@ -23,6 +23,8 @@ private:
     float mTime;
 };
 
+Vec3 pointAlongRay(float origin[3], float direction[3], float t);
+
 }
 
 #endif // GEOM_RAY_H

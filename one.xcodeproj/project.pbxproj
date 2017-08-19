@@ -13,6 +13,8 @@
 		F71B88D71F448A8100D4F3A4 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88D51F448A7D00D4F3A4 /* Ray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88D41F448A7D00D4F3A4 /* Ray.cpp */; };
 		F71B88DB1F448ED300D4F3A4 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
+		F7BC889D1F48FEF400968D42 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC889B1F48FEF400968D42 /* Sphere.cpp */; };
+		F7BC889E1F48FEF400968D42 /* Sphere.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC889C1F48FEF400968D42 /* Sphere.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		F71B88CF1F44890100D4F3A4 /* libgeom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgeom.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88D41F448A7D00D4F3A4 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
 		F71B88D51F448A7D00D4F3A4 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
+		F7BC889B1F48FEF400968D42 /* Sphere.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
+		F7BC889C1F48FEF400968D42 /* Sphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 			children = (
 				F71B88D41F448A7D00D4F3A4 /* Ray.cpp */,
 				F71B88D51F448A7D00D4F3A4 /* Ray.h */,
+				F7BC889B1F48FEF400968D42 /* Sphere.cpp */,
+				F7BC889C1F48FEF400968D42 /* Sphere.h */,
 				F71B88CA1F44883400D4F3A4 /* Vec3.h */,
 			);
 			name = geom;
@@ -133,6 +139,7 @@
 			files = (
 				F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */,
 				F71B88D71F448A8100D4F3A4 /* Ray.h in Headers */,
+				F7BC889E1F48FEF400968D42 /* Sphere.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7BC889D1F48FEF400968D42 /* Sphere.cpp in Sources */,
 				F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
