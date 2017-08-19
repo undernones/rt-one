@@ -76,28 +76,6 @@ EmbreeErrorToString(RTCError error)
     }
 }
 
-bool
-hitSphere(const geom::Vec3& center, float radius, const geom::Ray& r)
-{
-    auto oc = r.origin() - center;
-    auto a = r.direction().dot(r.direction());
-    auto b = 2.0 * oc.dot(r.direction());
-    auto c = oc.dot(oc) - radius*radius;
-    auto discriminant = b*b - 4*a*c;
-    return discriminant > 0;
-}
-
-geom::Vec3
-color(const geom::Ray& r)
-{
-    if (hitSphere(geom::Vec3(0, 0, -1), 0.5, r)) {
-        return geom::Vec3(1, 0, 0);
-    }
-    auto unitDir = r.direction().normalized();
-    auto t = 0.5 * (unitDir.y() + 1.0);
-    return (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
-}
-
 class Sphere
 {
 public:
@@ -135,7 +113,7 @@ RTCSphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
                     RTCBounds* bounds_o    /*!< returns calculated bounds */)
 {
     // Assume we can dereference geomUserPtr
-    const auto& sphere = *(static_cast<Sphere*>(geomUserPtr));
+    const auto& sphere = *(static_cast<Sphere*>(userPtr));
 
     auto lower = sphere.center() - geom::Vec3(sphere.radius());
     auto upper = sphere.center() + geom::Vec3(sphere.radius());
@@ -147,8 +125,6 @@ RTCSphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
     bounds_o->upper_x = upper.x();
     bounds_o->upper_y = upper.y();
     bounds_o->upper_z = upper.z();
-
-    std::cout << "sphere bounds: " << item << std::endl;
 }
 
 void
@@ -156,8 +132,6 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
                        RTCRay& ray,         /*!< ray to intersect */
                        size_t item          /*!< item to intersect */)
 {
-    std::cout << "sphere intersect: " << item << std::endl;
-
     // Assume we can dereference ptr
     const auto& sphere = *(static_cast<Sphere*>(ptr));
 
@@ -197,6 +171,36 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
     }
 }
 
+geom::Vec3
+color(RTCScene scene, const geom::Ray& r)
+{
+    const auto& origin = r.origin();
+    const auto& direction = r.direction();
+
+    auto ray = RTCRay();
+    ray.org[0] = origin.x();
+    ray.org[1] = origin.y();
+    ray.org[2] = origin.z();
+    ray.dir[0] = direction.x();
+    ray.dir[1] = direction.y();
+    ray.dir[2] = direction.z();
+    ray.tnear = 0.f;
+    ray.tfar = MAXFLOAT;
+    ray.instID = RTC_INVALID_GEOMETRY_ID;
+    ray.geomID = RTC_INVALID_GEOMETRY_ID;
+    ray.primID = RTC_INVALID_GEOMETRY_ID;
+    ray.mask = 0xFFFFFFFF;
+    ray.time = 0.f;
+
+    rtcIntersect(scene, ray);
+    if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
+        return geom::Vec3(1, 0, 0);
+    }
+    auto unitDir = r.direction().normalized();
+    auto t = 0.5 * (unitDir.y() + 1.0);
+    return (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
+}
+
 int
 main(int argc, const char * argv[])
 {
@@ -222,8 +226,11 @@ main(int argc, const char * argv[])
 
     auto sphereId = rtcNewUserGeometry3(scene, RTC_GEOMETRY_STATIC, 1);
     auto sphere = Sphere(geom::Vec3(0, 0, -1), 0.5);
+    rtcSetUserData(scene, sphereId, &sphere);
     rtcSetBoundsFunction2(scene, sphereId, RTCSphereBoundsFunc, &sphere);
     rtcSetIntersectFunction(scene, sphereId, RTCSphereIntersectFunc);
+
+    rtcCommit(scene);
 
     std::cout << "P3\n" << NX << " " << NY << "\n255\n";
 
@@ -237,7 +244,7 @@ main(int argc, const char * argv[])
             auto u = float(i) / NX;
             auto v = float(j) / NY;
             auto r = geom::Ray(origin, lowerLeft + u*horizontal + v*vertical);
-            auto col = color(r);
+            auto col = color(scene, r);
             auto ir = int(255.99*col[0]);
             auto ig = int(255.99*col[1]);
             auto ib = int(255.99*col[2]);
