@@ -105,24 +105,7 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
 {
     // Assume we can dereference ptr
     const auto& sphere = *(static_cast<geom::Sphere*>(ptr));
-
-    auto origin = geom::Vec3(ray.org);
-    auto direction = geom::Vec3(ray.dir);
-
-    auto oc = origin - sphere.center();
-    auto a = direction.dot(direction);
-    auto b = 2.0 * oc.dot(direction);
-    auto c = oc.dot(oc) - sphere.radius()*sphere.radius();
-    auto discriminant = b*b - 4*a*c;
-
-    if (discriminant > 0) {
-        auto t = (-b -sqrt(discriminant)) / (2.f*a);
-        auto normal = geom::pointAlongRay(ray.org, ray.dir, t) - sphere.center();
-
-        ray.tfar = t;
-        ray.Ng[0] = normal.x();
-        ray.Ng[1] = normal.y();
-        ray.Ng[2] = normal.z();
+    if (sphere.hit(ray)) {
         ray.geomID = static_cast<unsigned int>(item);
     }
 }

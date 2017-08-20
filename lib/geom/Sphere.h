@@ -5,17 +5,20 @@
 #ifndef GEOM_SPHERE_H
 #define GEOM_SPHERE_H
 
+#include "Hitable.h"
 #include "Vec3.h"
 
 namespace geom
 {
 
-class Sphere
+class Sphere : public Hitable
 {
 public:
     Sphere();
     Sphere(const Vec3& center, float radius);
     ~Sphere() = default;
+
+    virtual bool hit(RTCRay& ray) const;
 
     Vec3 center() const { return mCenter; }
     float radius() const { return mRadius; }

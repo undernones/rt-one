@@ -3,6 +3,7 @@
 //
 
 #include "Sphere.h"
+#include "Ray.h"
 
 namespace geom
 {
@@ -16,6 +17,46 @@ Sphere::Sphere(const Vec3& center, float radius)
     : mCenter(center)
     , mRadius(radius)
 {
+}
+
+bool
+Sphere::hit(RTCRay& ray) const
+{
+    auto origin = geom::Vec3(ray.org);
+    auto direction = geom::Vec3(ray.dir);
+
+    auto oc = origin - mCenter;
+    auto a = direction.dot(direction);
+    auto b = oc.dot(direction);
+    auto c = oc.dot(oc) - mRadius * mRadius;
+    auto discriminant = b*b - a*c;
+
+    auto isHit = false;
+    auto t = 0.f;
+
+    if (discriminant > 0) {
+        t = (-b - sqrt(discriminant)) / a;
+        if (ray.tnear < t && t < ray.tfar) {
+            isHit = true;
+        } else {
+            t = (-b + sqrt(discriminant)) / a;
+            if (ray.tnear < t && t < ray.tfar) {
+                isHit = true;
+            }
+        }
+    }
+
+    if (isHit) {
+        auto hitPoint = pointAlongRay(ray.org, ray.dir, t);
+        auto normal = (hitPoint - mCenter) / mRadius;
+
+        ray.tfar = t;
+        ray.Ng[0] = normal.x();
+        ray.Ng[1] = normal.y();
+        ray.Ng[2] = normal.z();
+    }
+
+    return isHit;
 }
 
 std::tuple<float, float>
