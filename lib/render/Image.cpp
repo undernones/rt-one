@@ -15,7 +15,6 @@ using ChannelPicker = T (*)(const T& t);
 ChannelPicker<uint32_t> sRPicker = [] (const uint32_t& c) { return (0xFF000000 & c) >> 24; };
 ChannelPicker<uint32_t> sGPicker = [] (const uint32_t& c) { return (0x00FF0000 & c) >> 16; };
 ChannelPicker<uint32_t> sBPicker = [] (const uint32_t& c) { return (0x0000FF00 & c) >>  8; };
-ChannelPicker<uint32_t> sAPicker = [] (const uint32_t& c) { return (0x000000FF & c) >>  0; };
 
 template <class T>
 std::vector<uint32_t>
@@ -55,14 +54,14 @@ Image::Image(int rows, int cols)
 }
 
 void
-Image::clear(int32_t clearColor)
+Image::clear(uint32_t clearColor)
 {
     for (auto& value: mValues) {
         value = clearColor;
     }
 }
 
-const int32_t&
+const uint32_t&
 Image::value(int row, int col) const
 {
     assert(row >= 0 && row < mRows);
@@ -72,7 +71,7 @@ Image::value(int row, int col) const
 }
 
 void
-Image::setValue(int row, int col, int32_t value)
+Image::setValue(int row, int col, uint32_t value)
 {
     assert(row >= 0 && row < mRows);
     assert(col >= 0 && col < mCols);

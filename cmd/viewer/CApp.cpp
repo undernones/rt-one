@@ -13,6 +13,7 @@
 
 // One
 #include <geom/Vec3.h>
+#include <geom/Ray.h>
 
 namespace
 {
@@ -65,9 +66,6 @@ CApp::CApp(int argc, const char* argv[])
     , mNeedsToClear(true)
     , mIsDragging(false)
     , mSampleCount(0)
-    , mWindow(nullptr)
-    , mRenderer(nullptr)
-    , mTexture(nullptr)
     , mChannel(Channel::ALL)
 {
 }
@@ -108,24 +106,24 @@ CApp::OnInit()
     SDL_CreateWindowAndRenderer(nx,
                                 ny,
                                 SDL_WINDOW_OPENGL,
-                                &mWindow,
-                                &mRenderer);
+                                &mSDLVars.window,
+                                &mSDLVars.renderer);
 
-    if (!mWindow || !mRenderer) {
+    if (!mSDLVars.window || !mSDLVars.renderer) {
         return false;
     }
 
     auto stream = std::stringstream();
     stream << "one - " << nx << " x " << ny;
-    SDL_SetWindowTitle(mWindow, stream.str().c_str());
+    SDL_SetWindowTitle(mSDLVars.window, stream.str().c_str());
 
-    mTexture = SDL_CreateTexture(mRenderer,
-                                 SDL_PIXELFORMAT_RGBA8888,
-                                 SDL_TEXTUREACCESS_TARGET,
-                                 nx,
-                                 ny);
+    mSDLVars.texture = SDL_CreateTexture(mSDLVars.renderer,
+                                         SDL_PIXELFORMAT_RGBA8888,
+                                         SDL_TEXTUREACCESS_TARGET,
+                                         nx,
+                                         ny);
 
-    return mTexture != nullptr;
+    return mSDLVars.texture != nullptr;
 }
 
 void
@@ -155,7 +153,7 @@ CApp::OnEvent(const SDL_Event& event)
                 default:
                     ; // Do nothing
             }
-            showImage(mImage, mChannel, mRenderer, mTexture);
+            showImage(mImage, mChannel, mSDLVars.renderer, mSDLVars.texture);
             break;
 
         case SDL_MOUSEBUTTONUP:
@@ -171,7 +169,7 @@ CApp::OnEvent(const SDL_Event& event)
             break;
 
         case SDL_USEREVENT:
-            showImage(mImage, mChannel, mRenderer, mTexture);
+            showImage(mImage, mChannel, mSDLVars.renderer, mSDLVars.texture);
             break;
     }
 }
@@ -220,7 +218,24 @@ CApp::OnRender()
 
     auto start = std::chrono::steady_clock::now();
 
-    // TODO: render!
+    auto lowerLeft = geom::Vec3(-2, -1, -1);
+    auto horizontal = geom::Vec3(4, 0, 0);
+    auto vertical = geom::Vec3(0, 2, 0);
+    auto origin = geom::Vec3(0, 0, 0);
+
+    for (auto j = 0; j < mImage.rows(); ++j) {
+        for (auto i = 0; i < mImage.cols(); ++i) {
+            auto u = float(i) / mImage.cols();
+            auto v = float(j) / mImage.rows();
+            auto ray = newRay(origin, lowerLeft + u*horizontal + v*vertical);
+            auto col = mRenderer.color(ray);
+            auto ir = int(255.99*col[0]);
+            auto ig = int(255.99*col[1]);
+            auto ib = int(255.99*col[2]);
+            auto value = (ir << 24) | (ig << 16) | (ib << 8) | 0xFF;
+            mImage.setValue(j, i, value);
+        }
+    }
 
     auto end = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration<double, std::milli>(end - start).count();
@@ -228,7 +243,7 @@ CApp::OnRender()
     auto fps = ++totalPasses / (totalTimeMs / 1000);
     std::cout << diff << " ms,\t" << fps << " FPS\t" << totalPasses << " samples" << std::endl;
 
-    showImage(mImage, mChannel, mRenderer, mTexture);
+    showImage(mImage, mChannel, mSDLVars.renderer, mSDLVars.texture);
 }
 
 void

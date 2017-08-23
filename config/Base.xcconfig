@@ -37,6 +37,9 @@ CLANG_CXX_LANGUAGE_STANDARD = c++17
 // Choose a version of the C++ standard library to use.
 CLANG_CXX_LIBRARY = libc++
 
+// Warns about issues in documentation comments (doxygen-style) such as missing or incorrect documentation tags.
+CLANG_WARN_DOCUMENTATION_COMMENTS = NO
+
 // Space-separated list of preprocessor macros of the form "foo" or "foo=bar".
 GCC_PREPROCESSOR_DEFINITIONS = $(GCC_PREPROCESSOR_DEFINITIONS_$(CONFIGURATION)) $(inherited)
 GCC_PREPROCESSOR_DEFINITIONS_Debug = DEBUG=1

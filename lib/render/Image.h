@@ -21,10 +21,10 @@ public:
 
     Image& operator =(const Image& rhs) = default;
 
-    void clear(int32_t clearColor = 0x000000FF);
+    void clear(uint32_t clearColor = 0x000000FF);
 
-    const int32_t& value(int row, int col) const;
-    void setValue(int row, int col, int32_t value);
+    const uint32_t& value(int row, int col) const;
+    void setValue(int row, int col, uint32_t value);
 
     int rows() const { return mRows; }
     int cols() const { return mCols; }
