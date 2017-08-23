@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7156F441F4BB6D200BA8FEE /* PixelView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7156F431F4BB6D200BA8FEE /* PixelView.m */; };
-		F7156F481F4BB82C00BA8FEE /* librender.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BC88BF1F4A495000968D42 /* librender.a */; };
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -19,24 +17,17 @@
 		F7BC889E1F48FEF400968D42 /* Sphere.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC889C1F48FEF400968D42 /* Sphere.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88A11F4902B500968D42 /* Hitable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC889F1F4902B500968D42 /* Hitable.cpp */; };
 		F7BC88A21F4902B500968D42 /* Hitable.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC88A01F4902B500968D42 /* Hitable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7BC88AB1F4A471D00968D42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88AA1F4A471D00968D42 /* AppDelegate.m */; };
-		F7BC88AE1F4A471D00968D42 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88AD1F4A471D00968D42 /* ViewController.mm */; };
-		F7BC88B01F4A471D00968D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BC88AF1F4A471D00968D42 /* Assets.xcassets */; };
-		F7BC88B31F4A471D00968D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BC88B11F4A471D00968D42 /* Main.storyboard */; };
-		F7BC88B61F4A471D00968D42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88B51F4A471D00968D42 /* main.m */; };
 		F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88C41F4A49BA00968D42 /* Image.cpp */; };
 		F7BC88C71F4A49BA00968D42 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC88C51F4A49BA00968D42 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88C81F4A4AB400968D42 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
+		F7BF50FB1F4D0EC40045DE27 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BF50FA1F4D0EC40045DE27 /* main.cpp */; };
+		F7BF51011F4D32D60045DE27 /* CApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BF50FF1F4D32D60045DE27 /* CApp.cpp */; };
+		F7BF51021F4D36BB0045DE27 /* librender.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BC88BF1F4A495000968D42 /* librender.a */; };
+		F7BF51071F4D37C20045DE27 /* libSDL2_image.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BF51051F4D37C20045DE27 /* libSDL2_image.a */; };
+		F7BF51081F4D37C20045DE27 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BF51061F4D37C20045DE27 /* libSDL2.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F7156F491F4BB83300BA8FEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F71B88A91F43379000D4F3A4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F7BC88BE1F4A495000968D42;
-			remoteInfo = render;
-		};
 		F71B88D91F448E8200D4F3A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F71B88A91F43379000D4F3A4 /* Project object */;
@@ -51,6 +42,13 @@
 			remoteGlobalIDString = F71B88CE1F44890100D4F3A4;
 			remoteInfo = geom;
 		};
+		F7BF51031F4D36C00045DE27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F71B88A91F43379000D4F3A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7BC88BE1F4A495000968D42;
+			remoteInfo = render;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,12 +61,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		F7BF50F61F4D0EC30045DE27 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F7156F431F4BB6D200BA8FEE /* PixelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PixelView.m; sourceTree = "<group>"; };
-		F7156F461F4BB7A300BA8FEE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F7156F471F4BB7BC00BA8FEE /* PixelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelView.h; sourceTree = "<group>"; };
 		F71B88B11F43379000D4F3A4 /* one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = one; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libembree.2.16.4.dylib; path = ../../../../opt/local/lib/libembree.2.16.4.dylib; sourceTree = "<group>"; };
@@ -81,18 +85,15 @@
 		F7BC889C1F48FEF400968D42 /* Sphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
 		F7BC889F1F4902B500968D42 /* Hitable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hitable.cpp; sourceTree = "<group>"; };
 		F7BC88A01F4902B500968D42 /* Hitable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hitable.h; sourceTree = "<group>"; };
-		F7BC88A71F4A471D00968D42 /* oneui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneui.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7BC88A91F4A471D00968D42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		F7BC88AA1F4A471D00968D42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F7BC88AD1F4A471D00968D42 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		F7BC88AF1F4A471D00968D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F7BC88B21F4A471D00968D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F7BC88B41F4A471D00968D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F7BC88B51F4A471D00968D42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F7BC88B71F4A471D00968D42 /* oneui.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = oneui.entitlements; sourceTree = "<group>"; };
 		F7BC88BF1F4A495000968D42 /* librender.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librender.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BC88C41F4A49BA00968D42 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		F7BC88C51F4A49BA00968D42 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		F7BF50F81F4D0EC30045DE27 /* viewer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = viewer; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7BF50FA1F4D0EC40045DE27 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F7BF50FF1F4D32D60045DE27 /* CApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CApp.cpp; sourceTree = "<group>"; };
+		F7BF51001F4D32D60045DE27 /* CApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CApp.h; sourceTree = "<group>"; };
+		F7BF51051F4D37C20045DE27 /* libSDL2_image.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2_image.a; path = ../../../../usr/local/Cellar/sdl2_image/2.0.1_2/lib/libSDL2_image.a; sourceTree = "<group>"; };
+		F7BF51061F4D37C20045DE27 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../usr/local/Cellar/sdl2/2.0.5/lib/libSDL2.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,19 +113,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7BC88A41F4A471D00968D42 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7156F481F4BB82C00BA8FEE /* librender.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F7BC88BC1F4A495000968D42 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F7BC88C81F4A4AB400968D42 /* libgeom.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7BF50F51F4D0EC30045DE27 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7BF51071F4D37C20045DE27 /* libSDL2_image.a in Frameworks */,
+				F7BF51081F4D37C20045DE27 /* libSDL2.a in Frameworks */,
+				F7BF51021F4D36BB0045DE27 /* librender.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +141,7 @@
 				F71B88C91F4487DB00D4F3A4 /* geom */,
 				F71B88C61F43CC9300D4F3A4 /* config */,
 				F71B88B31F43379000D4F3A4 /* wrender */,
-				F7BC88A81F4A471D00968D42 /* oneui */,
+				F7BF50F91F4D0EC40045DE27 /* viewer */,
 				F71B88B21F43379000D4F3A4 /* Products */,
 				F71B88C31F43CC2D00D4F3A4 /* Frameworks */,
 			);
@@ -149,8 +152,8 @@
 			children = (
 				F71B88B11F43379000D4F3A4 /* one */,
 				F71B88CF1F44890100D4F3A4 /* libgeom.a */,
-				F7BC88A71F4A471D00968D42 /* oneui.app */,
 				F7BC88BF1F4A495000968D42 /* librender.a */,
+				F7BF50F81F4D0EC30045DE27 /* viewer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +170,8 @@
 		F71B88C31F43CC2D00D4F3A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7BF51051F4D37C20045DE27 /* libSDL2_image.a */,
+				F7BF51061F4D37C20045DE27 /* libSDL2.a */,
 				F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */,
 			);
 			name = Frameworks;
@@ -195,24 +200,6 @@
 			path = lib/geom;
 			sourceTree = "<group>";
 		};
-		F7BC88A81F4A471D00968D42 /* oneui */ = {
-			isa = PBXGroup;
-			children = (
-				F7BC88A91F4A471D00968D42 /* AppDelegate.h */,
-				F7BC88AA1F4A471D00968D42 /* AppDelegate.m */,
-				F7156F471F4BB7BC00BA8FEE /* PixelView.h */,
-				F7156F431F4BB6D200BA8FEE /* PixelView.m */,
-				F7156F461F4BB7A300BA8FEE /* ViewController.h */,
-				F7BC88AD1F4A471D00968D42 /* ViewController.mm */,
-				F7BC88AF1F4A471D00968D42 /* Assets.xcassets */,
-				F7BC88B11F4A471D00968D42 /* Main.storyboard */,
-				F7BC88B41F4A471D00968D42 /* Info.plist */,
-				F7BC88B51F4A471D00968D42 /* main.m */,
-				F7BC88B71F4A471D00968D42 /* oneui.entitlements */,
-			);
-			path = oneui;
-			sourceTree = "<group>";
-		};
 		F7BC88C31F4A498900968D42 /* render */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +208,17 @@
 			);
 			name = render;
 			path = lib/render;
+			sourceTree = "<group>";
+		};
+		F7BF50F91F4D0EC40045DE27 /* viewer */ = {
+			isa = PBXGroup;
+			children = (
+				F7BF50FA1F4D0EC40045DE27 /* main.cpp */,
+				F7BF50FF1F4D32D60045DE27 /* CApp.cpp */,
+				F7BF51001F4D32D60045DE27 /* CApp.h */,
+			);
+			name = viewer;
+			path = cmd/viewer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,24 +281,6 @@
 			productReference = F71B88CF1F44890100D4F3A4 /* libgeom.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		F7BC88A61F4A471D00968D42 /* oneui */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F7BC88B81F4A471D00968D42 /* Build configuration list for PBXNativeTarget "oneui" */;
-			buildPhases = (
-				F7BC88A31F4A471D00968D42 /* Sources */,
-				F7BC88A41F4A471D00968D42 /* Frameworks */,
-				F7BC88A51F4A471D00968D42 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F7156F4A1F4BB83300BA8FEE /* PBXTargetDependency */,
-			);
-			name = oneui;
-			productName = oneui;
-			productReference = F7BC88A71F4A471D00968D42 /* oneui.app */;
-			productType = "com.apple.product-type.application";
-		};
 		F7BC88BE1F4A495000968D42 /* render */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7BC88C01F4A495000968D42 /* Build configuration list for PBXNativeTarget "render" */;
@@ -319,6 +299,24 @@
 			productReference = F7BC88BF1F4A495000968D42 /* librender.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		F7BF50F71F4D0EC30045DE27 /* viewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7BF50FC1F4D0EC40045DE27 /* Build configuration list for PBXNativeTarget "viewer" */;
+			buildPhases = (
+				F7BF50F41F4D0EC30045DE27 /* Sources */,
+				F7BF50F51F4D0EC30045DE27 /* Frameworks */,
+				F7BF50F61F4D0EC30045DE27 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7BF51041F4D36C00045DE27 /* PBXTargetDependency */,
+			);
+			name = viewer;
+			productName = viewer;
+			productReference = F7BF50F81F4D0EC30045DE27 /* viewer */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -336,11 +334,11 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
-					F7BC88A61F4A471D00968D42 = {
+					F7BC88BE1F4A495000968D42 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
-					F7BC88BE1F4A495000968D42 = {
+					F7BF50F71F4D0EC30045DE27 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
@@ -361,23 +359,11 @@
 			targets = (
 				F71B88B01F43379000D4F3A4 /* one */,
 				F71B88CE1F44890100D4F3A4 /* geom */,
-				F7BC88A61F4A471D00968D42 /* oneui */,
 				F7BC88BE1F4A495000968D42 /* render */,
+				F7BF50F71F4D0EC30045DE27 /* viewer */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		F7BC88A51F4A471D00968D42 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7BC88B01F4A471D00968D42 /* Assets.xcassets in Resources */,
-				F7BC88B31F4A471D00968D42 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F71B88AD1F43379000D4F3A4 /* Sources */ = {
@@ -398,17 +384,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7BC88A31F4A471D00968D42 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7BC88AE1F4A471D00968D42 /* ViewController.mm in Sources */,
-				F7BC88B61F4A471D00968D42 /* main.m in Sources */,
-				F7BC88AB1F4A471D00968D42 /* AppDelegate.m in Sources */,
-				F7156F441F4BB6D200BA8FEE /* PixelView.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F7BC88BB1F4A495000968D42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -417,14 +392,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7BF50F41F4D0EC30045DE27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7BF50FB1F4D0EC40045DE27 /* main.cpp in Sources */,
+				F7BF51011F4D32D60045DE27 /* CApp.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F7156F4A1F4BB83300BA8FEE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F7BC88BE1F4A495000968D42 /* render */;
-			targetProxy = F7156F491F4BB83300BA8FEE /* PBXContainerItemProxy */;
-		};
 		F71B88DA1F448E8200D4F3A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F71B88CE1F44890100D4F3A4 /* geom */;
@@ -435,18 +414,12 @@
 			target = F71B88CE1F44890100D4F3A4 /* geom */;
 			targetProxy = F7BC88C91F4A4AD000968D42 /* PBXContainerItemProxy */;
 		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		F7BC88B11F4A471D00968D42 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F7BC88B21F4A471D00968D42 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+		F7BF51041F4D36C00045DE27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7BC88BE1F4A495000968D42 /* render */;
+			targetProxy = F7BF51031F4D36C00045DE27 /* PBXContainerItemProxy */;
 		};
-/* End PBXVariantGroup section */
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F71B88B61F43379000D4F3A4 /* Debug */ = {
@@ -569,54 +542,6 @@
 			};
 			name = Release;
 		};
-		F7BC88B91F4A471D00968D42 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = oneui/oneui.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = oneui/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.undernones.oneui;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		F7BC88BA1F4A471D00968D42 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = oneui/oneui.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = oneui/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.undernones.oneui;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		F7BC88C11F4A495000968D42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -637,6 +562,37 @@
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
 				GCC_NO_COMMON_BLOCKS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F7BF50FD1F4D0EC40045DE27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_DYNAMIC_NO_PIC = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sdl2_image/2.0.1_2/lib,
+					/usr/local/Cellar/sdl2/2.0.5/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F7BF50FE1F4D0EC40045DE27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sdl2_image/2.0.1_2/lib,
+					/usr/local/Cellar/sdl2/2.0.5/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -671,20 +627,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7BC88B81F4A471D00968D42 /* Build configuration list for PBXNativeTarget "oneui" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F7BC88B91F4A471D00968D42 /* Debug */,
-				F7BC88BA1F4A471D00968D42 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		F7BC88C01F4A495000968D42 /* Build configuration list for PBXNativeTarget "render" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F7BC88C11F4A495000968D42 /* Debug */,
 				F7BC88C21F4A495000968D42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7BF50FC1F4D0EC40045DE27 /* Build configuration list for PBXNativeTarget "viewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7BF50FD1F4D0EC40045DE27 /* Debug */,
+				F7BF50FE1F4D0EC40045DE27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

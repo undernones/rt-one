@@ -21,7 +21,7 @@ public:
 
     Image& operator =(const Image& rhs) = default;
 
-    void clear(int32_t clearColor = 0);
+    void clear(int32_t clearColor = 0x000000FF);
 
     const int32_t& value(int row, int col) const;
     void setValue(int row, int col, int32_t value);
@@ -30,13 +30,17 @@ public:
     int cols() const { return mCols; }
     float aspectRatio() const { return mAspectRatio; }
 
-    const void* bytes() const { return (void*)mValues.data(); }
+    const std::vector<uint32_t>& getRgba() const { return mValues; }
+    std::vector<uint32_t> rToRgba() const;
+    std::vector<uint32_t> gToRgba() const;
+    std::vector<uint32_t> bToRgba() const;
+    std::vector<uint32_t> zToRgba() const;
 
 private:
     int mRows;
     int mCols;
     float mAspectRatio;
-    std::vector<int32_t> mValues;
+    std::vector<uint32_t> mValues;
 };
 
 }
