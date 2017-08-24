@@ -41,7 +41,7 @@ public:
     inline float length() const {
         return simd::length(e);
     }
-    inline float squared_length() const {
+    inline float squaredLength() const {
         return simd::length_squared(e);
     }
     inline void normalize();

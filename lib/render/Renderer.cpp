@@ -10,6 +10,10 @@
 #include <string>
 #include <sstream>
 
+// One
+#include <geom/Ray.h>
+#include <geom/Utils.h>
+
 namespace
 {
 
@@ -121,7 +125,15 @@ Renderer::color(RTCRay ray)
 {
     rtcIntersect(mScene, ray);
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
-        return 0.5 * geom::Vec3(ray.Ng[0]+1, ray.Ng[1]+1, ray.Ng[2]+1);
+        const auto origin = geom::Vec3(ray.org);
+        const auto direction = geom::Vec3(ray.dir);
+        const auto t = ray.tfar;
+        const auto normal = geom::Vec3(ray.Ng);
+
+        const auto hitPoint = geom::pointAlongRay(origin, direction, t);
+        const auto target = hitPoint + normal + geom::randomInUnitSphere();
+        const auto newRay = geom::newRay(hitPoint, target - hitPoint, 0.001);
+        return 0.5 * color(newRay);
     }
     auto unitDir = geom::Vec3(ray.dir).normalized();
     auto t = 0.5 * (unitDir.y() + 1.0);
