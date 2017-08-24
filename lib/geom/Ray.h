@@ -9,8 +9,9 @@
 namespace geom
 {
 
-Vec3 pointAlongRay(float origin[3], float direction[3], float t);
-RTCRay newRay(const Vec3& origin, const Vec3& direction);
+Vec3 pointAlongRay(const float origin[3], const float direction[3], float t);
+Vec3 pointAlongRay(const Vec3& origin, const Vec3& direction, float t);
+RTCRay newRay(const Vec3& origin, const Vec3& direction, float tnear = 0.f);
 
 }
 
