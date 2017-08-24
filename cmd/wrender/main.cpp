@@ -7,6 +7,7 @@
 #include <pmmintrin.h>
 
 #include <geom/Ray.h>
+#include <render/Camera.h>
 #include <render/Renderer.h>
 
 int
@@ -17,6 +18,7 @@ main(int argc, const char * argv[])
 
     const auto NX = 800;
     const auto NY = 400;
+    const auto NS = 100;
 
     auto renderer = render::Renderer();
 
@@ -26,16 +28,23 @@ main(int argc, const char * argv[])
     auto horizontal = geom::Vec3(4, 0, 0);
     auto vertical = geom::Vec3(0, 2, 0);
     auto origin = geom::Vec3(0, 0, 0);
+    auto camera = render::Camera(origin, lowerLeft, horizontal, vertical);
 
-    for (auto j = NY - 1; j >= 0; --j) {
-        for (auto i = 0; i < NX; ++i) {
-            auto u = float(i) / NX;
-            auto v = float(j) / NY;
-            auto ray = newRay(origin, lowerLeft + u*horizontal + v*vertical);
-            auto col = renderer.color(ray);
-            auto ir = int(255.99*col[0]);
-            auto ig = int(255.99*col[1]);
-            auto ib = int(255.99*col[2]);
+    for (auto row = NY - 1; row >= 0; --row) {
+        for (auto col = 0; col < NX; ++col) {
+            auto color = geom::Vec3(0, 0, 0);
+            for (auto sample = 0; sample < NS; ++sample) {
+                auto s = (col + drand48()) / NX;
+                auto t = (row + drand48()) / NY;
+                auto ray = camera.getRay(s, t);
+
+                color += renderer.color(ray);
+            }
+            color /= NS;
+            color = geom::Vec3(sqrt(color[0]), sqrt(color[1]), sqrt(color[2]));
+            auto ir = int(255.99*color[0]);
+            auto ig = int(255.99*color[1]);
+            auto ib = int(255.99*color[2]);
             std::cout << ir << " " << ig << " " << ib << "\n";
         }
     }

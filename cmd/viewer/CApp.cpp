@@ -15,6 +15,7 @@
 #include <geom/Vec3.h>
 #include <geom/Ray.h>
 #include <render/Camera.h>
+#include <render/Renderer.h>
 
 namespace
 {
