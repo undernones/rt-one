@@ -47,7 +47,7 @@ RTCSphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
                     RTCBounds* bounds_o    /*!< returns calculated bounds */)
 {
     // Assume we can dereference geomUserPtr
-    const auto& sphere = *(static_cast<geom::Sphere*>(userPtr));
+    const auto& sphere = *(static_cast<geom::Sphere*>(userPtr)+item);
 
     auto lower = sphere.center() - geom::Vec3(sphere.radius());
     auto upper = sphere.center() + geom::Vec3(sphere.radius());
@@ -67,7 +67,7 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
                        size_t item          /*!< item to intersect */)
 {
     // Assume we can dereference ptr
-    const auto& sphere = *(static_cast<geom::Sphere*>(ptr));
+    const auto& sphere = *(static_cast<geom::Sphere*>(ptr)+item);
     if (sphere.hit(ray)) {
         ray.geomID = static_cast<unsigned int>(item);
     }
@@ -96,10 +96,11 @@ Renderer::Renderer()
         throw std::domain_error(stream.str());
     }
 
-    auto sphereId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, 1);
-    mSphere = geom::Sphere(geom::Vec3(0, 0, -1), 0.5);
-    rtcSetUserData(mScene, sphereId, &mSphere);
-    rtcSetBoundsFunction2(mScene, sphereId, RTCSphereBoundsFunc, &mSphere);
+    mSpheres.emplace_back(geom::Vec3(0, 0, -1), 0.5);
+    mSpheres.emplace_back(geom::Vec3(0, -100.5, -1), 100);
+    auto sphereId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
+    rtcSetUserData(mScene, sphereId, mSpheres.data());
+    rtcSetBoundsFunction2(mScene, sphereId, RTCSphereBoundsFunc, mSpheres.data());
     rtcSetIntersectFunction(mScene, sphereId, RTCSphereIntersectFunc);
 
     rtcCommit(mScene);

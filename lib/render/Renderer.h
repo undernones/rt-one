@@ -6,6 +6,8 @@
 #define RENDER_RENDERER_H
 
 #include <embree2/rtcore_ray.h>
+#include <vector>
+
 #include <geom/Sphere.h>
 #include <geom/Vec3.h>
 
@@ -23,7 +25,7 @@ public:
 private:
     RTCDevice mDevice;
     RTCScene mScene;
-    geom::Sphere mSphere;
+    std::vector<geom::Sphere> mSpheres;
 };
 
 }
