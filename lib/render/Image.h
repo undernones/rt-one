@@ -8,6 +8,8 @@
 #include <stdint.h>
 #include <vector>
 
+#include <geom/Vec3.h>
+
 namespace render
 {
 
@@ -21,16 +23,16 @@ public:
 
     Image& operator =(const Image& rhs) = default;
 
-    void clear(uint32_t clearColor = 0x000000FF);
+    void clear(geom::Vec3 clearColor = geom::Vec3(0, 0, 0));
 
-    const uint32_t& value(int row, int col) const;
-    void setValue(int row, int col, uint32_t value);
+    const geom::Vec3& value(int row, int col) const;
+    void setValue(int row, int col, const geom::Vec3& value);
 
     int rows() const { return mRows; }
     int cols() const { return mCols; }
     float aspectRatio() const { return mAspectRatio; }
 
-    const std::vector<uint32_t>& getRgba() const { return mValues; }
+    std::vector<uint32_t> getRgba() const;
     std::vector<uint32_t> rToRgba() const;
     std::vector<uint32_t> gToRgba() const;
     std::vector<uint32_t> bToRgba() const;
@@ -40,7 +42,7 @@ private:
     int mRows;
     int mCols;
     float mAspectRatio;
-    std::vector<uint32_t> mValues;
+    std::vector<geom::Vec3> mValues;
 };
 
 }

@@ -14,6 +14,7 @@
 // One
 #include <geom/Vec3.h>
 #include <geom/Ray.h>
+#include <render/Camera.h>
 
 namespace
 {
@@ -222,18 +223,20 @@ CApp::OnRender()
     auto horizontal = geom::Vec3(4, 0, 0);
     auto vertical = geom::Vec3(0, 2, 0);
     auto origin = geom::Vec3(0, 0, 0);
+    auto camera = render::Camera(origin, lowerLeft, horizontal, vertical);
 
-    for (auto j = 0; j < mImage.rows(); ++j) {
-        for (auto i = 0; i < mImage.cols(); ++i) {
-            auto u = float(i) / mImage.cols();
-            auto v = float(j) / mImage.rows();
-            auto ray = newRay(origin, lowerLeft + u*horizontal + v*vertical);
-            auto col = mRenderer.color(ray);
-            auto ir = int(255.99*col[0]);
-            auto ig = int(255.99*col[1]);
-            auto ib = int(255.99*col[2]);
-            auto value = (ir << 24) | (ig << 16) | (ib << 8) | 0xFF;
-            mImage.setValue(j, i, value);
+    for (auto row = 0; row < mImage.rows(); ++row) {
+        for (auto col = 0; col < mImage.cols(); ++col) {
+            const auto s = (col + drand48()) / mImage.cols();
+            const auto t = (row + drand48()) / mImage.rows();
+            const auto ray = camera.getRay(s, t);
+
+            // Keep a running average of samples.
+            const auto sample = mRenderer.color(ray);
+            const auto current = mImage.value(row, col);
+            const auto newValue = current + (sample - current) / mSampleCount;
+
+            mImage.setValue(row, col, newValue);
         }
     }
 
