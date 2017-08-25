@@ -110,10 +110,10 @@ Renderer::Renderer()
         throw std::domain_error(stream.str());
     }
 
-    mSpheres.emplace_back(geom::Vec3(0, 0, -1), 0.5, std::make_shared<Lambertian>(geom::Vec3(0.8, 0.3, 0.3)));
+    mSpheres.emplace_back(geom::Vec3(0, 0, -1), 0.5, std::make_shared<Lambertian>(geom::Vec3(0.1, 0.2, 0.5)));
     mSpheres.emplace_back(geom::Vec3(0, -100.5, -1), 100, std::make_shared<Lambertian>(geom::Vec3(0.8, 0.8, 0)));
     mSpheres.emplace_back(geom::Vec3(1, 0, -1), 0.5, std::make_shared<Metal>(geom::Vec3(0.8, 0.6, 0.2), 1));
-    mSpheres.emplace_back(geom::Vec3(-1, 0, -1), 0.5, std::make_shared<Dielectric>(geom::Vec3(1, 1, 1), 1.5));
+    mSpheres.emplace_back(geom::Vec3(-1, 0, -1), 0.5, std::make_shared<Dielectric>(geom::Vec3(0.9, 1, 0.9), 1.5));
 
     auto geomId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
     rtcSetUserData(mScene, geomId, mSpheres.data());
