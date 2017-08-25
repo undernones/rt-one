@@ -227,11 +227,10 @@ CApp::OnRender()
 
     auto start = std::chrono::steady_clock::now();
 
-    auto lowerLeft = geom::Vec3(-2, -1, -1);
-    auto horizontal = geom::Vec3(4, 0, 0);
-    auto vertical = geom::Vec3(0, 2, 0);
-    auto origin = geom::Vec3(0, 0, 0);
-    auto camera = render::Camera(origin, lowerLeft, horizontal, vertical);
+    auto origin = geom::Vec3(-2, 2, 1);
+    auto lookAt = geom::Vec3(0, 0, -1);
+    auto up = geom::Vec3(0, 1, 0);
+    auto camera = render::Camera(origin, lookAt, up, 90, mImage.cols(), mImage.rows());
 
 #if PARALLEL
     tbb::parallel_for(int(0), mImage.rows(), int(1), [&](int row) {

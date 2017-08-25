@@ -24,11 +24,10 @@ main(int argc, const char * argv[])
 
     std::cout << "P3\n" << NX << " " << NY << "\n255\n";
 
-    auto lowerLeft = geom::Vec3(-2, -1, -1);
-    auto horizontal = geom::Vec3(4, 0, 0);
-    auto vertical = geom::Vec3(0, 2, 0);
-    auto origin = geom::Vec3(0, 0, 0);
-    auto camera = render::Camera(origin, lowerLeft, horizontal, vertical);
+    auto origin = geom::Vec3(-2, 2, 1);
+    auto lookAt = geom::Vec3(0, 0, -1);
+    auto up = geom::Vec3(0, 1, 0);
+    auto camera = render::Camera(origin, lookAt, up, 90, NX, NY);
 
     for (auto row = NY - 1; row >= 0; --row) {
         for (auto col = 0; col < NX; ++col) {

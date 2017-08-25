@@ -15,22 +15,21 @@ class Camera
 {
 public:
     Camera() = default;
-//    Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom::Vec3& up, float fov, int width, int height);
-    Camera(const geom::Vec3& origin, const geom::Vec3& lowerLeft, const geom::Vec3& horizontal, const geom::Vec3& vertical);
+    Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom::Vec3& up, float fov, int width, int height);
 
     RTCRay getRay(float s, float t);
 
-//    int width() const { return mWidth; }
-//    int height() const { return mHeight; }
+    int width() const { return mWidth; }
+    int height() const { return mHeight; }
 
 private:
     geom::Vec3 mOrigin;
     geom::Vec3 mLowerLeft;
     geom::Vec3 mHorizontal;
     geom::Vec3 mVertical;
-//    geom::Vec3 mU, mV, mW;
-//    int mWidth;
-//    int mHeight;
+    geom::Vec3 mU, mV, mW;
+    int mWidth;
+    int mHeight;
 };
 
 }
