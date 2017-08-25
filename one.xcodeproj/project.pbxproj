@@ -39,6 +39,8 @@
 		F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A451F4FCB2B00B962C0 /* Metal.cpp */; };
 		F7E95A481F4FCB2B00B962C0 /* Metal.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A461F4FCB2B00B962C0 /* Metal.h */; };
 		F7E95A4A1F4FD65A00B962C0 /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E95A491F4FD65A00B962C0 /* libtbb.dylib */; };
+		F7E95A4D1F4FD87600B962C0 /* Dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A4B1F4FD87600B962C0 /* Dielectric.cpp */; };
+		F7E95A4E1F4FD87600B962C0 /* Dielectric.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A4C1F4FD87600B962C0 /* Dielectric.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,8 @@
 		F7E95A451F4FCB2B00B962C0 /* Metal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Metal.cpp; sourceTree = "<group>"; };
 		F7E95A461F4FCB2B00B962C0 /* Metal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metal.h; sourceTree = "<group>"; };
 		F7E95A491F4FD65A00B962C0 /* libtbb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtbb.dylib; path = ../../../../usr/local/Cellar/tbb/2017_U7/lib/libtbb.dylib; sourceTree = "<group>"; };
+		F7E95A4B1F4FD87600B962C0 /* Dielectric.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dielectric.cpp; sourceTree = "<group>"; };
+		F7E95A4C1F4FD87600B962C0 /* Dielectric.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dielectric.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +265,8 @@
 		F7E95A341F4FA60B00B962C0 /* materials */ = {
 			isa = PBXGroup;
 			children = (
+				F7E95A4B1F4FD87600B962C0 /* Dielectric.cpp */,
+				F7E95A4C1F4FD87600B962C0 /* Dielectric.h */,
 				F7E95A351F4FA64100B962C0 /* Material.cpp */,
 				F7E95A361F4FA64100B962C0 /* Material.h */,
 				F7E95A451F4FCB2B00B962C0 /* Metal.cpp */,
@@ -295,6 +301,7 @@
 				F7E95A381F4FA64100B962C0 /* Material.h in Headers */,
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
 				F7E95A441F4FAFB500B962C0 /* Lambertian.h in Headers */,
+				F7E95A4E1F4FD87600B962C0 /* Dielectric.h in Headers */,
 				F7E95A401F4FACA500B962C0 /* Sphere.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +453,7 @@
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
 				F7BF510F1F4DC4260045DE27 /* Scene.cpp in Sources */,
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
+				F7E95A4D1F4FD87600B962C0 /* Dielectric.cpp in Sources */,
 				F7E95A431F4FAFB500B962C0 /* Lambertian.cpp in Sources */,
 				F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */,
 				F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */,

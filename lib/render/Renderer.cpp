@@ -14,6 +14,7 @@
 #include <geom/Ray.h>
 #include <geom/Utils.h>
 
+#include "Dielectric.h"
 #include "Lambertian.h"
 #include "Metal.h"
 #include "Sphere.h"
@@ -112,7 +113,7 @@ Renderer::Renderer()
     mSpheres.emplace_back(geom::Vec3(0, 0, -1), 0.5, std::make_shared<Lambertian>(geom::Vec3(0.8, 0.3, 0.3)));
     mSpheres.emplace_back(geom::Vec3(0, -100.5, -1), 100, std::make_shared<Lambertian>(geom::Vec3(0.8, 0.8, 0)));
     mSpheres.emplace_back(geom::Vec3(1, 0, -1), 0.5, std::make_shared<Metal>(geom::Vec3(0.8, 0.6, 0.2), 1));
-    mSpheres.emplace_back(geom::Vec3(-1, 0, -1), 0.5, std::make_shared<Metal>(geom::Vec3(0.8, 0.8, 0.8), 0.3));
+    mSpheres.emplace_back(geom::Vec3(-1, 0, -1), 0.5, std::make_shared<Dielectric>(geom::Vec3(1, 1, 1), 1.5));
 
     auto geomId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
     rtcSetUserData(mScene, geomId, mSpheres.data());
@@ -159,7 +160,8 @@ Renderer::color(RTCRay ray, int depth)
     }
     auto unitDir = geom::Vec3(ray.dir).normalized();
     auto t = 0.5 * (unitDir.y() + 1.0);
-    return (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
+    auto result = (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
+    return BG_INTENSITY * result;
 }
 
 }
