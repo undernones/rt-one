@@ -73,7 +73,8 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
     // Assume we can dereference ptr
     const auto& sphere = *(static_cast<geom::Sphere*>(ptr)+item);
     if (sphere.hit(ray)) {
-        ray.geomID = static_cast<unsigned int>(item);
+        ray.geomID = 0; // TODO: this isn't future proof
+        ray.primID = static_cast<unsigned int>(item);
     }
 }
 
@@ -102,10 +103,10 @@ Renderer::Renderer()
 
     mSpheres.emplace_back(geom::Vec3(0, 0, -1), 0.5);
     mSpheres.emplace_back(geom::Vec3(0, -100.5, -1), 100);
-    auto sphereId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
-    rtcSetUserData(mScene, sphereId, mSpheres.data());
-    rtcSetBoundsFunction2(mScene, sphereId, RTCSphereBoundsFunc, mSpheres.data());
-    rtcSetIntersectFunction(mScene, sphereId, RTCSphereIntersectFunc);
+    auto geomId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
+    rtcSetUserData(mScene, geomId, mSpheres.data());
+    rtcSetBoundsFunction2(mScene, geomId, RTCSphereBoundsFunc, mSpheres.data());
+    rtcSetIntersectFunction(mScene, geomId, RTCSphereIntersectFunc);
 
     rtcCommit(mScene);
 }
