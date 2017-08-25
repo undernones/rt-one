@@ -1,0 +1,44 @@
+//
+// Copyright © 2017 Undernones. All rights reserved.
+//
+
+#include "Metal.h"
+
+#include <geom/Utils.h>
+
+namespace
+{
+
+template <typename T>
+inline T
+clamp(T const& value, T const& min, T const& max)
+{
+    return std::max(min, std::min(value, max));
+}
+
+}
+namespace render
+{
+
+Metal::Metal(const geom::Vec3& albedo, float fuzziness)
+    : Material()
+    , mAlbedo(albedo)
+    , mFuzziness(clamp(fuzziness, 0.f, 1.f))
+{
+}
+
+bool
+Metal::scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) const
+{
+    const auto direction = geom::Vec3(rayIn.dir).normalized();
+    const auto normal = geom::Vec3(rayIn.Ng);
+    auto reflected = geom::reflect(direction, normal);
+
+    const auto hitPoint = geom::pointAlongRay(rayIn.org, rayIn.dir, rayIn.tfar);
+    scattered = geom::newRay(hitPoint, reflected + fuzziness() * geom::randomInUnitSphere());
+    attenuation = albedo();
+
+    return geom::Vec3(scattered.dir).dot(normal) > 0;
+}
+
+}
