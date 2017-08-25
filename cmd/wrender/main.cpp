@@ -18,7 +18,7 @@ main(int argc, const char * argv[])
 
     const auto NX = 800;
     const auto NY = 400;
-    const auto NS = 100;
+    const auto NS = 50;
 
     auto renderer = render::Renderer();
 
