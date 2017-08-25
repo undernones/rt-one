@@ -38,6 +38,7 @@
 		F7E95A441F4FAFB500B962C0 /* Lambertian.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A421F4FAFB500B962C0 /* Lambertian.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A451F4FCB2B00B962C0 /* Metal.cpp */; };
 		F7E95A481F4FCB2B00B962C0 /* Metal.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A461F4FCB2B00B962C0 /* Metal.h */; };
+		F7E95A4A1F4FD65A00B962C0 /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E95A491F4FD65A00B962C0 /* libtbb.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		F7E95A421F4FAFB500B962C0 /* Lambertian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lambertian.h; sourceTree = "<group>"; };
 		F7E95A451F4FCB2B00B962C0 /* Metal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Metal.cpp; sourceTree = "<group>"; };
 		F7E95A461F4FCB2B00B962C0 /* Metal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metal.h; sourceTree = "<group>"; };
+		F7E95A491F4FD65A00B962C0 /* libtbb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtbb.dylib; path = ../../../../usr/local/Cellar/tbb/2017_U7/lib/libtbb.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7E95A4A1F4FD65A00B962C0 /* libtbb.dylib in Frameworks */,
 				F7BF51121F4DCE800045DE27 /* libembree.2.16.4.dylib in Frameworks */,
 				F7BF51071F4D37C20045DE27 /* libSDL2_image.a in Frameworks */,
 				F7BF51081F4D37C20045DE27 /* libSDL2.a in Frameworks */,
@@ -196,6 +199,7 @@
 		F71B88C31F43CC2D00D4F3A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7E95A491F4FD65A00B962C0 /* libtbb.dylib */,
 				F7BF51051F4D37C20045DE27 /* libSDL2_image.a */,
 				F7BF51061F4D37C20045DE27 /* libSDL2.a */,
 				F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */,
@@ -630,6 +634,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/sdl2_image/2.0.1_2/lib,
 					/usr/local/Cellar/sdl2/2.0.5/lib,
+					/usr/local/Cellar/tbb/2017_U7/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -645,6 +650,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/sdl2_image/2.0.1_2/lib,
 					/usr/local/Cellar/sdl2/2.0.5/lib,
+					/usr/local/Cellar/tbb/2017_U7/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -10,12 +10,19 @@
 #include <iostream>
 #include <memory>
 #include <sstream>
+#include <tbb/tbb.h>
 
 // One
 #include <geom/Vec3.h>
 #include <geom/Ray.h>
 #include <render/Camera.h>
 #include <render/Renderer.h>
+
+#if DEBUG
+#define PARALLEL 0
+#else
+#define PARALLEL 1
+#endif
 
 namespace
 {
@@ -226,7 +233,11 @@ CApp::OnRender()
     auto origin = geom::Vec3(0, 0, 0);
     auto camera = render::Camera(origin, lowerLeft, horizontal, vertical);
 
+#if PARALLEL
+    tbb::parallel_for(int(0), mImage.rows(), int(1), [&](int row) {
+#else
     for (auto row = 0; row < mImage.rows(); ++row) {
+#endif
         for (auto col = 0; col < mImage.cols(); ++col) {
             const auto s = (col + drand48()) / mImage.cols();
             const auto t = (row + drand48()) / mImage.rows();
@@ -239,7 +250,11 @@ CApp::OnRender()
 
             mImage.setValue(row, col, newValue);
         }
+#if PARALLEL
+    });
+#else
     }
+#endif
 
     auto end = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration<double, std::milli>(end - start).count();
