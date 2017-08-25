@@ -20,7 +20,7 @@ public:
     Renderer();
     ~Renderer();
 
-    geom::Vec3 color(RTCRay ray);
+    geom::Vec3 color(RTCRay ray, int depth = 0);
 
 private:
     RTCDevice mDevice;

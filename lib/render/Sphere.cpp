@@ -10,13 +10,19 @@ namespace render
 {
 
 Sphere::Sphere()
-    : Sphere(geom::Vec3(0, 0, 0), 1.f)
+    : Sphere(geom::Vec3(0, 0, 0), 1.f, std::shared_ptr<Material>(nullptr))
 {
 }
 
-Sphere::Sphere(const geom::Vec3& center, float radius)
+Sphere::Sphere(const geom::Vec3& center, float radius, std::shared_ptr<Material>& material)
+    : Sphere(center, radius, std::move(material))
+{
+}
+
+Sphere::Sphere(const geom::Vec3& center, float radius, std::shared_ptr<Material>&& material)
     : mCenter(center)
     , mRadius(radius)
+    , mMaterial(material)
 {
 }
 

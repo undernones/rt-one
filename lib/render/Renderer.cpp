@@ -14,10 +14,16 @@
 #include <geom/Ray.h>
 #include <geom/Utils.h>
 
+#include "Lambertian.h"
+#include "Metal.h"
 #include "Sphere.h"
 
 namespace
 {
+
+const auto EPSILON = 0.001f;
+const auto MAX_DEPTH = 20;
+const auto BG_INTENSITY = 1.f;
 
 std::string
 EmbreeErrorToString(RTCError error)
@@ -103,8 +109,11 @@ Renderer::Renderer()
         throw std::domain_error(stream.str());
     }
 
-    mSpheres.emplace_back(geom::Vec3(0, 0, -1), 0.5);
-    mSpheres.emplace_back(geom::Vec3(0, -100.5, -1), 100);
+    mSpheres.emplace_back(geom::Vec3(0, 0, -1), 0.5, std::make_shared<Lambertian>(geom::Vec3(0.8, 0.3, 0.3)));
+    mSpheres.emplace_back(geom::Vec3(0, -100.5, -1), 100, std::make_shared<Lambertian>(geom::Vec3(0.8, 0.8, 0)));
+    mSpheres.emplace_back(geom::Vec3(1, 0, -1), 0.5, std::make_shared<Metal>(geom::Vec3(0.8, 0.6, 0.2), 1));
+    mSpheres.emplace_back(geom::Vec3(-1, 0, -1), 0.5, std::make_shared<Metal>(geom::Vec3(0.8, 0.8, 0.8), 0.3));
+
     auto geomId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
     rtcSetUserData(mScene, geomId, mSpheres.data());
     rtcSetBoundsFunction2(mScene, geomId, RTCSphereBoundsFunc, mSpheres.data());
@@ -124,17 +133,29 @@ Renderer::~Renderer()
 }
 
 geom::Vec3
-Renderer::color(RTCRay ray)
+Renderer::color(RTCRay ray, int depth)
 {
+    ray.tnear = EPSILON;
     rtcIntersect(mScene, ray);
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
         const auto t = ray.tfar;
-        const auto normal = geom::Vec3(ray.Ng);
-
         const auto hitPoint = geom::pointAlongRay(ray.org, ray.dir, t);
-        const auto target = hitPoint + normal + geom::randomInUnitSphere();
-        const auto newRay = geom::newRay(hitPoint, target - hitPoint, 0.001);
-        return 0.5 * color(newRay);
+
+        // Get the material
+        const auto& sphere = mSpheres[ray.primID];
+        auto material = sphere.material();
+
+        // Check for emissions
+        auto result = material->emitted(ray.u, ray.v, hitPoint);
+
+        // Scatter
+        auto scattered = RTCRay();
+        auto attenuation = geom::Vec3();
+        if (depth < MAX_DEPTH && material->scatter(ray, attenuation, scattered)) {
+            result += attenuation * color(scattered, depth+1);
+        }
+        
+        return result;
     }
     auto unitDir = geom::Vec3(ray.dir).normalized();
     auto t = 0.5 * (unitDir.y() + 1.0);
