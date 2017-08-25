@@ -125,12 +125,10 @@ Renderer::color(RTCRay ray)
 {
     rtcIntersect(mScene, ray);
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
-        const auto origin = geom::Vec3(ray.org);
-        const auto direction = geom::Vec3(ray.dir);
         const auto t = ray.tfar;
         const auto normal = geom::Vec3(ray.Ng);
 
-        const auto hitPoint = geom::pointAlongRay(origin, direction, t);
+        const auto hitPoint = geom::pointAlongRay(ray.org, ray.dir, t);
         const auto target = hitPoint + normal + geom::randomInUnitSphere();
         const auto newRay = geom::newRay(hitPoint, target - hitPoint, 0.001);
         return 0.5 * color(newRay);
