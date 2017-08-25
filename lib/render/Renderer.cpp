@@ -14,6 +14,8 @@
 #include <geom/Ray.h>
 #include <geom/Utils.h>
 
+#include "Sphere.h"
+
 namespace
 {
 
@@ -51,7 +53,7 @@ RTCSphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
                     RTCBounds* bounds_o    /*!< returns calculated bounds */)
 {
     // Assume we can dereference geomUserPtr
-    const auto& sphere = *(static_cast<geom::Sphere*>(userPtr)+item);
+    const auto& sphere = *(static_cast<render::Sphere*>(userPtr)+item);
 
     auto lower = sphere.center() - geom::Vec3(sphere.radius());
     auto upper = sphere.center() + geom::Vec3(sphere.radius());
@@ -71,7 +73,7 @@ RTCSphereIntersectFunc(void* ptr,           /*!< pointer to user data */
                        size_t item          /*!< item to intersect */)
 {
     // Assume we can dereference ptr
-    const auto& sphere = *(static_cast<geom::Sphere*>(ptr)+item);
+    const auto& sphere = *(static_cast<render::Sphere*>(ptr)+item);
     if (sphere.hit(ray)) {
         ray.geomID = 0; // TODO: this isn't future proof
         ray.primID = static_cast<unsigned int>(item);

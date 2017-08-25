@@ -8,12 +8,12 @@
 #include <embree2/rtcore_ray.h>
 #include <vector>
 
-#include <geom/Sphere.h>
 #include <geom/Vec3.h>
 
 namespace render
 {
 
+class Sphere;
 class Renderer
 {
 public:
@@ -25,7 +25,7 @@ public:
 private:
     RTCDevice mDevice;
     RTCScene mScene;
-    std::vector<geom::Sphere> mSpheres;
+    std::vector<Sphere> mSpheres;
 };
 
 }

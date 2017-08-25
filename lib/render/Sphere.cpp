@@ -3,17 +3,18 @@
 //
 
 #include "Sphere.h"
-#include "Ray.h"
 
-namespace geom
+#include <geom/Ray.h>
+
+namespace render
 {
 
 Sphere::Sphere()
-    : Sphere(Vec3(0, 0, 0), 1.f)
+    : Sphere(geom::Vec3(0, 0, 0), 1.f)
 {
 }
 
-Sphere::Sphere(const Vec3& center, float radius)
+Sphere::Sphere(const geom::Vec3& center, float radius)
     : mCenter(center)
     , mRadius(radius)
 {
@@ -47,7 +48,7 @@ Sphere::hit(RTCRay& ray) const
     }
 
     if (isHit) {
-        auto hitPoint = pointAlongRay(ray.org, ray.dir, t);
+        auto hitPoint = geom::pointAlongRay(ray.org, ray.dir, t);
         auto normal = (hitPoint - mCenter) / mRadius;
 
         ray.tfar = t;
@@ -60,7 +61,7 @@ Sphere::hit(RTCRay& ray) const
 }
 
 std::tuple<float, float>
-Sphere::uv(const Vec3 &p) const
+Sphere::uv(const geom::Vec3 &p) const
 {
     auto normalizedPt = (p - mCenter) / mRadius;
 
