@@ -110,10 +110,36 @@ Renderer::Renderer()
         throw std::domain_error(stream.str());
     }
 
-    mSpheres.emplace_back(geom::Vec3(0, 0, -1), 0.5, std::make_shared<Lambertian>(geom::Vec3(0.1, 0.2, 0.5)));
-    mSpheres.emplace_back(geom::Vec3(0, -100.5, -1), 100, std::make_shared<Lambertian>(geom::Vec3(0.8, 0.8, 0)));
-    mSpheres.emplace_back(geom::Vec3(1, 0, -1), 0.5, std::make_shared<Metal>(geom::Vec3(0.8, 0.6, 0.2), 1));
-    mSpheres.emplace_back(geom::Vec3(-1, 0, -1), 0.5, std::make_shared<Dielectric>(geom::Vec3(0.9, 1, 0.9), 1.5));
+    // Ground
+    mSpheres.emplace_back(geom::Vec3(0, -1000, 0), 1000, std::make_shared<Lambertian>(geom::Vec3(0.5, 0.5, 0.5)));
+
+    // Primary spheres
+    mSpheres.emplace_back(geom::Vec3(0, 1, 0), 1, std::make_shared<Dielectric>(geom::Vec3(0.9, 1, 0.9), 1.5));
+    mSpheres.emplace_back(geom::Vec3(-4, 1, 0), 1, std::make_shared<Lambertian>(geom::Vec3(0.4, 0.2, 0.1)));
+    mSpheres.emplace_back(geom::Vec3(4, 1, 0), 1, std::make_shared<Metal>(geom::Vec3(0.7, 0.6, 0.5), 0.05));
+
+    // Random spheres
+    for (auto a = -11; a < 11; a++) {
+        for (auto b = -11; b < 11; b++) {
+            auto chooseMat = drand48();
+            auto center = geom::Vec3(a+0.9*drand48(), 0.2, b+0.9*drand48());
+            if ((center - geom::Vec3(4, 0.2, 0)).length() > 0.9) {
+                if (chooseMat < 0.8) { // diffuse
+                    auto color = geom::Vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48());
+                    auto m = std::make_shared<Lambertian>(color);
+                    mSpheres.emplace_back(center, 0.2, m);
+                } else if (chooseMat < 0.95) { // metal
+                    auto color = geom::Vec3(0.5*(1+drand48()), 0.5*(1+drand48()), 0.5*(1+drand48()));
+                    auto m = std::make_shared<Metal>(color, 0.5*drand48());
+                    mSpheres.emplace_back(center, 0.2, m);
+                } else { // glass
+                    auto color = geom::Vec3(0.1*(9+drand48()), 0.1*(9+drand48()), 0.1*(9+drand48()));
+                    auto m = std::make_shared<Dielectric>(color, 1.5);
+                    mSpheres.emplace_back(center, 0.2, m);
+                }
+            }
+        }
+    }
 
     auto geomId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
     rtcSetUserData(mScene, geomId, mSpheres.data());

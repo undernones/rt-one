@@ -227,11 +227,11 @@ CApp::OnRender()
 
     auto start = std::chrono::steady_clock::now();
 
-    auto origin = geom::Vec3(3, 3, 2);
-    auto lookAt = geom::Vec3(0, 0, -1);
+    auto origin = geom::Vec3(12, 2, 4);
+    auto lookAt = geom::Vec3(0, 0.5, 0);
     auto up = geom::Vec3(0, 1, 0);
     auto focalDistance = (lookAt - origin).length();
-    auto aperture = 2.f;
+    auto aperture = 0.15;
     auto camera = render::Camera(origin, lookAt, up, 20, mImage.cols(), mImage.rows(), aperture, focalDistance);
 
 #if PARALLEL
