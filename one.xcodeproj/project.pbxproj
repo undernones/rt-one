@@ -34,6 +34,8 @@
 		F7BF510F1F4DC4260045DE27 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BF510D1F4DC4260045DE27 /* Scene.cpp */; };
 		F7BF51101F4DC4260045DE27 /* Scene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BF510E1F4DC4260045DE27 /* Scene.h */; };
 		F7BF51121F4DCE800045DE27 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
+		F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A351F4FA64100B962C0 /* Material.cpp */; };
+		F7E95A381F4FA64100B962C0 /* Material.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A361F4FA64100B962C0 /* Material.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,8 @@
 		F7BF510A1F4DC0B20045DE27 /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		F7BF510D1F4DC4260045DE27 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F7BF510E1F4DC4260045DE27 /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		F7E95A351F4FA64100B962C0 /* Material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
+		F7E95A361F4FA64100B962C0 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +227,7 @@
 		F7BC88C31F4A498900968D42 /* render */ = {
 			isa = PBXGroup;
 			children = (
+				F7E95A341F4FA60B00B962C0 /* materials */,
 				F70F91EE1F4E5F1500D585A9 /* Camera.cpp */,
 				F70F91EF1F4E5F1500D585A9 /* Camera.h */,
 				F7BC88C41F4A49BA00968D42 /* Image.cpp */,
@@ -247,6 +252,15 @@
 			path = cmd/viewer;
 			sourceTree = "<group>";
 		};
+		F7E95A341F4FA60B00B962C0 /* materials */ = {
+			isa = PBXGroup;
+			children = (
+				F7E95A351F4FA64100B962C0 /* Material.cpp */,
+				F7E95A361F4FA64100B962C0 /* Material.h */,
+			);
+			path = materials;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -269,6 +283,7 @@
 				F7BF51101F4DC4260045DE27 /* Scene.h in Headers */,
 				F70F91F11F4E5F1500D585A9 /* Camera.h in Headers */,
 				F7BC88C71F4A49BA00968D42 /* Image.h in Headers */,
+				F7E95A381F4FA64100B962C0 /* Material.h in Headers */,
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +437,7 @@
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
 				F7BF510F1F4DC4260045DE27 /* Scene.cpp in Sources */,
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
+				F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */,
 				F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
