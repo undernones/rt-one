@@ -17,6 +17,8 @@
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F71B88D71F448A8100D4F3A4 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88D51F448A7D00D4F3A4 /* Ray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88D41F448A7D00D4F3A4 /* Ray.cpp */; };
+		F754BC671F50FADF00A75D49 /* AABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC651F50FADF00A75D49 /* AABB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC661F50FADF00A75D49 /* AABB.cpp */; };
 		F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88C41F4A49BA00968D42 /* Image.cpp */; };
 		F7BC88C71F4A49BA00968D42 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC88C51F4A49BA00968D42 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88C81F4A4AB400968D42 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
@@ -101,6 +103,8 @@
 		F71B88CF1F44890100D4F3A4 /* libgeom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgeom.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88D41F448A7D00D4F3A4 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
 		F71B88D51F448A7D00D4F3A4 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
+		F754BC651F50FADF00A75D49 /* AABB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABB.h; sourceTree = "<group>"; };
+		F754BC661F50FADF00A75D49 /* AABB.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AABB.cpp; sourceTree = "<group>"; };
 		F7BC88BF1F4A495000968D42 /* librender.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librender.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BC88C41F4A49BA00968D42 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		F7BC88C51F4A49BA00968D42 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 		F71B88C91F4487DB00D4F3A4 /* geom */ = {
 			isa = PBXGroup;
 			children = (
+				F754BC651F50FADF00A75D49 /* AABB.h */,
+				F754BC661F50FADF00A75D49 /* AABB.cpp */,
 				F71B88D41F448A7D00D4F3A4 /* Ray.cpp */,
 				F71B88D51F448A7D00D4F3A4 /* Ray.h */,
 				F70F91F21F4F085000D585A9 /* Utils.cpp */,
@@ -286,6 +292,7 @@
 			files = (
 				F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */,
 				F71B88D71F448A8100D4F3A4 /* Ray.h in Headers */,
+				F754BC671F50FADF00A75D49 /* AABB.h in Headers */,
 				F70F91F51F4F085000D585A9 /* Utils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */,
 				F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */,
 				F70F91F41F4F085000D585A9 /* Utils.cpp in Sources */,
 			);
