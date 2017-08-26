@@ -29,7 +29,7 @@ main(int argc, const char * argv[])
     auto up = geom::Vec3(0, 1, 0);
     auto focalDistance = (lookAt - origin).length();
     auto aperture = 2.f;
-    auto camera = render::Camera(origin, lookAt, up, 20, NX, NY, aperture, focalDistance);
+    auto camera = render::Camera(origin, lookAt, up, 20, NX, NY, aperture, focalDistance, 0, 1);
 
     for (auto row = NY - 1; row >= 0; --row) {
         for (auto col = 0; col < NX; ++col) {
