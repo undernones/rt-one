@@ -232,7 +232,7 @@ CApp::OnRender()
     auto up = geom::Vec3(0, 1, 0);
     auto focalDistance = (lookAt - origin).length();
     auto aperture = 0.15;
-    auto camera = render::Camera(origin, lookAt, up, 20, mImage.cols(), mImage.rows(), aperture, focalDistance);
+    auto camera = render::Camera(origin, lookAt, up, 20, mImage.cols(), mImage.rows(), aperture, focalDistance, 0, 1);
 
 #if PARALLEL
     tbb::parallel_for(int(0), mImage.rows(), int(1), [&](int row) {

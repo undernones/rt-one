@@ -10,7 +10,7 @@ pointAlongRay(const Vec3& origin, const Vec3& direction, float t)
 }
 
 RTCRay
-newRay(const Vec3& origin, const Vec3& direction, float tnear)
+newRay(const Vec3& origin, const Vec3& direction, float time, float tnear)
 {
     auto ray = RTCRay();
 
@@ -29,8 +29,8 @@ newRay(const Vec3& origin, const Vec3& direction, float tnear)
     ray.geomID = RTC_INVALID_GEOMETRY_ID;
     ray.primID = RTC_INVALID_GEOMETRY_ID;
     ray.mask = 0xFFFFFFFF;
-    ray.time = 0.f;
-    
+    ray.time = time;
+
     return ray;
 }
 

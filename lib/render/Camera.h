@@ -15,7 +15,7 @@ class Camera
 {
 public:
     Camera() = default;
-    Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom::Vec3& up, float fov, int width, int height, float aperture, float focusDistance);
+    Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom::Vec3& up, float fov, int width, int height, float aperture, float focusDistance, float t0, float t1);
 
     RTCRay getRay(float s, float t);
 
@@ -31,6 +31,7 @@ private:
     int mWidth;
     int mHeight;
     float mLensRadius;
+    float mTime0, mTime1;
 };
 
 }

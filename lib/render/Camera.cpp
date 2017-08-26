@@ -9,7 +9,7 @@
 namespace render
 {
 
-Camera::Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom::Vec3& up, float fov, int width, int height, float aperture, float focusDistance)
+Camera::Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom::Vec3& up, float fov, int width, int height, float aperture, float focusDistance, float t0, float t1)
     : mOrigin(position)
     , mLowerLeft(0, 0, 0)
     , mHorizontal(0, 0, 0)
@@ -17,6 +17,8 @@ Camera::Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom:
     , mWidth(width)
     , mHeight(height)
     , mLensRadius(aperture * 0.5)
+    , mTime0(t0)
+    , mTime1(t1)
 {
     auto aspectRatio = static_cast<float>(width) / height;
     auto theta = geom::toRadians(fov);
@@ -35,10 +37,11 @@ Camera::Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom:
 RTCRay
 Camera::getRay(float s, float t)
 {
+    auto time = geom::lerp(mTime0, mTime1, drand48());
     auto rd = mLensRadius * geom::randomInUnitDisk();
     auto offset = mU * rd.x() + mV * rd.y();
     auto origin = mOrigin + offset;
-    auto result = geom::newRay(origin, mLowerLeft + s*mHorizontal + t*mVertical - origin);
+    auto result = geom::newRay(origin, mLowerLeft + s*mHorizontal + t*mVertical - origin, time);
     return result;
 }
 

@@ -62,8 +62,13 @@ RTCSphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
     // Assume we can dereference geomUserPtr
     const auto& sphere = *(static_cast<render::Sphere*>(userPtr)+item);
 
-    auto lower = sphere.center() - geom::Vec3(sphere.radius());
-    auto upper = sphere.center() + geom::Vec3(sphere.radius());
+    auto bbox = geom::AABB();
+    if (!sphere.bbox(sphere.t0(), sphere.t1(), bbox)) {
+        return;
+    }
+
+    auto lower = bbox.min();
+    auto upper = bbox.max();
 
     bounds_o->lower_x = lower.x();
     bounds_o->lower_y = lower.y();
@@ -119,6 +124,8 @@ Renderer::Renderer()
     mSpheres.emplace_back(geom::Vec3(4, 1, 0), 1, std::make_shared<Metal>(geom::Vec3(0.7, 0.6, 0.5), 0.05));
 
     // Random spheres
+    auto t0 = 0.f;
+    auto t1 = 3.f;
     for (auto a = -11; a < 11; a++) {
         for (auto b = -11; b < 11; b++) {
             auto chooseMat = drand48();
@@ -127,7 +134,8 @@ Renderer::Renderer()
                 if (chooseMat < 0.8) { // diffuse
                     auto color = geom::Vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48());
                     auto m = std::make_shared<Lambertian>(color);
-                    mSpheres.emplace_back(center, 0.2, m);
+                    auto center1 = center + geom::Vec3(0.5-drand48(), 0.5*drand48(), 0.5-drand48());
+                    mSpheres.emplace_back(center, center1, t0, t1, 0.2, m);
                 } else if (chooseMat < 0.95) { // metal
                     auto color = geom::Vec3(0.5*(1+drand48()), 0.5*(1+drand48()), 0.5*(1+drand48()));
                     auto m = std::make_shared<Metal>(color, 0.5*drand48());

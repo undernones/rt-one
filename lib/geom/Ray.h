@@ -10,7 +10,7 @@ namespace geom
 {
 
 Vec3 pointAlongRay(const Vec3& origin, const Vec3& direction, float t);
-RTCRay newRay(const Vec3& origin, const Vec3& direction, float tnear = 0.f);
+RTCRay newRay(const Vec3& origin, const Vec3& direction, float time, float tnear = 0.f);
 
 }
 

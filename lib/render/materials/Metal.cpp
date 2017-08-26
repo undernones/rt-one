@@ -33,7 +33,7 @@ Metal::scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) 
     auto reflected = geom::reflect(rayIn.dir, rayIn.Ng);
 
     const auto hitPoint = geom::pointAlongRay(rayIn.org, rayIn.dir, rayIn.tfar);
-    scattered = geom::newRay(hitPoint, reflected + fuzziness() * geom::randomInUnitSphere());
+    scattered = geom::newRay(hitPoint, reflected + fuzziness() * geom::randomInUnitSphere(), rayIn.time);
     attenuation = albedo();
 
     return geom::Vec3(scattered.dir).dot(rayIn.Ng) > 0;
