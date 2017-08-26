@@ -19,6 +19,11 @@
 		F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88D41F448A7D00D4F3A4 /* Ray.cpp */; };
 		F754BC671F50FADF00A75D49 /* AABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC651F50FADF00A75D49 /* AABB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC661F50FADF00A75D49 /* AABB.cpp */; };
+		F754BC6C1F5100E100A75D49 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC6A1F5100E100A75D49 /* Texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F754BC701F5101DE00A75D49 /* ConstantTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC6E1F5101DE00A75D49 /* ConstantTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F754BC711F5101DE00A75D49 /* ConstantTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC6F1F5101DE00A75D49 /* ConstantTexture.cpp */; };
+		F754BC741F5103E800A75D49 /* CheckerTexture3D.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC721F5103E700A75D49 /* CheckerTexture3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F754BC751F5103E800A75D49 /* CheckerTexture3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC731F5103E700A75D49 /* CheckerTexture3D.cpp */; };
 		F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88C41F4A49BA00968D42 /* Image.cpp */; };
 		F7BC88C71F4A49BA00968D42 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC88C51F4A49BA00968D42 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88C81F4A4AB400968D42 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
@@ -105,6 +110,11 @@
 		F71B88D51F448A7D00D4F3A4 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
 		F754BC651F50FADF00A75D49 /* AABB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABB.h; sourceTree = "<group>"; };
 		F754BC661F50FADF00A75D49 /* AABB.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AABB.cpp; sourceTree = "<group>"; };
+		F754BC6A1F5100E100A75D49 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		F754BC6E1F5101DE00A75D49 /* ConstantTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantTexture.h; sourceTree = "<group>"; };
+		F754BC6F1F5101DE00A75D49 /* ConstantTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTexture.cpp; sourceTree = "<group>"; };
+		F754BC721F5103E700A75D49 /* CheckerTexture3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckerTexture3D.h; sourceTree = "<group>"; };
+		F754BC731F5103E700A75D49 /* CheckerTexture3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckerTexture3D.cpp; sourceTree = "<group>"; };
 		F7BC88BF1F4A495000968D42 /* librender.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librender.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BC88C41F4A49BA00968D42 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		F7BC88C51F4A49BA00968D42 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -238,10 +248,23 @@
 			path = lib/geom;
 			sourceTree = "<group>";
 		};
+		F754BC691F5100BF00A75D49 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				F754BC6A1F5100E100A75D49 /* Texture.h */,
+				F754BC6E1F5101DE00A75D49 /* ConstantTexture.h */,
+				F754BC6F1F5101DE00A75D49 /* ConstantTexture.cpp */,
+				F754BC721F5103E700A75D49 /* CheckerTexture3D.h */,
+				F754BC731F5103E700A75D49 /* CheckerTexture3D.cpp */,
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
 		F7BC88C31F4A498900968D42 /* render */ = {
 			isa = PBXGroup;
 			children = (
 				F7E95A341F4FA60B00B962C0 /* materials */,
+				F754BC691F5100BF00A75D49 /* textures */,
 				F70F91EF1F4E5F1500D585A9 /* Camera.h */,
 				F70F91EE1F4E5F1500D585A9 /* Camera.cpp */,
 				F7BC88C51F4A49BA00968D42 /* Image.h */,
@@ -301,14 +324,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F754BC741F5103E800A75D49 /* CheckerTexture3D.h in Headers */,
 				F7BF51101F4DC4260045DE27 /* Scene.h in Headers */,
 				F70F91F11F4E5F1500D585A9 /* Camera.h in Headers */,
 				F7E95A481F4FCB2B00B962C0 /* Metal.h in Headers */,
 				F7BC88C71F4A49BA00968D42 /* Image.h in Headers */,
 				F7E95A381F4FA64100B962C0 /* Material.h in Headers */,
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
+				F754BC701F5101DE00A75D49 /* ConstantTexture.h in Headers */,
 				F7E95A441F4FAFB500B962C0 /* Lambertian.h in Headers */,
 				F7E95A4E1F4FD87600B962C0 /* Dielectric.h in Headers */,
+				F754BC6C1F5100E100A75D49 /* Texture.h in Headers */,
 				F7E95A401F4FACA500B962C0 /* Sphere.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F754BC751F5103E800A75D49 /* CheckerTexture3D.cpp in Sources */,
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
 				F7BF510F1F4DC4260045DE27 /* Scene.cpp in Sources */,
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
@@ -465,6 +492,7 @@
 				F7E95A431F4FAFB500B962C0 /* Lambertian.cpp in Sources */,
 				F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */,
 				F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */,
+				F754BC711F5101DE00A75D49 /* ConstantTexture.cpp in Sources */,
 				F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */,
 				F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */,
 			);
