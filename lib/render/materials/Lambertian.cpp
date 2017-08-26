@@ -10,7 +10,7 @@
 namespace render
 {
 
-Lambertian::Lambertian(const geom::Vec3& albedo)
+Lambertian::Lambertian(const std::shared_ptr<Texture>& albedo)
     : Material()
     , mAlbedo(albedo)
 {
@@ -23,7 +23,7 @@ Lambertian::scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scatte
     const auto hitPoint = geom::pointAlongRay(rayIn.org, rayIn.dir, rayIn.tfar);
     const auto target = hitPoint + normal + geom::randomInUnitSphere();
     scattered = geom::newRay(hitPoint, target - hitPoint, rayIn.time);
-    attenuation = albedo();
+    attenuation = mAlbedo->value(rayIn.u, rayIn.v, hitPoint);
     return true;
 }
 

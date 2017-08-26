@@ -14,6 +14,8 @@
 #include <geom/Ray.h>
 #include <geom/Utils.h>
 
+#include "ConstantTexture.h"
+#include "CheckerTexture3D.h"
 #include "Dielectric.h"
 #include "Lambertian.h"
 #include "Metal.h"
@@ -116,11 +118,14 @@ Renderer::Renderer()
     }
 
     // Ground
-    mSpheres.emplace_back(geom::Vec3(0, -1000, 0), 1000, std::make_shared<Lambertian>(geom::Vec3(0.5, 0.5, 0.5)));
+    auto tex0 = std::make_shared<ConstantTexture>(geom::Vec3(0.2, 0.3, 0.1));
+    auto tex1 = std::make_shared<ConstantTexture>(geom::Vec3(0.9, 0.9, 0.9));
+    auto groundTexture = std::make_shared<CheckerTexture3D>(tex0, tex1);
+    mSpheres.emplace_back(geom::Vec3(0, -1000, 0), 1000, std::make_shared<Lambertian>(groundTexture));
 
     // Primary spheres
     mSpheres.emplace_back(geom::Vec3(0, 1, 0), 1, std::make_shared<Dielectric>(geom::Vec3(0.9, 1, 0.9), 1.5));
-    mSpheres.emplace_back(geom::Vec3(-4, 1, 0), 1, std::make_shared<Lambertian>(geom::Vec3(0.4, 0.2, 0.1)));
+    mSpheres.emplace_back(geom::Vec3(-4, 1, 0), 1, std::make_shared<Lambertian>(std::make_shared<ConstantTexture>(geom::Vec3(0.4, 0.2, 0.1))));
     mSpheres.emplace_back(geom::Vec3(4, 1, 0), 1, std::make_shared<Metal>(geom::Vec3(0.7, 0.6, 0.5), 0.05));
 
     // Random spheres
@@ -133,7 +138,7 @@ Renderer::Renderer()
             if ((center - geom::Vec3(4, 0.2, 0)).length() > 0.9) {
                 if (chooseMat < 0.8) { // diffuse
                     auto color = geom::Vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48());
-                    auto m = std::make_shared<Lambertian>(color);
+                    auto m = std::make_shared<Lambertian>(std::make_shared<ConstantTexture>(color));
                     auto center1 = center + geom::Vec3(0.5-drand48(), 0.5*drand48(), 0.5-drand48());
                     mSpheres.emplace_back(center, center1, t0, t1, 0.2, m);
                 } else if (chooseMat < 0.95) { // metal
