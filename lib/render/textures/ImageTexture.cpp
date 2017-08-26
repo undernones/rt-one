@@ -2,6 +2,9 @@
 
 #include <assert.h>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 namespace render
 {
 
@@ -38,6 +41,14 @@ ImageTexture::value(float u, float v, const geom::Vec3& p) const
     auto b = int(mData.get()[indexB]) / 255.f;
 
     return geom::Vec3(r, g, b);
+}
+
+std::shared_ptr<Texture>
+ImageTexture::loadFromFile(const char* fileName)
+{
+    int nx, ny, nn;
+    auto bytes = std::unique_ptr<uint8_t>(stbi_load(fileName, &nx, &ny, &nn, 0));
+    return std::make_shared<ImageTexture>(nx, ny, bytes, nn);
 }
 
 }

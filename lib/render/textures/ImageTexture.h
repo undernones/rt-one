@@ -15,6 +15,8 @@ public:
 
     virtual geom::Vec3 value(float u, float v, const geom::Vec3& p) const;
 
+    static std::shared_ptr<Texture> loadFromFile(const char* fileName);
+
 private:
     int mCols;
     int mRows;
