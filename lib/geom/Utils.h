@@ -18,7 +18,13 @@ bool refract(const Vec3& v, const Vec3& normal, float ni_over_nt, Vec3& refracte
 
 float toRadians(float degrees);
 float toDegrees(float radians);
-    
+
+template <typename T>
+T lerp(const T& a, const T& b, float t)
+{
+    return (1 - t) * a + t * b;
+}
+
 }
 
 #endif // GEOM_UTILS_H
