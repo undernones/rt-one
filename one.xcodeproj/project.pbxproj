@@ -228,10 +228,10 @@
 			children = (
 				F754BC651F50FADF00A75D49 /* AABB.h */,
 				F754BC661F50FADF00A75D49 /* AABB.cpp */,
-				F71B88D41F448A7D00D4F3A4 /* Ray.cpp */,
 				F71B88D51F448A7D00D4F3A4 /* Ray.h */,
-				F70F91F21F4F085000D585A9 /* Utils.cpp */,
+				F71B88D41F448A7D00D4F3A4 /* Ray.cpp */,
 				F70F91F31F4F085000D585A9 /* Utils.h */,
+				F70F91F21F4F085000D585A9 /* Utils.cpp */,
 				F71B88CA1F44883400D4F3A4 /* Vec3.h */,
 			);
 			name = geom;
@@ -242,16 +242,16 @@
 			isa = PBXGroup;
 			children = (
 				F7E95A341F4FA60B00B962C0 /* materials */,
-				F70F91EE1F4E5F1500D585A9 /* Camera.cpp */,
 				F70F91EF1F4E5F1500D585A9 /* Camera.h */,
-				F7BC88C41F4A49BA00968D42 /* Image.cpp */,
+				F70F91EE1F4E5F1500D585A9 /* Camera.cpp */,
 				F7BC88C51F4A49BA00968D42 /* Image.h */,
-				F7BF51091F4DC0B20045DE27 /* Renderer.cpp */,
+				F7BC88C41F4A49BA00968D42 /* Image.cpp */,
 				F7BF510A1F4DC0B20045DE27 /* Renderer.h */,
-				F7BF510D1F4DC4260045DE27 /* Scene.cpp */,
+				F7BF51091F4DC0B20045DE27 /* Renderer.cpp */,
 				F7BF510E1F4DC4260045DE27 /* Scene.h */,
-				F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */,
+				F7BF510D1F4DC4260045DE27 /* Scene.cpp */,
 				F7E95A3E1F4FACA400B962C0 /* Sphere.h */,
+				F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */,
 			);
 			name = render;
 			path = lib/render;
@@ -261,8 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				F7BF50FA1F4D0EC40045DE27 /* main.cpp */,
-				F7BF50FF1F4D32D60045DE27 /* CApp.cpp */,
 				F7BF51001F4D32D60045DE27 /* CApp.h */,
+				F7BF50FF1F4D32D60045DE27 /* CApp.cpp */,
 			);
 			name = viewer;
 			path = cmd/viewer;
@@ -271,14 +271,14 @@
 		F7E95A341F4FA60B00B962C0 /* materials */ = {
 			isa = PBXGroup;
 			children = (
-				F7E95A4B1F4FD87600B962C0 /* Dielectric.cpp */,
 				F7E95A4C1F4FD87600B962C0 /* Dielectric.h */,
-				F7E95A351F4FA64100B962C0 /* Material.cpp */,
+				F7E95A4B1F4FD87600B962C0 /* Dielectric.cpp */,
 				F7E95A361F4FA64100B962C0 /* Material.h */,
-				F7E95A451F4FCB2B00B962C0 /* Metal.cpp */,
+				F7E95A351F4FA64100B962C0 /* Material.cpp */,
 				F7E95A461F4FCB2B00B962C0 /* Metal.h */,
-				F7E95A411F4FAFB500B962C0 /* Lambertian.cpp */,
+				F7E95A451F4FCB2B00B962C0 /* Metal.cpp */,
 				F7E95A421F4FAFB500B962C0 /* Lambertian.h */,
+				F7E95A411F4FAFB500B962C0 /* Lambertian.cpp */,
 			);
 			path = materials;
 			sourceTree = "<group>";
