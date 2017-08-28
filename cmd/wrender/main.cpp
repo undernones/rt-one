@@ -7,7 +7,7 @@
 #include <pmmintrin.h>
 
 #include <geom/Ray.h>
-#include <render/Camera.h>
+#include <render/BookOneScene.h>
 #include <render/Renderer.h>
 
 int
@@ -20,16 +20,10 @@ main(int argc, const char * argv[])
     const auto NY = 400;
     const auto NS = 50;
 
-    auto renderer = render::Renderer();
+    auto scene = render::BookOneScene(NX, NY);
+    auto camera = scene.camera();
 
     std::cout << "P3\n" << NX << " " << NY << "\n255\n";
-
-    auto origin = geom::Vec3(3, 3, 2);
-    auto lookAt = geom::Vec3(0, 0, -1);
-    auto up = geom::Vec3(0, 1, 0);
-    auto focalDistance = (lookAt - origin).length();
-    auto aperture = 2.f;
-    auto camera = render::Camera(origin, lookAt, up, 20, NX, NY, aperture, focalDistance, 0, 1);
 
     for (auto row = NY - 1; row >= 0; --row) {
         for (auto col = 0; col < NX; ++col) {
@@ -39,7 +33,7 @@ main(int argc, const char * argv[])
                 auto t = (row + drand48()) / NY;
                 auto ray = camera.getRay(s, t);
 
-                color += renderer.color(ray);
+                color += render::Renderer::color(ray, scene);
             }
             color /= NS;
             color = geom::Vec3(sqrt(color[0]), sqrt(color[1]), sqrt(color[2]));
