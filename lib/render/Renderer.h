@@ -6,26 +6,17 @@
 #define RENDER_RENDERER_H
 
 #include <embree2/rtcore_ray.h>
-#include <vector>
 
 #include <geom/Vec3.h>
 
 namespace render
 {
 
-class Sphere;
+class Scene;
 class Renderer
 {
 public:
-    Renderer();
-    ~Renderer();
-
-    geom::Vec3 color(RTCRay ray, int depth = 0);
-
-private:
-    RTCDevice mDevice;
-    RTCScene mScene;
-    std::vector<Sphere> mSpheres;
+    static geom::Vec3 color(RTCRay ray, const Scene& scene, int depth = 0);
 };
 
 }

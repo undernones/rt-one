@@ -11,7 +11,7 @@
 
 // One
 #include <render/Image.h>
-#include <render/Renderer.h>
+#include <render/Scene.h>
 
 class CApp
 {
@@ -42,19 +42,13 @@ private:
     bool mIsDragging;
     int mSampleCount;
 
-    struct SDLVars
-    {
-        SDL_Window* window;
-        SDL_Renderer* renderer;
-        SDL_Texture* texture;
-
-        SDLVars() : window(nullptr), renderer(nullptr), texture(nullptr) {}
-    };
-    SDLVars mSDLVars;
-
     Channel mChannel;
 
-    render::Renderer mRenderer;
+    SDL_Window* mWindow;
+    SDL_Renderer* mRenderer;
+    SDL_Texture* mTexture;
+
+    std::unique_ptr<render::Scene> mScene;
     render::Image mImage;
 };
 

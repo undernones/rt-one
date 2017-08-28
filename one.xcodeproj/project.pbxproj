@@ -41,9 +41,11 @@
 		F7BF51081F4D37C20045DE27 /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BF51061F4D37C20045DE27 /* libSDL2.a */; };
 		F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BF51091F4DC0B20045DE27 /* Renderer.cpp */; };
 		F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BF510A1F4DC0B20045DE27 /* Renderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7BF510F1F4DC4260045DE27 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BF510D1F4DC4260045DE27 /* Scene.cpp */; };
-		F7BF51101F4DC4260045DE27 /* Scene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BF510E1F4DC4260045DE27 /* Scene.h */; };
+		F7BF51101F4DC4260045DE27 /* Scene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BF510E1F4DC4260045DE27 /* Scene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BF51121F4DCE800045DE27 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
+		F7C92B0F1F51BA1100BE8752 /* BookOneScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7C92B101F51BA1100BE8752 /* BookOneScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */; };
+		F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C92B111F51D6BD00BE8752 /* Scene.cpp */; };
 		F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A351F4FA64100B962C0 /* Material.cpp */; };
 		F7E95A381F4FA64100B962C0 /* Material.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A361F4FA64100B962C0 /* Material.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */; };
@@ -140,8 +142,10 @@
 		F7BF51061F4D37C20045DE27 /* libSDL2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL2.a; path = ../../../../usr/local/Cellar/sdl2/2.0.5/lib/libSDL2.a; sourceTree = "<group>"; };
 		F7BF51091F4DC0B20045DE27 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		F7BF510A1F4DC0B20045DE27 /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
-		F7BF510D1F4DC4260045DE27 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F7BF510E1F4DC4260045DE27 /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookOneScene.h; sourceTree = "<group>"; };
+		F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneScene.cpp; sourceTree = "<group>"; };
+		F7C92B111F51D6BD00BE8752 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F7E95A351F4FA64100B962C0 /* Material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
 		F7E95A361F4FA64100B962C0 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
@@ -278,10 +282,22 @@
 			path = textures;
 			sourceTree = "<group>";
 		};
+		F754BC841F51B88300A75D49 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F7BF510E1F4DC4260045DE27 /* Scene.h */,
+				F7C92B111F51D6BD00BE8752 /* Scene.cpp */,
+				F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */,
+				F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
 		F7BC88C31F4A498900968D42 /* render */ = {
 			isa = PBXGroup;
 			children = (
 				F7E95A341F4FA60B00B962C0 /* materials */,
+				F754BC841F51B88300A75D49 /* scenes */,
 				F754BC691F5100BF00A75D49 /* textures */,
 				F754BC821F511FD500A75D49 /* stb_image.h */,
 				F70F91EF1F4E5F1500D585A9 /* Camera.h */,
@@ -292,8 +308,6 @@
 				F754BC7F1F511D1500A75D49 /* Perlin.cpp */,
 				F7BF510A1F4DC0B20045DE27 /* Renderer.h */,
 				F7BF51091F4DC0B20045DE27 /* Renderer.cpp */,
-				F7BF510E1F4DC4260045DE27 /* Scene.h */,
-				F7BF510D1F4DC4260045DE27 /* Scene.cpp */,
 				F7E95A3E1F4FACA400B962C0 /* Sphere.h */,
 				F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */,
 			);
@@ -346,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F754BC741F5103E800A75D49 /* CheckerTexture3D.h in Headers */,
+				F7C92B0F1F51BA1100BE8752 /* BookOneScene.h in Headers */,
 				F7BF51101F4DC4260045DE27 /* Scene.h in Headers */,
 				F70F91F11F4E5F1500D585A9 /* Camera.h in Headers */,
 				F7E95A481F4FCB2B00B962C0 /* Metal.h in Headers */,
@@ -511,9 +526,10 @@
 			files = (
 				F754BC751F5103E800A75D49 /* CheckerTexture3D.cpp in Sources */,
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
-				F7BF510F1F4DC4260045DE27 /* Scene.cpp in Sources */,
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
+				F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */,
 				F7E95A4D1F4FD87600B962C0 /* Dielectric.cpp in Sources */,
+				F7C92B101F51BA1100BE8752 /* BookOneScene.cpp in Sources */,
 				F754BC7A1F511C6200A75D49 /* ImageTexture.cpp in Sources */,
 				F7E95A431F4FAFB500B962C0 /* Lambertian.cpp in Sources */,
 				F754BC7D1F511C6200A75D49 /* PerlinTexture.cpp in Sources */,

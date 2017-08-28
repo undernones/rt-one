@@ -15,7 +15,7 @@
 // One
 #include <geom/Vec3.h>
 #include <geom/Ray.h>
-#include <render/Camera.h>
+#include <render/BookOneScene.h>
 #include <render/Renderer.h>
 
 #if DEBUG
@@ -104,8 +104,17 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
+    mScene = std::make_unique<render::BookOneScene>(nx, ny);
+
+    // Verify the validity of the camera.
+    auto camera = mScene->camera();
+    if (camera.width() <= 0 || camera.height() <= 0) {
+        std::cerr << "Bad camera dimensions: (" << camera.width() << ", " << camera.height() << ")" << std::endl;
+        return false;
+    }
+
     // Allocate the image.
-    mImage = render::Image(ny, nx);
+    mImage = render::Image(camera.height(), camera.width());
     
     // Set up the SDL window.
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -115,24 +124,24 @@ CApp::OnInit()
     SDL_CreateWindowAndRenderer(nx,
                                 ny,
                                 SDL_WINDOW_OPENGL,
-                                &mSDLVars.window,
-                                &mSDLVars.renderer);
+                                &mWindow,
+                                &mRenderer);
 
-    if (!mSDLVars.window || !mSDLVars.renderer) {
+    if (!mWindow || !mRenderer) {
         return false;
     }
 
     auto stream = std::stringstream();
-    stream << "one - " << nx << " x " << ny;
-    SDL_SetWindowTitle(mSDLVars.window, stream.str().c_str());
+    stream << "one - " << camera.width() << " x " << camera.height();
+    SDL_SetWindowTitle(mWindow, stream.str().c_str());
 
-    mSDLVars.texture = SDL_CreateTexture(mSDLVars.renderer,
-                                         SDL_PIXELFORMAT_RGBA8888,
-                                         SDL_TEXTUREACCESS_TARGET,
-                                         nx,
-                                         ny);
+    mTexture = SDL_CreateTexture(mRenderer,
+                                 SDL_PIXELFORMAT_RGBA8888,
+                                 SDL_TEXTUREACCESS_TARGET,
+                                 nx,
+                                 ny);
 
-    return mSDLVars.texture != nullptr;
+    return mTexture != nullptr;
 }
 
 void
@@ -162,7 +171,7 @@ CApp::OnEvent(const SDL_Event& event)
                 default:
                     ; // Do nothing
             }
-            showImage(mImage, mChannel, mSDLVars.renderer, mSDLVars.texture);
+            showImage(mImage, mChannel, mRenderer, mTexture);
             break;
 
         case SDL_MOUSEBUTTONUP:
@@ -178,7 +187,7 @@ CApp::OnEvent(const SDL_Event& event)
             break;
 
         case SDL_USEREVENT:
-            showImage(mImage, mChannel, mSDLVars.renderer, mSDLVars.texture);
+            showImage(mImage, mChannel, mRenderer, mTexture);
             break;
     }
 }
@@ -227,12 +236,7 @@ CApp::OnRender()
 
     auto start = std::chrono::steady_clock::now();
 
-    auto origin = geom::Vec3(12, 2, 4);
-    auto lookAt = geom::Vec3(0, 0.5, 0);
-    auto up = geom::Vec3(0, 1, 0);
-    auto focalDistance = (lookAt - origin).length();
-    auto aperture = 0.15;
-    auto camera = render::Camera(origin, lookAt, up, 20, mImage.cols(), mImage.rows(), aperture, focalDistance, 0, 1);
+    auto camera = mScene->camera();
 
 #if PARALLEL
     tbb::parallel_for(int(0), mImage.rows(), int(1), [&](int row) {
@@ -245,7 +249,7 @@ CApp::OnRender()
             const auto ray = camera.getRay(s, t);
 
             // Keep a running average of samples.
-            const auto sample = mRenderer.color(ray);
+            const auto sample = render::Renderer::color(ray, *mScene);
             const auto current = mImage.value(row, col);
             const auto newValue = current + (sample - current) / mSampleCount;
 
@@ -263,7 +267,7 @@ CApp::OnRender()
     auto fps = ++totalPasses / (totalTimeMs / 1000);
     std::cout << diff << " ms,\t" << fps << " FPS\t" << totalPasses << " samples" << std::endl;
 
-    showImage(mImage, mChannel, mSDLVars.renderer, mSDLVars.texture);
+    showImage(mImage, mChannel, mRenderer, mTexture);
 }
 
 void
