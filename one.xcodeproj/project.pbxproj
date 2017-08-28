@@ -46,6 +46,10 @@
 		F7C92B0F1F51BA1100BE8752 /* BookOneScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7C92B101F51BA1100BE8752 /* BookOneScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */; };
 		F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C92B111F51D6BD00BE8752 /* Scene.cpp */; };
+		F7C92B151F54595A00BE8752 /* AstronomyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C92B131F54595900BE8752 /* AstronomyScene.cpp */; };
+		F7C92B161F54595A00BE8752 /* AstronomyScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C92B141F54595A00BE8752 /* AstronomyScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7C92B1B1F545B5D00BE8752 /* earthmap_hires.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7C92B181F545B1B00BE8752 /* earthmap_hires.jpg */; };
+		F7C92B1C1F545B5D00BE8752 /* moon_map_mercator.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7C92B191F545B1B00BE8752 /* moon_map_mercator.jpg */; };
 		F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A351F4FA64100B962C0 /* Material.cpp */; };
 		F7E95A381F4FA64100B962C0 /* Material.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A361F4FA64100B962C0 /* Material.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */; };
@@ -102,6 +106,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		F7C92B1A1F545B4E00BE8752 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				F7C92B1B1F545B5D00BE8752 /* earthmap_hires.jpg in CopyFiles */,
+				F7C92B1C1F545B5D00BE8752 /* moon_map_mercator.jpg in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +161,10 @@
 		F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookOneScene.h; sourceTree = "<group>"; };
 		F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneScene.cpp; sourceTree = "<group>"; };
 		F7C92B111F51D6BD00BE8752 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		F7C92B131F54595900BE8752 /* AstronomyScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AstronomyScene.cpp; sourceTree = "<group>"; };
+		F7C92B141F54595A00BE8752 /* AstronomyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AstronomyScene.h; sourceTree = "<group>"; };
+		F7C92B181F545B1B00BE8752 /* earthmap_hires.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earthmap_hires.jpg; sourceTree = "<group>"; };
+		F7C92B191F545B1B00BE8752 /* moon_map_mercator.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moon_map_mercator.jpg; sourceTree = "<group>"; };
 		F7E95A351F4FA64100B962C0 /* Material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
 		F7E95A361F4FA64100B962C0 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
@@ -287,6 +306,8 @@
 			children = (
 				F7BF510E1F4DC4260045DE27 /* Scene.h */,
 				F7C92B111F51D6BD00BE8752 /* Scene.cpp */,
+				F7C92B141F54595A00BE8752 /* AstronomyScene.h */,
+				F7C92B131F54595900BE8752 /* AstronomyScene.cpp */,
 				F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */,
 				F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */,
 			);
@@ -297,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				F7E95A341F4FA60B00B962C0 /* materials */,
+				F7C92B171F545AE900BE8752 /* resources */,
 				F754BC841F51B88300A75D49 /* scenes */,
 				F754BC691F5100BF00A75D49 /* textures */,
 				F754BC821F511FD500A75D49 /* stb_image.h */,
@@ -324,6 +346,15 @@
 			);
 			name = viewer;
 			path = cmd/viewer;
+			sourceTree = "<group>";
+		};
+		F7C92B171F545AE900BE8752 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				F7C92B181F545B1B00BE8752 /* earthmap_hires.jpg */,
+				F7C92B191F545B1B00BE8752 /* moon_map_mercator.jpg */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		F7E95A341F4FA60B00B962C0 /* materials */ = {
@@ -361,6 +392,7 @@
 			files = (
 				F754BC741F5103E800A75D49 /* CheckerTexture3D.h in Headers */,
 				F7C92B0F1F51BA1100BE8752 /* BookOneScene.h in Headers */,
+				F7C92B161F54595A00BE8752 /* AstronomyScene.h in Headers */,
 				F7BF51101F4DC4260045DE27 /* Scene.h in Headers */,
 				F70F91F11F4E5F1500D585A9 /* Camera.h in Headers */,
 				F7E95A481F4FCB2B00B962C0 /* Metal.h in Headers */,
@@ -424,6 +456,7 @@
 				F7BC88BB1F4A495000968D42 /* Sources */,
 				F7BC88BC1F4A495000968D42 /* Frameworks */,
 				F7BC88BD1F4A495000968D42 /* Headers */,
+				F7C92B1A1F545B4E00BE8752 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -537,6 +570,7 @@
 				F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */,
 				F754BC711F5101DE00A75D49 /* ConstantTexture.cpp in Sources */,
 				F754BC811F511D1500A75D49 /* Perlin.cpp in Sources */,
+				F7C92B151F54595A00BE8752 /* AstronomyScene.cpp in Sources */,
 				F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */,
 				F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */,
 			);

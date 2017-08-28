@@ -15,6 +15,7 @@
 // One
 #include <geom/Vec3.h>
 #include <geom/Ray.h>
+#include <render/AstronomyScene.h>
 #include <render/BookOneScene.h>
 #include <render/Renderer.h>
 
@@ -104,7 +105,7 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::BookOneScene>(nx, ny);
+    mScene = std::make_unique<render::AstronomyScene>(nx, ny);
 
     // Verify the validity of the camera.
     auto camera = mScene->camera();
