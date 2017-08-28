@@ -114,6 +114,9 @@ Scene::RTCSphereIntersectFunc(void* ptr,       /*!< pointer to user data */
     if (sphere.hit(ray)) {
         ray.geomID = 0; // TODO: this isn't future proof
         ray.primID = static_cast<unsigned int>(item);
+
+        auto hitPoint = geom::pointAlongRay(ray.org, ray.dir, ray.tfar);
+        std::tie(ray.u, ray.v) = sphere.uv(hitPoint, ray.time);
     }
 }
 
