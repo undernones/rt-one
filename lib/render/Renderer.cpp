@@ -30,7 +30,7 @@ namespace render
 {
 
 geom::Vec3
-Renderer::color(RTCRay ray, const Scene& scene, int depth)
+Renderer::trace(RTCRay ray, const Scene& scene, int depth)
 {
     ray.tnear = EPSILON;
     rtcIntersect(scene.root(), ray);
@@ -48,7 +48,7 @@ Renderer::color(RTCRay ray, const Scene& scene, int depth)
         auto scattered = RTCRay();
         auto attenuation = geom::Vec3();
         if (depth < MAX_DEPTH && material->scatter(ray, attenuation, scattered)) {
-            result += attenuation * color(scattered, scene, depth+1);
+            result += attenuation * trace(scattered, scene, depth+1);
         }
         
         return result;

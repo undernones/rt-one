@@ -16,7 +16,7 @@ class Scene;
 class Renderer
 {
 public:
-    static geom::Vec3 color(RTCRay ray, const Scene& scene, int depth = 0);
+    static geom::Vec3 trace(RTCRay ray, const Scene& scene, int depth = 0);
 };
 
 }

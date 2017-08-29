@@ -251,7 +251,7 @@ CApp::OnRender()
             const auto ray = camera.getRay(s, t);
 
             // Keep a running average of samples.
-            const auto sample = render::Renderer::color(ray, *mScene);
+            const auto sample = render::Renderer::trace(ray, *mScene);
             const auto current = mImage.value(row, col);
             const auto newValue = current + (sample - current) / mSampleCount;
 

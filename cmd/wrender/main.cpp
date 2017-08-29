@@ -33,7 +33,7 @@ main(int argc, const char * argv[])
                 auto t = (row + drand48()) / NY;
                 auto ray = camera.getRay(s, t);
 
-                color += render::Renderer::color(ray, scene);
+                color += render::Renderer::trace(ray, scene);
             }
             color /= NS;
             color = geom::Vec3(sqrt(color[0]), sqrt(color[1]), sqrt(color[2]));
