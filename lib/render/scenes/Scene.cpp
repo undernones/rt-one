@@ -44,6 +44,9 @@ namespace render
 {
 
 Scene::Scene()
+    : mDevice(nullptr)
+    , mScene(nullptr)
+    , mSphereGeomId(RTC_INVALID_GEOMETRY_ID)
 {
     mDevice = rtcNewDevice(NULL);
     if (mDevice == nullptr) {
@@ -64,11 +67,14 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-    if (mDevice != nullptr) {
-        rtcDeleteDevice(mDevice);
+    if (mSphereGeomId != RTC_INVALID_GEOMETRY_ID) {
+        rtcDeleteGeometry(mScene, mSphereGeomId);
     }
     if (mScene != nullptr) {
         rtcDeleteScene(mScene);
+    }
+    if (mDevice != nullptr) {
+        rtcDeleteDevice(mDevice);
     }
 }
 
@@ -84,8 +90,9 @@ Scene::sphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
                         size_t item,           /*!< item to calculate bounds for */
                         RTCBounds* bounds_o    /*!< returns calculated bounds */)
 {
-    // Assume we can dereference geomUserPtr
-    const auto& sphere = *(static_cast<Sphere*>(userPtr)+item);
+    // Assume we can dereference userPtr
+    const auto scene = static_cast<Scene*>(userPtr);
+    const auto& sphere = scene->mSpheres[item];
 
     auto bbox = geom::AABB();
     if (!sphere.bbox(sphere.t0(), sphere.t1(), bbox)) {
@@ -105,14 +112,15 @@ Scene::sphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
 }
 
 void
-Scene::RTCSphereIntersectFunc(void* ptr,       /*!< pointer to user data */
+Scene::RTCSphereIntersectFunc(void* userPtr,   /*!< pointer to user data */
                               RTCRay& ray,     /*!< ray to intersect */
                               size_t item      /*!< item to intersect */)
 {
     // Assume we can dereference ptr
-    const auto& sphere = *(static_cast<Sphere*>(ptr)+item);
+    const auto scene = static_cast<Scene*>(userPtr);
+    const auto& sphere = scene->mSpheres[item];
     if (sphere.hit(ray)) {
-        ray.geomID = 0; // TODO: this isn't future proof
+        ray.geomID = scene->mSphereGeomId;
         ray.primID = static_cast<unsigned int>(item);
 
         auto hitPoint = geom::pointAlongRay(ray.org, ray.dir, ray.tfar);
@@ -123,10 +131,10 @@ Scene::RTCSphereIntersectFunc(void* ptr,       /*!< pointer to user data */
 void
 Scene::commit()
 {
-    auto geomId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
-    rtcSetUserData(mScene, geomId, mSpheres.data());
-    rtcSetBoundsFunction2(mScene, geomId, sphereBoundsFunc, mSpheres.data());
-    rtcSetIntersectFunction(mScene, geomId, RTCSphereIntersectFunc);
+    mSphereGeomId = rtcNewUserGeometry3(mScene, RTC_GEOMETRY_STATIC, mSpheres.size());
+    rtcSetUserData(mScene, mSphereGeomId, this);
+    rtcSetBoundsFunction2(mScene, mSphereGeomId, sphereBoundsFunc, this);
+    rtcSetIntersectFunction(mScene, mSphereGeomId, RTCSphereIntersectFunc);
 
     rtcCommit(mScene);
 }

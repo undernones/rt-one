@@ -33,7 +33,7 @@ protected:
                                  size_t item,           /*!< item to calculate bounds for */
                                  RTCBounds* bounds_o    /*!< returns calculated bounds */);
 
-    static void RTCSphereIntersectFunc(void* ptr,       /*!< pointer to user data */
+    static void RTCSphereIntersectFunc(void* userPtr,   /*!< pointer to user data */
                                        RTCRay& ray,     /*!< ray to intersect */
                                        size_t item      /*!< item to intersect */);
 
@@ -43,6 +43,7 @@ protected:
     RTCScene mScene;
     Camera mCamera;
     std::vector<Sphere> mSpheres;
+    unsigned mSphereGeomId;
 };
 
 }
