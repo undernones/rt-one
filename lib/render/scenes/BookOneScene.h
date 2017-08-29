@@ -9,8 +9,6 @@
 
 #include <vector>
 
-#include "Sphere.h"
-
 namespace render
 {
 

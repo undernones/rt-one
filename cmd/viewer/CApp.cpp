@@ -17,6 +17,7 @@
 #include <geom/Ray.h>
 #include <render/AstronomyScene.h>
 #include <render/BookOneScene.h>
+#include <render/BookOneWithLightScene.h>
 #include <render/Renderer.h>
 
 #if DEBUG
@@ -105,7 +106,7 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::AstronomyScene>(nx, ny);
+    mScene = std::make_unique<render::BookOneScene>(nx, ny);
 
     // Verify the validity of the camera.
     auto camera = mScene->camera();

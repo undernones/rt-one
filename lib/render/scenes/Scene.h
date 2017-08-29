@@ -9,12 +9,12 @@
 #include <vector>
 
 #include "Camera.h"
+#include "Sphere.h"
 
 namespace render
 {
 
 class Material;
-class Sphere;
 class Scene
 {
 public:

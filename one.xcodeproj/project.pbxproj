@@ -31,6 +31,8 @@
 		F754BC801F511D1500A75D49 /* Perlin.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC7E1F511D1500A75D49 /* Perlin.h */; };
 		F754BC811F511D1500A75D49 /* Perlin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC7F1F511D1500A75D49 /* Perlin.cpp */; };
 		F754BC831F511FD500A75D49 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC821F511FD500A75D49 /* stb_image.h */; };
+		F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */; };
+		F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88C41F4A49BA00968D42 /* Image.cpp */; };
 		F7BC88C71F4A49BA00968D42 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC88C51F4A49BA00968D42 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88C81F4A4AB400968D42 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
@@ -148,6 +150,8 @@
 		F754BC7E1F511D1500A75D49 /* Perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Perlin.h; sourceTree = "<group>"; };
 		F754BC7F1F511D1500A75D49 /* Perlin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perlin.cpp; sourceTree = "<group>"; };
 		F754BC821F511FD500A75D49 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookOneWithLightScene.h; sourceTree = "<group>"; };
+		F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneWithLightScene.cpp; sourceTree = "<group>"; };
 		F7BC88BF1F4A495000968D42 /* librender.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librender.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BC88C41F4A49BA00968D42 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		F7BC88C51F4A49BA00968D42 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -314,6 +318,8 @@
 				F7C92B131F54595900BE8752 /* AstronomyScene.cpp */,
 				F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */,
 				F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */,
+				F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */,
+				F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */,
 			);
 			path = scenes;
 			sourceTree = "<group>";
@@ -408,6 +414,7 @@
 				F754BC7B1F511C6200A75D49 /* PerlinTexture.h in Headers */,
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
 				F754BC7C1F511C6200A75D49 /* ImageTexture.h in Headers */,
+				F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */,
 				F754BC701F5101DE00A75D49 /* ConstantTexture.h in Headers */,
 				F7E95A441F4FAFB500B962C0 /* Lambertian.h in Headers */,
 				F754BC801F511D1500A75D49 /* Perlin.h in Headers */,
@@ -567,6 +574,7 @@
 				F754BC751F5103E800A75D49 /* CheckerTexture3D.cpp in Sources */,
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
+				F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */,
 				F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */,
 				F7E95A4D1F4FD87600B962C0 /* Dielectric.cpp in Sources */,
 				F7C92B201F54646600BE8752 /* DiffuseLight.cpp in Sources */,
