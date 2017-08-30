@@ -1,3 +1,7 @@
+//
+// Copyright © 2017 Undernones. All rights reserved.
+//
+
 #ifndef RENDER_LIGHT_H
 #define RENDER_LIGHT_H
 

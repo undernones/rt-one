@@ -1,3 +1,7 @@
+//
+// Copyright © 2017 Undernones. All rights reserved.
+//
+
 #ifndef RENDER_PERLIN_H
 #define RENDER_PERLIN_H
 

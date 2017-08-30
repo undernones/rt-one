@@ -1,3 +1,7 @@
+//
+// Copyright © 2017 Undernones. All rights reserved.
+//
+
 #include "ImageTexture.h"
 
 #include <assert.h>

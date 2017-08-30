@@ -1,3 +1,7 @@
+//
+// Copyright © 2017 Undernones. All rights reserved.
+//
+
 #ifndef RENDER_IMAGE_TEXTURE_H
 #define RENDER_IMAGE_TEXTURE_H
 

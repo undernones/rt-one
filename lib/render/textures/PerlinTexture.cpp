@@ -1,3 +1,7 @@
+//
+// Copyright © 2017 Undernones. All rights reserved.
+//
+
 #include "PerlinTexture.h"
 
 #include "Perlin.h"

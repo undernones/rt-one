@@ -1,3 +1,7 @@
+//
+// Copyright © 2017 Undernones. All rights reserved.
+//
+
 #ifndef GEOM_RAY_H
 #define GEOM_RAY_H
 
