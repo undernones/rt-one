@@ -6,6 +6,7 @@
 #define RENDER_SCENE_H
 
 #include <embree2/rtcore_ray.h>
+#include <unordered_map>
 #include <vector>
 
 #include "Camera.h"
@@ -28,22 +29,13 @@ public:
     std::shared_ptr<Material> material(unsigned geomId, unsigned primId) const;
 
 protected:
-    static void sphereBoundsFunc(void* userPtr,         /*!< pointer to user data */
-                                 void* geomUserPtr,     /*!< pointer to geometry user data */
-                                 size_t item,           /*!< item to calculate bounds for */
-                                 RTCBounds* bounds_o    /*!< returns calculated bounds */);
-
-    static void RTCSphereIntersectFunc(void* userPtr,   /*!< pointer to user data */
-                                       RTCRay& ray,     /*!< ray to intersect */
-                                       size_t item      /*!< item to intersect */);
-
     void commit();
 
     RTCDevice mDevice;
     RTCScene mScene;
     Camera mCamera;
     std::vector<Sphere> mSpheres;
-    unsigned mSphereGeomId;
+    std::unordered_map<unsigned, std::shared_ptr<Material>> mMaterials;
 };
 
 }

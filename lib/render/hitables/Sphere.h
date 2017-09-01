@@ -5,18 +5,16 @@
 #ifndef GEOM_SPHERE_H
 #define GEOM_SPHERE_H
 
-#include <embree2/rtcore_ray.h>
-#include <memory>
+#include <render/Hitable.h>
 
-#include <geom/AABB.h>
+#include <tuple>
+
 #include <geom/Vec3.h>
-
-#include "Material.h"
 
 namespace render
 {
 
-class Sphere
+class Sphere : public Hitable
 {
 public:
     Sphere();
@@ -25,10 +23,11 @@ public:
     Sphere(const geom::Vec3& center0, const geom::Vec3& center1, float t0, float t1, float radius, std::shared_ptr<Material>& material);
     Sphere(const geom::Vec3& center0, const geom::Vec3& center1, float t0, float t1, float radius, std::shared_ptr<Material>&& material);
 
-    ~Sphere() = default;
+    virtual ~Sphere() = default;
 
-    bool hit(RTCRay& ray) const;
-    bool bbox(float t0, float t1, geom::AABB& bbox) const;
+    virtual bool hit(RTCRay& ray) const;
+    virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
+    virtual unsigned commit(RTCScene scene);
 
     geom::Vec3 center(float t) const;
     float radius() const { return mRadius; }
@@ -38,16 +37,12 @@ public:
     /// Returns the uv coordinates of the given point. Assumes the point is actually on the surface of the sphere at the given time.
     std::tuple<float, float> uv(const geom::Vec3& p, float t) const;
 
-    const std::shared_ptr<Material> material() const { return mMaterial; }
-
 private:
     geom::Vec3 mCenter0;
     geom::Vec3 mCenter1;
     float mT0;
     float mT1;
     float mRadius;
-
-    std::shared_ptr<Material> mMaterial;
 };
 
 }
