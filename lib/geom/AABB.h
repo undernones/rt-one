@@ -5,7 +5,6 @@
 #ifndef GEOM_AABB_H
 #define GEOM_AABB_H
 
-#include "Ray.h"
 #include "Vec3.h"
 
 namespace geom
@@ -22,8 +21,6 @@ public:
 
     const Vec3& min() const { return mMin; }
     const Vec3& max() const { return mMax; }
-
-    bool hit(const RTCRay& ray, float tmin, float tmax) const;
 
 private:
     Vec3 mMin;

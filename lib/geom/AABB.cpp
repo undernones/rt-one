@@ -51,23 +51,4 @@ AABB::includePoint(const Vec3& pt)
                 ffmax(mMax.z(), pt.z()));
 }
 
-bool
-AABB::hit(const RTCRay& ray, float tmin, float tmax) const
-{
-    for (auto i = 0; i < 3; ++i) {
-        auto invD = 1.0f / ray.dir[i];
-        auto t0 = (min()[i] - ray.org[i]) * invD;
-        auto t1 = (max()[i] - ray.org[i]) * invD;
-        if (invD < 0.0f) {
-            std::swap(t0, t1);
-        }
-        tmin = ffmax(t0, tmin);
-        tmax = ffmin(t1, tmax);
-        if (tmax <= tmin) {
-            return false;
-        }
-    }
-    return true;
-}
-
 }
