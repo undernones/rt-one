@@ -5,7 +5,6 @@
 #include "Sphere.h"
 
 #include <geom/AABB.h>
-#include <geom/Ray.h>
 
 namespace
 {
@@ -38,12 +37,13 @@ boundsFunc(void* userPtr,         /*!< pointer to user data */
 
 void
 intersectFunc(void* userPtr,   /*!< pointer to user data */
-              RTCRay& ray,     /*!< ray to intersect */
+              RTCRay& rtcRay,  /*!< ray to intersect */
               size_t item      /*!< item to intersect */)
 {
     // Assume we can dereference userPtr
     const auto sphere = static_cast<render::Sphere*>(userPtr);
 
+    auto& ray = (render::Ray&)rtcRay;
     if (sphere->hit(ray)) {
         ray.geomID = sphere->geomId();
         ray.primID = static_cast<unsigned int>(item);
@@ -96,10 +96,10 @@ Sphere::commit(RTCScene scene)
 }
 
 bool
-Sphere::hit(RTCRay& ray) const
+Sphere::hit(Ray& ray) const
 {
-    auto origin = geom::Vec3(ray.org);
-    auto direction = geom::Vec3(ray.dir);
+    const auto& origin = ray.origin;
+    const auto& direction = ray.direction;
 
     auto center = this->center(ray.time);
 
@@ -118,21 +118,15 @@ Sphere::hit(RTCRay& ray) const
         auto t1 = (-b + q) * aInv;
         if (ray.tnear < t0 && t0 < ray.tfar) {
             ray.tfar = t0;
-            auto hitPoint = geom::pointAlongRay(ray.org, ray.dir, t0);
-            auto normal = (hitPoint - center) / mRadius;
-            ray.Ng[0] = normal.x();
-            ray.Ng[1] = normal.y();
-            ray.Ng[2] = normal.z();
+            auto hitPoint = ray.pointAt(t0);
+            ray.normal = (hitPoint - center) / mRadius;
             std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
             isHit = true;
         } else
         if (ray.tnear < t1 && t1 < ray.tfar) {
             ray.tfar = t1;
-            auto hitPoint = geom::pointAlongRay(ray.org, ray.dir, t1);
-            auto normal = (hitPoint - center) / mRadius;
-            ray.Ng[0] = normal.x();
-            ray.Ng[1] = normal.y();
-            ray.Ng[2] = normal.z();
+            auto hitPoint = ray.pointAt(t1);
+            ray.normal = (hitPoint - center) / mRadius;
             std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
             isHit = true;
         }

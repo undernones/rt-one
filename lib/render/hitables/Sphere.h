@@ -25,7 +25,7 @@ public:
 
     virtual ~Sphere() = default;
 
-    virtual bool hit(RTCRay& ray) const;
+    virtual bool hit(Ray& ray) const;
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
     virtual unsigned commit(RTCScene scene);
 

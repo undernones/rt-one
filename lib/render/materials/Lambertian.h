@@ -5,8 +5,8 @@
 #ifndef RENDER_LAMBERTIAN_H
 #define RENDER_LAMBERTIAN_H
 
-#include "Material.h"
-#include "Texture.h"
+#include <render/Material.h>
+#include <render/Texture.h>
 
 namespace render
 {
@@ -16,7 +16,7 @@ class Lambertian : public Material
 public:
     Lambertian(const std::shared_ptr<Texture>& albedo);
 
-    virtual bool scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) const;
+    virtual bool scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const;
 
     const std::shared_ptr<Texture>& albedo() const { return mAlbedo; }
 

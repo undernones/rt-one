@@ -34,14 +34,14 @@ Camera::Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom:
     mVertical = 2 * halfHeight*focusDistance*mV;
 }
 
-RTCRay
+Ray
 Camera::getRay(float s, float t)
 {
     auto time = geom::lerp(mTime0, mTime1, drand48());
     auto rd = mLensRadius * geom::randomInUnitDisk();
     auto offset = mU * rd.x() + mV * rd.y();
     auto origin = mOrigin + offset;
-    auto result = geom::newRay(origin, mLowerLeft + s*mHorizontal + t*mVertical - origin, time);
+    auto result = Ray(origin, mLowerLeft + s*mHorizontal + t*mVertical - origin, time);
     return result;
 }
 

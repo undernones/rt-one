@@ -30,10 +30,10 @@ Dielectric::Dielectric(const geom::Vec3& attenuation, float refractIndex)
 }
 
 bool
-Dielectric::scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) const
+Dielectric::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const
 {
-    auto inDirection = geom::Vec3(rayIn.dir);
-    auto normal = geom::Vec3(rayIn.Ng);
+    const auto& inDirection = rayIn.direction;
+    const auto& normal = rayIn.normal;
 
     auto outwardNormal = geom::Vec3();
     auto reflected = geom::reflect(inDirection, normal);
@@ -57,11 +57,11 @@ Dielectric::scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scatte
         reflectProb = schlick(cosine, mRefractIndex);
     }
 
-    auto hitPoint = geom::pointAlongRay(rayIn.org, rayIn.dir, rayIn.tfar);
+    auto hitPoint = rayIn.pointAt(rayIn.tfar);
     if (drand48() < reflectProb) {
-        scattered = geom::newRay(hitPoint, reflected, rayIn.time);
+        scattered = Ray(hitPoint, reflected, rayIn.time);
     } else {
-        scattered = geom::newRay(hitPoint, refracted, rayIn.time);
+        scattered = Ray(hitPoint, refracted, rayIn.time);
     }
     return true;
 }

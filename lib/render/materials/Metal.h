@@ -5,7 +5,7 @@
 #ifndef RENDER_METAL_H
 #define RENDER_METAL_H
 
-#include "Material.h"
+#include <render/Material.h>
 
 namespace render
 {
@@ -15,7 +15,7 @@ class Metal : public Material
 public:
     Metal(const geom::Vec3& albedo, float fuzziness);
 
-    virtual bool scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) const;
+    virtual bool scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const;
 
     const geom::Vec3& albedo() const { return mAlbedo; }
     float fuzziness() const { return mFuzziness; }

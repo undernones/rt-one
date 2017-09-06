@@ -12,6 +12,7 @@
 namespace geom
 {
 
+// IMPORTANT: The size of this class must be exactly equal to 4 floats. Otherwise everything will break.
 class Vec3
 {
 public:

@@ -15,8 +15,6 @@
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F71B88D71F448A8100D4F3A4 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88D51F448A7D00D4F3A4 /* Ray.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88D41F448A7D00D4F3A4 /* Ray.cpp */; };
 		F754BC671F50FADF00A75D49 /* AABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC651F50FADF00A75D49 /* AABB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC661F50FADF00A75D49 /* AABB.cpp */; };
 		F754BC6C1F5100E100A75D49 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC6A1F5100E100A75D49 /* Texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,6 +45,7 @@
 		F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BF510A1F4DC0B20045DE27 /* Renderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BF51101F4DC4260045DE27 /* Scene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BF510E1F4DC4260045DE27 /* Scene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BF51121F4DCE800045DE27 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
+		F7C4A8D21F5F777100B48268 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C4A8D11F5F777100B48268 /* Ray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7C92B0F1F51BA1100BE8752 /* BookOneScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7C92B101F51BA1100BE8752 /* BookOneScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */; };
 		F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C92B111F51D6BD00BE8752 /* Scene.cpp */; };
@@ -136,8 +135,6 @@
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		F71B88CA1F44883400D4F3A4 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
 		F71B88CF1F44890100D4F3A4 /* libgeom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgeom.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F71B88D41F448A7D00D4F3A4 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
-		F71B88D51F448A7D00D4F3A4 /* Ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
 		F754BC651F50FADF00A75D49 /* AABB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABB.h; sourceTree = "<group>"; };
 		F754BC661F50FADF00A75D49 /* AABB.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AABB.cpp; sourceTree = "<group>"; };
 		F754BC6A1F5100E100A75D49 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
@@ -168,6 +165,7 @@
 		F7BF51091F4DC0B20045DE27 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		F7BF510A1F4DC0B20045DE27 /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		F7BF510E1F4DC4260045DE27 /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		F7C4A8D11F5F777100B48268 /* Ray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ray.h; sourceTree = "<group>"; };
 		F7C92B0D1F51BA1100BE8752 /* BookOneScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookOneScene.h; sourceTree = "<group>"; };
 		F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneScene.cpp; sourceTree = "<group>"; };
 		F7C92B111F51D6BD00BE8752 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
@@ -287,8 +285,6 @@
 			children = (
 				F754BC651F50FADF00A75D49 /* AABB.h */,
 				F754BC661F50FADF00A75D49 /* AABB.cpp */,
-				F71B88D51F448A7D00D4F3A4 /* Ray.h */,
-				F71B88D41F448A7D00D4F3A4 /* Ray.cpp */,
 				F70F91F31F4F085000D585A9 /* Utils.h */,
 				F70F91F21F4F085000D585A9 /* Utils.cpp */,
 				F71B88CA1F44883400D4F3A4 /* Vec3.h */,
@@ -354,6 +350,7 @@
 				F7BC88C41F4A49BA00968D42 /* Image.cpp */,
 				F754BC7E1F511D1500A75D49 /* Perlin.h */,
 				F754BC7F1F511D1500A75D49 /* Perlin.cpp */,
+				F7C4A8D11F5F777100B48268 /* Ray.h */,
 				F7BF510A1F4DC0B20045DE27 /* Renderer.h */,
 				F7BF51091F4DC0B20045DE27 /* Renderer.cpp */,
 			);
@@ -406,7 +403,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */,
-				F71B88D71F448A8100D4F3A4 /* Ray.h in Headers */,
 				F754BC671F50FADF00A75D49 /* AABB.h in Headers */,
 				F70F91F51F4F085000D585A9 /* Utils.h in Headers */,
 			);
@@ -427,6 +423,7 @@
 				F7BC88C71F4A49BA00968D42 /* Image.h in Headers */,
 				F7E95A381F4FA64100B962C0 /* Material.h in Headers */,
 				F754BC7B1F511C6200A75D49 /* PerlinTexture.h in Headers */,
+				F7C4A8D21F5F777100B48268 /* Ray.h in Headers */,
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
 				F754BC7C1F511C6200A75D49 /* ImageTexture.h in Headers */,
 				F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */,
@@ -577,7 +574,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */,
-				F71B88D81F448A8700D4F3A4 /* Ray.cpp in Sources */,
 				F70F91F41F4F085000D585A9 /* Utils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

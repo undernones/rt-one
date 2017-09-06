@@ -28,15 +28,15 @@ Metal::Metal(const geom::Vec3& albedo, float fuzziness)
 }
 
 bool
-Metal::scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) const
+Metal::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const
 {
-    auto reflected = geom::reflect(rayIn.dir, rayIn.Ng);
+    auto reflected = geom::reflect(rayIn.direction, rayIn.normal);
 
-    const auto hitPoint = geom::pointAlongRay(rayIn.org, rayIn.dir, rayIn.tfar);
-    scattered = geom::newRay(hitPoint, reflected + fuzziness() * geom::randomInUnitSphere(), rayIn.time);
+    const auto hitPoint = rayIn.pointAt(rayIn.tfar);
+    scattered = Ray(hitPoint, reflected + fuzziness() * geom::randomInUnitSphere(), rayIn.time);
     attenuation = albedo();
 
-    return geom::Vec3(scattered.dir).dot(rayIn.Ng) > 0;
+    return geom::Vec3(scattered.direction).dot(rayIn.normal) > 0;
 }
 
 }

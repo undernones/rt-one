@@ -5,9 +5,8 @@
 #ifndef RENDER_RENDERER_H
 #define RENDER_RENDERER_H
 
-#include <embree2/rtcore_ray.h>
-
 #include <geom/Vec3.h>
+#include <render/Ray.h>
 
 namespace render
 {
@@ -16,7 +15,7 @@ class Scene;
 class Renderer
 {
 public:
-    static geom::Vec3 trace(RTCRay ray, const Scene& scene, int depth = 0);
+    static geom::Vec3 trace(Ray ray, const Scene& scene, int depth = 0);
 };
 
 }

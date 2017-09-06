@@ -14,10 +14,10 @@
 
 // One
 #include <geom/Vec3.h>
-#include <geom/Ray.h>
 #include <render/AstronomyScene.h>
 #include <render/BookOneScene.h>
 #include <render/BookOneWithLightScene.h>
+#include <render/Ray.h>
 #include <render/Renderer.h>
 
 #if DEBUG
@@ -251,7 +251,7 @@ CApp::OnRender()
             const auto ray = camera.getRay(s, t);
 
             // Keep a running average of samples.
-            const auto sample = render::Renderer::trace(ray, *mScene);
+            const auto sample = render::Renderer::trace((render::Ray&)ray, *mScene);
             const auto current = mImage.value(row, col);
             const auto newValue = current + (sample - current) / mSampleCount;
 

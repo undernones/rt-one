@@ -5,7 +5,7 @@
 #ifndef RENDER_DIELECTRIC_H
 #define RENDER_DIELECTRIC_H
 
-#include "Material.h"
+#include <render/Material.h>
 
 namespace render
 {
@@ -15,7 +15,7 @@ class Dielectric : public Material
 public:
     Dielectric(const geom::Vec3& attenuation, float refractIndex);
 
-    virtual bool scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) const;
+    virtual bool scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const;
 
     const geom::Vec3& attenuation() const { return mAttenuation; }
     float refractIndex() const { return mRefractIndex; }

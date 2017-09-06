@@ -14,7 +14,7 @@ DiffuseLight::DiffuseLight(const std::shared_ptr<Texture>& emissions)
 }
 
 bool
-DiffuseLight::scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) const
+DiffuseLight::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const
 {
     return false;
 }

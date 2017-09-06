@@ -9,9 +9,9 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <embree2/rtcore_ray.h>
 
 // One
-#include <geom/Ray.h>
 #include <geom/Utils.h>
 
 #include "Material.h"
@@ -30,13 +30,13 @@ namespace render
 {
 
 geom::Vec3
-Renderer::trace(RTCRay ray, const Scene& scene, int depth)
+Renderer::trace(Ray ray, const Scene& scene, int depth)
 {
     ray.tnear = EPSILON;
-    rtcIntersect(scene.root(), ray);
+    rtcIntersect(scene.root(), (RTCRay&)ray);
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
         const auto t = ray.tfar;
-        const auto hitPoint = geom::pointAlongRay(ray.org, ray.dir, t);
+        const auto hitPoint = ray.pointAt(t);
 
         // Get the material
         auto material = scene.material(ray.geomID, ray.primID);
@@ -45,7 +45,7 @@ Renderer::trace(RTCRay ray, const Scene& scene, int depth)
         auto result = material->emitted(ray.u, ray.v, hitPoint);
 
         // Scatter
-        auto scattered = RTCRay();
+        auto scattered = Ray();
         auto attenuation = geom::Vec3();
         if (depth < MAX_DEPTH && material->scatter(ray, attenuation, scattered)) {
             result += attenuation * trace(scattered, scene, depth+1);
@@ -53,7 +53,7 @@ Renderer::trace(RTCRay ray, const Scene& scene, int depth)
         
         return result;
     }
-    auto unitDir = geom::Vec3(ray.dir).normalized();
+    auto unitDir = ray.direction.normalized();
     auto t = 0.5 * (unitDir.y() + 1.0);
     auto result = (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
     return BG_INTENSITY * result;

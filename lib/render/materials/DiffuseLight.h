@@ -7,8 +7,8 @@
 
 #include <memory>
 
-#include "Material.h"
-#include "Texture.h"
+#include <render/Material.h>
+#include <render/Texture.h>
 
 namespace render
 {
@@ -18,7 +18,7 @@ class DiffuseLight : public Material
 public:
     DiffuseLight(const std::shared_ptr<Texture>& emissions);
 
-    virtual bool scatter(const RTCRay& rayIn, geom::Vec3& attenuation, RTCRay& scattered) const;
+    virtual bool scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const;
     virtual geom::Vec3 emitted(float u, float v, const geom::Vec3& p) const;
 
 private:
