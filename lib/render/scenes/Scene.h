@@ -26,8 +26,6 @@ public:
     const Camera& camera() const { return mCamera; }
     void setCamera(const Camera& c) { mCamera = c; }
 
-    std::shared_ptr<Material> material(unsigned geomId, unsigned primId) const;
-
 protected:
     void commit();
 
@@ -35,7 +33,7 @@ protected:
     RTCScene mScene;
     Camera mCamera;
     std::vector<Sphere> mSpheres;
-    std::unordered_map<unsigned, std::shared_ptr<Material>> mMaterials;
+    std::vector<unsigned> mGeomIds;
 };
 
 }

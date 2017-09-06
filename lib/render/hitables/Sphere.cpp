@@ -120,6 +120,7 @@ Sphere::hit(Ray& ray) const
             ray.tfar = t0;
             auto hitPoint = ray.pointAt(t0);
             ray.normal = (hitPoint - center) / mRadius;
+            ray.material = material().get();
             std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
             isHit = true;
         } else
@@ -127,6 +128,7 @@ Sphere::hit(Ray& ray) const
             ray.tfar = t1;
             auto hitPoint = ray.pointAt(t1);
             ray.normal = (hitPoint - center) / mRadius;
+            ray.material = material().get();
             std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
             isHit = true;
         }

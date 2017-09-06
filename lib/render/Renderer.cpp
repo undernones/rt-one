@@ -39,7 +39,7 @@ Renderer::trace(Ray ray, const Scene& scene, int depth)
         const auto hitPoint = ray.pointAt(t);
 
         // Get the material
-        auto material = scene.material(ray.geomID, ray.primID);
+        const auto& material = ray.material;
 
         // Check for emissions
         auto result = material->emitted(ray.u, ray.v, hitPoint);

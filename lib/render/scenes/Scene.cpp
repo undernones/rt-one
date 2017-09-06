@@ -67,8 +67,7 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-    for (auto& pair : mMaterials) {
-        auto geomId = pair.first;
+    for (const auto& geomId : mGeomIds) {
         rtcDeleteGeometry(mScene, geomId);
     }
     if (mScene != nullptr) {
@@ -79,18 +78,12 @@ Scene::~Scene()
     }
 }
 
-std::shared_ptr<Material>
-Scene::material(unsigned geomId, unsigned primId) const
-{
-    return mMaterials.at(geomId);
-}
-
 void
 Scene::commit()
 {
     for (auto& sphere : mSpheres) {
         auto geomId = sphere.commit(mScene);
-        mMaterials[geomId] = sphere.material();
+        mGeomIds.push_back(geomId);
     }
     rtcCommit(mScene);
 }
