@@ -6,6 +6,7 @@
 #define RENDER_HITABLE_H
 
 #include <memory>
+#include <vector>
 
 #include <render/Material.h>
 #include <render/Ray.h>
@@ -24,7 +25,7 @@ public:
 
     virtual bool hit(Ray& ray) const = 0;
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const = 0;
-    virtual unsigned commit(RTCScene scene) = 0;
+    virtual std::vector<unsigned> commit(RTCScene scene) = 0;
 
     unsigned geomId() const { return mGeomId; }
     const std::shared_ptr<Material> material() const { return mMaterial; }

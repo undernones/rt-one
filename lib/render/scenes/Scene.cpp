@@ -81,10 +81,7 @@ Scene::~Scene()
 void
 Scene::commit()
 {
-    for (auto& sphere : mSpheres) {
-        auto geomId = sphere.commit(mScene);
-        mGeomIds.push_back(geomId);
-    }
+    mGeomIds = mRoot->commit(mScene);
     rtcCommit(mScene);
 }
 

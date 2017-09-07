@@ -5,10 +5,10 @@
 #include "AstronomyScene.h"
 
 #include <memory>
-#include <vector>
 
 #include "CheckerTexture3D.h"
 #include "ConstantTexture.h"
+#include "HitableList.h"
 #include "ImageTexture.h"
 #include "Lambertian.h"
 #include "Sphere.h"
@@ -19,6 +19,8 @@ namespace render
 AstronomyScene::AstronomyScene(int width, int height)
     : Scene()
 {
+    auto list = std::vector<std::shared_ptr<Hitable>>();
+
     auto earthTexture = ImageTexture::loadFromFile("earthmap_hires.jpg");
     std::shared_ptr<Material> earthMaterial = std::make_shared<Lambertian>(earthTexture);
 
@@ -30,9 +32,10 @@ AstronomyScene::AstronomyScene(int width, int height)
     std::shared_ptr<Texture> groundTexture = std::make_shared<CheckerTexture3D>(tex0, tex1);
     std::shared_ptr<Material> lambertGround = std::make_shared<Lambertian>(groundTexture);
 
-    mSpheres.emplace_back(geom::Vec3(0, 0, 0), 2, earthMaterial);
-    mSpheres.emplace_back(geom::Vec3(0, -1002, 0), 1000, lambertGround);
-    mSpheres.emplace_back(geom::Vec3(0.3, 0, 4), 0.5, moonMaterial);
+    list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, 0, 0), 2, earthMaterial));
+    list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, -1002, 0), 1000, lambertGround));
+    list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0.3, 0, 4), 0.5, moonMaterial));
+    mRoot = std::make_shared<HitableList>(list);
 
     commit();
 

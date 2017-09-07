@@ -46,7 +46,7 @@ intersectFunc(void* userPtr,   /*!< pointer to user data */
     auto& ray = (render::Ray&)rtcRay;
     if (sphere->hit(ray)) {
         ray.geomID = sphere->geomId();
-        ray.primID = static_cast<unsigned int>(item);
+        ray.primID = static_cast<unsigned>(item);
     }
 }
 
@@ -85,14 +85,14 @@ Sphere::Sphere(const geom::Vec3& center0, const geom::Vec3& center1, float t0, f
 {
 }
 
-unsigned
+std::vector<unsigned>
 Sphere::commit(RTCScene scene)
 {
     mGeomId = rtcNewUserGeometry3(scene, RTC_GEOMETRY_STATIC, 1);
     rtcSetUserData(scene, mGeomId, this);
     rtcSetBoundsFunction2(scene, mGeomId, boundsFunc, this);
     rtcSetIntersectFunction(scene, mGeomId, intersectFunc);
-    return mGeomId;
+    return std::vector<unsigned>( { mGeomId });
 }
 
 bool

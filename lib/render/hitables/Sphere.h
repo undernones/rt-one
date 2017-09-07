@@ -27,7 +27,7 @@ public:
 
     virtual bool hit(Ray& ray) const;
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
-    virtual unsigned commit(RTCScene scene);
+    virtual std::vector<unsigned> commit(RTCScene scene);
 
     geom::Vec3 center(float t) const;
     float radius() const { return mRadius; }

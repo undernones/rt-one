@@ -8,8 +8,10 @@
 #include "CheckerTexture3D.h"
 #include "Dielectric.h"
 #include "DiffuseLight.h"
+#include "HitableList.h"
 #include "Lambertian.h"
 #include "Metal.h"
+#include "Sphere.h"
 
 namespace render
 {
@@ -17,17 +19,19 @@ namespace render
 BookOneWithLightScene::BookOneWithLightScene(int width, int height)
     : Scene()
 {
+    auto list = std::vector<std::shared_ptr<Hitable>>();
+
     // Ground
     auto tex0 = std::make_shared<ConstantTexture>(geom::Vec3(0.2, 0.3, 0.1));
     auto tex1 = std::make_shared<ConstantTexture>(geom::Vec3(0.9, 0.9, 0.9));
     auto groundTexture = std::make_shared<CheckerTexture3D>(tex0, tex1);
-    mSpheres.emplace_back(geom::Vec3(0, -1000, 0), 1000, std::make_shared<Lambertian>(groundTexture));
+    list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, -1000, 0), 1000, std::make_shared<Lambertian>(groundTexture)));
 
     // Primary spheres
-    mSpheres.emplace_back(geom::Vec3(0, 1, 0), 1, std::make_shared<Dielectric>(geom::Vec3(0.9, 1, 0.9), 1.5));
-    mSpheres.emplace_back(geom::Vec3(-4, 1, 0), 1, std::make_shared<Lambertian>(std::make_shared<ConstantTexture>(geom::Vec3(0.4, 0.2, 0.1))));
-    mSpheres.emplace_back(geom::Vec3(4, 1, 0), 1, std::make_shared<Metal>(geom::Vec3(0.7, 0.6, 0.5), 0.05));
-    mSpheres.emplace_back(geom::Vec3(0, 8, 2), 5, std::make_shared<DiffuseLight>(std::make_shared<ConstantTexture>(geom::Vec3(3.99, 3.99, 3.99))));
+    list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, 1, 0), 1, std::make_shared<Dielectric>(geom::Vec3(0.9, 1, 0.9), 1.5)));
+    list.emplace_back(std::make_shared<Sphere>(geom::Vec3(-4, 1, 0), 1, std::make_shared<Lambertian>(std::make_shared<ConstantTexture>(geom::Vec3(0.4, 0.2, 0.1)))));
+    list.emplace_back(std::make_shared<Sphere>(geom::Vec3(4, 1, 0), 1, std::make_shared<Metal>(geom::Vec3(0.7, 0.6, 0.5), 0.05)));
+    list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, 8, 2), 5, std::make_shared<DiffuseLight>(std::make_shared<ConstantTexture>(geom::Vec3(3.99, 3.99, 3.99)))));
 
     // Random spheres
     auto t0 = 0.f;
@@ -41,19 +45,20 @@ BookOneWithLightScene::BookOneWithLightScene(int width, int height)
                     auto color = geom::Vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48());
                     auto m = std::make_shared<Lambertian>(std::make_shared<ConstantTexture>(color));
                     auto center1 = center + geom::Vec3(0.5-drand48(), 0.5*drand48(), 0.5-drand48());
-                    mSpheres.emplace_back(center, center1, t0, t1, 0.2, m);
+                    list.emplace_back(std::make_shared<Sphere>(center, center1, t0, t1, 0.2, m));
                 } else if (chooseMat < 0.95) { // metal
                     auto color = geom::Vec3(0.5*(1+drand48()), 0.5*(1+drand48()), 0.5*(1+drand48()));
                     auto m = std::make_shared<Metal>(color, 0.5*drand48());
-                    mSpheres.emplace_back(center, 0.2, m);
+                    list.emplace_back(std::make_shared<Sphere>(center, 0.2, m));
                 } else { // glass
                     auto color = geom::Vec3(0.1*(9+drand48()), 0.1*(9+drand48()), 0.1*(9+drand48()));
                     auto m = std::make_shared<Dielectric>(color, 1.5);
-                    mSpheres.emplace_back(center, 0.2, m);
+                    list.emplace_back(std::make_shared<Sphere>(center, 0.2, m));
                 }
             }
         }
     }
+    mRoot = std::make_shared<HitableList>(list);
 
     commit();
 

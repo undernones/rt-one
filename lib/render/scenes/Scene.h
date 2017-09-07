@@ -9,8 +9,8 @@
 #include <unordered_map>
 #include <vector>
 
-#include "Camera.h"
-#include "Sphere.h"
+#include <render/Camera.h>
+#include <render/Hitable.h>
 
 namespace render
 {
@@ -32,7 +32,7 @@ protected:
     RTCDevice mDevice;
     RTCScene mScene;
     Camera mCamera;
-    std::vector<Sphere> mSpheres;
+    std::shared_ptr<Hitable> mRoot;
     std::vector<unsigned> mGeomIds;
 };
 
