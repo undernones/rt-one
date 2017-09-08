@@ -38,6 +38,12 @@
 		F7B7EF481F60CFE7005BC65A /* RectLightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */; };
 		F7B7EF521F621D42005BC65A /* libembree.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B7EF511F621D42005BC65A /* libembree.dylib */; };
 		F7B7EF531F621D58005BC65A /* libembree.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B7EF511F621D42005BC65A /* libembree.dylib */; };
+		F7B7EF561F6220E6005BC65A /* CornellBoxScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF541F6220E6005BC65A /* CornellBoxScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7B7EF571F6220E6005BC65A /* CornellBoxScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF551F6220E6005BC65A /* CornellBoxScene.cpp */; };
+		F7B7EF5A1F62D821005BC65A /* FlipNormals.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF581F62D821005BC65A /* FlipNormals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7B7EF5B1F62D821005BC65A /* FlipNormals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF591F62D821005BC65A /* FlipNormals.cpp */; };
+		F7B7EF5E1F62E19F005BC65A /* Transform.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF5C1F62E19F005BC65A /* Transform.h */; };
+		F7B7EF5F1F62E19F005BC65A /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF5D1F62E19F005BC65A /* Transform.cpp */; };
 		F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88C41F4A49BA00968D42 /* Image.cpp */; };
 		F7BC88C71F4A49BA00968D42 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC88C51F4A49BA00968D42 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88C81F4A4AB400968D42 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
@@ -163,6 +169,12 @@
 		F7B7EF451F60CFE7005BC65A /* RectLightScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectLightScene.h; sourceTree = "<group>"; };
 		F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectLightScene.cpp; sourceTree = "<group>"; };
 		F7B7EF511F621D42005BC65A /* libembree.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libembree.dylib; path = ../../../../opt/local/lib/libembree.dylib; sourceTree = "<group>"; };
+		F7B7EF541F6220E6005BC65A /* CornellBoxScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornellBoxScene.h; sourceTree = "<group>"; };
+		F7B7EF551F6220E6005BC65A /* CornellBoxScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CornellBoxScene.cpp; sourceTree = "<group>"; };
+		F7B7EF581F62D821005BC65A /* FlipNormals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlipNormals.h; sourceTree = "<group>"; };
+		F7B7EF591F62D821005BC65A /* FlipNormals.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FlipNormals.cpp; sourceTree = "<group>"; };
+		F7B7EF5C1F62E19F005BC65A /* Transform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		F7B7EF5D1F62E19F005BC65A /* Transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
 		F7BC88BF1F4A495000968D42 /* librender.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librender.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BC88C41F4A49BA00968D42 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		F7BC88C51F4A49BA00968D42 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -332,6 +344,8 @@
 				F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */,
 				F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */,
 				F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */,
+				F7B7EF541F6220E6005BC65A /* CornellBoxScene.h */,
+				F7B7EF551F6220E6005BC65A /* CornellBoxScene.cpp */,
 				F7B7EF451F60CFE7005BC65A /* RectLightScene.h */,
 				F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */,
 			);
@@ -341,6 +355,8 @@
 		F7B068871F5799590083C127 /* hitables */ = {
 			isa = PBXGroup;
 			children = (
+				F7B7EF581F62D821005BC65A /* FlipNormals.h */,
+				F7B7EF591F62D821005BC65A /* FlipNormals.cpp */,
 				F7B068881F5799880083C127 /* Hitable.h */,
 				F7B068891F5799880083C127 /* Hitable.cpp */,
 				F7C4A8D31F60388900B48268 /* HitableList.h */,
@@ -349,6 +365,8 @@
 				F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */,
 				F7E95A3E1F4FACA400B962C0 /* Sphere.h */,
 				F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */,
+				F7B7EF5C1F62E19F005BC65A /* Transform.h */,
+				F7B7EF5D1F62E19F005BC65A /* Transform.cpp */,
 			);
 			path = hitables;
 			sourceTree = "<group>";
@@ -438,13 +456,16 @@
 				F7B0688A1F5799880083C127 /* Hitable.h in Headers */,
 				F7E95A481F4FCB2B00B962C0 /* Metal.h in Headers */,
 				F7C92B1F1F54646600BE8752 /* DiffuseLight.h in Headers */,
+				F7B7EF5A1F62D821005BC65A /* FlipNormals.h in Headers */,
 				F7BC88C71F4A49BA00968D42 /* Image.h in Headers */,
 				F7E95A381F4FA64100B962C0 /* Material.h in Headers */,
 				F754BC7B1F511C6200A75D49 /* PerlinTexture.h in Headers */,
+				F7B7EF561F6220E6005BC65A /* CornellBoxScene.h in Headers */,
 				F7C4A8D51F60388900B48268 /* HitableList.h in Headers */,
 				F7C4A8D21F5F777100B48268 /* Ray.h in Headers */,
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
 				F7B7EF431F60CEDF005BC65A /* Rectangle.h in Headers */,
+				F7B7EF5E1F62E19F005BC65A /* Transform.h in Headers */,
 				F7B7EF471F60CFE7005BC65A /* RectLightScene.h in Headers */,
 				F754BC7C1F511C6200A75D49 /* ImageTexture.h in Headers */,
 				F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */,
@@ -609,6 +630,7 @@
 				F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */,
 				F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */,
 				F7B7EF441F60CEDF005BC65A /* Rectangle.cpp in Sources */,
+				F7B7EF571F6220E6005BC65A /* CornellBoxScene.cpp in Sources */,
 				F7E95A4D1F4FD87600B962C0 /* Dielectric.cpp in Sources */,
 				F7C92B201F54646600BE8752 /* DiffuseLight.cpp in Sources */,
 				F7B0688B1F5799880083C127 /* Hitable.cpp in Sources */,
@@ -617,10 +639,12 @@
 				F754BC7A1F511C6200A75D49 /* ImageTexture.cpp in Sources */,
 				F7E95A431F4FAFB500B962C0 /* Lambertian.cpp in Sources */,
 				F754BC7D1F511C6200A75D49 /* PerlinTexture.cpp in Sources */,
+				F7B7EF5B1F62D821005BC65A /* FlipNormals.cpp in Sources */,
 				F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */,
 				F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */,
 				F754BC711F5101DE00A75D49 /* ConstantTexture.cpp in Sources */,
 				F7B7EF481F60CFE7005BC65A /* RectLightScene.cpp in Sources */,
+				F7B7EF5F1F62E19F005BC65A /* Transform.cpp in Sources */,
 				F754BC811F511D1500A75D49 /* Perlin.cpp in Sources */,
 				F7C92B151F54595A00BE8752 /* AstronomyScene.cpp in Sources */,
 				F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */,
