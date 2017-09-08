@@ -38,6 +38,7 @@ public:
 
 private:
     bool mIsRunning;
+    bool mIsPaused;
     bool mNeedsToClear;
     bool mIsDragging;
     int mSampleCount;

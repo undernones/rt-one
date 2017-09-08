@@ -11,12 +11,14 @@
 #include <memory>
 #include <sstream>
 #include <tbb/tbb.h>
+#include <unistd.h>
 
 // One
 #include <geom/Vec3.h>
 #include <render/AstronomyScene.h>
 #include <render/BookOneScene.h>
 #include <render/BookOneWithLightScene.h>
+#include <render/CornellBoxScene.h>
 #include <render/Ray.h>
 #include <render/RectLightScene.h>
 #include <render/Renderer.h>
@@ -75,6 +77,7 @@ showImage(const render::Image& img,
 
 CApp::CApp(int argc, const char* argv[])
     : mIsRunning(true)
+    , mIsPaused(false)
     , mNeedsToClear(true)
     , mIsDragging(false)
     , mSampleCount(0)
@@ -107,7 +110,7 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::RectLightScene>(nx, ny);
+    mScene = std::make_unique<render::CornellBoxScene>(nx, ny);
 
     // Verify the validity of the camera.
     auto camera = mScene->camera();
@@ -164,12 +167,19 @@ CApp::OnEvent(const SDL_Event& event)
 
                 case SDLK_2:
                     mChannel = Channel::RED;
+                    break;
 
                 case SDLK_3:
                     mChannel = Channel::GREEN;
+                    break;
 
                 case SDLK_4:
                     mChannel = Channel::BLUE;
+                    break;
+
+                case SDLK_p:
+                    mIsPaused = !mIsPaused;
+                    break;
 
                 default:
                     ; // Do nothing
@@ -200,6 +210,14 @@ CApp::OnMouseButtonUp(const SDL_MouseButtonEvent& event)
 {
     if (!mIsDragging) {
         // The user clicked without dragging. Might be useful to trigger a render of a single pixel.
+        auto col = event.x;
+        auto row = mImage.rows() - event.y;
+        const auto s = (col + drand48()) / mImage.cols();
+        const auto t = (row + drand48()) / mImage.rows();
+        const auto& camera = mScene->camera();
+        const auto ray = camera.getRay(s, t);
+        const auto sample = render::Renderer::trace((render::Ray&)ray, *mScene);
+        std::cout << "sample: [" << sample.r() << ", " << sample.g() << ", " << sample.b() << "]" << std::endl;
     }
     mIsDragging = false;
 }
@@ -226,6 +244,11 @@ CApp::OnLoop()
 void
 CApp::OnRender()
 {
+    if (mIsPaused) {
+        usleep(100);
+        return;
+    }
+
     if (mNeedsToClear) {
         mImage.clear();
         mNeedsToClear = false;
@@ -239,7 +262,7 @@ CApp::OnRender()
 
     auto start = std::chrono::steady_clock::now();
 
-    auto camera = mScene->camera();
+    const auto& camera = mScene->camera();
 
 #if PARALLEL
     tbb::parallel_for(int(0), mImage.rows(), int(1), [&](int row) {
