@@ -17,7 +17,7 @@ public:
     Camera() = default;
     Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom::Vec3& up, float fov, int width, int height, float aperture, float focusDistance, float t0, float t1);
 
-    Ray getRay(float s, float t);
+    Ray getRay(float s, float t) const;
 
     int width() const { return mWidth; }
     int height() const { return mHeight; }

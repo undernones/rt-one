@@ -35,7 +35,7 @@ Camera::Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom:
 }
 
 Ray
-Camera::getRay(float s, float t)
+Camera::getRay(float s, float t) const
 {
     auto time = geom::lerp(mTime0, mTime1, drand48());
     auto rd = mLensRadius * geom::randomInUnitDisk();
