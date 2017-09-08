@@ -76,6 +76,9 @@ Rectangle::commit(RTCDevice device, RTCScene scene)
     mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
     auto meshGeomId = rtcNewTriangleMesh(mLocalScene, RTC_GEOMETRY_STATIC, 2, 4);
 
+    // XY: Normal positive in Z
+    // XZ: Normal positive in Y
+    // YZ: Normal positive in X
     auto verts = (Vertex*)rtcMapBuffer(mLocalScene, meshGeomId, RTC_VERTEX_BUFFER);
     switch (mPlane) {
         case Plane::XY:
@@ -86,10 +89,10 @@ Rectangle::commit(RTCDevice device, RTCScene scene)
             break;
 
         case Plane::XZ:
-            verts[0] = { mLeft,  mOffset, mBottom, 1 };
-            verts[1] = { mRight, mOffset, mBottom, 1 };
-            verts[2] = { mRight, mOffset, mTop,    1 };
-            verts[3] = { mLeft,  mOffset, mTop,    1 };
+            verts[0] = { mLeft,  mOffset, mTop,    1 };
+            verts[1] = { mRight, mOffset, mTop,    1 };
+            verts[2] = { mRight, mOffset, mBottom, 1 };
+            verts[3] = { mLeft,  mOffset, mBottom, 1 };
             break;
 
         case Plane::YZ:
@@ -125,10 +128,18 @@ Rectangle::intersectFunc(void* userPtr,   /*!< pointer to user data */
     // Assume we can dereference userPtr
     const auto rect = static_cast<render::Rectangle*>(userPtr);
 
+    const auto geomID = rtcRay.geomID;
+    rtcRay.geomID = RTC_INVALID_GEOMETRY_ID;
+
     rtcIntersect(rect->mLocalScene, rtcRay);
+
     if (rtcRay.geomID != RTC_INVALID_GEOMETRY_ID) {
+        rtcRay.geomID = rect->mGeomId;
         auto& ray = (render::Ray&)rtcRay;
         ray.material = rect->material().get();
+        ray.normal = -ray.normal.normalized();
+    } else {
+        rtcRay.geomID = geomID;
     }
 }
 

@@ -10,6 +10,9 @@
 namespace render
 {
 
+// XY: Normal positive in Z
+// XZ: Normal positive in Y
+// YZ: Normal positive in X
 enum class Plane { XY, XZ, YZ };
 
 class Rectangle : public Hitable
