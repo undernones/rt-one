@@ -13,7 +13,6 @@
 		F70F91F41F4F085000D585A9 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F70F91F21F4F085000D585A9 /* Utils.cpp */; };
 		F70F91F51F4F085000D585A9 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = F70F91F31F4F085000D585A9 /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
-		F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F754BC671F50FADF00A75D49 /* AABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC651F50FADF00A75D49 /* AABB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC661F50FADF00A75D49 /* AABB.cpp */; };
@@ -33,6 +32,12 @@
 		F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B0688A1F5799880083C127 /* Hitable.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B068881F5799880083C127 /* Hitable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B0688B1F5799880083C127 /* Hitable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B068891F5799880083C127 /* Hitable.cpp */; };
+		F7B7EF431F60CEDF005BC65A /* Rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF411F60CEDF005BC65A /* Rectangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7B7EF441F60CEDF005BC65A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */; };
+		F7B7EF471F60CFE7005BC65A /* RectLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF451F60CFE7005BC65A /* RectLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7B7EF481F60CFE7005BC65A /* RectLightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */; };
+		F7B7EF521F621D42005BC65A /* libembree.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B7EF511F621D42005BC65A /* libembree.dylib */; };
+		F7B7EF531F621D58005BC65A /* libembree.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B7EF511F621D42005BC65A /* libembree.dylib */; };
 		F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88C41F4A49BA00968D42 /* Image.cpp */; };
 		F7BC88C71F4A49BA00968D42 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC88C51F4A49BA00968D42 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88C81F4A4AB400968D42 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
@@ -44,7 +49,6 @@
 		F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BF51091F4DC0B20045DE27 /* Renderer.cpp */; };
 		F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BF510A1F4DC0B20045DE27 /* Renderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BF51101F4DC4260045DE27 /* Scene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BF510E1F4DC4260045DE27 /* Scene.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7BF51121F4DCE800045DE27 /* libembree.2.16.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */; };
 		F7C4A8D21F5F777100B48268 /* Ray.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C4A8D11F5F777100B48268 /* Ray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7C4A8D51F60388900B48268 /* HitableList.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C4A8D31F60388900B48268 /* HitableList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7C4A8D61F60388900B48268 /* HitableList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C4A8D41F60388900B48268 /* HitableList.cpp */; };
@@ -133,7 +137,6 @@
 		F70F91F31F4F085000D585A9 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		F71B88B11F43379000D4F3A4 /* one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = one; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libembree.2.16.4.dylib; path = ../../../../opt/local/lib/libembree.2.16.4.dylib; sourceTree = "<group>"; };
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		F71B88CA1F44883400D4F3A4 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
 		F71B88CF1F44890100D4F3A4 /* libgeom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgeom.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +158,11 @@
 		F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneWithLightScene.cpp; sourceTree = "<group>"; };
 		F7B068881F5799880083C127 /* Hitable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hitable.h; sourceTree = "<group>"; };
 		F7B068891F5799880083C127 /* Hitable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hitable.cpp; sourceTree = "<group>"; };
+		F7B7EF411F60CEDF005BC65A /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
+		F7B7EF451F60CFE7005BC65A /* RectLightScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectLightScene.h; sourceTree = "<group>"; };
+		F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectLightScene.cpp; sourceTree = "<group>"; };
+		F7B7EF511F621D42005BC65A /* libembree.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libembree.dylib; path = ../../../../opt/local/lib/libembree.dylib; sourceTree = "<group>"; };
 		F7BC88BF1F4A495000968D42 /* librender.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librender.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BC88C41F4A49BA00968D42 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		F7BC88C51F4A49BA00968D42 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -197,8 +205,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7B7EF531F621D58005BC65A /* libembree.dylib in Frameworks */,
 				F70F91ED1F4E4C1900D585A9 /* librender.a in Frameworks */,
-				F71B88C51F43CC2E00D4F3A4 /* libembree.2.16.4.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,8 +229,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7B7EF521F621D42005BC65A /* libembree.dylib in Frameworks */,
 				F7E95A4A1F4FD65A00B962C0 /* libtbb.dylib in Frameworks */,
-				F7BF51121F4DCE800045DE27 /* libembree.2.16.4.dylib in Frameworks */,
 				F7BF51071F4D37C20045DE27 /* libSDL2_image.a in Frameworks */,
 				F7BF51081F4D37C20045DE27 /* libSDL2.a in Frameworks */,
 				F7BF51021F4D36BB0045DE27 /* librender.a in Frameworks */,
@@ -268,10 +276,10 @@
 		F71B88C31F43CC2D00D4F3A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7B7EF511F621D42005BC65A /* libembree.dylib */,
 				F7E95A491F4FD65A00B962C0 /* libtbb.dylib */,
 				F7BF51051F4D37C20045DE27 /* libSDL2_image.a */,
 				F7BF51061F4D37C20045DE27 /* libSDL2.a */,
-				F71B88C41F43CC2E00D4F3A4 /* libembree.2.16.4.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -324,6 +332,8 @@
 				F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */,
 				F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */,
 				F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */,
+				F7B7EF451F60CFE7005BC65A /* RectLightScene.h */,
+				F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */,
 			);
 			path = scenes;
 			sourceTree = "<group>";
@@ -335,6 +345,8 @@
 				F7B068891F5799880083C127 /* Hitable.cpp */,
 				F7C4A8D31F60388900B48268 /* HitableList.h */,
 				F7C4A8D41F60388900B48268 /* HitableList.cpp */,
+				F7B7EF411F60CEDF005BC65A /* Rectangle.h */,
+				F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */,
 				F7E95A3E1F4FACA400B962C0 /* Sphere.h */,
 				F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */,
 			);
@@ -432,6 +444,8 @@
 				F7C4A8D51F60388900B48268 /* HitableList.h in Headers */,
 				F7C4A8D21F5F777100B48268 /* Ray.h in Headers */,
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
+				F7B7EF431F60CEDF005BC65A /* Rectangle.h in Headers */,
+				F7B7EF471F60CFE7005BC65A /* RectLightScene.h in Headers */,
 				F754BC7C1F511C6200A75D49 /* ImageTexture.h in Headers */,
 				F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */,
 				F754BC701F5101DE00A75D49 /* ConstantTexture.h in Headers */,
@@ -594,6 +608,7 @@
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
 				F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */,
 				F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */,
+				F7B7EF441F60CEDF005BC65A /* Rectangle.cpp in Sources */,
 				F7E95A4D1F4FD87600B962C0 /* Dielectric.cpp in Sources */,
 				F7C92B201F54646600BE8752 /* DiffuseLight.cpp in Sources */,
 				F7B0688B1F5799880083C127 /* Hitable.cpp in Sources */,
@@ -605,6 +620,7 @@
 				F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */,
 				F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */,
 				F754BC711F5101DE00A75D49 /* ConstantTexture.cpp in Sources */,
+				F7B7EF481F60CFE7005BC65A /* RectLightScene.cpp in Sources */,
 				F754BC811F511D1500A75D49 /* Perlin.cpp in Sources */,
 				F7C92B151F54595A00BE8752 /* AstronomyScene.cpp in Sources */,
 				F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */,

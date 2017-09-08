@@ -16,11 +16,11 @@ HitableList::HitableList(std::vector<std::shared_ptr<Hitable>>& list)
 }
 
 std::vector<unsigned>
-HitableList::commit(RTCScene scene)
+HitableList::commit(RTCDevice device, RTCScene scene)
 {
     auto result = std::vector<unsigned>();
     for (auto& hitable : mList) {
-        auto geomIds = hitable->commit(scene);
+        auto geomIds = hitable->commit(device, scene);
         result.insert(std::end(result), std::begin(geomIds), std::end(geomIds));
     }
     return result;

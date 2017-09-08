@@ -18,6 +18,7 @@
 #include <render/BookOneScene.h>
 #include <render/BookOneWithLightScene.h>
 #include <render/Ray.h>
+#include <render/RectLightScene.h>
 #include <render/Renderer.h>
 
 #if DEBUG
@@ -106,7 +107,7 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::BookOneScene>(nx, ny);
+    mScene = std::make_unique<render::RectLightScene>(nx, ny);
 
     // Verify the validity of the camera.
     auto camera = mScene->camera();

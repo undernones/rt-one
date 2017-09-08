@@ -81,7 +81,7 @@ Scene::~Scene()
 void
 Scene::commit()
 {
-    mGeomIds = mRoot->commit(mScene);
+    mGeomIds = mRoot->commit(mDevice, mScene);
     rtcCommit(mScene);
 }
 

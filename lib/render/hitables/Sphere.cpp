@@ -86,7 +86,7 @@ Sphere::Sphere(const geom::Vec3& center0, const geom::Vec3& center1, float t0, f
 }
 
 std::vector<unsigned>
-Sphere::commit(RTCScene scene)
+Sphere::commit(RTCDevice device, RTCScene scene)
 {
     mGeomId = rtcNewUserGeometry3(scene, RTC_GEOMETRY_STATIC, 1);
     rtcSetUserData(scene, mGeomId, this);

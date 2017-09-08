@@ -20,7 +20,7 @@ public:
 
     virtual bool hit(Ray& ray) const;
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
-    virtual std::vector<unsigned> commit(RTCScene scene);
+    virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
 
     const std::vector<std::shared_ptr<Hitable>>& list() const { return mList; }
 
