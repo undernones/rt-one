@@ -44,6 +44,8 @@
 		F7B7EF5B1F62D821005BC65A /* FlipNormals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF591F62D821005BC65A /* FlipNormals.cpp */; };
 		F7B7EF5E1F62E19F005BC65A /* Transform.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF5C1F62E19F005BC65A /* Transform.h */; };
 		F7B7EF5F1F62E19F005BC65A /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF5D1F62E19F005BC65A /* Transform.cpp */; };
+		F7B7EF621F62F94E005BC65A /* Box.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF601F62F94E005BC65A /* Box.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7B7EF631F62F94E005BC65A /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF611F62F94E005BC65A /* Box.cpp */; };
 		F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BC88C41F4A49BA00968D42 /* Image.cpp */; };
 		F7BC88C71F4A49BA00968D42 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = F7BC88C51F4A49BA00968D42 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7BC88C81F4A4AB400968D42 /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
@@ -175,6 +177,8 @@
 		F7B7EF591F62D821005BC65A /* FlipNormals.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FlipNormals.cpp; sourceTree = "<group>"; };
 		F7B7EF5C1F62E19F005BC65A /* Transform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
 		F7B7EF5D1F62E19F005BC65A /* Transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
+		F7B7EF601F62F94E005BC65A /* Box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		F7B7EF611F62F94E005BC65A /* Box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Box.cpp; sourceTree = "<group>"; };
 		F7BC88BF1F4A495000968D42 /* librender.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librender.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BC88C41F4A49BA00968D42 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		F7BC88C51F4A49BA00968D42 /* Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -367,6 +371,8 @@
 				F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */,
 				F7B7EF5C1F62E19F005BC65A /* Transform.h */,
 				F7B7EF5D1F62E19F005BC65A /* Transform.cpp */,
+				F7B7EF601F62F94E005BC65A /* Box.h */,
+				F7B7EF611F62F94E005BC65A /* Box.cpp */,
 			);
 			path = hitables;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 				F7C92B1F1F54646600BE8752 /* DiffuseLight.h in Headers */,
 				F7B7EF5A1F62D821005BC65A /* FlipNormals.h in Headers */,
 				F7BC88C71F4A49BA00968D42 /* Image.h in Headers */,
+				F7B7EF621F62F94E005BC65A /* Box.h in Headers */,
 				F7E95A381F4FA64100B962C0 /* Material.h in Headers */,
 				F754BC7B1F511C6200A75D49 /* PerlinTexture.h in Headers */,
 				F7B7EF561F6220E6005BC65A /* CornellBoxScene.h in Headers */,
@@ -625,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F754BC751F5103E800A75D49 /* CheckerTexture3D.cpp in Sources */,
+				F7B7EF631F62F94E005BC65A /* Box.cpp in Sources */,
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
 				F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */,
