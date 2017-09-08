@@ -5,9 +5,7 @@
 #ifndef RENDER_BOOK_ONE_WITH_LIGHT_SCENE_H
 #define RENDER_BOOK_ONE_WITH_LIGHT_SCENE_H
 
-#include "Scene.h"
-
-#include <vector>
+#include <render/Scene.h>
 
 namespace render
 {

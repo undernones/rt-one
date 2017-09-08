@@ -5,7 +5,7 @@
 #ifndef RENDER_ASTRONOMY_SCENE_H
 #define RENDER_ASTRONOMY_SCENE_H
 
-#include "Scene.h"
+#include <render/Scene.h>
 
 namespace render
 {
