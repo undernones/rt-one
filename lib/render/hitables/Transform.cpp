@@ -36,7 +36,7 @@ Transform::hit(render::Ray &ray) const
 }
 
 bool
-Transform::bbox(float t0, float t1, geom::AABB &bbox) const
+Transform::bbox(float t0, float t1, geom::AABB& bbox) const
 {
     if (mObject == nullptr) {
         return false;

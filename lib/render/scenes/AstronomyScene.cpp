@@ -22,15 +22,15 @@ AstronomyScene::AstronomyScene(int width, int height)
     auto list = std::vector<std::shared_ptr<Hitable>>();
 
     auto earthTexture = ImageTexture::loadFromFile("earthmap_hires.jpg");
-    std::shared_ptr<Material> earthMaterial = std::make_shared<Lambertian>(earthTexture);
+    auto earthMaterial = std::make_shared<Lambertian>(earthTexture);
 
     auto moonTexture = ImageTexture::loadFromFile("moon_map_mercator.jpg");
-    std::shared_ptr<Material> moonMaterial = std::make_shared<Lambertian>(moonTexture);
+    auto moonMaterial = std::make_shared<Lambertian>(moonTexture);
 
-    std::shared_ptr<Texture> tex0 = std::make_shared<ConstantTexture>(geom::Vec3(0.2, 0.3, 0.1));
-    std::shared_ptr<Texture> tex1 = std::make_shared<ConstantTexture>(geom::Vec3(0.9, 0.9, 0.9));
-    std::shared_ptr<Texture> groundTexture = std::make_shared<CheckerTexture3D>(tex0, tex1);
-    std::shared_ptr<Material> lambertGround = std::make_shared<Lambertian>(groundTexture);
+    auto tex0 = std::make_shared<ConstantTexture>(geom::Vec3(0.2, 0.3, 0.1));
+    auto tex1 = std::make_shared<ConstantTexture>(geom::Vec3(0.9, 0.9, 0.9));
+    auto groundTexture = std::make_shared<CheckerTexture3D>(tex0, tex1);
+    auto lambertGround = std::make_shared<Lambertian>(groundTexture);
 
     list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, 0, 0), 2, earthMaterial));
     list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, -1002, 0), 1000, lambertGround));
