@@ -57,8 +57,8 @@ Sphere::Sphere(const geom::Vec3& center, float radius, std::shared_ptr<Material>
 
 Sphere::Sphere(const geom::Vec3& center, float radius, std::shared_ptr<Material>&& material)
     : Hitable(material)
-    , center(center)
-    , radius(radius)
+    , mCenter(center)
+    , mRadius(radius)
 {
 }
 
@@ -68,10 +68,10 @@ Sphere::hit(Ray& ray) const
     const auto& origin = ray.origin;
     const auto& direction = ray.direction;
 
-    auto oc = origin - center;
+    auto oc = origin - mCenter;
     auto a = direction.dot(direction);
     auto b = oc.dot(direction);
-    auto c = oc.dot(oc) - radius * radius;
+    auto c = oc.dot(oc) - mRadius * mRadius;
     auto discriminant = b*b - a*c;
 
     auto isHit = false;
@@ -84,7 +84,7 @@ Sphere::hit(Ray& ray) const
         if (ray.tnear < t0 && t0 < ray.tfar) {
             ray.tfar = t0;
             auto hitPoint = ray.pointAt(t0);
-            ray.normal = (hitPoint - center) / radius;
+            ray.normal = (hitPoint - mCenter) / mRadius;
             ray.material = material().get();
             std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
             isHit = true;
@@ -92,7 +92,7 @@ Sphere::hit(Ray& ray) const
         if (ray.tnear < t1 && t1 < ray.tfar) {
             ray.tfar = t1;
             auto hitPoint = ray.pointAt(t1);
-            ray.normal = (hitPoint - center) / radius;
+            ray.normal = (hitPoint - mCenter) / mRadius;
             ray.material = material().get();
             std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
             isHit = true;
@@ -105,15 +105,15 @@ Sphere::hit(Ray& ray) const
 bool
 Sphere::bbox(float t0, float t1, geom::AABB& bbox) const
 {
-    auto offset = geom::Vec3(radius);
-    bbox = geom::AABB(center - offset, center + offset);
+    auto offset = geom::Vec3(mRadius);
+    bbox = geom::AABB(mCenter - offset, mCenter + offset);
     return true;
 }
 
 std::tuple<float, float>
 Sphere::uv(const geom::Vec3 &p, float t) const
 {
-    auto normalizedPt = (p - center) / radius;
+    auto normalizedPt = (p - mCenter) / mRadius;
 
     auto phi = atan2f(normalizedPt.z(), normalizedPt.x());
     auto theta = asinf(normalizedPt.y());

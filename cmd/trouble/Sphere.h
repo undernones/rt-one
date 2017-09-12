@@ -6,11 +6,9 @@
 #define TROUBLE_SPHERE_H
 
 #include <tuple>
-#include <geom/AABB.h>
 #include <geom/Vec3.h>
 
 #include "Hitable.h"
-#include "Ray.h"
 
 struct Sphere : public Hitable
 {
@@ -24,8 +22,9 @@ public:
 
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
 
-    geom::Vec3 center;
-    float radius;
+private:
+    geom::Vec3 mCenter;
+    float mRadius;
 };
 
 #endif // TROUBLE_SPHERE_H
