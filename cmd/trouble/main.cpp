@@ -67,10 +67,13 @@ main(int argc, const char * argv[])
     auto device = rtcNewDevice(NULL);
     auto mainScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
 
+    auto texture = std::make_shared<ConstantTexture>(geom::Vec3(1, 0.5, 0));
+    auto material = std::make_shared<Lambertian>(texture);
+
     // Spheres
-    auto sphere1 = Sphere(geom::Vec3(0, -1000, 0), 1000);
+    auto sphere1 = Sphere(geom::Vec3(0, -1000, 0), 1000, material);
     sphere1.commit(device, mainScene);
-    auto sphere2 = Sphere(geom::Vec3(0, 2, 0), 2);
+    auto sphere2 = Sphere(geom::Vec3(0, 2, 0), 2, material);
     sphere2.commit(device, mainScene);
 
     // Rect
@@ -78,7 +81,7 @@ main(int argc, const char * argv[])
     rect.commit(device, mainScene);
 
     // Another sphere
-    auto sphere3 = Sphere(geom::Vec3(0, 7, 0), 2);
+    auto sphere3 = Sphere(geom::Vec3(0, 7, 0), 2, material);
     sphere3.commit(device, mainScene);
 
     rtcCommit(mainScene);

@@ -43,11 +43,23 @@ intersectFunc(void* userPtr,   /*!< pointer to user data */
 
     auto& ray = (Ray&)rtcRay;
     if (sphere->hit(ray)) {
-        ray.geomID = sphere->geomID;
+        ray.geomID = sphere->geomId();
         ray.primID = static_cast<unsigned>(item);
     }
 }
 
+}
+
+Sphere::Sphere(const geom::Vec3& center, float radius, std::shared_ptr<Material>& material)
+    : Sphere(center, radius, std::move(material))
+{
+}
+
+Sphere::Sphere(const geom::Vec3& center, float radius, std::shared_ptr<Material>&& material)
+    : Hitable(material)
+    , center(center)
+    , radius(radius)
+{
 }
 
 bool
@@ -73,7 +85,7 @@ Sphere::hit(Ray& ray) const
             ray.tfar = t0;
             auto hitPoint = ray.pointAt(t0);
             ray.normal = (hitPoint - center) / radius;
-//            ray.material = material().get();
+            ray.material = material().get();
             std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
             isHit = true;
         } else
@@ -81,7 +93,7 @@ Sphere::hit(Ray& ray) const
             ray.tfar = t1;
             auto hitPoint = ray.pointAt(t1);
             ray.normal = (hitPoint - center) / radius;
-//            ray.material = material().get();
+            ray.material = material().get();
             std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
             isHit = true;
         }
@@ -111,12 +123,12 @@ Sphere::uv(const geom::Vec3 &p, float t) const
     return { u, v };
 }
 
-unsigned
+std::vector<unsigned>
 Sphere::commit(RTCDevice device, RTCScene scene)
 {
-    geomID = rtcNewUserGeometry3(scene, RTC_GEOMETRY_STATIC, 1);
-    rtcSetUserData(scene, geomID, this);
-    rtcSetBoundsFunction2(scene, geomID, boundsFunc, this);
-    rtcSetIntersectFunction(scene, geomID, intersectFunc);
-    return geomID;
+    mGeomId = rtcNewUserGeometry3(scene, RTC_GEOMETRY_STATIC, 1);
+    rtcSetUserData(scene, mGeomId, this);
+    rtcSetBoundsFunction2(scene, mGeomId, boundsFunc, this);
+    rtcSetIntersectFunction(scene, mGeomId, intersectFunc);
+    return std::vector<unsigned>({ mGeomId });
 }
