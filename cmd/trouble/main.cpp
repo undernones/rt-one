@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <tbb/tbb.h>
 #include <xmmintrin.h>
 #include <pmmintrin.h>
 #include <embree2/rtcore_ray.h>
@@ -20,13 +21,18 @@
 #include "Sphere.h"
 
 const auto EPSILON = 1e-4;
-const auto MAX_DEPTH = 40;
+const auto MAX_DEPTH = 20;
 const auto BG_INTENSITY = 0.f;
+
+#if DEBUG
+#define PARALLEL 0
+#else
+#define PARALLEL 1
+#endif
 
 geom::Vec3
 trace(Ray ray, RTCScene scene, int depth)
 {
-    static auto fallback = std::make_shared<Lambertian>(std::make_shared<ConstantTexture>(geom::Vec3(0.5, 0.5, 0.5)));
     ray.tnear = EPSILON;
     rtcIntersect(scene, (RTCRay&)ray);
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
@@ -35,9 +41,6 @@ trace(Ray ray, RTCScene scene, int depth)
 
         // Get the material
         auto material = ray.material;
-        if (material == nullptr) {
-            material = fallback.get();
-        }
 
         // Check for emissions
         auto result = material->emitted(ray.u, ray.v, hitPoint);
@@ -65,7 +68,7 @@ main(int argc, const char * argv[])
 
     auto NX = 600;
     auto NY = 300;
-    auto NS = 20;
+    auto NS = 100;
 
     auto device = rtcNewDevice(NULL);
     auto mainScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
@@ -103,13 +106,21 @@ main(int argc, const char * argv[])
     for (auto row = NY - 1; row >= 0; --row) {
         for (auto col = 0; col < NX; ++col) {
             auto color = geom::Vec3(0, 0, 0);
+#if PARALLEL
+            tbb::parallel_for(int(0), NS, int(1), [&](int sample) {
+#else
             for (auto sample = 0; sample < NS; ++sample) {
+#endif
                 auto s = (col + drand48()) / NX;
                 auto t = (row + drand48()) / NY;
                 auto ray = camera.getRay(s, t);
 
                 color += trace(ray, mainScene, 0);
+#if PARALLEL
+            });
+#else
             }
+#endif
             color /= NS;
             color = geom::Vec3(sqrt(color[0]), sqrt(color[1]), sqrt(color[2]));
             auto ir = std::clamp(int(255.99*color[0]), 0, 255);
