@@ -18,7 +18,7 @@
 #include "PerlinTexture.h"
 #include "Ray.h"
 #include "Rectangle.h"
-#include "Scene.h" // TODO: remove
+#include "RectLightScene.h"
 #include "Sphere.h"
 
 const auto EPSILON = 1e-4;
@@ -71,8 +71,7 @@ main(int argc, const char * argv[])
     auto NY = 300;
     auto NS = 100;
 
-    auto scene = Scene();
-    scene.commit();
+    auto scene = RectLightScene(NX, NY);
 
     const auto& camera = scene.camera();
 
@@ -89,7 +88,7 @@ main(int argc, const char * argv[])
                 auto t = (row + drand48()) / NY;
                 auto ray = camera.getRay(s, t);
 
-                color += trace(ray, scene.root(), 0);
+                color += trace(ray, scene.rtcScene(), 0);
 #if PARALLEL
             });
 #else

@@ -20,22 +20,17 @@ public:
     Scene();
     virtual ~Scene();
 
-    const RTCScene& root() const { return mScene; }
+    const RTCScene& rtcScene() const { return mScene; }
     const Camera& camera() const { return mCamera; }
     void setCamera(const Camera& c) { mCamera = c; }
 
-    void commit(); // TODO: make this protected
-
 protected:
+    void commit();
+
     RTCDevice mDevice;
     RTCScene mScene;
     Camera mCamera;
     std::vector<unsigned> mGeomIds;
-
-    std::shared_ptr<Sphere> sphere1;
-    std::shared_ptr<Sphere> sphere2;
-    std::shared_ptr<Sphere> sphere3;
-    std::shared_ptr<RectYZ> rect;
 };
 
 #endif // TROUBLE_SCENE_H
