@@ -18,6 +18,7 @@
 #include "PerlinTexture.h"
 #include "Ray.h"
 #include "Rectangle.h"
+#include "Scene.h" // TODO: remove
 #include "Sphere.h"
 
 const auto EPSILON = 1e-4;
@@ -70,37 +71,10 @@ main(int argc, const char * argv[])
     auto NY = 300;
     auto NS = 100;
 
-    auto device = rtcNewDevice(NULL);
-    auto mainScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
+    auto scene = Scene();
+    scene.commit();
 
-    auto texture = std::make_shared<PerlinTexture>(4);
-    auto material = std::make_shared<Lambertian>(texture);
-    auto light = std::make_shared<DiffuseLight>(std::make_shared<ConstantTexture>(geom::Vec3(4, 4, 4)));
-
-    // Spheres
-    auto sphere1 = Sphere(geom::Vec3(0, -1000, 0), 1000, material);
-    sphere1.commit(device, mainScene);
-    auto sphere2 = Sphere(geom::Vec3(0, 2, 0), 2, material);
-    sphere2.commit(device, mainScene);
-
-    // Rect
-    auto rect = RectYZ(3, 1, 3, -3, -1, light);
-    rect.commit(device, mainScene);
-
-    // Another sphere
-    auto sphere3 = Sphere(geom::Vec3(0, 7, 0), 2, light);
-    sphere3.commit(device, mainScene);
-
-    rtcCommit(mainScene);
-
-    auto eye = geom::Vec3(15, 4, 3);
-    auto lookAt = geom::Vec3(0, 2.5, 0);
-    auto up = geom::Vec3(0, 1, 0);
-    auto focusDistance = (eye - lookAt).length();
-    auto aperture = 0.1f;
-    auto t0 = 0.f;
-    auto t1 = 1.f;
-    auto camera = Camera(eye, lookAt, up, 30, NX, NY, aperture, focusDistance, t0, t1);
+    const auto& camera = scene.camera();
 
     std::cout << "P3\n" << NX << " " << NY << "\n255\n";
     for (auto row = NY - 1; row >= 0; --row) {
@@ -115,7 +89,7 @@ main(int argc, const char * argv[])
                 auto t = (row + drand48()) / NY;
                 auto ray = camera.getRay(s, t);
 
-                color += trace(ray, mainScene, 0);
+                color += trace(ray, scene.root(), 0);
 #if PARALLEL
             });
 #else
