@@ -68,9 +68,13 @@ RectYZ::bbox(float t0, float t1, geom::AABB& bbox) const
 std::vector<unsigned>
 RectYZ::commit(RTCDevice device, RTCScene scene)
 {
+    // First register a new scene consisting of just the rectangle's triangle mesh.
     mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
     auto meshId = rtcNewTriangleMesh(mLocalScene, RTC_GEOMETRY_STATIC, 2, 4);
 
+    // XY: Normal positive in Z
+    // XZ: Normal positive in Y
+    // YZ: Normal positive in X
     auto verts = (Vertex*)rtcMapBuffer(mLocalScene, meshId, RTC_VERTEX_BUFFER);
     switch (mPlane) {
         case Plane::XY:
