@@ -215,8 +215,8 @@ CApp::OnMouseButtonUp(const SDL_MouseButtonEvent& event)
         const auto s = (col + drand48()) / mImage.cols();
         const auto t = (row + drand48()) / mImage.rows();
         const auto& camera = mScene->camera();
-        const auto ray = camera.getRay(s, t);
-        const auto sample = render::Renderer::trace((render::Ray&)ray, *mScene);
+        auto ray = camera.getRay(s, t);
+        const auto sample = render::Renderer::trace(ray, *mScene);
         std::cout << "sample: [" << sample.r() << ", " << sample.g() << ", " << sample.b() << "]" << std::endl;
     }
     mIsDragging = false;
@@ -272,7 +272,7 @@ CApp::OnRender()
         for (auto col = 0; col < mImage.cols(); ++col) {
             const auto s = (col + drand48()) / mImage.cols();
             const auto t = (row + drand48()) / mImage.rows();
-            const auto ray = camera.getRay(s, t);
+            auto ray = camera.getRay(s, t);
 
             // Keep a running average of samples.
             const auto sample = render::Renderer::trace((render::Ray&)ray, *mScene);

@@ -26,7 +26,6 @@ RectLightScene::RectLightScene(int width, int height)
 
     list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, -1000, 0), 1000, material));
     list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, 2, 0), 2, material));
-    list.emplace_back(std::make_shared<Rectangle>(Plane::YZ, 1, 3, -3, -1, 3, light));
     list.emplace_back(std::make_shared<Rectangle>(Plane::XY, 3, 5, 1, 3, -2, light));
     list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, 7, 0), 2, light));
     mRoot = std::make_shared<HitableList>(list);

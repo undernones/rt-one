@@ -166,8 +166,8 @@ Rectangle::bbox(float t0, float t1, geom::AABB& bbox) const
         break;
 
         case Plane::YZ:
-        min = geom::Vec3(mOffset - EPSILON, mBottom, mLeft);
-        max = geom::Vec3(mOffset + EPSILON, mTop, mRight);
+        min = geom::Vec3(mOffset - EPSILON, mLeft, mBottom);
+        max = geom::Vec3(mOffset + EPSILON, mRight, mTop);
         break;
     }
     bbox = geom::AABB(min, max);
