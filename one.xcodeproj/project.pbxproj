@@ -12,6 +12,8 @@
 		F70F91F11F4E5F1500D585A9 /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = F70F91EF1F4E5F1500D585A9 /* Camera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F70F91F41F4F085000D585A9 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F70F91F21F4F085000D585A9 /* Utils.cpp */; };
 		F70F91F51F4F085000D585A9 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = F70F91F31F4F085000D585A9 /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F71873A71F68877D00D4BD02 /* Dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873A61F68877D00D4BD02 /* Dielectric.cpp */; };
+		F71873AA1F6887E000D4BD02 /* Metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873A91F6887E000D4BD02 /* Metal.cpp */; };
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F72A46FF1F676ACE00B690FA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A46FE1F676ACE00B690FA /* main.cpp */; };
@@ -24,6 +26,11 @@
 		F72A47181F68501300B690FA /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A47171F68501300B690FA /* Texture.cpp */; };
 		F72A471B1F68509500B690FA /* ConstantTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A471A1F68509500B690FA /* ConstantTexture.cpp */; };
 		F72A471E1F68535F00B690FA /* Lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A471D1F68535F00B690FA /* Lambertian.cpp */; };
+		F72A47211F685E8B00B690FA /* Renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A47201F685E8B00B690FA /* Renderable.cpp */; };
+		F72A47241F6869EB00B690FA /* DiffuseLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A47231F6869EB00B690FA /* DiffuseLight.cpp */; };
+		F72A47271F687D3900B690FA /* Perlin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A47261F687D3900B690FA /* Perlin.cpp */; };
+		F72A472A1F687DD100B690FA /* PerlinTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A47291F687DD100B690FA /* PerlinTexture.cpp */; };
+		F72A472B1F6880C000B690FA /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E95A491F4FD65A00B962C0 /* libtbb.dylib */; };
 		F754BC671F50FADF00A75D49 /* AABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC651F50FADF00A75D49 /* AABB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC661F50FADF00A75D49 /* AABB.cpp */; };
 		F754BC6C1F5100E100A75D49 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC6A1F5100E100A75D49 /* Texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -164,6 +171,10 @@
 		F70F91EF1F4E5F1500D585A9 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		F70F91F21F4F085000D585A9 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		F70F91F31F4F085000D585A9 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		F71873A51F68877D00D4BD02 /* Dielectric.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dielectric.h; sourceTree = "<group>"; };
+		F71873A61F68877D00D4BD02 /* Dielectric.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dielectric.cpp; sourceTree = "<group>"; };
+		F71873A81F6887E000D4BD02 /* Metal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metal.h; sourceTree = "<group>"; };
+		F71873A91F6887E000D4BD02 /* Metal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Metal.cpp; sourceTree = "<group>"; };
 		F71B88B11F43379000D4F3A4 /* one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = one; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
@@ -187,6 +198,14 @@
 		F72A471A1F68509500B690FA /* ConstantTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTexture.cpp; sourceTree = "<group>"; };
 		F72A471C1F68535F00B690FA /* Lambertian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lambertian.h; sourceTree = "<group>"; };
 		F72A471D1F68535F00B690FA /* Lambertian.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Lambertian.cpp; sourceTree = "<group>"; };
+		F72A471F1F685E8B00B690FA /* Renderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
+		F72A47201F685E8B00B690FA /* Renderable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderable.cpp; sourceTree = "<group>"; };
+		F72A47221F6869EB00B690FA /* DiffuseLight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiffuseLight.h; sourceTree = "<group>"; };
+		F72A47231F6869EB00B690FA /* DiffuseLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DiffuseLight.cpp; sourceTree = "<group>"; };
+		F72A47251F687D3900B690FA /* Perlin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Perlin.h; sourceTree = "<group>"; };
+		F72A47261F687D3900B690FA /* Perlin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Perlin.cpp; sourceTree = "<group>"; };
+		F72A47281F687DD100B690FA /* PerlinTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlinTexture.h; sourceTree = "<group>"; };
+		F72A47291F687DD100B690FA /* PerlinTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PerlinTexture.cpp; sourceTree = "<group>"; };
 		F754BC651F50FADF00A75D49 /* AABB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABB.h; sourceTree = "<group>"; };
 		F754BC661F50FADF00A75D49 /* AABB.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AABB.cpp; sourceTree = "<group>"; };
 		F754BC6A1F5100E100A75D49 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
@@ -278,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F72A472B1F6880C000B690FA /* libtbb.dylib in Frameworks */,
 				F72A47051F676C2400B690FA /* libgeom.a in Frameworks */,
 				F72A47041F676B3400B690FA /* libembree.2.16.5.dylib in Frameworks */,
 			);
@@ -393,6 +413,18 @@
 				F72A471A1F68509500B690FA /* ConstantTexture.cpp */,
 				F72A471C1F68535F00B690FA /* Lambertian.h */,
 				F72A471D1F68535F00B690FA /* Lambertian.cpp */,
+				F72A471F1F685E8B00B690FA /* Renderable.h */,
+				F72A47201F685E8B00B690FA /* Renderable.cpp */,
+				F72A47221F6869EB00B690FA /* DiffuseLight.h */,
+				F72A47231F6869EB00B690FA /* DiffuseLight.cpp */,
+				F72A47251F687D3900B690FA /* Perlin.h */,
+				F72A47261F687D3900B690FA /* Perlin.cpp */,
+				F72A47281F687DD100B690FA /* PerlinTexture.h */,
+				F72A47291F687DD100B690FA /* PerlinTexture.cpp */,
+				F71873A51F68877D00D4BD02 /* Dielectric.h */,
+				F71873A61F68877D00D4BD02 /* Dielectric.cpp */,
+				F71873A81F6887E000D4BD02 /* Metal.h */,
+				F71873A91F6887E000D4BD02 /* Metal.cpp */,
 			);
 			name = trouble;
 			path = cmd/trouble;
@@ -734,11 +766,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F72A47081F681A0F00B690FA /* Camera.cpp in Sources */,
+				F72A47241F6869EB00B690FA /* DiffuseLight.cpp in Sources */,
 				F72A470C1F681D7900B690FA /* Sphere.cpp in Sources */,
 				F72A46FF1F676ACE00B690FA /* main.cpp in Sources */,
 				F72A47181F68501300B690FA /* Texture.cpp in Sources */,
+				F72A472A1F687DD100B690FA /* PerlinTexture.cpp in Sources */,
+				F71873A71F68877D00D4BD02 /* Dielectric.cpp in Sources */,
+				F71873AA1F6887E000D4BD02 /* Metal.cpp in Sources */,
 				F72A47151F684E3E00B690FA /* Material.cpp in Sources */,
 				F72A470F1F68451100B690FA /* Rectangle.cpp in Sources */,
+				F72A47271F687D3900B690FA /* Perlin.cpp in Sources */,
+				F72A47211F685E8B00B690FA /* Renderable.cpp in Sources */,
 				F72A471E1F68535F00B690FA /* Lambertian.cpp in Sources */,
 				F72A471B1F68509500B690FA /* ConstantTexture.cpp in Sources */,
 			);
