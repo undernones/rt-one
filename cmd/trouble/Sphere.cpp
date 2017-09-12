@@ -42,7 +42,7 @@ intersectFunc(void* userPtr,   /*!< pointer to user data */
     const auto sphere = static_cast<Sphere*>(userPtr);
 
     auto& ray = (Ray&)rtcRay;
-    if (sphere->hit(ray)) {
+    if (sphere->intersect(ray)) {
         ray.geomID = sphere->geomId();
         ray.primID = static_cast<unsigned>(item);
     }
@@ -56,14 +56,14 @@ Sphere::Sphere(const geom::Vec3& center, float radius, std::shared_ptr<Material>
 }
 
 Sphere::Sphere(const geom::Vec3& center, float radius, std::shared_ptr<Material>&& material)
-    : Hitable(material)
+    : Renderable(material)
     , mCenter(center)
     , mRadius(radius)
 {
 }
 
 bool
-Sphere::hit(Ray& ray) const
+Sphere::intersect(Ray& ray) const
 {
     const auto& origin = ray.origin;
     const auto& direction = ray.direction;

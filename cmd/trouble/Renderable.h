@@ -12,12 +12,12 @@
 #include "Material.h"
 #include "Ray.h"
 
-class Hitable
+class Renderable
 {
 public:
-    Hitable(std::shared_ptr<Material>& material);
-    Hitable(std::shared_ptr<Material>&& material);
-    virtual ~Hitable() = default;
+    Renderable(std::shared_ptr<Material>& material);
+    Renderable(std::shared_ptr<Material>&& material);
+    virtual ~Renderable() = default;
 
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const = 0;
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene) = 0;

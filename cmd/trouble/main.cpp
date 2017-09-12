@@ -80,7 +80,7 @@ main(int argc, const char * argv[])
     sphere2.commit(device, mainScene);
 
     // Rect
-    auto rect = RectYZ(3, 1, 3, -3, -1);
+    auto rect = RectYZ(3, 1, 3, -3, -1, light);
     rect.commit(device, mainScene);
 
     // Another sphere

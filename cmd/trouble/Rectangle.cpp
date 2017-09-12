@@ -40,13 +40,18 @@ boundsFunc(void* userPtr,         /*!< pointer to user data */
 
 }
 
-RectYZ::RectYZ(float x, float ymin, float ymax, float zmin, float zmax)
-    : x(x)
+RectYZ::RectYZ(float x, float ymin, float ymax, float zmin, float zmax, std::shared_ptr<Material>& material)
+    : RectYZ(x, ymin, ymax, zmin, zmax, std::move(material))
+{
+}
+
+RectYZ::RectYZ(float x, float ymin, float ymax, float zmin, float zmax, std::shared_ptr<Material>&& material)
+    : Renderable(material)
+    , x(x)
     , ymin(ymin)
     , ymax(ymax)
     , zmin(zmin)
     , zmax(zmax)
-    , geomID(RTC_INVALID_GEOMETRY_ID)
 {
 }
 
@@ -59,34 +64,33 @@ RectYZ::bbox(float t0, float t1, geom::AABB& bbox) const
     return true;
 }
 
-unsigned
+std::vector<unsigned>
 RectYZ::commit(RTCDevice device, RTCScene scene)
 {
-    localScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
-    auto meshId = rtcNewTriangleMesh(localScene, RTC_GEOMETRY_STATIC, 2, 4);
+    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
+    auto meshId = rtcNewTriangleMesh(mLocalScene, RTC_GEOMETRY_STATIC, 2, 4);
 
-    auto verts = (Vertex*)rtcMapBuffer(localScene, meshId, RTC_VERTEX_BUFFER);
+    auto verts = (Vertex*)rtcMapBuffer(mLocalScene, meshId, RTC_VERTEX_BUFFER);
     verts[0] = { x, ymin, zmin, 1 };
     verts[1] = { x, ymax, zmin, 1 };
     verts[2] = { x, ymax, zmax, 1 };
     verts[3] = { x, ymin, zmax, 1 };
-    rtcUnmapBuffer(localScene, meshId, RTC_VERTEX_BUFFER);
+    rtcUnmapBuffer(mLocalScene, meshId, RTC_VERTEX_BUFFER);
 
-    auto tris = (Triangle*)rtcMapBuffer(localScene, meshId, RTC_INDEX_BUFFER);
+    auto tris = (Triangle*)rtcMapBuffer(mLocalScene, meshId, RTC_INDEX_BUFFER);
     tris[0] = { 0, 1, 3 };
     tris[1] = { 1, 2, 3 };
-    rtcUnmapBuffer(localScene, meshId, RTC_INDEX_BUFFER);
+    rtcUnmapBuffer(mLocalScene, meshId, RTC_INDEX_BUFFER);
 
-    rtcCommit(localScene);
+    rtcCommit(mLocalScene);
 
     // Then register a user geometry so we can intersect against this mesh while giving ourselves
     // an opportunity to do custom stuff to the ray before returning.
-    geomID = rtcNewUserGeometry3(scene, RTC_GEOMETRY_STATIC, 1);
-    rtcSetUserData(scene, geomID, this);
-    rtcSetBoundsFunction2(scene, geomID, boundsFunc, this);
-    rtcSetIntersectFunction(scene, geomID, intersectFunc);
-
-    return geomID;
+    mGeomId = rtcNewUserGeometry3(scene, RTC_GEOMETRY_STATIC, 1);
+    rtcSetUserData(scene, mGeomId, this);
+    rtcSetBoundsFunction2(scene, mGeomId, boundsFunc, this);
+    rtcSetIntersectFunction(scene, mGeomId, intersectFunc);
+    return std::vector<unsigned>({ mGeomId });
 }
 
 void
@@ -100,11 +104,12 @@ RectYZ::intersectFunc(void* userPtr,   /*!< pointer to user data */
     const auto geomID = rtcRay.geomID;
     rtcRay.geomID = RTC_INVALID_GEOMETRY_ID;
 
-    rtcIntersect(rect->localScene, rtcRay);
+    rtcIntersect(rect->mLocalScene, rtcRay);
 
     if (rtcRay.geomID != RTC_INVALID_GEOMETRY_ID) {
-        rtcRay.geomID = rect->geomID;
+        rtcRay.geomID = rect->geomId();
         auto& ray = (Ray&)rtcRay;
+        ray.material = rect->material().get();
         ray.normal = -ray.normal.normalized();
     } else {
         rtcRay.geomID = geomID;
