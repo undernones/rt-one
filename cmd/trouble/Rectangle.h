@@ -5,6 +5,8 @@
 #ifndef TROUBLE_RECTANGLE_H
 #define TROUBLE_RECTANGLE_H
 
+#include <geom/AABB.h>
+
 #include "Ray.h"
 
 // XY: Normal positive in Z
@@ -17,16 +19,16 @@ struct RectYZ
 public:
     RectYZ(float x, float ymin, float ymax, float zmin, float zmax);
 
+    bool bbox(float t0, float t1, geom::AABB& bbox) const;
     unsigned commit(RTCDevice device, RTCScene scene);
-
-    float x, ymin, ymax, zmin, zmax;
-    unsigned geomID;
 
 private:
     static void intersectFunc(void* userPtr,   /*!< pointer to user data */
                               RTCRay& rtcRay,  /*!< ray to intersect */
                               size_t item      /*!< item to intersect */);
 
+    float x, ymin, ymax, zmin, zmax;
+    unsigned geomID;
     RTCScene localScene;
 };
 

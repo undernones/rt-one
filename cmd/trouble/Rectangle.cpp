@@ -4,8 +4,6 @@
 
 #include "Rectangle.h"
 
-#include <geom/AABB.h>
-
 namespace
 {
 
@@ -23,9 +21,10 @@ boundsFunc(void* userPtr,         /*!< pointer to user data */
     // Assume we can dereference userPtr
     const auto rect = static_cast<RectYZ*>(userPtr);
 
-    auto min = geom::Vec3(rect->x - EPSILON, rect->ymin, rect->zmin);
-    auto max = geom::Vec3(rect->x + EPSILON, rect->ymax, rect->zmax);
-    auto bbox = geom::AABB(min, max);
+    auto bbox = geom::AABB();
+    if (!rect->bbox(0, 1, bbox)) {
+        return;
+    }
 
     auto lower = bbox.min();
     auto upper = bbox.max();
@@ -49,6 +48,15 @@ RectYZ::RectYZ(float x, float ymin, float ymax, float zmin, float zmax)
     , zmax(zmax)
     , geomID(RTC_INVALID_GEOMETRY_ID)
 {
+}
+
+bool
+RectYZ::bbox(float t0, float t1, geom::AABB& bbox) const
+{
+    auto min = geom::Vec3(x - EPSILON, ymin, zmin);
+    auto max = geom::Vec3(x + EPSILON, ymax, zmax);
+    bbox = geom::AABB(min, max);
+    return true;
 }
 
 unsigned
