@@ -77,6 +77,10 @@ main(int argc, const char * argv[])
     auto rect = RectYZ(3, 1, 3, -3, -1);
     rect.commit(device, mainScene);
 
+    // Another sphere
+    auto sphere3 = Sphere(geom::Vec3(0, 7, 0), 2);
+    sphere3.commit(device, mainScene);
+
     rtcCommit(mainScene);
 
     auto eye = geom::Vec3(15, 4, 3);
