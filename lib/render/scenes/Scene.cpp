@@ -39,6 +39,12 @@ EmbreeErrorToString(RTCError error)
     }
 }
 
+void
+errorHandler(void* userPtr, const RTCError code, const char* str)
+{
+    std::cerr << "*** Error: " << EmbreeErrorToString(code) << std::endl;
+}
+
 }
 
 namespace render
@@ -55,6 +61,8 @@ Scene::Scene()
         stream << "Failed to initialize device: " << EmbreeErrorToString(error);
         throw std::domain_error(stream.str());
     }
+
+    rtcDeviceSetErrorFunction2(mDevice, errorHandler, nullptr);
 
     mScene = rtcDeviceNewScene(mDevice, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
     if (mScene == nullptr) {
