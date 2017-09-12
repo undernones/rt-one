@@ -14,6 +14,7 @@
 #include "ConstantTexture.h"
 #include "DiffuseLight.h"
 #include "Lambertian.h"
+#include "PerlinTexture.h"
 #include "Ray.h"
 #include "Rectangle.h"
 #include "Sphere.h"
@@ -69,7 +70,7 @@ main(int argc, const char * argv[])
     auto device = rtcNewDevice(NULL);
     auto mainScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
 
-    auto texture = std::make_shared<ConstantTexture>(geom::Vec3(1, 0.5, 0));
+    auto texture = std::make_shared<PerlinTexture>(4);
     auto material = std::make_shared<Lambertian>(texture);
     auto light = std::make_shared<DiffuseLight>(std::make_shared<ConstantTexture>(geom::Vec3(4, 4, 4)));
 
