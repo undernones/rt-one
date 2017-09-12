@@ -21,7 +21,7 @@ RectLightScene::RectLightScene(int width, int height)
     sphere2 = std::make_shared<Sphere>(geom::Vec3(0, 2, 0), 2, material);
 
     // Rect
-    rect = std::make_shared<RectYZ>(3, 1, 3, -3, -1, light);
+    rect = std::make_shared<RectYZ>(Plane::YZ, 1, 3, -3, -1, 3, light);
 
     // Another sphere
     sphere3 = std::make_shared<Sphere>(geom::Vec3(0, 7, 0), 2, light);

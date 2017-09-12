@@ -17,8 +17,8 @@ enum class Plane { XY, XZ, YZ };
 struct RectYZ : public Renderable
 {
 public:
-    RectYZ(float x, float ymin, float ymax, float zmin, float zmax, std::shared_ptr<Material>& material);
-    RectYZ(float x, float ymin, float ymax, float zmin, float zmax, std::shared_ptr<Material>&& material);
+    RectYZ(Plane plane, float ymin, float ymax, float zmin, float zmax, float offset, std::shared_ptr<Material>& material);
+    RectYZ(Plane plane, float ymin, float ymax, float zmin, float zmax, float offset, std::shared_ptr<Material>&& material);
 
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
@@ -28,8 +28,10 @@ private:
                               RTCRay& rtcRay,  /*!< ray to intersect */
                               size_t item      /*!< item to intersect */);
 
-    float x, ymin, ymax, zmin, zmax;
+    float ymin, ymax, zmin, zmax;
     RTCScene mLocalScene;
+    Plane mPlane;
+    float mOffset;
 };
 
 #endif // TROUBLE_RECTANGLE_H

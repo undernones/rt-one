@@ -40,26 +40,27 @@ boundsFunc(void* userPtr,         /*!< pointer to user data */
 
 }
 
-RectYZ::RectYZ(float x, float ymin, float ymax, float zmin, float zmax, std::shared_ptr<Material>& material)
-    : RectYZ(x, ymin, ymax, zmin, zmax, std::move(material))
+RectYZ::RectYZ(Plane plane, float ymin, float ymax, float zmin, float zmax, float offset, std::shared_ptr<Material>& material)
+    : RectYZ(plane, ymin, ymax, zmin, zmax, offset, std::move(material))
 {
 }
 
-RectYZ::RectYZ(float x, float ymin, float ymax, float zmin, float zmax, std::shared_ptr<Material>&& material)
+RectYZ::RectYZ(Plane plane, float ymin, float ymax, float zmin, float zmax, float offset, std::shared_ptr<Material>&& material)
     : Renderable(material)
-    , x(x)
+    , mPlane(plane)
     , ymin(ymin)
     , ymax(ymax)
     , zmin(zmin)
     , zmax(zmax)
+    , mOffset(offset)
 {
 }
 
 bool
 RectYZ::bbox(float t0, float t1, geom::AABB& bbox) const
 {
-    auto min = geom::Vec3(x - EPSILON, ymin, zmin);
-    auto max = geom::Vec3(x + EPSILON, ymax, zmax);
+    auto min = geom::Vec3(mOffset - EPSILON, ymin, zmin);
+    auto max = geom::Vec3(mOffset + EPSILON, ymax, zmax);
     bbox = geom::AABB(min, max);
     return true;
 }
@@ -71,10 +72,20 @@ RectYZ::commit(RTCDevice device, RTCScene scene)
     auto meshId = rtcNewTriangleMesh(mLocalScene, RTC_GEOMETRY_STATIC, 2, 4);
 
     auto verts = (Vertex*)rtcMapBuffer(mLocalScene, meshId, RTC_VERTEX_BUFFER);
-    verts[0] = { x, ymin, zmin, 1 };
-    verts[1] = { x, ymax, zmin, 1 };
-    verts[2] = { x, ymax, zmax, 1 };
-    verts[3] = { x, ymin, zmax, 1 };
+    switch (mPlane) {
+        case Plane::XY:
+            break;
+
+        case Plane::XZ:
+            break;
+
+        case Plane::YZ:
+            verts[0] = { mOffset, ymin, zmin, 1 };
+            verts[1] = { mOffset, ymax, zmin, 1 };
+            verts[2] = { mOffset, ymax, zmax, 1 };
+            verts[3] = { mOffset, ymin, zmax, 1 };
+            break;
+    }
     rtcUnmapBuffer(mLocalScene, meshId, RTC_VERTEX_BUFFER);
 
     auto tris = (Triangle*)rtcMapBuffer(mLocalScene, meshId, RTC_INDEX_BUFFER);
