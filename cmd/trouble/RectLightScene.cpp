@@ -25,6 +25,7 @@ RectLightScene::RectLightScene(int width, int height)
 
     // Another sphere
     sphere3 = std::make_shared<Sphere>(geom::Vec3(0, 7, 0), 2, light);
+//    list.emplace_back(std::make_shared<Rectangle>(Plane::XY, 3, 5, 1, 3, -2, light));
 
     sphere1->commit(mDevice, mScene);
     sphere2->commit(mDevice, mScene);
