@@ -2,6 +2,7 @@
 //  Copyright © 2017 Undernones. All rights reserved.
 //
 
+#include <algorithm>
 #include <iostream>
 #include <xmmintrin.h>
 #include <pmmintrin.h>
@@ -11,14 +12,15 @@
 
 #include "Camera.h"
 #include "ConstantTexture.h"
+#include "DiffuseLight.h"
 #include "Lambertian.h"
 #include "Ray.h"
 #include "Rectangle.h"
 #include "Sphere.h"
 
 const auto EPSILON = 1e-4;
-const auto MAX_DEPTH = 20;
-const auto BG_INTENSITY = 1.f;
+const auto MAX_DEPTH = 40;
+const auto BG_INTENSITY = 0.f;
 
 geom::Vec3
 trace(Ray ray, RTCScene scene, int depth)
@@ -69,6 +71,7 @@ main(int argc, const char * argv[])
 
     auto texture = std::make_shared<ConstantTexture>(geom::Vec3(1, 0.5, 0));
     auto material = std::make_shared<Lambertian>(texture);
+    auto light = std::make_shared<DiffuseLight>(std::make_shared<ConstantTexture>(geom::Vec3(4, 4, 4)));
 
     // Spheres
     auto sphere1 = Sphere(geom::Vec3(0, -1000, 0), 1000, material);
@@ -81,7 +84,7 @@ main(int argc, const char * argv[])
     rect.commit(device, mainScene);
 
     // Another sphere
-    auto sphere3 = Sphere(geom::Vec3(0, 7, 0), 2, material);
+    auto sphere3 = Sphere(geom::Vec3(0, 7, 0), 2, light);
     sphere3.commit(device, mainScene);
 
     rtcCommit(mainScene);
@@ -108,9 +111,9 @@ main(int argc, const char * argv[])
             }
             color /= NS;
             color = geom::Vec3(sqrt(color[0]), sqrt(color[1]), sqrt(color[2]));
-            auto ir = int(255.99*color[0]);
-            auto ig = int(255.99*color[1]);
-            auto ib = int(255.99*color[2]);
+            auto ir = std::clamp(int(255.99*color[0]), 0, 255);
+            auto ig = std::clamp(int(255.99*color[1]), 0, 255);
+            auto ib = std::clamp(int(255.99*color[2]), 0, 255);
             std::cout << ir << " " << ig << " " << ib << "\n";
         }
     }
