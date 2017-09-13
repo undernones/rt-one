@@ -33,7 +33,7 @@ geom::Vec3
 Renderer::trace(Ray ray, const Scene& scene, int depth)
 {
     ray.tnear = EPSILON;
-    rtcIntersect(scene.root(), (RTCRay&)ray);
+    rtcIntersect(scene.rtcScene(), (RTCRay&)ray);
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
         const auto t = ray.tfar;
         const auto hitPoint = ray.pointAt(t);

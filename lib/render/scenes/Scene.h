@@ -22,7 +22,7 @@ public:
     Scene();
     virtual ~Scene();
 
-    const RTCScene& root() const { return mScene; }
+    const RTCScene& rtcScene() const { return mScene; }
     const Camera& camera() const { return mCamera; }
     void setCamera(const Camera& c) { mCamera = c; }
 
