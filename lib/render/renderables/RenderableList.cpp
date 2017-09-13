@@ -27,17 +27,6 @@ RenderableList::commit(RTCDevice device, RTCScene scene)
 }
 
 bool
-RenderableList::hit(Ray& ray) const
-{
-    for (const auto& renderable : mList) {
-        if (renderable->hit(ray)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool
 RenderableList::bbox(float t0, float t1, geom::AABB& bbox) const
 {
     if (mList.size() < 1) {

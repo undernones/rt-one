@@ -25,7 +25,6 @@ public:
 
     virtual ~Sphere() = default;
 
-    virtual bool hit(Ray& ray) const;
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
 
@@ -34,6 +33,8 @@ public:
     float t0() const { return mT0; }
     float t1() const { return mT1; }
 
+    bool hit(Ray& ray) const;
+    
     /// Returns the uv coordinates of the given point. Assumes the point is actually on the surface of the sphere at the given time.
     std::tuple<float, float> uv(const geom::Vec3& p, float t) const;
 

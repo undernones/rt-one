@@ -47,12 +47,6 @@ Box::Box(const geom::Vec3& min, const geom::Vec3& max, shared_ptr<Material>&& ma
 }
 
 bool
-Box::hit(Ray& ray) const
-{
-    return mChildren->hit(ray);
-}
-
-bool
 Box::bbox(float t0, float t1, geom::AABB& bbox) const
 {
     return mChildren->bbox(t0, t1, bbox);

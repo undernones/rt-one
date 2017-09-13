@@ -22,7 +22,6 @@ public:
     Rectangle(Plane plane, float left, float right, float bottom, float top, float offset, std::shared_ptr<Material>&& material);
     virtual ~Rectangle();
 
-    virtual bool hit(Ray& ray) const;
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
 

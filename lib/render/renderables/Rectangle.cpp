@@ -144,13 +144,6 @@ Rectangle::intersectFunc(void* userPtr,   /*!< pointer to user data */
 }
 
 bool
-Rectangle::hit(Ray& ray) const
-{
-    // Unused
-    return false;
-}
-
-bool
 Rectangle::bbox(float t0, float t1, geom::AABB& bbox) const
 {
     geom::Vec3 min, max;
