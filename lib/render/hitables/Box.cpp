@@ -29,13 +29,13 @@ Box::Box(const geom::Vec3& min, const geom::Vec3& max, shared_ptr<Material>&& ma
     list.emplace_back(make_shared<FlipNormals>(make_shared<Rectangle>(Plane::XZ, min.x(), max.x(), min.z(), max.z(), min.y(), material)));
 
     // Left
-    list.emplace_back(make_shared<FlipNormals>(make_shared<Rectangle>(Plane::YZ, min.z(), max.z(), min.y(), max.y(), min.x(), material)));
+    list.emplace_back(make_shared<FlipNormals>(make_shared<Rectangle>(Plane::YZ, min.y(), max.y(), min.z(), max.z(), min.x(), material)));
 
     // Front
     list.emplace_back(make_shared<Rectangle>(Plane::XY, min.x(), max.x(), min.y(), max.y(), max.z(), material));
 
     // Right
-    list.emplace_back(make_shared<Rectangle>(Plane::YZ, min.z(), max.z(), min.y(), max.y(), max.x(), material));
+    list.emplace_back(make_shared<Rectangle>(Plane::YZ, min.y(), max.y(), min.z(), max.z(), max.x(), material));
 
     // Back
     list.emplace_back(make_shared<FlipNormals>(make_shared<Rectangle>(Plane::XY, min.x(), max.x(), min.y(), max.y(), min.z(), material)));
