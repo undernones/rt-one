@@ -2,20 +2,20 @@
 // Copyright © 2017 Undernones. All rights reserved.
 //
 
-#ifndef RENDER_ROTATE_H
-#define RENDER_ROTATE_H
+#ifndef RENDER_SCALE_H
+#define RENDER_SCALE_H
 
 #include <render/Transform.h>
 
 namespace render
 {
 
-class Rotate : public Transform
+class Scale : public Transform
 {
 public:
-    Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Hitable>& object);
-    Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Hitable>&& object);
-    virtual ~Rotate() = default;
+    Scale(const geom::Vec3& scale, std::shared_ptr<Hitable>& object);
+    Scale(const geom::Vec3& scale, std::shared_ptr<Hitable>&& object);
+    virtual ~Scale() = default;
 
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
 
@@ -25,14 +25,11 @@ protected:
     virtual void transform(Ray& ray) const;
 
 private:
-    geom::Vec3 mAxis;
-    float mDegrees;
-    simd::float3x3 mMatrix;
-    simd::float3x3 mInverse;
+    geom::Vec3 mScale;
     bool mBoxIsValid;
     geom::AABB mBox;
 };
 
 }
 
-#endif // RENDER_ROTATE_H
+#endif // RENDER_SCALE_H
