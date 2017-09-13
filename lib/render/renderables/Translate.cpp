@@ -8,12 +8,12 @@
 namespace render
 {
 
-Translate::Translate(const geom::Vec3& displacement, std::shared_ptr<Hitable>& object)
+Translate::Translate(const geom::Vec3& displacement, std::shared_ptr<Renderable>& object)
     : Translate(displacement, std::move(object))
 {
 }
 
-Translate::Translate(const geom::Vec3& displacement, std::shared_ptr<Hitable>&& object)
+Translate::Translate(const geom::Vec3& displacement, std::shared_ptr<Renderable>&& object)
     : Transform(object)
     , mDisplacement(displacement)
 {

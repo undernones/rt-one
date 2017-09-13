@@ -13,8 +13,8 @@ namespace render
 class Rotate : public Transform
 {
 public:
-    Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Hitable>& object);
-    Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Hitable>&& object);
+    Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Renderable>& object);
+    Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Renderable>&& object);
     virtual ~Rotate() = default;
 
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;

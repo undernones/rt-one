@@ -8,7 +8,7 @@
 
 #include "CheckerTexture3D.h"
 #include "ConstantTexture.h"
-#include "HitableList.h"
+#include "RenderableList.h"
 #include "ImageTexture.h"
 #include "Lambertian.h"
 #include "Sphere.h"
@@ -19,7 +19,7 @@ namespace render
 AstronomyScene::AstronomyScene(int width, int height)
     : Scene()
 {
-    auto list = std::vector<std::shared_ptr<Hitable>>();
+    auto list = std::vector<std::shared_ptr<Renderable>>();
 
     auto earthTexture = ImageTexture::loadFromFile("earthmap_hires.jpg");
     auto earthMaterial = std::make_shared<Lambertian>(earthTexture);
@@ -35,7 +35,7 @@ AstronomyScene::AstronomyScene(int width, int height)
     list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, 0, 0), 2, earthMaterial));
     list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0, -1002, 0), 1000, lambertGround));
     list.emplace_back(std::make_shared<Sphere>(geom::Vec3(0.3, 0, 4), 0.5, moonMaterial));
-    mRoot = std::make_shared<HitableList>(list);
+    mRoot = std::make_shared<RenderableList>(list);
 
     commit();
 

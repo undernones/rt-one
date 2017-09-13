@@ -5,7 +5,7 @@
 #ifndef GEOM_SPHERE_H
 #define GEOM_SPHERE_H
 
-#include <render/Hitable.h>
+#include <render/Renderable.h>
 
 #include <tuple>
 
@@ -14,7 +14,7 @@
 namespace render
 {
 
-class Sphere : public Hitable
+class Sphere : public Renderable
 {
 public:
     Sphere();

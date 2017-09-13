@@ -45,12 +45,12 @@ constructTransform(const geom::Vec3& axis, float degrees)
 namespace render
 {
 
-Rotate::Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Hitable>& object)
+Rotate::Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Renderable>& object)
     : Rotate(axis, degrees, std::move(object))
 {
 }
 
-Rotate::Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Hitable>&& object)
+Rotate::Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Renderable>&& object)
     : Transform(object)
     , mAxis(axis.normalized())
     , mDegrees(degrees)

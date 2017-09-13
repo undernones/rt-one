@@ -2,8 +2,8 @@
 // Copyright © 2017 Undernones. All rights reserved.
 //
 
-#ifndef RENDER_HITABLE_H
-#define RENDER_HITABLE_H
+#ifndef RENDER_RENDERABLE_H
+#define RENDER_RENDERABLE_H
 
 #include <memory>
 #include <vector>
@@ -16,12 +16,12 @@ namespace geom { class AABB; }
 namespace render
 {
 
-class Hitable
+class Renderable
 {
 public:
-    Hitable(std::shared_ptr<Material>& material);
-    Hitable(std::shared_ptr<Material>&& material);
-    virtual ~Hitable() = default;
+    Renderable(std::shared_ptr<Material>& material);
+    Renderable(std::shared_ptr<Material>&& material);
+    virtual ~Renderable() = default;
 
     virtual bool hit(Ray& ray) const = 0;
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const = 0;
@@ -39,4 +39,4 @@ private:
 
 }
 
-#endif // RENDER_HITABLE_H
+#endif // RENDER_RENDERABLE_H

@@ -22,7 +22,7 @@ namespace
 
 const auto EPSILON = 0.001f;
 const auto MAX_DEPTH = 20;
-const auto BG_INTENSITY = 1.f;
+const auto BG_INTENSITY = 0.f;
 
 }
 

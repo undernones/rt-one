@@ -8,7 +8,7 @@
 #include "ConstantTexture.h"
 #include "DiffuseLight.h"
 #include "FlipNormals.h"
-#include "HitableList.h"
+#include "RenderableList.h"
 #include "Lambertian.h"
 #include "Rectangle.h"
 #include "Rotate.h"
@@ -22,7 +22,7 @@ namespace render
 CornellBoxScene::CornellBoxScene(int width, int height)
     : Scene()
 {
-    auto list = std::vector<std::shared_ptr<Hitable>>();
+    auto list = std::vector<std::shared_ptr<Renderable>>();
 
     auto redTex = make_shared<ConstantTexture>(geom::Vec3(0.65, 0.05, 0.05));
     auto whiteTex = make_shared<ConstantTexture>(geom::Vec3(0.73, 0.73, 0.73));
@@ -47,7 +47,7 @@ CornellBoxScene::CornellBoxScene(int width, int height)
     list.emplace_back(make_shared<Translate>(geom::Vec3(130, 0, 65), make_shared<Rotate>(geom::Vec3(0, 1, 0), -18, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 165, 165), white))));
     list.emplace_back(make_shared<Translate>(geom::Vec3(265, 0, 295), make_shared<Rotate>(geom::Vec3(0, 1, 0), 15, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 330, 165), white))));
 
-    mRoot = std::make_shared<HitableList>(list);
+    mRoot = std::make_shared<RenderableList>(list);
 
     commit();
 

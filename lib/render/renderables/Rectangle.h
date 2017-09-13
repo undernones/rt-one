@@ -5,7 +5,7 @@
 #ifndef RENDER_RECTANGLE_H
 #define RENDER_RECTANGLE_H
 
-#include <render/Hitable.h>
+#include <render/Renderable.h>
 
 namespace render
 {
@@ -15,7 +15,7 @@ namespace render
 // YZ: Normal positive in X
 enum class Plane { XY, XZ, YZ };
 
-class Rectangle : public Hitable
+class Rectangle : public Renderable
 {
 public:
     Rectangle(Plane plane, float left, float right, float bottom, float top, float offset, std::shared_ptr<Material>& material);

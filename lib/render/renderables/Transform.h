@@ -5,17 +5,17 @@
 #ifndef RENDER_TRANSFORM_H
 #define RENDER_TRANSFORM_H
 
-#include <render/Hitable.h>
+#include <render/Renderable.h>
 #include <geom/AABB.h>
 
 namespace render
 {
 
-class Transform : public Hitable
+class Transform : public Renderable
 {
 public:
-    Transform(std::shared_ptr<Hitable>& object);
-    Transform(std::shared_ptr<Hitable>&& object);
+    Transform(std::shared_ptr<Renderable>& object);
+    Transform(std::shared_ptr<Renderable>&& object);
     virtual ~Transform();
 
     virtual bool hit(Ray& ray) const;
@@ -27,7 +27,7 @@ protected:
     virtual Ray postIntersect(const Ray& ray) const { return ray; }
     virtual void transform(Ray& ray) const = 0;
 
-    std::shared_ptr<Hitable> mObject;
+    std::shared_ptr<Renderable> mObject;
     
 private:
     RTCScene mLocalScene;

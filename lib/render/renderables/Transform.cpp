@@ -9,13 +9,13 @@
 namespace render
 {
 
-Transform::Transform(std::shared_ptr<Hitable>& object)
+Transform::Transform(std::shared_ptr<Renderable>& object)
     : Transform(std::move(object))
 {
 }
 
-Transform::Transform(std::shared_ptr<Hitable>&& object)
-    : Hitable(std::shared_ptr<Material>(nullptr))
+Transform::Transform(std::shared_ptr<Renderable>&& object)
+    : Renderable(std::shared_ptr<Material>(nullptr))
     , mLocalScene(nullptr)
     , mObject(std::move(object))
 {
@@ -51,7 +51,7 @@ Transform::commit(RTCDevice device, RTCScene scene)
         return std::vector<unsigned>();
     }
 
-    // First register a new scene consisting of just this transform's hitable.
+    // First register a new scene consisting of just this transform's renderable.
     mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
     mObject->commit(device, mLocalScene);
     rtcCommit(mLocalScene);
@@ -72,10 +72,10 @@ Transform::boundsFunc(void* userPtr,         /*!< pointer to user data */
                       RTCBounds* bounds_o    /*!< returns calculated bounds */)
 {
     // Assume we can dereference userPtr
-    const auto hitable = static_cast<render::Hitable*>(userPtr);
+    const auto renderable = static_cast<render::Renderable*>(userPtr);
 
     auto bbox = geom::AABB();
-    if (!hitable->bbox(0, 1, bbox)) {
+    if (!renderable->bbox(0, 1, bbox)) {
         return;
     }
 

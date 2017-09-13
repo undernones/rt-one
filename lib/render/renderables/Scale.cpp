@@ -7,12 +7,12 @@
 namespace render
 {
 
-Scale::Scale(const geom::Vec3& scale, std::shared_ptr<Hitable>& object)
+Scale::Scale(const geom::Vec3& scale, std::shared_ptr<Renderable>& object)
     : Scale(scale, std::move(object))
 {
 }
 
-Scale::Scale(const geom::Vec3& scale, std::shared_ptr<Hitable>&& object)
+Scale::Scale(const geom::Vec3& scale, std::shared_ptr<Renderable>&& object)
     : Transform(object)
     , mScale(scale)
     , mBoxIsValid(false)

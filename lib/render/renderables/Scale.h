@@ -13,8 +13,8 @@ namespace render
 class Scale : public Transform
 {
 public:
-    Scale(const geom::Vec3& scale, std::shared_ptr<Hitable>& object);
-    Scale(const geom::Vec3& scale, std::shared_ptr<Hitable>&& object);
+    Scale(const geom::Vec3& scale, std::shared_ptr<Renderable>& object);
+    Scale(const geom::Vec3& scale, std::shared_ptr<Renderable>&& object);
     virtual ~Scale() = default;
 
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;

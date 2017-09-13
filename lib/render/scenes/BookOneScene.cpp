@@ -7,7 +7,7 @@
 #include "ConstantTexture.h"
 #include "CheckerTexture3D.h"
 #include "Dielectric.h"
-#include "HitableList.h"
+#include "RenderableList.h"
 #include "Lambertian.h"
 #include "Metal.h"
 #include "Sphere.h"
@@ -18,7 +18,7 @@ namespace render
 BookOneScene::BookOneScene(int width, int height)
     : Scene()
 {
-    auto list = std::vector<std::shared_ptr<Hitable>>();
+    auto list = std::vector<std::shared_ptr<Renderable>>();
 
     // Ground
     auto tex0 = std::make_shared<ConstantTexture>(geom::Vec3(0.2, 0.3, 0.1));
@@ -56,7 +56,7 @@ BookOneScene::BookOneScene(int width, int height)
             }
         }
     }
-    mRoot = std::make_shared<HitableList>(list);
+    mRoot = std::make_shared<RenderableList>(list);
 
     commit();
 

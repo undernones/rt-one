@@ -7,12 +7,12 @@
 namespace render
 {
 
-FlipNormals::FlipNormals(std::shared_ptr<Hitable>& object)
+FlipNormals::FlipNormals(std::shared_ptr<Renderable>& object)
     : FlipNormals(std::move(object))
 {
 }
 
-FlipNormals::FlipNormals(std::shared_ptr<Hitable>&& object)
+FlipNormals::FlipNormals(std::shared_ptr<Renderable>&& object)
     : Transform(object)
 {
 }

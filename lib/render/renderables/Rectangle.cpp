@@ -51,7 +51,7 @@ Rectangle::Rectangle(Plane plane, float left, float right, float bottom, float t
 }
 
 Rectangle::Rectangle(Plane plane, float left, float right, float bottom, float top, float offset, std::shared_ptr<Material>&& material)
-    : Hitable(material)
+    : Renderable(material)
     , mLocalScene(nullptr)
     , mPlane(plane)
     , mLeft(left)

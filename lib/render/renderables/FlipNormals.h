@@ -13,8 +13,8 @@ namespace render
 class FlipNormals : public Transform
 {
 public:
-    FlipNormals(std::shared_ptr<Hitable>& object);
-    FlipNormals(std::shared_ptr<Hitable>&& object);
+    FlipNormals(std::shared_ptr<Renderable>& object);
+    FlipNormals(std::shared_ptr<Renderable>&& object);
     virtual ~FlipNormals() = default;
 
 protected:

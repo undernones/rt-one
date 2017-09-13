@@ -10,7 +10,7 @@
 #include <vector>
 
 #include <render/Camera.h>
-#include <render/Hitable.h>
+#include <render/Renderable.h>
 
 namespace render
 {
@@ -32,7 +32,7 @@ protected:
     RTCDevice mDevice;
     RTCScene mScene;
     Camera mCamera;
-    std::shared_ptr<Hitable> mRoot;
+    std::shared_ptr<Renderable> mRoot;
     std::vector<unsigned> mGeomIds;
 };
 

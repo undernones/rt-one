@@ -5,7 +5,7 @@
 #include "Box.h"
 
 #include "FlipNormals.h"
-#include "HitableList.h"
+#include "RenderableList.h"
 #include "Rectangle.h"
 
 using namespace std;
@@ -19,11 +19,11 @@ Box::Box(const geom::Vec3& min, const geom::Vec3& max, std::shared_ptr<Material>
 }
 
 Box::Box(const geom::Vec3& min, const geom::Vec3& max, shared_ptr<Material>&& material)
-    : Hitable(material)
+    : Renderable(material)
     , mMin(min)
     , mMax(max)
 {
-    auto list = vector<shared_ptr<Hitable>>();
+    auto list = vector<shared_ptr<Renderable>>();
 
     // Bottom
     list.emplace_back(make_shared<FlipNormals>(make_shared<Rectangle>(Plane::XZ, min.x(), max.x(), min.z(), max.z(), min.y(), material)));
@@ -43,7 +43,7 @@ Box::Box(const geom::Vec3& min, const geom::Vec3& max, shared_ptr<Material>&& ma
     // Top
     list.emplace_back(make_shared<Rectangle>(Plane::XZ, min.x(), max.x(), min.z(), max.z(), max.y(), material));
 
-    mChildren = make_shared<HitableList>(list);
+    mChildren = make_shared<RenderableList>(list);
 }
 
 bool

@@ -13,8 +13,8 @@ namespace render
 class Translate : public Transform
 {
 public:
-    Translate(const geom::Vec3& displacement, std::shared_ptr<Hitable>& object);
-    Translate(const geom::Vec3& displacement, std::shared_ptr<Hitable>&& object);
+    Translate(const geom::Vec3& displacement, std::shared_ptr<Renderable>& object);
+    Translate(const geom::Vec3& displacement, std::shared_ptr<Renderable>&& object);
     virtual ~Translate() = default;
 
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;

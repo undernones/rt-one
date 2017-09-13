@@ -7,8 +7,6 @@
 #include <sstream>
 #include <geom/AABB.h>
 
-#include "Sphere.h"
-
 namespace
 {
 

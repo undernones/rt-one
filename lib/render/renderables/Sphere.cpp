@@ -76,7 +76,7 @@ Sphere::Sphere(const geom::Vec3& center0, const geom::Vec3& center1, float t0, f
 }
 
 Sphere::Sphere(const geom::Vec3& center0, const geom::Vec3& center1, float t0, float t1, float radius, std::shared_ptr<Material>&& material)
-    : Hitable(material)
+    : Renderable(material)
     , mCenter0(center0)
     , mCenter1(center1)
     , mT0(t0)
