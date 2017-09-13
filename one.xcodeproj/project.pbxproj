@@ -13,6 +13,8 @@
 		F70F91F41F4F085000D585A9 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F70F91F21F4F085000D585A9 /* Utils.cpp */; };
 		F70F91F51F4F085000D585A9 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = F70F91F31F4F085000D585A9 /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F71873B11F68A56600D4BD02 /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E95A491F4FD65A00B962C0 /* libtbb.dylib */; };
+		F71873B41F69D48600D4BD02 /* Translate.h in Headers */ = {isa = PBXBuildFile; fileRef = F71873B21F69D48600D4BD02 /* Translate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F71873B51F69D48600D4BD02 /* Translate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873B31F69D48600D4BD02 /* Translate.cpp */; };
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F754BC671F50FADF00A75D49 /* AABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC651F50FADF00A75D49 /* AABB.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -146,6 +148,8 @@
 		F70F91EF1F4E5F1500D585A9 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		F70F91F21F4F085000D585A9 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		F70F91F31F4F085000D585A9 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		F71873B21F69D48600D4BD02 /* Translate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Translate.h; sourceTree = "<group>"; };
+		F71873B31F69D48600D4BD02 /* Translate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Translate.cpp; sourceTree = "<group>"; };
 		F71B88B11F43379000D4F3A4 /* one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = one; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
@@ -377,12 +381,14 @@
 				F7C4A8D41F60388900B48268 /* HitableList.cpp */,
 				F7B7EF411F60CEDF005BC65A /* Rectangle.h */,
 				F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */,
+				F7B7EF641F62FC1F005BC65A /* Rotate.h */,
+				F7B7EF651F62FC1F005BC65A /* Rotate.cpp */,
 				F7E95A3E1F4FACA400B962C0 /* Sphere.h */,
 				F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */,
 				F7B7EF5C1F62E19F005BC65A /* Transform.h */,
 				F7B7EF5D1F62E19F005BC65A /* Transform.cpp */,
-				F7B7EF641F62FC1F005BC65A /* Rotate.h */,
-				F7B7EF651F62FC1F005BC65A /* Rotate.cpp */,
+				F71873B21F69D48600D4BD02 /* Translate.h */,
+				F71873B31F69D48600D4BD02 /* Translate.cpp */,
 			);
 			path = hitables;
 			sourceTree = "<group>";
@@ -489,6 +495,7 @@
 				F754BC701F5101DE00A75D49 /* ConstantTexture.h in Headers */,
 				F7E95A441F4FAFB500B962C0 /* Lambertian.h in Headers */,
 				F754BC801F511D1500A75D49 /* Perlin.h in Headers */,
+				F71873B41F69D48600D4BD02 /* Translate.h in Headers */,
 				F7B7EF661F62FC1F005BC65A /* Rotate.h in Headers */,
 				F754BC831F511FD500A75D49 /* stb_image.h in Headers */,
 				F7E95A4E1F4FD87600B962C0 /* Dielectric.h in Headers */,
@@ -662,6 +669,7 @@
 				F7B7EF5B1F62D821005BC65A /* FlipNormals.cpp in Sources */,
 				F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */,
 				F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */,
+				F71873B51F69D48600D4BD02 /* Translate.cpp in Sources */,
 				F754BC711F5101DE00A75D49 /* ConstantTexture.cpp in Sources */,
 				F7B7EF481F60CFE7005BC65A /* RectLightScene.cpp in Sources */,
 				F7B7EF5F1F62E19F005BC65A /* Transform.cpp in Sources */,

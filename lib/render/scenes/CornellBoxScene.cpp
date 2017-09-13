@@ -12,6 +12,7 @@
 #include "Lambertian.h"
 #include "Rectangle.h"
 #include "Rotate.h"
+#include "Translate.h"
 
 using namespace std;
 
@@ -43,8 +44,8 @@ CornellBoxScene::CornellBoxScene(int width, int height)
     list.emplace_back(make_shared<Rectangle>(Plane::XZ, 213, 343, 227, 332, 554.99, light));
 
     // Boxes
-//    list.emplace_back(make_shared<Translate>(geom::Vec3(130, 0, 65), make_shared<Rotate>(geom::Vec3(0, 1, 0), -18, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 165, 165), white))));
-//    list.emplace_back(make_shared<Translate>(geom::Vec3(265, 0, 295), make_shared<Rotate>(geom::Vec3(0, 1, 0), 15, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 330, 165), white))));
+    list.emplace_back(make_shared<Translate>(geom::Vec3(130, 0, 65), make_shared<Rotate>(geom::Vec3(0, 1, 0), -18, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 165, 165), white))));
+    list.emplace_back(make_shared<Translate>(geom::Vec3(265, 0, 295), make_shared<Rotate>(geom::Vec3(0, 1, 0), 15, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 330, 165), white))));
 
     mRoot = std::make_shared<HitableList>(list);
 
