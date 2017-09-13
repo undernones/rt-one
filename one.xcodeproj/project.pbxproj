@@ -43,7 +43,7 @@
 		F7B7EF571F6220E6005BC65A /* CornellBoxScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF551F6220E6005BC65A /* CornellBoxScene.cpp */; };
 		F7B7EF5A1F62D821005BC65A /* FlipNormals.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF581F62D821005BC65A /* FlipNormals.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B7EF5B1F62D821005BC65A /* FlipNormals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF591F62D821005BC65A /* FlipNormals.cpp */; };
-		F7B7EF5E1F62E19F005BC65A /* Transform.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF5C1F62E19F005BC65A /* Transform.h */; };
+		F7B7EF5E1F62E19F005BC65A /* Transform.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF5C1F62E19F005BC65A /* Transform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B7EF5F1F62E19F005BC65A /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF5D1F62E19F005BC65A /* Transform.cpp */; };
 		F7B7EF621F62F94E005BC65A /* Box.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF601F62F94E005BC65A /* Box.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B7EF631F62F94E005BC65A /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF611F62F94E005BC65A /* Box.cpp */; };
@@ -79,7 +79,7 @@
 		F7E95A431F4FAFB500B962C0 /* Lambertian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A411F4FAFB500B962C0 /* Lambertian.cpp */; };
 		F7E95A441F4FAFB500B962C0 /* Lambertian.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A421F4FAFB500B962C0 /* Lambertian.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A451F4FCB2B00B962C0 /* Metal.cpp */; };
-		F7E95A481F4FCB2B00B962C0 /* Metal.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A461F4FCB2B00B962C0 /* Metal.h */; };
+		F7E95A481F4FCB2B00B962C0 /* Metal.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A461F4FCB2B00B962C0 /* Metal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E95A4A1F4FD65A00B962C0 /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E95A491F4FD65A00B962C0 /* libtbb.dylib */; };
 		F7E95A4D1F4FD87600B962C0 /* Dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A4B1F4FD87600B962C0 /* Dielectric.cpp */; };
 		F7E95A4E1F4FD87600B962C0 /* Dielectric.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A4C1F4FD87600B962C0 /* Dielectric.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -367,6 +367,8 @@
 		F7B068871F5799590083C127 /* hitables */ = {
 			isa = PBXGroup;
 			children = (
+				F7B7EF601F62F94E005BC65A /* Box.h */,
+				F7B7EF611F62F94E005BC65A /* Box.cpp */,
 				F7B7EF581F62D821005BC65A /* FlipNormals.h */,
 				F7B7EF591F62D821005BC65A /* FlipNormals.cpp */,
 				F7B068881F5799880083C127 /* Hitable.h */,
@@ -379,8 +381,6 @@
 				F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */,
 				F7B7EF5C1F62E19F005BC65A /* Transform.h */,
 				F7B7EF5D1F62E19F005BC65A /* Transform.cpp */,
-				F7B7EF601F62F94E005BC65A /* Box.h */,
-				F7B7EF611F62F94E005BC65A /* Box.cpp */,
 				F7B7EF641F62FC1F005BC65A /* Rotate.h */,
 				F7B7EF651F62FC1F005BC65A /* Rotate.cpp */,
 			);

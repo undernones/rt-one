@@ -22,13 +22,14 @@ public:
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
 
 protected:
-    virtual void preIntersect(Ray& ray) { }  // Empty by default
-    virtual void postIntersect(Ray& ray) { } // Empty by default
+    virtual Ray preIntersect(const Ray& ray)  { return ray; }
+    virtual Ray postIntersect(const Ray& ray) { return ray; }
     virtual void transform(Ray& ray) = 0;
 
+    std::shared_ptr<Hitable> mObject;
+    
 private:
     RTCScene mLocalScene;
-    std::shared_ptr<Hitable> mObject;
 
     static void boundsFunc(void* userPtr,         /*!< pointer to user data */
                            void* geomUserPtr,     /*!< pointer to geometry user data */

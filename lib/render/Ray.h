@@ -62,9 +62,9 @@ public:
     float u;              //!< Barycentric u coordinate of hit
     float v;              //!< Barycentric v coordinate of hit
 
-    unsigned geomID;        //!< geometry ID
-    unsigned primID;        //!< primitive ID
-    unsigned instID;        //!< instance ID
+    unsigned geomID;      //!< geometry ID
+    unsigned primID;      //!< primitive ID
+    unsigned instID;      //!< instance ID
 
     /* extended hit data */
 public:

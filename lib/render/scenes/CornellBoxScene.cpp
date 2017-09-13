@@ -4,12 +4,14 @@
 
 #include "CornellBoxScene.h"
 
+#include "Box.h"
 #include "ConstantTexture.h"
 #include "DiffuseLight.h"
 #include "FlipNormals.h"
 #include "HitableList.h"
 #include "Lambertian.h"
 #include "Rectangle.h"
+#include "Rotate.h"
 
 using namespace std;
 

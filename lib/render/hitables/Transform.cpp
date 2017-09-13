@@ -99,14 +99,14 @@ Transform::intersectFunc(void* userPtr,   /*!< pointer to user data */
     // Assume we can dereference userPtr
     const auto transform = static_cast<render::Transform*>(userPtr);
 
-    auto& ray = (render::Ray&)rtcRay;
+    auto& ray = (Ray&)rtcRay;
 
     const auto geomID = ray.geomID;
     ray.geomID = RTC_INVALID_GEOMETRY_ID;
 
-    transform->preIntersect(ray);
-    rtcIntersect(transform->mLocalScene, rtcRay);
-    transform->postIntersect(ray);
+    auto tmpRay = transform->preIntersect(ray);
+    rtcIntersect(transform->mLocalScene, (RTCRay&)tmpRay);
+    ray = transform->postIntersect(tmpRay);
 
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
         ray.geomID = transform->mGeomId;
