@@ -6,6 +6,7 @@
 #define RENDER_TRANSFORM_H
 
 #include <render/Hitable.h>
+#include <geom/AABB.h>
 
 namespace render
 {
@@ -22,9 +23,9 @@ public:
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
 
 protected:
-    virtual Ray preIntersect(const Ray& ray)  { return ray; }
-    virtual Ray postIntersect(const Ray& ray) { return ray; }
-    virtual void transform(Ray& ray) = 0;
+    virtual Ray preIntersect(const Ray& ray)  const { return ray; }
+    virtual Ray postIntersect(const Ray& ray) const { return ray; }
+    virtual void transform(Ray& ray) const = 0;
 
     std::shared_ptr<Hitable> mObject;
     

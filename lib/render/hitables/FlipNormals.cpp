@@ -18,7 +18,7 @@ FlipNormals::FlipNormals(std::shared_ptr<Hitable>&& object)
 }
 
 void
-FlipNormals::transform(Ray& ray)
+FlipNormals::transform(Ray& ray) const
 {
     ray.normal = -ray.normal;
 }

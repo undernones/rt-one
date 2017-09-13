@@ -80,7 +80,7 @@ Rotate::Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Hitable>&&
 }
 
 Ray
-Rotate::preIntersect(const Ray& ray)
+Rotate::preIntersect(const Ray& ray) const
 {
     auto result = ray;
     result.origin = geom::Vec3(mInverse * ray.origin);
@@ -89,7 +89,7 @@ Rotate::preIntersect(const Ray& ray)
 }
 
 Ray
-Rotate::postIntersect(const Ray& ray)
+Rotate::postIntersect(const Ray& ray) const
 {
     auto result = ray;
     result.origin = geom::Vec3(mMatrix * ray.origin);
@@ -98,7 +98,7 @@ Rotate::postIntersect(const Ray& ray)
 }
 
 void
-Rotate::transform(Ray& ray)
+Rotate::transform(Ray& ray) const
 {
     ray.normal = geom::Vec3(simd::transpose(mInverse) * ray.normal);
 }

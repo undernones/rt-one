@@ -18,7 +18,7 @@ public:
     virtual ~FlipNormals() = default;
 
 protected:
-    virtual void transform(Ray& ray);
+    virtual void transform(Ray& ray) const;
 };
 
 }

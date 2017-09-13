@@ -19,11 +19,11 @@ public:
     virtual ~Rotate() = default;
 
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
-    
+
 protected:
-    virtual Ray preIntersect(const Ray& ray);
-    virtual Ray postIntersect(const Ray& ray);
-    virtual void transform(Ray& ray);
+    virtual Ray preIntersect(const Ray& ray) const;
+    virtual Ray postIntersect(const Ray& ray) const;
+    virtual void transform(Ray& ray) const;
 
 private:
     geom::Vec3 mAxis;
