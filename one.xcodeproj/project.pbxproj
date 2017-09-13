@@ -14,6 +14,9 @@
 		F70F91F51F4F085000D585A9 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = F70F91F31F4F085000D585A9 /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F71873A71F68877D00D4BD02 /* Dielectric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873A61F68877D00D4BD02 /* Dielectric.cpp */; };
 		F71873AA1F6887E000D4BD02 /* Metal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873A91F6887E000D4BD02 /* Metal.cpp */; };
+		F71873AD1F68894800D4BD02 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873AC1F68894800D4BD02 /* Scene.cpp */; };
+		F71873B01F68941000D4BD02 /* RectLightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873AF1F68941000D4BD02 /* RectLightScene.cpp */; };
+		F71873B11F68A56600D4BD02 /* libtbb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7E95A491F4FD65A00B962C0 /* libtbb.dylib */; };
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F72A46FF1F676ACE00B690FA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F72A46FE1F676ACE00B690FA /* main.cpp */; };
@@ -175,6 +178,10 @@
 		F71873A61F68877D00D4BD02 /* Dielectric.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dielectric.cpp; sourceTree = "<group>"; };
 		F71873A81F6887E000D4BD02 /* Metal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metal.h; sourceTree = "<group>"; };
 		F71873A91F6887E000D4BD02 /* Metal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Metal.cpp; sourceTree = "<group>"; };
+		F71873AB1F68894800D4BD02 /* Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		F71873AC1F68894800D4BD02 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		F71873AE1F68941000D4BD02 /* RectLightScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectLightScene.h; sourceTree = "<group>"; };
+		F71873AF1F68941000D4BD02 /* RectLightScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectLightScene.cpp; sourceTree = "<group>"; };
 		F71B88B11F43379000D4F3A4 /* one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = one; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
@@ -281,6 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71873B11F68A56600D4BD02 /* libtbb.dylib in Frameworks */,
 				F7B7EF531F621D58005BC65A /* libembree.dylib in Frameworks */,
 				F70F91ED1F4E4C1900D585A9 /* librender.a in Frameworks */,
 			);
@@ -425,6 +433,10 @@
 				F71873A61F68877D00D4BD02 /* Dielectric.cpp */,
 				F71873A81F6887E000D4BD02 /* Metal.h */,
 				F71873A91F6887E000D4BD02 /* Metal.cpp */,
+				F71873AB1F68894800D4BD02 /* Scene.h */,
+				F71873AC1F68894800D4BD02 /* Scene.cpp */,
+				F71873AE1F68941000D4BD02 /* RectLightScene.h */,
+				F71873AF1F68941000D4BD02 /* RectLightScene.cpp */,
 			);
 			name = trouble;
 			path = cmd/trouble;
@@ -768,9 +780,11 @@
 				F72A47081F681A0F00B690FA /* Camera.cpp in Sources */,
 				F72A47241F6869EB00B690FA /* DiffuseLight.cpp in Sources */,
 				F72A470C1F681D7900B690FA /* Sphere.cpp in Sources */,
+				F71873AD1F68894800D4BD02 /* Scene.cpp in Sources */,
 				F72A46FF1F676ACE00B690FA /* main.cpp in Sources */,
 				F72A47181F68501300B690FA /* Texture.cpp in Sources */,
 				F72A472A1F687DD100B690FA /* PerlinTexture.cpp in Sources */,
+				F71873B01F68941000D4BD02 /* RectLightScene.cpp in Sources */,
 				F71873A71F68877D00D4BD02 /* Dielectric.cpp in Sources */,
 				F71873AA1F6887E000D4BD02 /* Metal.cpp in Sources */,
 				F72A47151F684E3E00B690FA /* Material.cpp in Sources */,
@@ -925,6 +939,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/tbb/2017_U7/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -933,6 +951,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/tbb/2017_U7/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
