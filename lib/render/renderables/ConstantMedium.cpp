@@ -123,22 +123,23 @@ ConstantMedium::intersectFunc(void* userPtr,   /*!< pointer to user data */
     }
 
     // Clamp to our query boundaries.
-    ray1.tfar = fmax(ray1.tfar, rtcRay.tnear);
-    ray2.tfar = fmin(ray2.tfar, rtcRay.tfar);
+    auto tnear = fmax(ray1.tfar, rtcRay.tnear);
+    auto tfar = fmin(ray2.tfar, rtcRay.tfar);
 
-    if (ray1.tfar >= ray2.tfar) {
+    if (tnear >= tfar) {
         return;
     }
 
     auto& ray = (Ray&)rtcRay;
-    auto distanceInsideBoundary = (ray2.tfar - ray1.tfar) * ray.direction.length();
+    auto rayLength = ray.direction.length();
+    auto distanceInsideBoundary = (tfar - tnear) * rayLength;
     auto hitDistance = -(1 / medium->mDensity) * log(drand48());
 
     if (hitDistance > distanceInsideBoundary) {
         return;
     }
 
-    ray.tfar = ray1.tfar + hitDistance / ray.direction.length();
+    ray.tfar = tnear + hitDistance / rayLength;
     ray.material = medium->material().get();
     ray.geomID = medium->mGeomId;
     // No need to set the normal
