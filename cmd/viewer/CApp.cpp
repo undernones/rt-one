@@ -18,6 +18,7 @@
 #include <render/AstronomyScene.h>
 #include <render/BookOneScene.h>
 #include <render/BookOneWithLightScene.h>
+#include <render/BookTwoScene.h>
 #include <render/CornellBoxScene.h>
 #include <render/CornellSmokeScene.h>
 #include <render/Ray.h>
@@ -111,7 +112,7 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::CornellSmokeScene>(nx, ny);
+    mScene = std::make_unique<render::BookTwoScene>(nx, ny);
 
     // Verify the validity of the camera.
     auto camera = mScene->camera();

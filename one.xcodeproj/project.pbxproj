@@ -41,6 +41,8 @@
 		F754BC831F511FD500A75D49 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC821F511FD500A75D49 /* stb_image.h */; };
 		F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */; };
 		F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F79DA94E1F6AC72400342789 /* BookTwoScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F79DA94C1F6AC72400342789 /* BookTwoScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F79DA94F1F6AC72400342789 /* BookTwoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */; };
 		F7B0688A1F5799880083C127 /* Renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B068881F5799880083C127 /* Renderable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B0688B1F5799880083C127 /* Renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B068891F5799880083C127 /* Renderable.cpp */; };
 		F7B7EF431F60CEDF005BC65A /* Rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF411F60CEDF005BC65A /* Rectangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -188,6 +190,8 @@
 		F754BC821F511FD500A75D49 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookOneWithLightScene.h; sourceTree = "<group>"; };
 		F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneWithLightScene.cpp; sourceTree = "<group>"; };
+		F79DA94C1F6AC72400342789 /* BookTwoScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookTwoScene.h; sourceTree = "<group>"; };
+		F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookTwoScene.cpp; sourceTree = "<group>"; };
 		F7B068881F5799880083C127 /* Renderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
 		F7B068891F5799880083C127 /* Renderable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderable.cpp; sourceTree = "<group>"; };
 		F7B7EF411F60CEDF005BC65A /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
@@ -376,6 +380,8 @@
 				F7C92B0E1F51BA1100BE8752 /* BookOneScene.cpp */,
 				F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */,
 				F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */,
+				F79DA94C1F6AC72400342789 /* BookTwoScene.h */,
+				F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */,
 				F7B7EF541F6220E6005BC65A /* CornellBoxScene.h */,
 				F7B7EF551F6220E6005BC65A /* CornellBoxScene.cpp */,
 				F71873D91F6A0EEC00D4BD02 /* CornellSmokeScene.h */,
@@ -497,6 +503,7 @@
 				F754BC741F5103E800A75D49 /* CheckerTexture3D.h in Headers */,
 				F7C92B0F1F51BA1100BE8752 /* BookOneScene.h in Headers */,
 				F7C92B161F54595A00BE8752 /* AstronomyScene.h in Headers */,
+				F79DA94E1F6AC72400342789 /* BookTwoScene.h in Headers */,
 				F7BF51101F4DC4260045DE27 /* Scene.h in Headers */,
 				F70F91F11F4E5F1500D585A9 /* Camera.h in Headers */,
 				F71873CF1F69EB9300D4BD02 /* Scale.h in Headers */,
@@ -687,6 +694,7 @@
 				F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */,
 				F7B7EF671F62FC1F005BC65A /* Rotate.cpp in Sources */,
 				F7B7EF441F60CEDF005BC65A /* Rectangle.cpp in Sources */,
+				F79DA94F1F6AC72400342789 /* BookTwoScene.cpp in Sources */,
 				F7B7EF571F6220E6005BC65A /* CornellBoxScene.cpp in Sources */,
 				F7E95A4D1F4FD87600B962C0 /* Dielectric.cpp in Sources */,
 				F7C92B201F54646600BE8752 /* DiffuseLight.cpp in Sources */,
