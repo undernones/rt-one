@@ -2,9 +2,10 @@
 // Copyright © 2017 Undernones. All rights reserved.
 //
 
-#include "CornellBoxScene.h"
+#include "CornellSmokeScene.h"
 
 #include "Box.h"
+#include "ConstantMedium.h"
 #include "ConstantTexture.h"
 #include "DiffuseLight.h"
 #include "FlipNormals.h"
@@ -19,7 +20,7 @@ using namespace std;
 namespace render
 {
 
-CornellBoxScene::CornellBoxScene(int width, int height)
+CornellSmokeScene::CornellSmokeScene(int width, int height)
     : Scene()
 {
     auto list = std::vector<std::shared_ptr<Renderable>>();
@@ -31,7 +32,7 @@ CornellBoxScene::CornellBoxScene(int width, int height)
     auto red = make_shared<Lambertian>(redTex);
     auto white = make_shared<Lambertian>(whiteTex);
     auto green = make_shared<Lambertian>(greenTex);
-    auto light = make_shared<DiffuseLight>(make_shared<ConstantTexture>(geom::Vec3(15, 15, 15)));
+    auto light = make_shared<DiffuseLight>(make_shared<ConstantTexture>(geom::Vec3(7.f)));
 
     // Walls
     list.emplace_back(make_shared<FlipNormals>(make_shared<Rectangle>(Plane::YZ, 0, 555, 0, 555, 555, green)));
@@ -41,11 +42,13 @@ CornellBoxScene::CornellBoxScene(int width, int height)
     list.emplace_back(make_shared<FlipNormals>(make_shared<Rectangle>(Plane::XY, 0, 555, 0, 555, 555, white)));
 
     // Light
-    list.emplace_back(make_shared<Rectangle>(Plane::XZ, 213, 343, 227, 332, 554.99, light));
+    list.emplace_back(make_shared<Rectangle>(Plane::XZ, 113, 443, 127, 432, 554.99, light));
 
     // Boxes
-    list.emplace_back(make_shared<Translate>(geom::Vec3(130, 0, 65), make_shared<Rotate>(geom::Vec3(0, 1, 0), -18, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 165, 165), white))));
-    list.emplace_back(make_shared<Translate>(geom::Vec3(265, 0, 295), make_shared<Rotate>(geom::Vec3(0, 1, 0), 15, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 330, 165), white))));
+    auto box1 = make_shared<Translate>(geom::Vec3(130, 0, 65), make_shared<Rotate>(geom::Vec3(0, 1, 0), -18, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 165, 165), white)));
+    auto box2 = make_shared<Translate>(geom::Vec3(265, 0, 295), make_shared<Rotate>(geom::Vec3(0, 1, 0), 15, make_shared<Box>(geom::Vec3(0, 0, 0), geom::Vec3(165, 330, 165), white)));
+    list.emplace_back(make_shared<ConstantMedium>(box1, 0.01, make_shared<ConstantTexture>(geom::Vec3(1, 1, 1))));
+    list.emplace_back(make_shared<ConstantMedium>(box2, 0.01, make_shared<ConstantTexture>(geom::Vec3(0, 0, 0))));
 
     mRoot = std::make_shared<RenderableList>(list);
     commit();

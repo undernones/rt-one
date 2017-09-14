@@ -17,6 +17,12 @@
 		F71873B51F69D48600D4BD02 /* Translate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873B31F69D48600D4BD02 /* Translate.cpp */; };
 		F71873CF1F69EB9300D4BD02 /* Scale.h in Headers */ = {isa = PBXBuildFile; fileRef = F71873CD1F69EB9300D4BD02 /* Scale.h */; };
 		F71873D01F69EB9300D4BD02 /* Scale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873CE1F69EB9300D4BD02 /* Scale.cpp */; };
+		F71873D31F69F76400D4BD02 /* ConstantMedium.h in Headers */ = {isa = PBXBuildFile; fileRef = F71873D11F69F76400D4BD02 /* ConstantMedium.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F71873D41F69F76400D4BD02 /* ConstantMedium.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873D21F69F76400D4BD02 /* ConstantMedium.cpp */; };
+		F71873D71F6A04EE00D4BD02 /* Isotropic.h in Headers */ = {isa = PBXBuildFile; fileRef = F71873D51F6A04EE00D4BD02 /* Isotropic.h */; };
+		F71873D81F6A04EE00D4BD02 /* Isotropic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873D61F6A04EE00D4BD02 /* Isotropic.cpp */; };
+		F71873DB1F6A0EEC00D4BD02 /* CornellSmokeScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F71873D91F6A0EEC00D4BD02 /* CornellSmokeScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F71873DC1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873DA1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp */; };
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F754BC671F50FADF00A75D49 /* AABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC651F50FADF00A75D49 /* AABB.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -154,6 +160,12 @@
 		F71873B31F69D48600D4BD02 /* Translate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Translate.cpp; sourceTree = "<group>"; };
 		F71873CD1F69EB9300D4BD02 /* Scale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scale.h; sourceTree = "<group>"; };
 		F71873CE1F69EB9300D4BD02 /* Scale.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scale.cpp; sourceTree = "<group>"; };
+		F71873D11F69F76400D4BD02 /* ConstantMedium.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantMedium.h; sourceTree = "<group>"; };
+		F71873D21F69F76400D4BD02 /* ConstantMedium.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantMedium.cpp; sourceTree = "<group>"; };
+		F71873D51F6A04EE00D4BD02 /* Isotropic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Isotropic.h; sourceTree = "<group>"; };
+		F71873D61F6A04EE00D4BD02 /* Isotropic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Isotropic.cpp; sourceTree = "<group>"; };
+		F71873D91F6A0EEC00D4BD02 /* CornellSmokeScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornellSmokeScene.h; sourceTree = "<group>"; };
+		F71873DA1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CornellSmokeScene.cpp; sourceTree = "<group>"; };
 		F71B88B11F43379000D4F3A4 /* one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = one; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
@@ -366,6 +378,8 @@
 				F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */,
 				F7B7EF541F6220E6005BC65A /* CornellBoxScene.h */,
 				F7B7EF551F6220E6005BC65A /* CornellBoxScene.cpp */,
+				F71873D91F6A0EEC00D4BD02 /* CornellSmokeScene.h */,
+				F71873DA1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp */,
 				F7B7EF451F60CFE7005BC65A /* RectLightScene.h */,
 				F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */,
 			);
@@ -395,6 +409,8 @@
 				F71873B31F69D48600D4BD02 /* Translate.cpp */,
 				F71873CD1F69EB9300D4BD02 /* Scale.h */,
 				F71873CE1F69EB9300D4BD02 /* Scale.cpp */,
+				F71873D11F69F76400D4BD02 /* ConstantMedium.h */,
+				F71873D21F69F76400D4BD02 /* ConstantMedium.cpp */,
 			);
 			path = renderables;
 			sourceTree = "<group>";
@@ -449,6 +465,8 @@
 				F7E95A4B1F4FD87600B962C0 /* Dielectric.cpp */,
 				F7C92B1D1F54646600BE8752 /* DiffuseLight.h */,
 				F7C92B1E1F54646600BE8752 /* DiffuseLight.cpp */,
+				F71873D51F6A04EE00D4BD02 /* Isotropic.h */,
+				F71873D61F6A04EE00D4BD02 /* Isotropic.cpp */,
 				F7E95A361F4FA64100B962C0 /* Material.h */,
 				F7E95A351F4FA64100B962C0 /* Material.cpp */,
 				F7E95A461F4FCB2B00B962C0 /* Metal.h */,
@@ -487,6 +505,7 @@
 				F7C92B1F1F54646600BE8752 /* DiffuseLight.h in Headers */,
 				F7B7EF5A1F62D821005BC65A /* FlipNormals.h in Headers */,
 				F7BC88C71F4A49BA00968D42 /* Image.h in Headers */,
+				F71873D71F6A04EE00D4BD02 /* Isotropic.h in Headers */,
 				F7B7EF621F62F94E005BC65A /* Box.h in Headers */,
 				F7E95A381F4FA64100B962C0 /* Material.h in Headers */,
 				F754BC7B1F511C6200A75D49 /* PerlinTexture.h in Headers */,
@@ -505,6 +524,8 @@
 				F71873B41F69D48600D4BD02 /* Translate.h in Headers */,
 				F7B7EF661F62FC1F005BC65A /* Rotate.h in Headers */,
 				F754BC831F511FD500A75D49 /* stb_image.h in Headers */,
+				F71873D31F69F76400D4BD02 /* ConstantMedium.h in Headers */,
+				F71873DB1F6A0EEC00D4BD02 /* CornellSmokeScene.h in Headers */,
 				F7E95A4E1F4FD87600B962C0 /* Dielectric.h in Headers */,
 				F754BC6C1F5100E100A75D49 /* Texture.h in Headers */,
 				F7E95A401F4FACA500B962C0 /* Sphere.h in Headers */,
@@ -658,6 +679,8 @@
 			files = (
 				F754BC751F5103E800A75D49 /* CheckerTexture3D.cpp in Sources */,
 				F7B7EF631F62F94E005BC65A /* Box.cpp in Sources */,
+				F71873DC1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp in Sources */,
+				F71873D41F69F76400D4BD02 /* ConstantMedium.cpp in Sources */,
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
 				F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */,
@@ -682,6 +705,7 @@
 				F7B7EF481F60CFE7005BC65A /* RectLightScene.cpp in Sources */,
 				F7B7EF5F1F62E19F005BC65A /* Transform.cpp in Sources */,
 				F754BC811F511D1500A75D49 /* Perlin.cpp in Sources */,
+				F71873D81F6A04EE00D4BD02 /* Isotropic.cpp in Sources */,
 				F7C92B151F54595A00BE8752 /* AstronomyScene.cpp in Sources */,
 				F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */,
 				F7BC88C61F4A49BA00968D42 /* Image.cpp in Sources */,

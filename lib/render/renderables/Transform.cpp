@@ -65,7 +65,7 @@ Transform::boundsFunc(void* userPtr,         /*!< pointer to user data */
                       RTCBounds* bounds_o    /*!< returns calculated bounds */)
 {
     // Assume we can dereference userPtr
-    const auto renderable = static_cast<render::Renderable*>(userPtr);
+    const auto renderable = static_cast<Renderable*>(userPtr);
 
     auto bbox = geom::AABB();
     if (!renderable->bbox(0, 1, bbox)) {
@@ -90,7 +90,7 @@ Transform::intersectFunc(void* userPtr,   /*!< pointer to user data */
                          size_t item      /*!< item to intersect */)
 {
     // Assume we can dereference userPtr
-    const auto transform = static_cast<render::Transform*>(userPtr);
+    const auto transform = static_cast<Transform*>(userPtr);
 
     auto& ray = (Ray&)rtcRay;
 

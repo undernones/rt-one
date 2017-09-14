@@ -19,6 +19,7 @@
 #include <render/BookOneScene.h>
 #include <render/BookOneWithLightScene.h>
 #include <render/CornellBoxScene.h>
+#include <render/CornellSmokeScene.h>
 #include <render/Ray.h>
 #include <render/RectLightScene.h>
 #include <render/Renderer.h>
@@ -110,7 +111,7 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::CornellBoxScene>(nx, ny);
+    mScene = std::make_unique<render::CornellSmokeScene>(nx, ny);
 
     // Verify the validity of the camera.
     auto camera = mScene->camera();

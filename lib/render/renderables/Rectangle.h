@@ -26,13 +26,13 @@ public:
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
 
 private:
-    RTCScene mLocalScene;
-    Plane mPlane;
-    float mLeft, mRight, mBottom, mTop, mOffset;
-
     static void intersectFunc(void* userPtr,   /*!< pointer to user data */
                               RTCRay& rtcRay,  /*!< ray to intersect */
                               size_t item      /*!< item to intersect */);
+
+    RTCScene mLocalScene;
+    Plane mPlane;
+    float mLeft, mRight, mBottom, mTop, mOffset;
 };
 
 }

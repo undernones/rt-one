@@ -2,31 +2,27 @@
 // Copyright © 2017 Undernones. All rights reserved.
 //
 
-#ifndef RENDER_TRANSFORM_H
-#define RENDER_TRANSFORM_H
+#ifndef RENDER_CONSTANT_MEDIUM_H
+#define RENDER_CONSTANT_MEDIUM_H
+
+#include <memory>
 
 #include <render/Renderable.h>
-#include <geom/AABB.h>
+#include <render/Texture.h>
 
 namespace render
 {
 
-class Transform : public Renderable
+class ConstantMedium : public Renderable
 {
 public:
-    Transform(std::shared_ptr<Renderable>& object);
-    Transform(std::shared_ptr<Renderable>&& object);
-    virtual ~Transform();
+    ConstantMedium(std::shared_ptr<Renderable>& boundary, float density, std::shared_ptr<Texture>& texture);
+    ConstantMedium(std::shared_ptr<Renderable>& boundary, float density, std::shared_ptr<Texture>&& texture);
+    ConstantMedium(std::shared_ptr<Renderable>&& boundary, float density, std::shared_ptr<Texture>&& texture);
+    virtual ~ConstantMedium();
 
     virtual bool bbox(float t0, float t1, geom::AABB& bbox) const;
     virtual std::vector<unsigned> commit(RTCDevice device, RTCScene scene);
-
-protected:
-    virtual Ray preIntersect(const Ray& ray)  const { return ray; }
-    virtual Ray postIntersect(const Ray& ray) const { return ray; }
-    virtual void transform(Ray& ray) const = 0;
-
-    std::shared_ptr<Renderable> mObject;
 
 private:
     static void boundsFunc(void* userPtr,         /*!< pointer to user data */
@@ -39,8 +35,10 @@ private:
                               size_t item      /*!< item to intersect */);
 
     RTCScene mLocalScene;
+    std::shared_ptr<Renderable> mBoundary;
+    float mDensity;
 };
 
 }
 
-#endif // RENDER_TRANSFORM_H
+#endif // RENDER_CONSTANT_MEDIUM_H
