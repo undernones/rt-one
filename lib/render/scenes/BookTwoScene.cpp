@@ -81,8 +81,8 @@ BookTwoScene::BookTwoScene(int width, int height)
     mRoot = std::make_shared<RenderableList>(list);
     commit();
 
-    auto eye = geom::Vec3(378, 278, -600);
-    auto lookAt = geom::Vec3(278, 278, 0);
+    auto eye = geom::Vec3(378, 280, -610);
+    auto lookAt = geom::Vec3(278, 240, 0);
     auto up = geom::Vec3(0, 1, 0);
     auto focusDistance = 10.f;
     auto aperture = 0.f;
