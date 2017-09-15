@@ -9,36 +9,8 @@
 namespace
 {
 
-const auto EPSILON = 1e-4;
-
 struct Vertex   { float x, y, z, a; };
 struct Triangle { int v0, v1, v2; };
-
-void
-boundsFunc(void* userPtr,         /*!< pointer to user data */
-           void* geomUserPtr,     /*!< pointer to geometry user data */
-           size_t item,           /*!< item to calculate bounds for */
-           RTCBounds* bounds_o    /*!< returns calculated bounds */)
-{
-    // Assume we can dereference userPtr
-    const auto rect = static_cast<render::Rectangle*>(userPtr);
-
-    auto bbox = geom::AABB();
-    if (!rect->bbox(0, 1, bbox)) {
-        return;
-    }
-
-    auto lower = bbox.min();
-    auto upper = bbox.max();
-
-    bounds_o->lower_x = lower.x();
-    bounds_o->lower_y = lower.y();
-    bounds_o->lower_z = lower.z();
-
-    bounds_o->upper_x = upper.x();
-    bounds_o->upper_y = upper.y();
-    bounds_o->upper_z = upper.z();
-}
 
 }
 
@@ -121,6 +93,18 @@ Rectangle::commit(RTCDevice device, RTCScene scene)
 }
 
 void
+Rectangle::boundsFunc(void* userPtr,         /*!< pointer to user data */
+                      void* geomUserPtr,     /*!< pointer to geometry user data */
+                      size_t item,           /*!< item to calculate bounds for */
+                      RTCBounds* bounds_o    /*!< returns calculated bounds */)
+{
+    // Assume we can dereference userPtr
+    const auto rect = static_cast<Rectangle*>(userPtr);
+
+    rtcGetBounds(rect->mLocalScene, *bounds_o);
+}
+
+void
 Rectangle::intersectFunc(void* userPtr,   /*!< pointer to user data */
                          RTCRay& rtcRay,  /*!< ray to intersect */
                          size_t item      /*!< item to intersect */)
@@ -146,23 +130,10 @@ Rectangle::intersectFunc(void* userPtr,   /*!< pointer to user data */
 bool
 Rectangle::bbox(float t0, float t1, geom::AABB& bbox) const
 {
-    geom::Vec3 min, max;
-    switch (mPlane) {
-        case Plane::XY:
-        min = geom::Vec3(mLeft, mBottom, mOffset - EPSILON);
-        max = geom::Vec3(mRight, mTop, mOffset + EPSILON);
-        break;
-
-        case Plane::XZ:
-        min = geom::Vec3(mLeft, mOffset - EPSILON, mBottom);
-        max = geom::Vec3(mRight, mOffset + EPSILON, mTop);
-        break;
-
-        case Plane::YZ:
-        min = geom::Vec3(mOffset - EPSILON, mLeft, mBottom);
-        max = geom::Vec3(mOffset + EPSILON, mRight, mTop);
-        break;
-    }
+    RTCBounds bounds;
+    rtcGetBounds(mLocalScene, bounds);
+    auto min = geom::Vec3(bounds.lower_x, bounds.lower_y, bounds.lower_z);
+    auto max = geom::Vec3(bounds.upper_x, bounds.upper_y, bounds.upper_z);
     bbox = geom::AABB(min, max);
     return true;
 }
