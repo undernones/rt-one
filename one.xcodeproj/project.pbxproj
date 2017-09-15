@@ -84,6 +84,9 @@
 		F7C92B1C1F545B5D00BE8752 /* moon_map_mercator.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7C92B191F545B1B00BE8752 /* moon_map_mercator.jpg */; };
 		F7C92B1F1F54646600BE8752 /* DiffuseLight.h in Headers */ = {isa = PBXBuildFile; fileRef = F7C92B1D1F54646600BE8752 /* DiffuseLight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7C92B201F54646600BE8752 /* DiffuseLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C92B1E1F54646600BE8752 /* DiffuseLight.cpp */; };
+		F7E49A2C1F6C4F3600FFC97A /* UV.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E49A2A1F6C4F3600FFC97A /* UV.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7E49A2D1F6C4F3600FFC97A /* UV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E49A2B1F6C4F3600FFC97A /* UV.cpp */; };
+		F7E49A2F1F6C6C5C00FFC97A /* Vec2.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E49A2E1F6C6C5C00FFC97A /* Vec2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A351F4FA64100B962C0 /* Material.cpp */; };
 		F7E95A381F4FA64100B962C0 /* Material.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A361F4FA64100B962C0 /* Material.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */; };
@@ -233,6 +236,9 @@
 		F7C92B191F545B1B00BE8752 /* moon_map_mercator.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moon_map_mercator.jpg; sourceTree = "<group>"; };
 		F7C92B1D1F54646600BE8752 /* DiffuseLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffuseLight.h; sourceTree = "<group>"; };
 		F7C92B1E1F54646600BE8752 /* DiffuseLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiffuseLight.cpp; sourceTree = "<group>"; };
+		F7E49A2A1F6C4F3600FFC97A /* UV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UV.h; sourceTree = "<group>"; };
+		F7E49A2B1F6C4F3600FFC97A /* UV.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UV.cpp; sourceTree = "<group>"; };
+		F7E49A2E1F6C6C5C00FFC97A /* Vec2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vec2.h; sourceTree = "<group>"; };
 		F7E95A351F4FA64100B962C0 /* Material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
 		F7E95A361F4FA64100B962C0 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
@@ -348,6 +354,7 @@
 				F70F91F31F4F085000D585A9 /* Utils.h */,
 				F70F91F21F4F085000D585A9 /* Utils.cpp */,
 				F71B88CA1F44883400D4F3A4 /* Vec3.h */,
+				F7E49A2E1F6C6C5C00FFC97A /* Vec2.h */,
 			);
 			name = geom;
 			path = lib/geom;
@@ -479,6 +486,8 @@
 				F7E95A451F4FCB2B00B962C0 /* Metal.cpp */,
 				F7E95A421F4FAFB500B962C0 /* Lambertian.h */,
 				F7E95A411F4FAFB500B962C0 /* Lambertian.cpp */,
+				F7E49A2A1F6C4F3600FFC97A /* UV.h */,
+				F7E49A2B1F6C4F3600FFC97A /* UV.cpp */,
 			);
 			path = materials;
 			sourceTree = "<group>";
@@ -490,6 +499,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7E49A2F1F6C6C5C00FFC97A /* Vec2.h in Headers */,
 				F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */,
 				F754BC671F50FADF00A75D49 /* AABB.h in Headers */,
 				F70F91F51F4F085000D585A9 /* Utils.h in Headers */,
@@ -525,6 +535,7 @@
 				F7B7EF471F60CFE7005BC65A /* RectLightScene.h in Headers */,
 				F754BC7C1F511C6200A75D49 /* ImageTexture.h in Headers */,
 				F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */,
+				F7E49A2C1F6C4F3600FFC97A /* UV.h in Headers */,
 				F754BC701F5101DE00A75D49 /* ConstantTexture.h in Headers */,
 				F7E95A441F4FAFB500B962C0 /* Lambertian.h in Headers */,
 				F754BC801F511D1500A75D49 /* Perlin.h in Headers */,
@@ -710,6 +721,7 @@
 				F7E95A471F4FCB2B00B962C0 /* Metal.cpp in Sources */,
 				F71873B51F69D48600D4BD02 /* Translate.cpp in Sources */,
 				F754BC711F5101DE00A75D49 /* ConstantTexture.cpp in Sources */,
+				F7E49A2D1F6C4F3600FFC97A /* UV.cpp in Sources */,
 				F7B7EF481F60CFE7005BC65A /* RectLightScene.cpp in Sources */,
 				F7B7EF5F1F62E19F005BC65A /* Transform.cpp in Sources */,
 				F754BC811F511D1500A75D49 /* Perlin.cpp in Sources */,

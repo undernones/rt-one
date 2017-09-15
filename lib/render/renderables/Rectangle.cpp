@@ -4,13 +4,27 @@
 
 #include "Rectangle.h"
 
+#include <array>
 #include <geom/AABB.h>
+#include <geom/Vec2.h>
 
 namespace
 {
 
 struct Vertex   { float x, y, z, a; };
 struct Triangle { int v0, v1, v2; };
+
+const auto TRIANGLES = std::array<Triangle, 2>({
+    Triangle({ 0, 1, 3 }),
+    Triangle({ 1, 2, 3 }),
+});
+
+const auto ST_VALUES = std::array<geom::Vec2, 4>({
+    geom::Vec2(0, 0),
+    geom::Vec2(1, 0),
+    geom::Vec2(1, 1),
+    geom::Vec2(0, 1),
+});
 
 }
 
@@ -77,8 +91,8 @@ Rectangle::commit(RTCDevice device, RTCScene scene)
     rtcUnmapBuffer(mLocalScene, meshGeomId, RTC_VERTEX_BUFFER);
 
     auto tris = (Triangle*)rtcMapBuffer(mLocalScene, meshGeomId, RTC_INDEX_BUFFER);
-    tris[0] = { 0, 1, 3 };
-    tris[1] = { 1, 2, 3 };
+    tris[0] = TRIANGLES[0];
+    tris[1] = TRIANGLES[1];
     rtcUnmapBuffer(mLocalScene, meshGeomId, RTC_INDEX_BUFFER);
 
     rtcCommit(mLocalScene);
@@ -112,18 +126,26 @@ Rectangle::intersectFunc(void* userPtr,   /*!< pointer to user data */
     // Assume we can dereference userPtr
     const auto rect = static_cast<render::Rectangle*>(userPtr);
 
-    const auto geomID = rtcRay.geomID;
-    rtcRay.geomID = RTC_INVALID_GEOMETRY_ID;
+    auto& ray = (Ray&)rtcRay;
+    const auto geomID = ray.geomID;
+    ray.geomID = RTC_INVALID_GEOMETRY_ID;
 
     rtcIntersect(rect->mLocalScene, rtcRay);
 
-    if (rtcRay.geomID != RTC_INVALID_GEOMETRY_ID) {
-        rtcRay.geomID = rect->mGeomId;
-        auto& ray = (render::Ray&)rtcRay;
+    if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
+        ray.geomID = rect->mGeomId;
         ray.material = rect->material().get();
         ray.normal = -ray.normal.normalized();
+
+        auto triangle = TRIANGLES[ray.primID];
+        auto st0 = ST_VALUES[triangle.v0];
+        auto st1 = ST_VALUES[triangle.v1];
+        auto st2 = ST_VALUES[triangle.v2];
+
+        const auto u = ray.uv.u(), v = ray.uv.v(), w = 1.0f-u-v;
+        ray.uv = (st0 * w) + (st1 * u) + (st2 * v);
     } else {
-        rtcRay.geomID = geomID;
+        ray.geomID = geomID;
     }
 }
 

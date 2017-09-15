@@ -6,6 +6,7 @@
 #define RENDER_RAY_H
 
 #include <embree2/rtcore_ray.h>
+#include <geom/Vec2.h>
 #include <geom/Vec3.h>
 
 namespace render
@@ -59,8 +60,7 @@ public:
 public:
     geom::Vec3 normal;    //!< Unnormalized geometry normal
 
-    float u;              //!< Barycentric u coordinate of hit
-    float v;              //!< Barycentric v coordinate of hit
+    geom::Vec2 uv;        //!< Barycentric uv coordinates of hit
 
     unsigned geomID;      //!< geometry ID
     unsigned primID;      //!< primitive ID

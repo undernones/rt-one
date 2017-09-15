@@ -121,7 +121,7 @@ Sphere::hit(Ray& ray) const
             auto hitPoint = ray.pointAt(t0);
             ray.normal = (hitPoint - center) / mRadius;
             ray.material = material().get();
-            std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
+            ray.uv = uv(hitPoint, ray.time);
             isHit = true;
         } else
         if (ray.tnear < t1 && t1 < ray.tfar) {
@@ -129,7 +129,7 @@ Sphere::hit(Ray& ray) const
             auto hitPoint = ray.pointAt(t1);
             ray.normal = (hitPoint - center) / mRadius;
             ray.material = material().get();
-            std::tie(ray.u, ray.v) = uv(hitPoint, ray.time);
+            ray.uv = uv(hitPoint, ray.time);
             isHit = true;
         }
     }
@@ -154,7 +154,7 @@ Sphere::center(float t) const
     return mCenter0 + blend * (mCenter1 - mCenter0);
 }
 
-std::tuple<float, float>
+geom::Vec2
 Sphere::uv(const geom::Vec3 &p, float t) const
 {
     auto normalizedPt = (p - center(t)) / mRadius;
@@ -164,7 +164,7 @@ Sphere::uv(const geom::Vec3 &p, float t) const
 
     auto u = 1.f - (phi + M_PI) / (2 * M_PI);
     auto v = (theta + M_PI_2) / M_PI;
-    return { u, v };
+    return geom::Vec2(u, v);
 }
 
 }

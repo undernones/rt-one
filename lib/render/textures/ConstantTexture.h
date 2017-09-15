@@ -16,7 +16,7 @@ public:
     ConstantTexture();
     ConstantTexture(const geom::Vec3& color);
 
-    virtual geom::Vec3 value(float u, float v, const geom::Vec3& p) const;
+    virtual geom::Vec3 value(const geom::Vec2& uv, const geom::Vec3& p) const;
 
 private:
     geom::Vec3 mColor;

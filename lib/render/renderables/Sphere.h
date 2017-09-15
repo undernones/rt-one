@@ -7,8 +7,7 @@
 
 #include <render/Renderable.h>
 
-#include <tuple>
-
+#include <geom/Vec2.h>
 #include <geom/Vec3.h>
 
 namespace render
@@ -34,11 +33,11 @@ public:
     float t1() const { return mT1; }
 
     bool hit(Ray& ray) const;
-    
-    /// Returns the uv coordinates of the given point. Assumes the point is actually on the surface of the sphere at the given time.
-    std::tuple<float, float> uv(const geom::Vec3& p, float t) const;
 
 private:
+    /// Returns the uv coordinates of the given point. Assumes the point is actually on the surface of the sphere at the given time.
+    geom::Vec2 uv(const geom::Vec3& p, float t) const;
+
     geom::Vec3 mCenter0;
     geom::Vec3 mCenter1;
     float mT0;

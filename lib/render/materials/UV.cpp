@@ -2,27 +2,25 @@
 // Copyright © 2017 Undernones. All rights reserved.
 //
 
-#include "Lambertian.h"
+#include "UV.h"
 
 #include <geom/Utils.h>
-#include <render/Ray.h>
 
 namespace render
 {
 
-Lambertian::Lambertian(const std::shared_ptr<Texture>& albedo)
+UV::UV()
     : Material()
-    , mAlbedo(albedo)
 {
 }
 
 bool
-Lambertian::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const
+UV::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const
 {
     const auto hitPoint = rayIn.pointAt(rayIn.tfar);
     const auto target = hitPoint + rayIn.normal + geom::randomInUnitSphere();
     scattered = Ray(hitPoint, target - hitPoint, rayIn.time);
-    attenuation = mAlbedo->value(rayIn.uv, hitPoint);
+    attenuation = geom::Vec3(rayIn.uv.u(), rayIn.uv.v(), 0);
     return true;
 }
 

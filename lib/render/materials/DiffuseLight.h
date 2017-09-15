@@ -19,7 +19,7 @@ public:
     DiffuseLight(const std::shared_ptr<Texture>& emissions);
 
     virtual bool scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const;
-    virtual geom::Vec3 emitted(float u, float v, const geom::Vec3& p) const;
+    virtual geom::Vec3 emitted(const geom::Vec2& uv, const geom::Vec3& p) const;
 
 private:
     std::shared_ptr<Texture> mEmissions;

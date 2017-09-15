@@ -20,7 +20,7 @@ Isotropic::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) co
 {
     auto hitPoint = rayIn.pointAt(rayIn.tfar);
     scattered = Ray(hitPoint, geom::randomInUnitSphere(), rayIn.time);
-    attenuation = mAlbedo->value(rayIn.u, rayIn.v, hitPoint);
+    attenuation = mAlbedo->value(rayIn.uv, hitPoint);
     return true;
 }
 

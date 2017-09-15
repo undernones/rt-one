@@ -17,7 +17,7 @@ class CheckerTexture3D : public Texture
 public:
     CheckerTexture3D(std::shared_ptr<Texture> texture0, std::shared_ptr<Texture> texture1);
 
-    virtual geom::Vec3 value(float u, float v, const geom::Vec3& p) const;
+    virtual geom::Vec3 value(const geom::Vec2& uv, const geom::Vec3& p) const;
 
 private:
     std::shared_ptr<Texture> mTexture0;

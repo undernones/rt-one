@@ -6,6 +6,7 @@
 #define RENDER_TEXTURE_H
 
 #include <memory>
+#include <geom/Vec2.h>
 #include <geom/Vec3.h>
 
 namespace render
@@ -14,7 +15,7 @@ namespace render
 class Texture
 {
 public:
-    virtual geom::Vec3 value(float u, float v, const geom::Vec3& p) const = 0;
+    virtual geom::Vec3 value(const geom::Vec2& uv, const geom::Vec3& p) const = 0;
 };
 
 }

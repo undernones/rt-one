@@ -20,9 +20,9 @@ DiffuseLight::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered)
 }
 
 geom::Vec3
-DiffuseLight::emitted(float u, float v, const geom::Vec3& p) const
+DiffuseLight::emitted(const geom::Vec2& uv, const geom::Vec3& p) const
 {
-    return mEmissions->value(u, v, p);
+    return mEmissions->value(uv, p);
 }
 
 }

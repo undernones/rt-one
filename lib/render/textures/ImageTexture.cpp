@@ -27,10 +27,10 @@ ImageTexture::ImageTexture(int cols, int rows, std::unique_ptr<uint8_t>& data, i
 }
 
 geom::Vec3
-ImageTexture::value(float u, float v, const geom::Vec3& p) const
+ImageTexture::value(const geom::Vec2& uv, const geom::Vec3& p) const
 {
-    u = std::max(0.f, std::min(u, 1.f));
-    v = std::max(0.f, std::min(v, 1.f));
+    auto u = std::max(0.f, std::min(uv.u(), 1.f));
+    auto v = std::max(0.f, std::min(uv.v(), 1.f));
 
     auto i = int((  u) * mCols);
     auto j = int((1-v) * mRows - 0.001);

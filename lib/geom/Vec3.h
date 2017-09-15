@@ -16,11 +16,11 @@ namespace geom
 class Vec3
 {
 public:
-    Vec3() { e[0] = 0; e[1] = 0; e[2] = 0; }
+    Vec3() : Vec3(0.f) {}
     Vec3(float value) : Vec3(value, value, value) {}
     Vec3(const float values[3]) : Vec3(values[0], values[1], values[2]) {}
     Vec3(float e0, float e1, float e2) { e[0] = e0; e[1] = e1; e[2] = e2; }
-    Vec3(simd::float3 v) : e(v) {}
+    Vec3(const simd::float3& v) : e(v) {}
 
     operator simd::float3() const { return e; }
 

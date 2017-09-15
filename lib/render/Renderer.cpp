@@ -42,7 +42,7 @@ Renderer::trace(Ray ray, const Scene& scene, int depth)
         const auto& material = ray.material;
 
         // Check for emissions
-        auto result = material->emitted(ray.u, ray.v, hitPoint);
+        auto result = material->emitted(ray.uv, hitPoint);
 
         // Scatter
         auto scattered = Ray();

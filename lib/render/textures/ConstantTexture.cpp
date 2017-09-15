@@ -19,7 +19,7 @@ ConstantTexture::ConstantTexture(const geom::Vec3& color)
 }
 
 geom::Vec3
-ConstantTexture::value(float u, float v, const geom::Vec3& p) const
+ConstantTexture::value(const geom::Vec2& uv, const geom::Vec3& p) const
 {
     return mColor;
 }

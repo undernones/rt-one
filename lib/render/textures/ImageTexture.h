@@ -17,7 +17,7 @@ class ImageTexture : public Texture
 public:
     ImageTexture(int cols, int rows, std::unique_ptr<uint8_t>& data, int bytesPerPixel);
 
-    virtual geom::Vec3 value(float u, float v, const geom::Vec3& p) const;
+    virtual geom::Vec3 value(const geom::Vec2& uv, const geom::Vec3& p) const;
 
     static std::shared_ptr<Texture> loadFromFile(const char* fileName);
 
