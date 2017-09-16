@@ -25,6 +25,7 @@ public:
     const RTCScene& rtcScene() const { return mScene; }
     const Camera& camera() const { return mCamera; }
     void setCamera(const Camera& c) { mCamera = c; }
+    float bgIntensity() const { return mBgIntensity; }
 
 protected:
     void commit();
@@ -32,6 +33,7 @@ protected:
     RTCDevice mDevice;
     RTCScene mScene;
     Camera mCamera;
+    float mBgIntensity;
     std::shared_ptr<Renderable> mRoot;
     std::vector<unsigned> mGeomIds;
 };

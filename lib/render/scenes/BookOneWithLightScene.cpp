@@ -70,6 +70,8 @@ BookOneWithLightScene::BookOneWithLightScene(int width, int height)
     t0 = 0.f;
     t1 = 1.f;
     mCamera = render::Camera(eye, lookAt, up, 20, width, height, aperture, focusDistance, t0, t1);
+
+    mBgIntensity = 0.01;
 }
 
 }

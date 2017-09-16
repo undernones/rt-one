@@ -66,6 +66,8 @@ TeapotScene::TeapotScene(int width, int height)
     auto focusDistance = (eye - lookAt).length();
     auto aperture = 0.f;
     mCamera = Camera(eye, lookAt, up, 45, width, height, aperture, focusDistance, 0, 1);
+
+    mBgIntensity = 0.01f;
 }
 
 }

@@ -22,7 +22,6 @@ namespace
 
 const auto EPSILON = 0.001f;
 const auto MAX_DEPTH = 20;
-const auto BG_INTENSITY = 0.f;
 
 }
 
@@ -56,7 +55,7 @@ Renderer::trace(Ray ray, const Scene& scene, int depth)
     auto unitDir = ray.direction.normalized();
     auto t = 0.5 * (unitDir.y() + 1.0);
     auto result = (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
-    return BG_INTENSITY * result;
+    return scene.bgIntensity() * result;
 }
 
 }
