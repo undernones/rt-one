@@ -88,7 +88,7 @@ BookTwoScene::BookTwoScene(int width, int height)
     auto aperture = 0.f;
     auto t0 = 0.f;
     auto t1 = 1.f;
-    mCamera = render::Camera(eye, lookAt, up, 40, width, height, aperture, focusDistance, t0, t1);
+    mCamera = Camera(eye, lookAt, up, 40, width, height, aperture, focusDistance, t0, t1);
 }
 
 }

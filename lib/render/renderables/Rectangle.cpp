@@ -114,7 +114,6 @@ Rectangle::boundsFunc(void* userPtr,         /*!< pointer to user data */
 {
     // Assume we can dereference userPtr
     const auto rect = static_cast<Rectangle*>(userPtr);
-
     rtcGetBounds(rect->mLocalScene, *bounds_o);
 }
 
@@ -124,7 +123,7 @@ Rectangle::intersectFunc(void* userPtr,   /*!< pointer to user data */
                          size_t item      /*!< item to intersect */)
 {
     // Assume we can dereference userPtr
-    const auto rect = static_cast<render::Rectangle*>(userPtr);
+    const auto rect = static_cast<Rectangle*>(userPtr);
 
     auto& ray = (Ray&)rtcRay;
     const auto geomID = ray.geomID;
