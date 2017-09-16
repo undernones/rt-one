@@ -184,6 +184,9 @@ TriangleMesh::load(std::istream& stream)
                 mTriangles.insert(std::end(mTriangles), std::begin(faces), std::end(faces));
             }
         }
+        std::cerr << "Successfully loaded mesh" << std::endl
+                  << "  Vertices:  " << mVerts.size() << std::endl
+                  << "  Triangles: " << mTriangles.size() << std::endl;
     } catch (const std::domain_error& ex) {
         std::cerr << "Parsing domain error: " << ex.what() << std::endl;
     }
