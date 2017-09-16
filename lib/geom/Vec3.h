@@ -55,6 +55,8 @@ public:
     inline float dot(const Vec3& v) const;
     inline Vec3 cross(const Vec3& v) const;
 
+    simd::float2 xy() const { return e.xy; }
+
     simd::float3 e;
 
 private:
