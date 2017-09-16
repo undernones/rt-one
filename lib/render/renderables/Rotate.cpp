@@ -56,27 +56,7 @@ Rotate::Rotate(const geom::Vec3& axis, float degrees, std::shared_ptr<Renderable
     , mDegrees(degrees)
     , mMatrix(constructTransform(axis, degrees))
     , mInverse(simd::inverse(mMatrix))
-    , mBoxIsValid(false)
 {
-    if (mObject == nullptr) {
-        return;
-    }
-
-    auto tmpBox = geom::AABB();
-    if (mObject->bbox(0, 1, tmpBox)) {
-        mBoxIsValid = true;
-        for (auto i = 0; i <= 1; ++i) {
-            for (auto j = 0; j <= 1; ++j) {
-                for (auto k = 0; k <= 1; ++k) {
-                    auto x = i*tmpBox.max().x() + (1-i)*tmpBox.min().x();
-                    auto y = j*tmpBox.max().y() + (1-j)*tmpBox.min().y();
-                    auto z = k*tmpBox.max().z() + (1-k)*tmpBox.min().z();
-                    auto v = mMatrix * geom::Vec3(x, y, z);
-                    mBox.includePoint(v);
-                }
-            }
-        }
-    }
 }
 
 Ray
@@ -106,8 +86,24 @@ Rotate::transform(Ray& ray) const
 bool
 Rotate::bbox(float t0, float t1, geom::AABB& bbox) const
 {
-    if (mBoxIsValid) {
-        bbox = mBox;
+    if (mObject == nullptr) {
+        return false;
+    }
+
+    auto tmpBox = geom::AABB();
+    if (mObject->bbox(0, 1, tmpBox)) {
+        for (auto i = 0; i <= 1; ++i) {
+            for (auto j = 0; j <= 1; ++j) {
+                for (auto k = 0; k <= 1; ++k) {
+                    auto x = i*tmpBox.max().x() + (1-i)*tmpBox.min().x();
+                    auto y = j*tmpBox.max().y() + (1-j)*tmpBox.min().y();
+                    auto z = k*tmpBox.max().z() + (1-k)*tmpBox.min().z();
+                    auto v = mMatrix * geom::Vec3(x, y, z);
+                    tmpBox.includePoint(v);
+                }
+            }
+        }
+        bbox = tmpBox;
         return true;
     }
     return false;

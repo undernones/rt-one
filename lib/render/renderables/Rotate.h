@@ -29,8 +29,6 @@ private:
     float mDegrees;
     simd::float3x3 mMatrix;
     simd::float3x3 mInverse;
-    bool mBoxIsValid;
-    geom::AABB mBox;
 };
 
 }
