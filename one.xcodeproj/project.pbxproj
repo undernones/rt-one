@@ -87,6 +87,12 @@
 		F7E49A2C1F6C4F3600FFC97A /* UV.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E49A2A1F6C4F3600FFC97A /* UV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E49A2D1F6C4F3600FFC97A /* UV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E49A2B1F6C4F3600FFC97A /* UV.cpp */; };
 		F7E49A2F1F6C6C5C00FFC97A /* Vec2.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E49A2E1F6C6C5C00FFC97A /* Vec2.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7E49A361F6CA89400FFC97A /* TeapotScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E49A341F6CA89400FFC97A /* TeapotScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7E49A371F6CA89400FFC97A /* TeapotScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E49A351F6CA89400FFC97A /* TeapotScene.cpp */; };
+		F7E49A381F6CAB9300FFC97A /* TriangleMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E49A311F6C80E900FFC97A /* TriangleMesh.cpp */; };
+		F7E49A391F6CAB9700FFC97A /* TriangleMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E49A301F6C80E900FFC97A /* TriangleMesh.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7E49A3C1F6CAC6100FFC97A /* Mesh.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E49A3A1F6CAC6100FFC97A /* Mesh.h */; };
+		F7E49A3D1F6CAC6100FFC97A /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E49A3B1F6CAC6100FFC97A /* Mesh.cpp */; };
 		F7E95A371F4FA64100B962C0 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A351F4FA64100B962C0 /* Material.cpp */; };
 		F7E95A381F4FA64100B962C0 /* Material.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E95A361F4FA64100B962C0 /* Material.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */; };
@@ -239,6 +245,12 @@
 		F7E49A2A1F6C4F3600FFC97A /* UV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UV.h; sourceTree = "<group>"; };
 		F7E49A2B1F6C4F3600FFC97A /* UV.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UV.cpp; sourceTree = "<group>"; };
 		F7E49A2E1F6C6C5C00FFC97A /* Vec2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vec2.h; sourceTree = "<group>"; };
+		F7E49A301F6C80E900FFC97A /* TriangleMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TriangleMesh.h; sourceTree = "<group>"; };
+		F7E49A311F6C80E900FFC97A /* TriangleMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleMesh.cpp; sourceTree = "<group>"; };
+		F7E49A341F6CA89400FFC97A /* TeapotScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeapotScene.h; sourceTree = "<group>"; };
+		F7E49A351F6CA89400FFC97A /* TeapotScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TeapotScene.cpp; sourceTree = "<group>"; };
+		F7E49A3A1F6CAC6100FFC97A /* Mesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		F7E49A3B1F6CAC6100FFC97A /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		F7E95A351F4FA64100B962C0 /* Material.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
 		F7E95A361F4FA64100B962C0 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		F7E95A3D1F4FACA400B962C0 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
@@ -351,6 +363,8 @@
 			children = (
 				F754BC651F50FADF00A75D49 /* AABB.h */,
 				F754BC661F50FADF00A75D49 /* AABB.cpp */,
+				F7E49A301F6C80E900FFC97A /* TriangleMesh.h */,
+				F7E49A311F6C80E900FFC97A /* TriangleMesh.cpp */,
 				F70F91F31F4F085000D585A9 /* Utils.h */,
 				F70F91F21F4F085000D585A9 /* Utils.cpp */,
 				F71B88CA1F44883400D4F3A4 /* Vec3.h */,
@@ -395,6 +409,8 @@
 				F71873DA1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp */,
 				F7B7EF451F60CFE7005BC65A /* RectLightScene.h */,
 				F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */,
+				F7E49A341F6CA89400FFC97A /* TeapotScene.h */,
+				F7E49A351F6CA89400FFC97A /* TeapotScene.cpp */,
 			);
 			path = scenes;
 			sourceTree = "<group>";
@@ -424,6 +440,8 @@
 				F71873CE1F69EB9300D4BD02 /* Scale.cpp */,
 				F71873D11F69F76400D4BD02 /* ConstantMedium.h */,
 				F71873D21F69F76400D4BD02 /* ConstantMedium.cpp */,
+				F7E49A3A1F6CAC6100FFC97A /* Mesh.h */,
+				F7E49A3B1F6CAC6100FFC97A /* Mesh.cpp */,
 			);
 			path = renderables;
 			sourceTree = "<group>";
@@ -501,6 +519,7 @@
 			files = (
 				F7E49A2F1F6C6C5C00FFC97A /* Vec2.h in Headers */,
 				F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */,
+				F7E49A391F6CAB9700FFC97A /* TriangleMesh.h in Headers */,
 				F754BC671F50FADF00A75D49 /* AABB.h in Headers */,
 				F70F91F51F4F085000D585A9 /* Utils.h in Headers */,
 			);
@@ -523,10 +542,12 @@
 				F7B7EF5A1F62D821005BC65A /* FlipNormals.h in Headers */,
 				F7BC88C71F4A49BA00968D42 /* Image.h in Headers */,
 				F71873D71F6A04EE00D4BD02 /* Isotropic.h in Headers */,
+				F7E49A3C1F6CAC6100FFC97A /* Mesh.h in Headers */,
 				F7B7EF621F62F94E005BC65A /* Box.h in Headers */,
 				F7E95A381F4FA64100B962C0 /* Material.h in Headers */,
 				F754BC7B1F511C6200A75D49 /* PerlinTexture.h in Headers */,
 				F7B7EF561F6220E6005BC65A /* CornellBoxScene.h in Headers */,
+				F7E49A361F6CA89400FFC97A /* TeapotScene.h in Headers */,
 				F7C4A8D51F60388900B48268 /* RenderableList.h in Headers */,
 				F7C4A8D21F5F777100B48268 /* Ray.h in Headers */,
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
@@ -688,6 +709,7 @@
 			files = (
 				F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */,
 				F70F91F41F4F085000D585A9 /* Utils.cpp in Sources */,
+				F7E49A381F6CAB9300FFC97A /* TriangleMesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +723,7 @@
 				F71873D41F69F76400D4BD02 /* ConstantMedium.cpp in Sources */,
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
 				F7BF510B1F4DC0B20045DE27 /* Renderer.cpp in Sources */,
+				F7E49A371F6CA89400FFC97A /* TeapotScene.cpp in Sources */,
 				F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */,
 				F7C92B121F51D6BD00BE8752 /* Scene.cpp in Sources */,
 				F7B7EF671F62FC1F005BC65A /* Rotate.cpp in Sources */,
@@ -712,6 +735,7 @@
 				F7B0688B1F5799880083C127 /* Renderable.cpp in Sources */,
 				F7C92B101F51BA1100BE8752 /* BookOneScene.cpp in Sources */,
 				F7C4A8D61F60388900B48268 /* RenderableList.cpp in Sources */,
+				F7E49A3D1F6CAC6100FFC97A /* Mesh.cpp in Sources */,
 				F754BC7A1F511C6200A75D49 /* ImageTexture.cpp in Sources */,
 				F7E95A431F4FAFB500B962C0 /* Lambertian.cpp in Sources */,
 				F754BC7D1F511C6200A75D49 /* PerlinTexture.cpp in Sources */,

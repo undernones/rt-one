@@ -24,6 +24,7 @@
 #include <render/Ray.h>
 #include <render/RectLightScene.h>
 #include <render/Renderer.h>
+#include <render/TeapotScene.h>
 
 #if DEBUG
 #define PARALLEL 0
@@ -112,7 +113,7 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::BookTwoScene>(nx, ny);
+    mScene = std::make_unique<render::TeapotScene>(nx, ny);
 
     // Verify the validity of the camera.
     auto camera = mScene->camera();
