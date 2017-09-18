@@ -26,7 +26,7 @@ public:
 
     ~TriangleMesh() = default;
 
-    const std::vector<geom::Vec3>& verts() const { return mVerts; }
+    const std::vector<Vec3>& verts() const { return mVerts; }
     const std::vector<Triangle>& triangles() const { return mTriangles; }
     const std::vector<Vec3>& normals() const { return mNormals; }
     const std::vector<Vec2>& uvs() const { return mUvs; }
@@ -34,7 +34,7 @@ public:
 private:
     void load(std::istream& stream);
 
-    std::vector<geom::Vec3> mVerts;
+    std::vector<Vec3> mVerts;
     std::vector<Triangle> mTriangles;
     std::vector<Vec3> mNormals;
     std::vector<Vec2> mUvs;

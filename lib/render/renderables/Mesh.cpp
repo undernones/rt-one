@@ -94,9 +94,27 @@ Mesh::intersectFunc(void* userPtr,   /*!< pointer to user data */
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
         ray.geomID = mesh->mGeomId;
         ray.material = mesh->material().get();
-        ray.normal = -ray.normal.normalized();
 
-//        auto triangle = mesh->triangles()[ray.primID];
+        const auto u = ray.uv.u(), v = ray.uv.v(), w = 1.0f-u-v;
+        const auto& triangle = mesh->triangles()[ray.primID];
+
+        const auto& normals = mesh->normals();
+        if (normals.size() > 0) {
+            auto n0 = normals[triangle.v0];
+            auto n1 = normals[triangle.v1];
+            auto n2 = normals[triangle.v2];
+            ray.normal = (n0 * w) + (n1 * u) + (n2 * v);
+        } else {
+            ray.normal = -ray.normal.normalized();
+        }
+
+        const auto& uvs = mesh->uvs();
+        if (uvs.size() > 0) {
+            auto uv0 = uvs[triangle.v0];
+            auto uv1 = uvs[triangle.v1];
+            auto uv2 = uvs[triangle.v2];
+            ray.uv = (uv0 * w) + (uv1 * u) + (uv2 * v);
+        }
     } else {
         ray.geomID = geomID;
     }

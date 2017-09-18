@@ -31,7 +31,10 @@ private:
                               RTCRay& rtcRay,  /*!< ray to intersect */
                               size_t item      /*!< item to intersect */);
 
+    const std::vector<geom::Vec3>& verts() const { return mTriMesh->verts(); }
     const std::vector<geom::Triangle>& triangles() const { return mTriMesh->triangles(); }
+    const std::vector<geom::Vec3>& normals() const { return mTriMesh->normals(); }
+    const std::vector<geom::Vec2>& uvs() const { return mTriMesh->uvs(); }
 
     RTCScene mLocalScene;
     std::shared_ptr<geom::TriangleMesh> mTriMesh;
