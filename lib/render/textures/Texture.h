@@ -5,7 +5,6 @@
 #ifndef RENDER_TEXTURE_H
 #define RENDER_TEXTURE_H
 
-#include <memory>
 #include <geom/Vec2.h>
 #include <geom/Vec3.h>
 

@@ -42,6 +42,9 @@
 		F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */; };
 		F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F794B1971F709E09005D61DE /* obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = F794B1961F709DF0005D61DE /* obj */; };
+		F794B19A1F70C0BA005D61DE /* EnvironmentMap.h in Headers */ = {isa = PBXBuildFile; fileRef = F794B1981F70C0BA005D61DE /* EnvironmentMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F794B19B1F70C0BA005D61DE /* EnvironmentMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F794B1991F70C0BA005D61DE /* EnvironmentMap.cpp */; };
+		F794B19D1F70C37D005D61DE /* 3ds_uffizi_env_map.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = F794B19C1F70C36C005D61DE /* 3ds_uffizi_env_map.jpg */; };
 		F79DA94E1F6AC72400342789 /* BookTwoScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F79DA94C1F6AC72400342789 /* BookTwoScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F79DA94F1F6AC72400342789 /* BookTwoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */; };
 		F7B0688A1F5799880083C127 /* Renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B068881F5799880083C127 /* Renderable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -156,6 +159,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				F794B19D1F70C37D005D61DE /* 3ds_uffizi_env_map.jpg in CopyFiles */,
 				F794B1971F709E09005D61DE /* obj in CopyFiles */,
 				F7C92B1B1F545B5D00BE8752 /* earthmap_hires.jpg in CopyFiles */,
 				F7C92B1C1F545B5D00BE8752 /* moon_map_mercator.jpg in CopyFiles */,
@@ -202,6 +206,9 @@
 		F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookOneWithLightScene.h; sourceTree = "<group>"; };
 		F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneWithLightScene.cpp; sourceTree = "<group>"; };
 		F794B1961F709DF0005D61DE /* obj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = obj; sourceTree = "<group>"; };
+		F794B1981F70C0BA005D61DE /* EnvironmentMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnvironmentMap.h; sourceTree = "<group>"; };
+		F794B1991F70C0BA005D61DE /* EnvironmentMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMap.cpp; sourceTree = "<group>"; };
+		F794B19C1F70C36C005D61DE /* 3ds_uffizi_env_map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3ds_uffizi_env_map.jpg; sourceTree = "<group>"; };
 		F79DA94C1F6AC72400342789 /* BookTwoScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookTwoScene.h; sourceTree = "<group>"; };
 		F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookTwoScene.cpp; sourceTree = "<group>"; };
 		F7B068881F5799880083C127 /* Renderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
@@ -384,6 +391,8 @@
 				F754BC731F5103E700A75D49 /* CheckerTexture3D.cpp */,
 				F754BC6E1F5101DE00A75D49 /* ConstantTexture.h */,
 				F754BC6F1F5101DE00A75D49 /* ConstantTexture.cpp */,
+				F794B1981F70C0BA005D61DE /* EnvironmentMap.h */,
+				F794B1991F70C0BA005D61DE /* EnvironmentMap.cpp */,
 				F754BC781F511C6200A75D49 /* ImageTexture.h */,
 				F754BC761F511C6200A75D49 /* ImageTexture.cpp */,
 				F754BC791F511C6200A75D49 /* PerlinTexture.cpp */,
@@ -487,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				F794B1961F709DF0005D61DE /* obj */,
+				F794B19C1F70C36C005D61DE /* 3ds_uffizi_env_map.jpg */,
 				F7C92B181F545B1B00BE8752 /* earthmap_hires.jpg */,
 				F7C92B191F545B1B00BE8752 /* moon_map_mercator.jpg */,
 			);
@@ -558,6 +568,7 @@
 				F7B7EF431F60CEDF005BC65A /* Rectangle.h in Headers */,
 				F7B7EF5E1F62E19F005BC65A /* Transform.h in Headers */,
 				F7B7EF471F60CFE7005BC65A /* RectLightScene.h in Headers */,
+				F794B19A1F70C0BA005D61DE /* EnvironmentMap.h in Headers */,
 				F754BC7C1F511C6200A75D49 /* ImageTexture.h in Headers */,
 				F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */,
 				F7E49A2C1F6C4F3600FFC97A /* UV.h in Headers */,
@@ -723,6 +734,7 @@
 			files = (
 				F754BC751F5103E800A75D49 /* CheckerTexture3D.cpp in Sources */,
 				F7B7EF631F62F94E005BC65A /* Box.cpp in Sources */,
+				F794B19B1F70C0BA005D61DE /* EnvironmentMap.cpp in Sources */,
 				F71873DC1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp in Sources */,
 				F71873D41F69F76400D4BD02 /* ConstantMedium.cpp in Sources */,
 				F70F91F01F4E5F1500D585A9 /* Camera.cpp in Sources */,
