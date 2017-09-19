@@ -15,14 +15,7 @@ Scale::Scale(const geom::Vec3& scale, std::shared_ptr<Renderable>& object)
 Scale::Scale(const geom::Vec3& scale, std::shared_ptr<Renderable>&& object)
     : Transform(object)
     , mScale(scale)
-    , mBoxIsValid(false)
 {
-    if (mObject != nullptr && mObject->bbox(0, 1, mBox)) {
-        mBoxIsValid = true;
-        auto min = mBox.min() * mScale;
-        auto max = mBox.max() * mScale;
-        mBox = geom::AABB(min, max);
-    }
 }
 
 Ray
@@ -52,8 +45,15 @@ Scale::transform(Ray& ray) const
 bool
 Scale::bbox(float t0, float t1, geom::AABB& bbox) const
 {
-    if (mBoxIsValid) {
-        bbox = mBox;
+    if (mObject == nullptr) {
+        return false;
+    }
+
+    auto tmpBox = geom::AABB();
+    if (mObject->bbox(0, 1, tmpBox)) {
+        auto min = tmpBox.min() * mScale;
+        auto max = tmpBox.max() * mScale;
+        bbox = geom::AABB(min, max);
         return true;
     }
     return false;

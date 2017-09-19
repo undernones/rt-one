@@ -26,8 +26,6 @@ protected:
 
 private:
     geom::Vec3 mScale;
-    bool mBoxIsValid;
-    geom::AABB mBox;
 };
 
 }
