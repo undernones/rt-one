@@ -41,6 +41,7 @@
 		F754BC831F511FD500A75D49 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC821F511FD500A75D49 /* stb_image.h */; };
 		F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */; };
 		F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F794B1971F709E09005D61DE /* obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = F794B1961F709DF0005D61DE /* obj */; };
 		F79DA94E1F6AC72400342789 /* BookTwoScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F79DA94C1F6AC72400342789 /* BookTwoScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F79DA94F1F6AC72400342789 /* BookTwoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */; };
 		F7B0688A1F5799880083C127 /* Renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B068881F5799880083C127 /* Renderable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -155,6 +156,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				F794B1971F709E09005D61DE /* obj in CopyFiles */,
 				F7C92B1B1F545B5D00BE8752 /* earthmap_hires.jpg in CopyFiles */,
 				F7C92B1C1F545B5D00BE8752 /* moon_map_mercator.jpg in CopyFiles */,
 			);
@@ -199,6 +201,7 @@
 		F754BC821F511FD500A75D49 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookOneWithLightScene.h; sourceTree = "<group>"; };
 		F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneWithLightScene.cpp; sourceTree = "<group>"; };
+		F794B1961F709DF0005D61DE /* obj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = obj; sourceTree = "<group>"; };
 		F79DA94C1F6AC72400342789 /* BookTwoScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookTwoScene.h; sourceTree = "<group>"; };
 		F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookTwoScene.cpp; sourceTree = "<group>"; };
 		F7B068881F5799880083C127 /* Renderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
@@ -483,6 +486,7 @@
 		F7C92B171F545AE900BE8752 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F794B1961F709DF0005D61DE /* obj */,
 				F7C92B181F545B1B00BE8752 /* earthmap_hires.jpg */,
 				F7C92B191F545B1B00BE8752 /* moon_map_mercator.jpg */,
 			);

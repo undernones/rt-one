@@ -34,7 +34,7 @@ TeapotScene::TeapotScene(int width, int height)
     auto teapotMaterial = make_shared<Lambertian>(teapotTexture);
     auto metalMaterial = make_shared<Metal>(geom::Vec3(0.7, 0.6, 0.5), 0.05);
 
-    auto triMesh = make_shared<geom::TriangleMesh>("/Users/stephen_ward/code/wray/scenes/obj/teapot.obj");
+    auto triMesh = make_shared<geom::TriangleMesh>("obj/teapot.obj");
     auto mesh = make_shared<Mesh>(triMesh, teapotMaterial);
     list.emplace_back(make_shared<Rotate>(geom::Vec3(1, 0, 0), -90, mesh));
     list.emplace_back(make_shared<Rectangle>(Plane::XZ, -600, 600, -600, 600, 0.5, metalMaterial));
