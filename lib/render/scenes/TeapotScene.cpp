@@ -11,6 +11,7 @@
 #include "Dielectric.h"
 #include "DiffuseLight.h"
 #include "FlipNormals.h"
+#include "ImageTexture.h"
 #include "Lambertian.h"
 #include "Mesh.h"
 #include "Metal.h"
@@ -71,14 +72,14 @@ TeapotScene::TeapotScene(int width, int height)
     mRoot = std::make_shared<RenderableList>(list);
     commit();
 
-    auto eye = geom::Vec3(0, 90, -130);
-    auto lookAt = geom::Vec3(0, 0, -10);
+    auto eye = geom::Vec3(0, 30, -130);
+    auto lookAt = geom::Vec3(0, 50, -10);
     auto up = geom::Vec3(0, 1, 0);
     auto focusDistance = (eye - lookAt).length();
     auto aperture = 0.f;
     mCamera = Camera(eye, lookAt, up, 55, width, height, aperture, focusDistance, 0, 1);
 
-    mBgIntensity = 0.5f;
+    mEnvMap = make_shared<EnvironmentMap>(ImageTexture::loadFromFile("3ds_uffizi_env_map.jpg"));
 }
 
 }

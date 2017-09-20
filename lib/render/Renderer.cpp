@@ -14,6 +14,7 @@
 // One
 #include <geom/Utils.h>
 
+#include "EnvironmentMap.h"
 #include "Material.h"
 #include "Scene.h"
 
@@ -52,10 +53,13 @@ Renderer::trace(Ray ray, const Scene& scene, int depth)
         
         return result;
     }
-    auto unitDir = ray.direction.normalized();
-    auto t = 0.5 * (unitDir.y() + 1.0);
-    auto result = (1.0 - t) * geom::Vec3(1, 1, 1) + t * geom::Vec3(0.5, 0.7, 1);
-    return scene.bgIntensity() * result;
+
+    const auto& envMap = scene.environmentMap();
+    if (envMap != nullptr) {
+        return envMap->value(ray.direction);
+    } else {
+        return geom::Vec3(0.f);
+    }
 }
 
 }

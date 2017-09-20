@@ -51,7 +51,7 @@ namespace render
 Scene::Scene()
     : mDevice(nullptr)
     , mScene(nullptr)
-    , mBgIntensity(1.f)
+    , mEnvMap(nullptr)
 {
     mDevice = rtcNewDevice(NULL);
     if (mDevice == nullptr) {

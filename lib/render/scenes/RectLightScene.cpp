@@ -41,7 +41,7 @@ RectLightScene::RectLightScene(int width, int height)
     auto t1 = 1.f;
     mCamera = render::Camera(eye, lookAt, up, 30, width, height, aperture, focusDistance, t0, t1);
 
-    mBgIntensity = 0.f;
+    // No environment light
 }
 
 }

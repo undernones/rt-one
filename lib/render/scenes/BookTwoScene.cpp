@@ -90,7 +90,7 @@ BookTwoScene::BookTwoScene(int width, int height)
     auto t1 = 1.f;
     mCamera = Camera(eye, lookAt, up, 40, width, height, aperture, focusDistance, t0, t1);
 
-    mBgIntensity = 0.f;
+    // No environment light
 }
 
 }

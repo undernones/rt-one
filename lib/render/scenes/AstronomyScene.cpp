@@ -8,6 +8,7 @@
 
 #include "CheckerTexture3D.h"
 #include "ConstantTexture.h"
+#include "GradientTexture.h"
 #include "RenderableList.h"
 #include "ImageTexture.h"
 #include "Lambertian.h"
@@ -47,6 +48,8 @@ AstronomyScene::AstronomyScene(int width, int height)
     auto t0 = 0.f;
     auto t1 = 1.f;
     mCamera = render::Camera(eye, lookAt, up, 20, width, height, aperture, focusDistance, t0, t1);
+
+    mEnvMap = std::make_shared<EnvironmentMap>(std::make_shared<GradientTexture>(geom::Vec3(1.f), geom::Vec3(0.5, 0.7, 1)));
 }
 
 }

@@ -5,9 +5,7 @@
 #ifndef RENDER_IMAGE_TEXTURE_H
 #define RENDER_IMAGE_TEXTURE_H
 
-#include "Texture.h"
-
-#include <vector>
+#include <render/Texture.h>
 
 namespace render
 {
