@@ -6,7 +6,6 @@
 #define RENDER_SCENE_H
 
 #include <embree2/rtcore_ray.h>
-#include <unordered_map>
 #include <vector>
 
 #include <render/Camera.h>
