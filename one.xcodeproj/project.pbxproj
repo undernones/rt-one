@@ -205,6 +205,7 @@
 		F754BC7E1F511D1500A75D49 /* Perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Perlin.h; sourceTree = "<group>"; };
 		F754BC7F1F511D1500A75D49 /* Perlin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perlin.cpp; sourceTree = "<group>"; };
 		F754BC821F511FD500A75D49 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		F755BCCA1F7341CE00ED1379 /* One.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = One.xcconfig; sourceTree = "<group>"; };
 		F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookOneWithLightScene.h; sourceTree = "<group>"; };
 		F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneWithLightScene.cpp; sourceTree = "<group>"; };
 		F78416201F71F83F003ACFC2 /* GradientTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientTexture.h; sourceTree = "<group>"; };
@@ -273,7 +274,7 @@
 		F7E95A421F4FAFB500B962C0 /* Lambertian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lambertian.h; sourceTree = "<group>"; };
 		F7E95A451F4FCB2B00B962C0 /* Metal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Metal.cpp; sourceTree = "<group>"; };
 		F7E95A461F4FCB2B00B962C0 /* Metal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metal.h; sourceTree = "<group>"; };
-		F7E95A491F4FD65A00B962C0 /* libtbb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtbb.dylib; path = ../../../../usr/local/Cellar/tbb/2017_U7/lib/libtbb.dylib; sourceTree = "<group>"; };
+		F7E95A491F4FD65A00B962C0 /* libtbb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtbb.dylib; path = /usr/local/lib/libtbb.dylib; sourceTree = "<group>"; };
 		F7E95A4B1F4FD87600B962C0 /* Dielectric.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dielectric.cpp; sourceTree = "<group>"; };
 		F7E95A4C1F4FD87600B962C0 /* Dielectric.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dielectric.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -368,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */,
+				F755BCCA1F7341CE00ED1379 /* One.xcconfig */,
 			);
 			path = config;
 			sourceTree = "<group>";
@@ -818,7 +820,6 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -856,7 +857,6 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -886,25 +886,17 @@
 		};
 		F71B88B91F43379000D4F3A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F755BCCA1F7341CE00ED1379 /* One.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/tbb/2017_U7/lib,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		F71B88BA1F43379000D4F3A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F755BCCA1F7341CE00ED1379 /* One.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/tbb/2017_U7/lib,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};

@@ -40,6 +40,9 @@ CLANG_CXX_LIBRARY = libc++
 // Warns about issues in documentation comments (doxygen-style) such as missing or incorrect documentation tags.
 CLANG_WARN_DOCUMENTATION_COMMENTS = NO
 
+// Warn about implicit conversions to boolean values that are suspicious. For example, writing `if (foo)` where `foo` is the name a function will trigger a warning.
+CLANG_WARN_BOOL_CONVERSION = YES
+
 // Warn about loop bodies that are suspiciously empty.
 CLANG_WARN_EMPTY_BODY = YES
 
