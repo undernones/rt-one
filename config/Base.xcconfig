@@ -40,6 +40,9 @@ CLANG_CXX_LIBRARY = libc++
 // Warns about issues in documentation comments (doxygen-style) such as missing or incorrect documentation tags.
 CLANG_WARN_DOCUMENTATION_COMMENTS = NO
 
+// Warn about loop bodies that are suspiciously empty.
+CLANG_WARN_EMPTY_BODY = YES
+
 // Space-separated list of preprocessor macros of the form "foo" or "foo=bar".
 GCC_PREPROCESSOR_DEFINITIONS = $(GCC_PREPROCESSOR_DEFINITIONS_$(CONFIGURATION)) $(inherited)
 GCC_PREPROCESSOR_DEFINITIONS_Debug = DEBUG=1
@@ -47,3 +50,8 @@ GCC_PREPROCESSOR_DEFINITIONS_Release = RELEASE=1
 
 // Enabling this option causes all warnings to be treated as errors.
 GCC_TREAT_WARNINGS_AS_ERRORS = NO
+
+// Controls whether assertion logic provided by `NSAssert` is included in the preprocessed source code or is elided during preprocessing. Disabling assertions can improve code performance.
+ENABLE_NS_ASSERTIONS = $(ENABLE_NS_ASSERTIONS_$(CONFIGURATION))
+ENABLE_NS_ASSERTIONS_Debug = YES
+ENABLE_NS_ASSERTIONS_Release = NO
