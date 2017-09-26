@@ -39,6 +39,10 @@
 		F754BC801F511D1500A75D49 /* Perlin.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC7E1F511D1500A75D49 /* Perlin.h */; };
 		F754BC811F511D1500A75D49 /* Perlin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC7F1F511D1500A75D49 /* Perlin.cpp */; };
 		F754BC831F511FD500A75D49 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC821F511FD500A75D49 /* stb_image.h */; };
+		F7664EF91F79DEB4007543CA /* renderTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7664EF81F79DEB4007543CA /* renderTests.mm */; };
+		F7664EFB1F79DEB4007543CA /* librender.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BC88BF1F4A495000968D42 /* librender.a */; };
+		F7664F081F79DF51007543CA /* geomTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = F7664F071F79DF51007543CA /* geomTests.mm */; };
+		F7664F0A1F79DF51007543CA /* libgeom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F71B88CF1F44890100D4F3A4 /* libgeom.a */; };
 		F77CB8BB1F54EC1E00ACDD2A /* BookOneWithLightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */; };
 		F77CB8BC1F54EC2200ACDD2A /* BookOneWithLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F78416221F71F83F003ACFC2 /* GradientTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = F78416201F71F83F003ACFC2 /* GradientTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -114,6 +118,20 @@
 
 /* Begin PBXContainerItemProxy section */
 		F71B88D91F448E8200D4F3A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F71B88A91F43379000D4F3A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F71B88CE1F44890100D4F3A4;
+			remoteInfo = geom;
+		};
+		F7664EFC1F79DEB4007543CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F71B88A91F43379000D4F3A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7BC88BE1F4A495000968D42;
+			remoteInfo = render;
+		};
+		F7664F0B1F79DF51007543CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F71B88A91F43379000D4F3A4 /* Project object */;
 			proxyType = 1;
@@ -206,6 +224,12 @@
 		F754BC7F1F511D1500A75D49 /* Perlin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perlin.cpp; sourceTree = "<group>"; };
 		F754BC821F511FD500A75D49 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		F755BCCA1F7341CE00ED1379 /* One.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = One.xcconfig; sourceTree = "<group>"; };
+		F7664EF61F79DEB4007543CA /* renderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = renderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7664EF81F79DEB4007543CA /* renderTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = renderTests.mm; sourceTree = "<group>"; };
+		F7664EFA1F79DEB4007543CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7664F051F79DF51007543CA /* geomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = geomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7664F071F79DF51007543CA /* geomTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = geomTests.mm; sourceTree = "<group>"; };
+		F7664F091F79DF51007543CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F77CB8B81F54EBD300ACDD2A /* BookOneWithLightScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookOneWithLightScene.h; sourceTree = "<group>"; };
 		F77CB8B91F54EBD300ACDD2A /* BookOneWithLightScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BookOneWithLightScene.cpp; sourceTree = "<group>"; };
 		F78416201F71F83F003ACFC2 /* GradientTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientTexture.h; sourceTree = "<group>"; };
@@ -297,6 +321,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F7664EF31F79DEB4007543CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7664EFB1F79DEB4007543CA /* librender.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7664F021F79DF51007543CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7664F0A1F79DF51007543CA /* libgeom.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F7BC88BC1F4A495000968D42 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,6 +368,8 @@
 				F71B88C61F43CC9300D4F3A4 /* config */,
 				F71B88B31F43379000D4F3A4 /* wrender */,
 				F7BF50F91F4D0EC40045DE27 /* viewer */,
+				F7664EF71F79DEB4007543CA /* renderTests */,
+				F7664F061F79DF51007543CA /* geomTests */,
 				F71B88B21F43379000D4F3A4 /* Products */,
 				F71B88C31F43CC2D00D4F3A4 /* Frameworks */,
 			);
@@ -340,6 +382,8 @@
 				F71B88CF1F44890100D4F3A4 /* libgeom.a */,
 				F7BC88BF1F4A495000968D42 /* librender.a */,
 				F7BF50F81F4D0EC30045DE27 /* viewer */,
+				F7664EF61F79DEB4007543CA /* renderTests.xctest */,
+				F7664F051F79DF51007543CA /* geomTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -433,6 +477,24 @@
 				F7E49A351F6CA89400FFC97A /* TeapotScene.cpp */,
 			);
 			path = scenes;
+			sourceTree = "<group>";
+		};
+		F7664EF71F79DEB4007543CA /* renderTests */ = {
+			isa = PBXGroup;
+			children = (
+				F7664EF81F79DEB4007543CA /* renderTests.mm */,
+				F7664EFA1F79DEB4007543CA /* Info.plist */,
+			);
+			path = renderTests;
+			sourceTree = "<group>";
+		};
+		F7664F061F79DF51007543CA /* geomTests */ = {
+			isa = PBXGroup;
+			children = (
+				F7664F071F79DF51007543CA /* geomTests.mm */,
+				F7664F091F79DF51007543CA /* Info.plist */,
+			);
+			path = geomTests;
 			sourceTree = "<group>";
 		};
 		F7B068871F5799590083C127 /* renderables */ = {
@@ -633,6 +695,42 @@
 			productReference = F71B88CF1F44890100D4F3A4 /* libgeom.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		F7664EF51F79DEB4007543CA /* renderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7664F001F79DEB4007543CA /* Build configuration list for PBXNativeTarget "renderTests" */;
+			buildPhases = (
+				F7664EF21F79DEB4007543CA /* Sources */,
+				F7664EF31F79DEB4007543CA /* Frameworks */,
+				F7664EF41F79DEB4007543CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7664EFD1F79DEB4007543CA /* PBXTargetDependency */,
+			);
+			name = renderTests;
+			productName = renderTests;
+			productReference = F7664EF61F79DEB4007543CA /* renderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F7664F041F79DF51007543CA /* geomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7664F0D1F79DF51007543CA /* Build configuration list for PBXNativeTarget "geomTests" */;
+			buildPhases = (
+				F7664F011F79DF51007543CA /* Sources */,
+				F7664F021F79DF51007543CA /* Frameworks */,
+				F7664F031F79DF51007543CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7664F0C1F79DF51007543CA /* PBXTargetDependency */,
+			);
+			name = geomTests;
+			productName = geomTests;
+			productReference = F7664F051F79DF51007543CA /* geomTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F7BC88BE1F4A495000968D42 /* render */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7BC88C01F4A495000968D42 /* Build configuration list for PBXNativeTarget "render" */;
@@ -687,6 +785,14 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
+					F7664EF51F79DEB4007543CA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F7664F041F79DF51007543CA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					F7BC88BE1F4A495000968D42 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
@@ -714,9 +820,28 @@
 				F71B88CE1F44890100D4F3A4 /* geom */,
 				F7BC88BE1F4A495000968D42 /* render */,
 				F7BF50F71F4D0EC30045DE27 /* viewer */,
+				F7664F041F79DF51007543CA /* geomTests */,
+				F7664EF51F79DEB4007543CA /* renderTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F7664EF41F79DEB4007543CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7664F031F79DF51007543CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F71B88AD1F43379000D4F3A4 /* Sources */ = {
@@ -734,6 +859,22 @@
 				F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */,
 				F70F91F41F4F085000D585A9 /* Utils.cpp in Sources */,
 				F7E49A381F6CAB9300FFC97A /* TriangleMesh.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7664EF21F79DEB4007543CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7664EF91F79DEB4007543CA /* renderTests.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7664F011F79DF51007543CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7664F081F79DF51007543CA /* geomTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,6 +939,16 @@
 			isa = PBXTargetDependency;
 			target = F71B88CE1F44890100D4F3A4 /* geom */;
 			targetProxy = F71B88D91F448E8200D4F3A4 /* PBXContainerItemProxy */;
+		};
+		F7664EFD1F79DEB4007543CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7BC88BE1F4A495000968D42 /* render */;
+			targetProxy = F7664EFC1F79DEB4007543CA /* PBXContainerItemProxy */;
+		};
+		F7664F0C1F79DF51007543CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F71B88CE1F44890100D4F3A4 /* geom */;
+			targetProxy = F7664F0B1F79DF51007543CA /* PBXContainerItemProxy */;
 		};
 		F7BC88CA1F4A4AD000968D42 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -920,6 +1071,126 @@
 			};
 			name = Release;
 		};
+		F7664EFE1F79DEB4007543CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = renderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.undernones.renderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F7664EFF1F79DEB4007543CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = renderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.undernones.renderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F7664F0E1F79DF51007543CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = geomTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.undernones.geomTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F7664F0F1F79DF51007543CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = geomTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.undernones.geomTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		F7BC88C11F4A495000968D42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -990,6 +1261,24 @@
 			buildConfigurations = (
 				F71B88D11F44890100D4F3A4 /* Debug */,
 				F71B88D21F44890100D4F3A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7664F001F79DEB4007543CA /* Build configuration list for PBXNativeTarget "renderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7664EFE1F79DEB4007543CA /* Debug */,
+				F7664EFF1F79DEB4007543CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7664F0D1F79DF51007543CA /* Build configuration list for PBXNativeTarget "geomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7664F0E1F79DF51007543CA /* Debug */,
+				F7664F0F1F79DF51007543CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
