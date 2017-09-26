@@ -51,12 +51,12 @@ TeapotScene::TeapotScene(int width, int height)
     }
 
     // Make a light and put a bit of a frame around it
-    const auto LIGHT_LEFT = -12;
-    const auto LIGHT_RIGHT = 12;
-    const auto LIGHT_BACK = -12;
-    const auto LIGHT_FRONT = 12;
-    const auto LIGHT_TOP = 95;
-    const auto LIGHT_BOX_HEIGHT = 15;
+    const auto LIGHT_LEFT = -15;
+    const auto LIGHT_RIGHT = 15;
+    const auto LIGHT_BACK = -15;
+    const auto LIGHT_FRONT = 15;
+    const auto LIGHT_TOP = 85;
+    const auto LIGHT_BOX_HEIGHT = 10;
     auto lightBoxTexture = make_shared<ConstantTexture>(geom::Vec3(0.01f));
     auto lightBoxMaterial = make_shared<Lambertian>(lightBoxTexture);
     auto light = make_shared<DiffuseLight>(make_shared<ConstantTexture>(geom::Vec3(21.f)));
@@ -72,14 +72,12 @@ TeapotScene::TeapotScene(int width, int height)
     mRoot = std::make_shared<RenderableList>(list);
     commit();
 
-    auto eye = geom::Vec3(0, 30, -130);
-    auto lookAt = geom::Vec3(0, 50, -10);
+    auto eye = geom::Vec3(0, 50, -130);
+    auto lookAt = geom::Vec3(0, 20, -10);
     auto up = geom::Vec3(0, 1, 0);
     auto focusDistance = (eye - lookAt).length();
     auto aperture = 0.f;
     mCamera = Camera(eye, lookAt, up, 55, width, height, aperture, focusDistance, 0, 1);
-
-    mEnvMap = make_shared<EnvironmentMap>(ImageTexture::loadFromFile("3ds_uffizi_env_map.jpg"));
 }
 
 }

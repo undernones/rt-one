@@ -40,8 +40,8 @@ namespace
 const auto nx = 1680;
 const auto ny = 1050;
 #else
-const auto nx = 600;
-const auto ny = 300;
+const auto nx = 640;
+const auto ny = 400;
 #endif
 
 void
