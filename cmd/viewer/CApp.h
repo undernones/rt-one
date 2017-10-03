@@ -49,6 +49,7 @@ private:
     SDL_Renderer* mRenderer;
     SDL_Texture* mTexture;
 
+    geom::Vec3 mUpVector;
     std::unique_ptr<render::Scene> mScene;
     render::Image mImage;
 };

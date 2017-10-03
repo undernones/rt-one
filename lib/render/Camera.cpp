@@ -10,13 +10,17 @@ namespace render
 {
 
 Camera::Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom::Vec3& up, float fov, int width, int height, float aperture, float focusDistance, float t0, float t1)
-    : mOrigin(position)
+    : mPosition(position)
+    , mLookAt(lookAt)
     , mLowerLeft(0, 0, 0)
     , mHorizontal(0, 0, 0)
     , mVertical(0, 0, 0)
+    , mUpVector(up)
+    , mFov(fov)
     , mWidth(width)
     , mHeight(height)
     , mLensRadius(aperture * 0.5)
+    , mFocusDistance(focusDistance)
     , mTime0(t0)
     , mTime1(t1)
 {
@@ -40,7 +44,7 @@ Camera::getRay(float s, float t) const
     auto time = geom::lerp(mTime0, mTime1, drand48());
     auto rd = mLensRadius * geom::randomInUnitDisk();
     auto offset = mU * rd.x() + mV * rd.y();
-    auto origin = mOrigin + offset;
+    auto origin = mPosition + offset;
     auto result = Ray(origin, mLowerLeft + s*mHorizontal + t*mVertical - origin, time);
     return result;
 }

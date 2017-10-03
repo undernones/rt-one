@@ -23,6 +23,11 @@ public:
     Vec3(const simd::float3& v) : e(v) {}
 
     operator simd::float3() const { return e; }
+    bool operator==(const Vec3& rhs) const {
+        return fabs(e[0] - rhs.e[0]) < 1e-4
+            && fabs(e[1] - rhs.e[1]) < 1e-4
+            && fabs(e[2] - rhs.e[2]) < 1e-4;
+    }
 
     inline float x() const { return e[0]; }
     inline float y() const { return e[1]; }

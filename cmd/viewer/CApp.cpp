@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 // One
+#include <geom/Utils.h>
 #include <geom/Vec3.h>
 #include <render/AstronomyScene.h>
 #include <render/BookOneScene.h>
@@ -113,7 +114,8 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::TeapotScene>(nx, ny);
+    mScene = std::make_unique<render::BookOneScene>(nx, ny);
+    mUpVector = mScene->camera().up();
 
     // Verify the validity of the camera.
     auto camera = mScene->camera();
@@ -229,7 +231,39 @@ void
 CApp::OnMouseMotion(const SDL_MouseMotionEvent& event)
 {
     if (event.state & SDL_BUTTON_LMASK) {
-        // TODO: rotate
+        mIsDragging = true;
+
+        // In order to support tumbling, we make a copy of the old camera with a new position.
+        // We compute the new position by converting the old cartesian coordinates to spherical
+        // coordinates, add radian offsets derived from the mouse movement, and convert back to
+        // cartesian.
+        const auto& oldCamera = mScene->camera();
+
+        // Compute the offset from the mouse movement
+        auto polarOffset = geom::Vec2(geom::toRadians(-event.xrel), geom::toRadians(-event.yrel));
+
+        // This is the vector we will be rotating
+        auto lookToCamera = oldCamera.position() - oldCamera.lookAt();
+
+        // Do the coordinate space conversions with the offset
+        auto polar = geom::cartesianToPolar(lookToCamera);
+        auto newPolar = polar + polarOffset;
+        auto newLookToCamera = geom::polarToCartesian(newPolar) * lookToCamera.length();
+        auto newPosition = oldCamera.lookAt() + newLookToCamera;
+
+        // Here we make the copy with the new position, and we maintain the original up vector.
+        auto newCamera = render::Camera(newPosition,
+                                        oldCamera.lookAt(),
+                                        mUpVector,
+                                        oldCamera.fov(),
+                                        oldCamera.width(),
+                                        oldCamera.height(),
+                                        oldCamera.aperture(),
+                                        oldCamera.focusDistance(),
+                                        oldCamera.time0(),
+                                        oldCamera.time1());
+        mScene->setCamera(newCamera);
+        mNeedsToClear = true;
     }
 }
 
@@ -294,7 +328,7 @@ CApp::OnRender()
     auto diff = std::chrono::duration<double, std::milli>(end - start).count();
     totalTimeMs += diff;
     auto fps = ++totalPasses / (totalTimeMs / 1000);
-    std::cout << diff << " ms,\t" << fps << " FPS\t" << totalPasses << " samples" << std::endl;
+    std::cout << diff << " ms,\t" << fps << " FPS\t" << mSampleCount << " samples" << std::endl;
 
     showImage(mImage, mChannel, mRenderer, mTexture);
 }

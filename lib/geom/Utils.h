@@ -5,6 +5,7 @@
 #ifndef GEOM_UTILS_H
 #define GEOM_UTILS_H
 
+#include "Vec2.h"
 #include "Vec3.h"
 
 namespace geom
@@ -24,6 +25,9 @@ T lerp(const T& a, const T& b, float t)
 {
     return (1 - t) * a + t * b;
 }
+
+Vec2 cartesianToPolar(const Vec3& cartesian);
+Vec3 polarToCartesian(const Vec2& polar);
 
 }
 

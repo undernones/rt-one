@@ -63,4 +63,37 @@ toDegrees(float radians)
     return radians * 180 / M_PI;
 }
 
+Vec2
+cartesianToPolar(const Vec3& cartesian)
+{
+    // TODO: we probably don't need to normalize.
+    // See: http://keisan.casio.com/exec/system/1359533867
+    const auto unitVector = cartesian.normalized();
+    auto x = unitVector.x();
+    auto y = unitVector.y();
+    auto z = unitVector.z();
+
+    auto theta = std::atan2(x, z);
+    auto phi = std::atan2(std::hypot(x, z), y);
+
+    return Vec2(theta, phi);
+}
+
+Vec3
+polarToCartesian(const Vec2& polar)
+{
+    auto theta = polar.u();
+    auto phi = polar.v();
+
+    auto sinPhi = std::sin(phi);
+    auto cosPhi = std::cos(phi);
+    auto sinTheta = std::sin(theta);
+    auto cosTheta = std::cos(theta);
+
+    auto x = sinPhi * sinTheta;
+    auto z = sinPhi * cosTheta;
+    auto y = cosPhi;
+    return Vec3(x, y, z);
+}
+
 }
