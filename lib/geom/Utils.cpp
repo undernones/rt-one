@@ -80,7 +80,7 @@ cartesianToSpherical(const Vec3& cartesian)
 Vec3
 sphericalToCartesian(const Vec3& spherical)
 {
-    auto radius = spherica.u();
+    auto radius = spherical.u();
     auto theta = spherical.v();
     auto phi = spherical.w();
 
