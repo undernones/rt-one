@@ -35,6 +35,9 @@ public:
     inline float r() const { return e[0]; }
     inline float g() const { return e[1]; }
     inline float b() const { return e[2]; }
+    inline float u() const { return e[0]; }
+    inline float v() const { return e[1]; }
+    inline float w() const { return e[2]; }
 
     inline const Vec3& operator+() const { return *this; }
     inline Vec3 operator-() const { return Vec3(-e); }

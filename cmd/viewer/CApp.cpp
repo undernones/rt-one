@@ -240,15 +240,15 @@ CApp::OnMouseMotion(const SDL_MouseMotionEvent& event)
         const auto& oldCamera = mScene->camera();
 
         // Compute the offset from the mouse movement
-        auto polarOffset = geom::Vec2(geom::toRadians(-event.xrel), geom::toRadians(-event.yrel));
+        auto sphericalOffset = geom::Vec3(0, geom::toRadians(-event.xrel), geom::toRadians(-event.yrel));
 
         // This is the vector we will be rotating
         auto lookToCamera = oldCamera.position() - oldCamera.lookAt();
 
         // Do the coordinate space conversions with the offset
-        auto polar = geom::cartesianToPolar(lookToCamera);
-        auto newPolar = polar + polarOffset;
-        auto newLookToCamera = geom::polarToCartesian(newPolar) * lookToCamera.length();
+        auto spherical = geom::cartesianToSpherical(lookToCamera);
+        auto newSpherical = spherical + sphericalOffset;
+        auto newLookToCamera = geom::sphericalToCartesian(newSpherical);
         auto newPosition = oldCamera.lookAt() + newLookToCamera;
 
         // Here we make the copy with the new position, and we maintain the original up vector.

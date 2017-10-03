@@ -20,27 +20,27 @@ NSString *vectorToString(const geom::Vec3& v)
 
 @implementation geomTests
 
-- (void)testPolarCartesianRoundTrip
+- (void)testSphericalCartesianRoundTrip
 {
     auto v = geom::Vec3(256, 5, -130);
-    auto polar = geom::cartesianToPolar(v);
-    auto cartesian = geom::polarToCartesian(polar) * v.length();
+    auto spherical = geom::cartesianToSpherical(v);
+    auto cartesian = geom::sphericalToCartesian(spherical);
 
     auto stream = std::stringstream();
     stream << "Reference: " << v << ", Computed: " << cartesian;
     XCTAssert(v == cartesian, @"%s", stream.str().c_str());
 }
 
-- (void)testPolarCartesianRoundTripMultipleTimes
+- (void)testSphericalCartesianRoundTripMultipleTimes
 {
     const auto v = geom::Vec3(0, 1, 14);
-    auto polar = geom::cartesianToPolar(v);
-    auto cartesian = geom::polarToCartesian(polar) * v.length();
+    auto spherical = geom::cartesianToSpherical(v);
+    auto cartesian = geom::sphericalToCartesian(spherical);
 
     for (auto i = 0; i < 200; ++i) {
         XCTAssert(v == cartesian, @"Iteration: %d, Reference: %@, Computed: %@", i, vectorToString(v), vectorToString(cartesian));
-        polar = geom::cartesianToPolar(cartesian);
-        cartesian = geom::polarToCartesian(polar) * v.length();
+        spherical = geom::cartesianToSpherical(cartesian);
+        cartesian = geom::sphericalToCartesian(spherical);
     }
 }
 
