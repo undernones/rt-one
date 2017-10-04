@@ -40,7 +40,7 @@ EmbreeErrorToString(RTCError error)
 void
 errorHandler(void* userPtr, const RTCError code, const char* str)
 {
-    std::cerr << "*** Error: " << EmbreeErrorToString(code) << std::endl;
+    std::cerr << "*** Error: " << EmbreeErrorToString(code) << "; " << str << std::endl;
 }
 
 }
@@ -74,9 +74,6 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-    for (const auto& geomId : mGeomIds) {
-        rtcDeleteGeometry(mScene, geomId);
-    }
     if (mScene != nullptr) {
         rtcDeleteScene(mScene);
     }
