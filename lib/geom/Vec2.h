@@ -5,6 +5,8 @@
 #ifndef GEOM_VEC2_H
 #define GEOM_VEC2_H
 
+#include <array>
+#include <cmath>
 #include <simd/simd.h>
 #include <iostream>
 
@@ -16,10 +18,17 @@ public:
     Vec2() : Vec2(0.f) {}
     Vec2(float value) : Vec2(value, value) {}
     Vec2(const float values[2]) : Vec2(values[0], values[1]) {}
+    Vec2(const std::array<float, 2>& values) : Vec2(values[0], values[1]) {}
     Vec2(float e0, float e1) { e[0] = e0; e[1] = e1; }
     Vec2(const simd::float2& v) : e(v) {}
 
     operator simd::float2() const { return e; }
+    operator std::array<float, 2>() const { return { e[0], e[1] }; }
+
+    bool operator==(const Vec2& rhs) const {
+        return fabs(e[0] - rhs.e[0]) < 1e-4
+            && fabs(e[1] - rhs.e[1]) < 1e-4;
+    }
 
     inline float x() const { return e[0]; }
     inline float y() const { return e[1]; }

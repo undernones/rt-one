@@ -5,6 +5,7 @@
 #ifndef GEOM_VEC3_H
 #define GEOM_VEC3_H
 
+#include <array>
 #include <cmath>
 #include <simd/simd.h>
 #include <iostream>
@@ -19,10 +20,13 @@ public:
     Vec3() : Vec3(0.f) {}
     Vec3(float value) : Vec3(value, value, value) {}
     Vec3(const float values[3]) : Vec3(values[0], values[1], values[2]) {}
+    Vec3(const std::array<float, 3>& values) : Vec3(values[0], values[1], values[2]) {}
     Vec3(float e0, float e1, float e2) { e[0] = e0; e[1] = e1; e[2] = e2; }
     Vec3(const simd::float3& v) : e(v) {}
 
     operator simd::float3() const { return e; }
+    operator std::array<float, 3>() const { return { e[0], e[1], e[2] }; }
+
     bool operator==(const Vec3& rhs) const {
         return fabs(e[0] - rhs.e[0]) < 1e-4
             && fabs(e[1] - rhs.e[1]) < 1e-4

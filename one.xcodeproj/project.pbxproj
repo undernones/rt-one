@@ -55,6 +55,7 @@
 		F79DA94F1F6AC72400342789 /* BookTwoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */; };
 		F7B0688A1F5799880083C127 /* Renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B068881F5799880083C127 /* Renderable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B0688B1F5799880083C127 /* Renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B068891F5799880083C127 /* Renderable.cpp */; };
+		F7B099F31F849C2C00804A86 /* FastRand.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B099F21F849C2C00804A86 /* FastRand.h */; };
 		F7B7EF431F60CEDF005BC65A /* Rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF411F60CEDF005BC65A /* Rectangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B7EF441F60CEDF005BC65A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */; };
 		F7B7EF471F60CFE7005BC65A /* RectLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF451F60CFE7005BC65A /* RectLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -242,6 +243,7 @@
 		F79DA94D1F6AC72400342789 /* BookTwoScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BookTwoScene.cpp; sourceTree = "<group>"; };
 		F7B068881F5799880083C127 /* Renderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
 		F7B068891F5799880083C127 /* Renderable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderable.cpp; sourceTree = "<group>"; };
+		F7B099F21F849C2C00804A86 /* FastRand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastRand.h; sourceTree = "<group>"; };
 		F7B7EF411F60CEDF005BC65A /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
 		F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
 		F7B7EF451F60CFE7005BC65A /* RectLightScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectLightScene.h; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 			children = (
 				F754BC651F50FADF00A75D49 /* AABB.h */,
 				F754BC661F50FADF00A75D49 /* AABB.cpp */,
+				F7B099F21F849C2C00804A86 /* FastRand.h */,
 				F7E49A301F6C80E900FFC97A /* TriangleMesh.h */,
 				F7E49A311F6C80E900FFC97A /* TriangleMesh.cpp */,
 				F70F91F31F4F085000D585A9 /* Utils.h */,
@@ -604,6 +607,7 @@
 				F7E49A2F1F6C6C5C00FFC97A /* Vec2.h in Headers */,
 				F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */,
 				F7E49A391F6CAB9700FFC97A /* TriangleMesh.h in Headers */,
+				F7B099F31F849C2C00804A86 /* FastRand.h in Headers */,
 				F754BC671F50FADF00A75D49 /* AABB.h in Headers */,
 				F70F91F51F4F085000D585A9 /* Utils.h in Headers */,
 			);

@@ -4,6 +4,8 @@
 
 #include "BookTwoScene.h"
 
+#include <geom/Utils.h>
+
 #include "Box.h"
 #include "ConstantMedium.h"
 #include "ConstantTexture.h"
@@ -39,7 +41,7 @@ BookTwoScene::BookTwoScene(int width, int height)
             auto z0 = -1000 + j*w;
             auto y0 = 0.f;
             auto x1 = x0 + w;
-            auto y1 = 100*(drand48()+0.01);
+            auto y1 = 100*(geom::rand()+0.01);
             auto z1 = z0 + w;
             list.emplace_back(make_shared<Box>(geom::Vec3(x0, y0, z0), geom::Vec3(x1, y1, z1), ground));
         }
@@ -74,7 +76,7 @@ BookTwoScene::BookTwoScene(int width, int height)
     auto boxList2 = vector<shared_ptr<Renderable>>();
     boxList2.reserve(ns);
     for (auto j = 0; j < ns; ++j) {
-        boxList2.emplace_back(make_shared<Sphere>(geom::Vec3(165*drand48(), 165*drand48(), 165*drand48()), 10, white));
+        boxList2.emplace_back(make_shared<Sphere>(geom::Vec3(165*geom::rand(), 165*geom::rand(), 165*geom::rand()), 10, white));
     }
     list.emplace_back(make_shared<Translate>(geom::Vec3(-100, 270, 395), make_shared<Rotate>(geom::Vec3(0, 1, 0), 15, make_shared<RenderableList>(boxList2))));
 

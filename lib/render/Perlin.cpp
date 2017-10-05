@@ -8,6 +8,7 @@
 #include <numeric>
 #include <random>
 #include <vector>
+#include <geom/Utils.h>
 
 namespace
 {
@@ -19,7 +20,8 @@ perlin_generate()
 {
     auto result = std::vector<geom::Vec3>(PERLIN_COUNT);
     for (auto i = 0; i < PERLIN_COUNT; ++i) {
-        result[i] = geom::Vec3(-1 + 2*drand48(), -1 + 2*drand48(), -1 + 2*drand48()).normalized();
+        auto rand = geom::Vec3(geom::rand3());
+        result[i] = (geom::Vec3(-1.f) + 2 * rand).normalized();
     }
     return result;
 }

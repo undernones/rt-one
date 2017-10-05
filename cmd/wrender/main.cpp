@@ -8,6 +8,7 @@
 #include <xmmintrin.h>
 #include <pmmintrin.h>
 
+#include <geom/Utils.h>
 #include <render/Ray.h>
 #include <render/BookOneScene.h>
 #include <render/Renderer.h>
@@ -39,10 +40,11 @@ main(int argc, const char * argv[])
 #if PARALLEL
             tbb::parallel_for(int(0), NS, int(1), [&](int sample) {
 #else
-                for (auto sample = 0; sample < NS; ++sample) {
+            for (auto sample = 0; sample < NS; ++sample) {
 #endif
-                auto s = (col + drand48()) / NX;
-                auto t = (row + drand48()) / NY;
+                auto r = geom::rand2();
+                auto s = (col + r[0]) / NX;
+                auto t = (row + r[1]) / NY;
                 auto ray = camera.getRay(s, t);
 
                 color += render::Renderer::trace(ray, scene);

@@ -58,7 +58,7 @@ Dielectric::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) c
     }
 
     auto hitPoint = rayIn.pointAt(rayIn.tfar);
-    if (drand48() < reflectProb) {
+    if (geom::rand() < reflectProb) {
         scattered = Ray(hitPoint, reflected, rayIn.time);
     } else {
         scattered = Ray(hitPoint, refracted, rayIn.time);

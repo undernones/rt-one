@@ -4,6 +4,8 @@
 
 #include "BookOneWithLightScene.h"
 
+#include <geom/Utils.h>
+
 #include "ConstantTexture.h"
 #include "CheckerTexture3D.h"
 #include "Dielectric.h"
@@ -40,20 +42,20 @@ BookOneWithLightScene::BookOneWithLightScene(int width, int height)
     auto t1 = 3.f;
     for (auto a = -11; a < 11; a++) {
         for (auto b = -11; b < 11; b++) {
-            auto chooseMat = drand48();
-            auto center = geom::Vec3(a+0.9*drand48(), 0.2, b+0.9*drand48());
+            auto chooseMat = geom::rand();
+            auto center = geom::Vec3(a+0.9*geom::rand(), 0.2, b+0.9*geom::rand());
             if ((center - geom::Vec3(4, 0.2, 0)).length() > 0.9) {
                 if (chooseMat < 0.8) { // diffuse
-                    auto color = geom::Vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48());
+                    auto color = geom::Vec3(geom::rand()*geom::rand(), geom::rand()*geom::rand(), geom::rand()*geom::rand());
                     auto m = make_shared<Lambertian>(make_shared<ConstantTexture>(color));
-                    auto center1 = center + geom::Vec3(0.5-drand48(), 0.5*drand48(), 0.5-drand48());
+                    auto center1 = center + geom::Vec3(0.5-geom::rand(), 0.5*geom::rand(), 0.5-geom::rand());
                     list.emplace_back(make_shared<Sphere>(center, center1, t0, t1, 0.2, m));
                 } else if (chooseMat < 0.95) { // metal
-                    auto color = geom::Vec3(0.5*(1+drand48()), 0.5*(1+drand48()), 0.5*(1+drand48()));
-                    auto m = make_shared<Metal>(color, 0.5*drand48());
+                    auto color = geom::Vec3(0.5*(1+geom::rand()), 0.5*(1+geom::rand()), 0.5*(1+geom::rand()));
+                    auto m = make_shared<Metal>(color, 0.5*geom::rand());
                     list.emplace_back(make_shared<Sphere>(center, 0.2, m));
                 } else { // glass
-                    auto color = geom::Vec3(0.1*(9+drand48()), 0.1*(9+drand48()), 0.1*(9+drand48()));
+                    auto color = geom::Vec3(0.1*(9+geom::rand()), 0.1*(9+geom::rand()), 0.1*(9+geom::rand()));
                     auto m = make_shared<Dielectric>(color, 1.5);
                     list.emplace_back(make_shared<Sphere>(center, 0.2, m));
                 }
@@ -61,7 +63,6 @@ BookOneWithLightScene::BookOneWithLightScene(int width, int height)
         }
     }
     mRoot = make_shared<RenderableList>(list);
-
     commit();
 
     auto eye = geom::Vec3(12, 2, 4);

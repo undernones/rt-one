@@ -5,6 +5,7 @@
 #include "ConstantMedium.h"
 
 #include <geom/AABB.h>
+#include <geom/Utils.h>
 
 #include "Isotropic.h"
 
@@ -133,7 +134,7 @@ ConstantMedium::intersectFunc(void* userPtr,   /*!< pointer to user data */
     auto& ray = (Ray&)rtcRay;
     auto rayLength = ray.direction.length();
     auto distanceInsideBoundary = (tfar - tnear) * rayLength;
-    auto hitDistance = -(1 / medium->mDensity) * log(drand48());
+    auto hitDistance = -(1 / medium->mDensity) * log(geom::rand());
 
     if (hitDistance > distanceInsideBoundary) {
         return;

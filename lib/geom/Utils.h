@@ -5,6 +5,8 @@
 #ifndef GEOM_UTILS_H
 #define GEOM_UTILS_H
 
+#include <array>
+
 #include "Vec3.h"
 
 namespace geom
@@ -27,6 +29,14 @@ T lerp(const T& a, const T& b, float t)
 
 Vec3 cartesianToSpherical(const Vec3& cartesian);
 Vec3 sphericalToCartesian(const Vec3& spherical);
+
+// These are based on:
+// https://software.intel.com/en-us/articles/fast-random-number-generator-on-the-intel-pentiumr-4-processor/
+float rand();
+std::array<float, 2> rand2();
+std::array<float, 3> rand3();
+std::array<float, 4> rand4();
+std::array<float, 8> rand8();
 
 }
 

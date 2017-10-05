@@ -217,8 +217,9 @@ CApp::OnMouseButtonUp(const SDL_MouseButtonEvent& event)
         // The user clicked without dragging. Might be useful to trigger a render of a single pixel.
         auto col = event.x;
         auto row = mImage.rows() - event.y;
-        const auto s = (col + drand48()) / mImage.cols();
-        const auto t = (row + drand48()) / mImage.rows();
+        auto r = geom::rand2();
+        const auto s = (col + r[0]) / mImage.cols();
+        const auto t = (row + r[1]) / mImage.rows();
         const auto& camera = mScene->camera();
         auto ray = camera.getRay(s, t);
         const auto sample = render::Renderer::trace(ray, *mScene);

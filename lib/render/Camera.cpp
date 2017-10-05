@@ -41,7 +41,7 @@ Camera::Camera(const geom::Vec3& position, const geom::Vec3& lookAt, const geom:
 Ray
 Camera::getRay(float s, float t) const
 {
-    auto time = geom::lerp(mTime0, mTime1, drand48());
+    auto time = geom::lerp(mTime0, mTime1, geom::rand());
     auto rd = mLensRadius * geom::randomInUnitDisk();
     auto offset = mU * rd.x() + mV * rd.y();
     auto origin = mPosition + offset;
