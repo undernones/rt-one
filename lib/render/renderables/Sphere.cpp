@@ -50,6 +50,37 @@ intersectFunc(void* userPtr,   /*!< pointer to user data */
     }
 }
 
+void
+intersectFunc8(const void* valid, /*!< pointer to valid mask */
+                void* userPtr,    /*!< pointer to user data */
+                RTCRay8& rtcRays, /*!< ray packet to intersect */
+                size_t item       /*!< item to intersect */)
+{
+    // Assume we can dereference userPtr
+    const auto sphere = static_cast<render::Sphere*>(userPtr);
+
+    auto validFlags = (int*)valid;
+    auto& rays = (render::Ray8&)rtcRays;
+
+    for (auto i = 0; i < 8; ++i) {
+        if (validFlags[i] == 0) continue;
+
+        auto ray = rays.ray(i);
+        if (sphere->hit(ray)) {
+            rays.tnear[i] = ray.tnear;
+            rays.tfar[i] = ray.tfar;
+            rays.Ngx[i] = ray.normal.x();
+            rays.Ngy[i] = ray.normal.y();
+            rays.Ngz[i] = ray.normal.z();
+            rays.u[i] = ray.uv.u();
+            rays.v[i] = ray.uv.v();
+            rays.material[i] = ray.material;
+            rays.geomID[i] = sphere->geomId();
+            rays.primID[i] = static_cast<unsigned>(item);
+        }
+    }
+}
+
 }
 
 namespace render
@@ -92,6 +123,7 @@ Sphere::commit(RTCDevice device, RTCScene scene)
     rtcSetUserData(scene, mGeomId, this);
     rtcSetBoundsFunction2(scene, mGeomId, boundsFunc, this);
     rtcSetIntersectFunction(scene, mGeomId, intersectFunc);
+    rtcSetIntersectFunction8(scene, mGeomId, intersectFunc8);
     return std::vector<unsigned>( { mGeomId });
 }
 

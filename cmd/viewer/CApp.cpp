@@ -25,6 +25,7 @@
 #include <render/Ray.h>
 #include <render/RectLightScene.h>
 #include <render/Renderer.h>
+#include <render/SuperSimpleScene.h>
 #include <render/TeapotScene.h>
 
 #if DEBUG
@@ -301,19 +302,28 @@ CApp::OnRender()
     auto start = std::chrono::steady_clock::now();
 
     const auto& camera = mScene->camera();
+    const auto colsInv = 1.f / mImage.cols();
+    const auto rowsInv = 1.f / mImage.rows();
 
 #if PARALLEL
     tbb::parallel_for(int(0), mImage.rows(), int(1), [&](int row) {
 #else
     for (auto row = 0; row < mImage.rows(); ++row) {
 #endif
+        auto s = std::array<float, 8>();
+        auto t  = std::array<float, 8>();
+
         for (auto col = 0; col < mImage.cols(); ++col) {
-            const auto s = (col + drand48()) / mImage.cols();
-            const auto t = (row + drand48()) / mImage.rows();
-            auto ray = camera.getRay(s, t);
+            auto rands = geom::rand8();
+            for (auto i = 0; i < 8; ++i) {
+                s[i] = (col + rands[i]) * colsInv;
+                t[i]  = (row + rands[i]) * rowsInv;
+            }
+            auto ray = camera.getRays(s, t);
 
             // Keep a running average of samples.
-            const auto sample = render::Renderer::trace((render::Ray&)ray, *mScene);
+            auto valid = std::array<int32_t, 8>({-1,-1,-1,-1,-1,-1,-1,-1});
+            const auto sample = render::Renderer::trace(valid, ray, *mScene);
             const auto current = mImage.value(row, col);
             const auto newValue = current + (sample - current) / mSampleCount;
 
@@ -329,7 +339,7 @@ CApp::OnRender()
     auto diff = std::chrono::duration<double, std::milli>(end - start).count();
     totalTimeMs += diff;
     auto fps = ++totalPasses / (totalTimeMs / 1000);
-    std::cout << diff << " ms,\t" << fps << " FPS\t" << mSampleCount << " samples" << std::endl;
+    std::cout << diff << " ms,\t" << fps << " FPS\t" << mSampleCount << " passes (" << (mSampleCount * 8) << " samples)" << std::endl;
 
     showImage(mImage, mChannel, mRenderer, mTexture);
 }

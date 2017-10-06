@@ -56,6 +56,8 @@
 		F7B0688A1F5799880083C127 /* Renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B068881F5799880083C127 /* Renderable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B0688B1F5799880083C127 /* Renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B068891F5799880083C127 /* Renderable.cpp */; };
 		F7B099F31F849C2C00804A86 /* FastRand.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B099F21F849C2C00804A86 /* FastRand.h */; };
+		F7B09A001F85B28F00804A86 /* SuperSimpleScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B099FD1F85B28300804A86 /* SuperSimpleScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7B09A011F85B2A000804A86 /* SuperSimpleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B099FE1F85B28400804A86 /* SuperSimpleScene.cpp */; };
 		F7B7EF431F60CEDF005BC65A /* Rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF411F60CEDF005BC65A /* Rectangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7B7EF441F60CEDF005BC65A /* Rectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */; };
 		F7B7EF471F60CFE7005BC65A /* RectLightScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F7B7EF451F60CFE7005BC65A /* RectLightScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -244,6 +246,8 @@
 		F7B068881F5799880083C127 /* Renderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
 		F7B068891F5799880083C127 /* Renderable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderable.cpp; sourceTree = "<group>"; };
 		F7B099F21F849C2C00804A86 /* FastRand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastRand.h; sourceTree = "<group>"; };
+		F7B099FD1F85B28300804A86 /* SuperSimpleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperSimpleScene.h; sourceTree = "<group>"; };
+		F7B099FE1F85B28400804A86 /* SuperSimpleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SuperSimpleScene.cpp; sourceTree = "<group>"; };
 		F7B7EF411F60CEDF005BC65A /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
 		F7B7EF421F60CEDF005BC65A /* Rectangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Rectangle.cpp; sourceTree = "<group>"; };
 		F7B7EF451F60CFE7005BC65A /* RectLightScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RectLightScene.h; sourceTree = "<group>"; };
@@ -476,6 +480,8 @@
 				F71873DA1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp */,
 				F7B7EF451F60CFE7005BC65A /* RectLightScene.h */,
 				F7B7EF461F60CFE7005BC65A /* RectLightScene.cpp */,
+				F7B099FD1F85B28300804A86 /* SuperSimpleScene.h */,
+				F7B099FE1F85B28400804A86 /* SuperSimpleScene.cpp */,
 				F7E49A341F6CA89400FFC97A /* TeapotScene.h */,
 				F7E49A351F6CA89400FFC97A /* TeapotScene.cpp */,
 			);
@@ -641,6 +647,7 @@
 				F7BF510C1F4DC0B20045DE27 /* Renderer.h in Headers */,
 				F78416221F71F83F003ACFC2 /* GradientTexture.h in Headers */,
 				F7B7EF431F60CEDF005BC65A /* Rectangle.h in Headers */,
+				F7B09A001F85B28F00804A86 /* SuperSimpleScene.h in Headers */,
 				F7B7EF5E1F62E19F005BC65A /* Transform.h in Headers */,
 				F7B7EF471F60CFE7005BC65A /* RectLightScene.h in Headers */,
 				F794B19A1F70C0BA005D61DE /* EnvironmentMap.h in Headers */,
@@ -920,6 +927,7 @@
 				F7B7EF481F60CFE7005BC65A /* RectLightScene.cpp in Sources */,
 				F7B7EF5F1F62E19F005BC65A /* Transform.cpp in Sources */,
 				F754BC811F511D1500A75D49 /* Perlin.cpp in Sources */,
+				F7B09A011F85B2A000804A86 /* SuperSimpleScene.cpp in Sources */,
 				F71873D81F6A04EE00D4BD02 /* Isotropic.cpp in Sources */,
 				F7C92B151F54595A00BE8752 /* AstronomyScene.cpp in Sources */,
 				F7E95A3F1F4FACA500B962C0 /* Sphere.cpp in Sources */,

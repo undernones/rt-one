@@ -49,4 +49,23 @@ Camera::getRay(float s, float t) const
     return result;
 }
 
+Ray8
+Camera::getRays(const std::array<float, 8>& s, const std::array<float, 8>& t) const
+{
+    auto origins = std::array<geom::Vec3, 8>();
+    auto directions = std::array<geom::Vec3, 8>();
+    auto randTimes = geom::rand8();
+    float times[8];
+    float tnears[8];
+    for (auto i = 0; i < 8; ++i) {
+        auto rd = mLensRadius * geom::randomInUnitDisk();
+        auto offset = mU * rd.x() + mV * rd.y();
+        origins[i] = mPosition + offset;
+        directions[i] = mLowerLeft + s[i]*mHorizontal + t[i]*mVertical - origins[i];
+        times[i] = geom::lerp(mTime0, mTime1, randTimes[i]);
+        tnears[i] = 0.f;
+    }
+    return Ray8(origins, directions, times, tnears);
+}
+
 }

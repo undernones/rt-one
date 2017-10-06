@@ -18,6 +18,7 @@ public:
     EnvironmentMap(const std::shared_ptr<Texture>& texture);
 
     geom::Vec3 value(const geom::Vec3& direction) const;
+    std::array<geom::Vec3, 8> value8(float dirx[8], float diry[8], float dirz[8]) const;
 
 private:
     std::shared_ptr<Texture> mTexture;
