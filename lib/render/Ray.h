@@ -137,36 +137,36 @@ public:
 
     /* ray data */
 public:
-    float orgx[8];  //!< x coordinate of ray origin
-    float orgy[8];  //!< y coordinate of ray origin
-    float orgz[8];  //!< z coordinate of ray origin
+    std::array<float, 8> orgx;  //!< x coordinate of ray origin
+    std::array<float, 8> orgy;  //!< y coordinate of ray origin
+    std::array<float, 8> orgz;  //!< z coordinate of ray origin
 
-    float dirx[8];  //!< x coordinate of ray direction
-    float diry[8];  //!< y coordinate of ray direction
-    float dirz[8];  //!< z coordinate of ray direction
+    std::array<float, 8> dirx;  //!< x coordinate of ray direction
+    std::array<float, 8> diry;  //!< y coordinate of ray direction
+    std::array<float, 8> dirz;  //!< z coordinate of ray direction
 
-    float tnear[8]; //!< Start of ray segment
-    float tfar[8];  //!< End of ray segment (set to hit distance)
+    std::array<float, 8> tnear; //!< Start of ray segment
+    std::array<float, 8> tfar;  //!< End of ray segment (set to hit distance)
 
-    float time[8];  //!< Time of this ray for motion blur
-    unsigned mask[8];  //!< Used to mask out objects during traversal
+    std::array<float, 8> time;  //!< Time of this ray for motion blur
+    std::array<unsigned, 8> mask;  //!< Used to mask out objects during traversal
 
     /* hit data */
 public:
-    float Ngx[8];   //!< x coordinate of geometry normal
-    float Ngy[8];   //!< y coordinate of geometry normal
-    float Ngz[8];   //!< z coordinate of geometry normal
+    std::array<float, 8> Ngx;   //!< x coordinate of geometry normal
+    std::array<float, 8> Ngy;   //!< y coordinate of geometry normal
+    std::array<float, 8> Ngz;   //!< z coordinate of geometry normal
 
-    float u[8];     //!< Barycentric u coordinate of hit
-    float v[8];     //!< Barycentric v coordinate of hit
+    std::array<float, 8> u;     //!< Barycentric u coordinate of hit
+    std::array<float, 8> v;     //!< Barycentric v coordinate of hit
 
-    unsigned geomID[8];  //!< geometry ID
-    unsigned primID[8];  //!< primitive ID
-    unsigned instID[8];  //!< instance ID
+    std::array<unsigned, 8> geomID;  //!< geometry ID
+    std::array<unsigned, 8> primID;  //!< primitive ID
+    std::array<unsigned, 8> instID;  //!< instance ID
 
     /* extended hit data */
 public:
-    Material* material[8]; // No ownership!
+    std::array<Material*, 8> material; // No ownership!
 };
 
 }

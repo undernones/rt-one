@@ -25,7 +25,9 @@ EnvironmentMap::value(const geom::Vec3& direction) const
 }
 
 std::array<geom::Vec3, 8>
-EnvironmentMap::value8(float dirx[8], float diry[8], float dirz[8]) const
+EnvironmentMap::value8(const std::array<float, 8>& dirx,
+                       const std::array<float, 8>& diry,
+                       const std::array<float, 8>& dirz) const
 {
     auto result = std::array<geom::Vec3, 8>();
     for (auto i = 0; i < 8; ++i) {
