@@ -63,8 +63,8 @@ Ray
 Rotate::preIntersect(const Ray& ray) const
 {
     auto result = ray;
-    result.origin = geom::Vec3(mInverse * ray.origin);
-    result.direction = geom::Vec3(mInverse * ray.direction);
+    result.origin = mInverse * ray.origin;
+    result.direction = mInverse * ray.direction;
     return result;
 }
 
@@ -72,8 +72,8 @@ Ray
 Rotate::postIntersect(const Ray& ray) const
 {
     auto result = ray;
-    result.origin = geom::Vec3(mMatrix * ray.origin);
-    result.direction = geom::Vec3(mMatrix * ray.direction);
+    result.origin = mMatrix * ray.origin;
+    result.direction = mMatrix * ray.direction;
     return result;
 }
 
@@ -81,6 +81,38 @@ void
 Rotate::transform(Ray& ray) const
 {
     ray.normal = geom::Vec3(simd::transpose(mInverse) * ray.normal);
+}
+
+Ray8
+Rotate::preIntersect(const Ray8& rays) const
+{
+    auto result = rays;
+    for (auto i = 0; i < 8; ++i) {
+        result.setOrigin(i, mInverse * rays.origin(i));
+        result.setDirection(i, mInverse * rays.direction(i));
+    }
+    return result;
+}
+
+Ray8
+Rotate::postIntersect(const Ray8& rays) const
+{
+    auto result = rays;
+    for (auto i = 0; i < 8; ++i) {
+        result.setOrigin(i, mMatrix * rays.origin(i));
+        result.setDirection(i, mMatrix * rays.direction(i));
+    }
+    return result;
+}
+
+void
+Rotate::transform(Ray8& rays) const
+{
+    for (auto i = 0; i < 8; ++i) {
+        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
+            rays.setNormal(i, simd::transpose(mInverse) * rays.normal(i));
+        }
+    }
 }
 
 bool

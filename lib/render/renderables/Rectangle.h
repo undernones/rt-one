@@ -31,9 +31,15 @@ private:
                            size_t item,           /*!< item to calculate bounds for */
                            RTCBounds* bounds_o    /*!< returns calculated bounds */);
     
-    static void intersectFunc(void* userPtr,   /*!< pointer to user data */
-                              RTCRay& rtcRay,  /*!< ray to intersect */
-                              size_t item      /*!< item to intersect */);
+    static void intersectFunc(void* userPtr,       /*!< pointer to user data */
+                              RTCRay& rtcRay,      /*!< ray to intersect */
+                              size_t item          /*!< item to intersect */);
+
+    static void intersectFunc8(const void* valid, /*!< pointer to valid mask */
+                               void* userPtr,     /*!< pointer to user data */
+                               RTCRay8& rtcRays,  /*!< ray packet to intersect */
+                               size_t item        /*!< item to intersect */);
+
 
     RTCScene mLocalScene;
     Plane mPlane;

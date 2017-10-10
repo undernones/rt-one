@@ -35,6 +35,38 @@ Translate::postIntersect(const Ray& ray) const
     return result;
 }
 
+Ray8
+Translate::preIntersect(const Ray8& rays) const
+{
+    auto result = rays;
+    for (auto i = 0; i < 8; ++i) {
+        result.orgx[i] -= mDisplacement.x();
+    }
+    for (auto i = 0; i < 8; ++i) {
+        result.orgy[i] -= mDisplacement.y();
+    }
+    for (auto i = 0; i < 8; ++i) {
+        result.orgz[i] -= mDisplacement.z();
+    }
+    return result;
+}
+
+Ray8
+Translate::postIntersect(const Ray8& rays) const
+{
+    auto result = rays;
+    for (auto i = 0; i < 8; ++i) {
+        result.orgx[i] += mDisplacement.x();
+    }
+    for (auto i = 0; i < 8; ++i) {
+        result.orgy[i] += mDisplacement.y();
+    }
+    for (auto i = 0; i < 8; ++i) {
+        result.orgz[i] += mDisplacement.z();
+    }
+    return result;
+}
+
 bool
 Translate::bbox(float t0, float t1, geom::AABB& bbox) const
 {

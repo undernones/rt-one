@@ -24,6 +24,10 @@ protected:
     virtual Ray postIntersect(const Ray& ray) const;
     virtual void transform(Ray& ray) const;
 
+    virtual Ray8 preIntersect(const Ray8& rays) const;
+    virtual Ray8 postIntersect(const Ray8& rays) const;
+    virtual void transform(Ray8& rays) const;
+
 private:
     geom::Vec3 mAxis;
     float mDegrees;

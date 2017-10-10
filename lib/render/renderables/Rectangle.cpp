@@ -59,7 +59,7 @@ std::vector<unsigned>
 Rectangle::commit(RTCDevice device, RTCScene scene)
 {
     // First register a new scene consisting of just the rectangle's triangle mesh.
-    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
+    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1 | RTC_INTERSECT8);
     auto meshGeomId = rtcNewTriangleMesh(mLocalScene, RTC_GEOMETRY_STATIC, 2, 4);
 
     // XY: Normal positive in Z
@@ -103,6 +103,7 @@ Rectangle::commit(RTCDevice device, RTCScene scene)
     rtcSetUserData(scene, mGeomId, this);
     rtcSetBoundsFunction2(scene, mGeomId, boundsFunc, this);
     rtcSetIntersectFunction(scene, mGeomId, intersectFunc);
+    rtcSetIntersectFunction8(scene, mGeomId, intersectFunc8);
     return std::vector<unsigned>( { mGeomId });
 }
 
@@ -134,7 +135,7 @@ Rectangle::intersectFunc(void* userPtr,   /*!< pointer to user data */
     if (ray.geomID != RTC_INVALID_GEOMETRY_ID) {
         ray.geomID = rect->mGeomId;
         ray.material = rect->material().get();
-        ray.normal = -ray.normal.normalized();
+        ray.normal = -ray.normal;
 
         auto triangle = TRIANGLES[ray.primID];
         auto st0 = ST_VALUES[triangle.v0];
@@ -145,6 +146,44 @@ Rectangle::intersectFunc(void* userPtr,   /*!< pointer to user data */
         ray.uv = (st0 * w) + (st1 * u) + (st2 * v);
     } else {
         ray.geomID = geomID;
+    }
+}
+
+void
+Rectangle::intersectFunc8(const void* valid, /*!< pointer to valid mask */
+                          void* userPtr,     /*!< pointer to user data */
+                          RTCRay8& rtcRays,  /*!< ray packet to intersect */
+                          size_t item        /*!< item to intersect */)
+{
+    // Assume we can dereference userPtr
+    const auto rect = static_cast<Rectangle*>(userPtr);
+
+    auto& rays = (Ray8&)rtcRays;
+    auto geomID = rays.geomID;
+    rays.geomID.fill(RTC_INVALID_GEOMETRY_ID);
+
+    rtcIntersect8(valid, rect->mLocalScene, rtcRays);
+
+    for (auto i = 0; i < 8; ++i) {
+        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
+            rays.geomID[i] = rect->mGeomId;
+            rays.material[i] = rect->material().get();
+            rays.Ngx[i] = -rays.Ngx[i];
+            rays.Ngy[i] = -rays.Ngy[i];
+            rays.Ngz[i] = -rays.Ngz[i];
+
+            auto triangle = TRIANGLES[rays.primID[i]];
+            auto st0 = ST_VALUES[triangle.v0];
+            auto st1 = ST_VALUES[triangle.v1];
+            auto st2 = ST_VALUES[triangle.v2];
+
+            const auto u = rays.u[i], v = rays.v[i], w = 1.0f-u-v;
+            auto uv = (st0 * w) + (st1 * u) + (st2 * v);
+            rays.u[i] = uv.u();
+            rays.v[i] = uv.v();
+        } else {
+            rays.geomID[i] = geomID[i];
+        }
     }
 }
 

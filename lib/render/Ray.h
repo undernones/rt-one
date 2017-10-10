@@ -135,6 +135,42 @@ public:
         return result;
     }
 
+    geom::Vec3 origin(int i) const
+    {
+        return geom::Vec3(orgx[i], orgy[i], orgz[i]);
+    }
+
+    void setOrigin(int i, const geom::Vec3& origin)
+    {
+        orgx[i] = origin.x();
+        orgy[i] = origin.y();
+        orgz[i] = origin.z();
+    }
+
+    geom::Vec3 direction(int i) const
+    {
+        return geom::Vec3(dirx[i], diry[i], dirz[i]);
+    }
+
+    void setDirection(int i, const geom::Vec3& direction)
+    {
+        dirx[i] = direction.x();
+        diry[i] = direction.y();
+        dirz[i] = direction.z();
+    }
+
+    geom::Vec3 normal(int i) const
+    {
+        return geom::Vec3(Ngx[i], Ngy[i], Ngz[i]);
+    }
+
+    void setNormal(int i, const geom::Vec3& normal)
+    {
+        Ngx[i] = normal.x();
+        Ngy[i] = normal.y();
+        Ngz[i] = normal.z();
+    }
+
     /* ray data */
 public:
     std::array<float, 8> orgx;  //!< x coordinate of ray origin

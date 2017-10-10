@@ -19,6 +19,7 @@ public:
 
 protected:
     virtual void transform(Ray& ray) const;
+    virtual void transform(Ray8& rays) const;
 };
 
 }
