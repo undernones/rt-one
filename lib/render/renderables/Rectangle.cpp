@@ -172,7 +172,7 @@ Rectangle::intersectFunc8(const void* valid, /*!< pointer to valid mask */
             rays.Ngy[i] = -rays.Ngy[i];
             rays.Ngz[i] = -rays.Ngz[i];
 
-            auto triangle = TRIANGLES[rays.primID[i]];
+            const auto& triangle = TRIANGLES[rays.primID[i]];
             auto st0 = ST_VALUES[triangle.v0];
             auto st1 = ST_VALUES[triangle.v1];
             auto st2 = ST_VALUES[triangle.v2];
