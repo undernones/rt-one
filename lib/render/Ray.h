@@ -105,20 +105,6 @@ public:
         }
     }
 
-    std::array<geom::Vec3, 8> pointstAt(const std::array<float, 8>& t) const
-    {
-        return {
-            geom::Vec3(orgx[0], orgy[0], orgz[0]) + t[0] * geom::Vec3(dirx[0], diry[0], dirz[0]),
-            geom::Vec3(orgx[1], orgy[1], orgz[1]) + t[1] * geom::Vec3(dirx[1], diry[1], dirz[1]),
-            geom::Vec3(orgx[2], orgy[2], orgz[2]) + t[2] * geom::Vec3(dirx[2], diry[2], dirz[2]),
-            geom::Vec3(orgx[3], orgy[3], orgz[3]) + t[3] * geom::Vec3(dirx[3], diry[3], dirz[3]),
-            geom::Vec3(orgx[4], orgy[4], orgz[4]) + t[4] * geom::Vec3(dirx[4], diry[4], dirz[4]),
-            geom::Vec3(orgx[5], orgy[5], orgz[5]) + t[5] * geom::Vec3(dirx[5], diry[5], dirz[5]),
-            geom::Vec3(orgx[6], orgy[6], orgz[6]) + t[6] * geom::Vec3(dirx[6], diry[6], dirz[6]),
-            geom::Vec3(orgx[7], orgy[7], orgz[7]) + t[7] * geom::Vec3(dirx[7], diry[7], dirz[7]),
-        };
-    }
-
     Ray ray(int i) const
     {
         auto origin = geom::Vec3(orgx[i], orgy[i], orgz[i]);
