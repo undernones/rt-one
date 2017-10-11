@@ -163,7 +163,7 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
         ray1.tfar = MAXFLOAT;
         rtcIntersect(medium->mLocalScene, (RTCRay&)ray1);
         if (ray1.geomID == RTC_INVALID_GEOMETRY_ID) {
-            return;
+            continue;
         }
 
         // Find where the ray exits the boundary.
@@ -172,7 +172,7 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
         ray2.tfar = MAXFLOAT;
         rtcIntersect(medium->mLocalScene, (RTCRay&)ray2);
         if (ray2.geomID == RTC_INVALID_GEOMETRY_ID) {
-            return;
+            continue;
         }
 
         // Clamp to our query boundaries.
@@ -180,7 +180,7 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
         auto tfar = fmin(ray2.tfar, rtcRays.tfar[i]);
 
         if (tnear >= tfar) {
-            return;
+            continue;
         }
 
         auto rayLength = geom::Vec3(rtcRays.dirx[i], rtcRays.diry[i], rtcRays.dirz[i]).length();
@@ -188,7 +188,7 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
         auto hitDistance = -(1 / medium->mDensity) * log(geom::rand());
 
         if (hitDistance > distanceInsideBoundary) {
-            return;
+            continue;
         }
 
         auto& rays = (Ray8&)rtcRays;
