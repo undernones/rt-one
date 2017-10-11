@@ -156,6 +156,7 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
     // Assume we can dereference userPtr
     const auto medium = static_cast<ConstantMedium*>(userPtr);
 
+    auto rands = geom::rand8();
     for (auto i = 0; i < 8; ++i) {
         // Find where the ray enters the boundary.
         auto ray1 = ((Ray8&)rtcRays).ray(i);
@@ -185,7 +186,7 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
 
         auto rayLength = geom::Vec3(rtcRays.dirx[i], rtcRays.diry[i], rtcRays.dirz[i]).length();
         auto distanceInsideBoundary = (tfar - tnear) * rayLength;
-        auto hitDistance = -(1 / medium->mDensity) * log(geom::rand());
+        auto hitDistance = -(1 / medium->mDensity) * log(rands[i]);
 
         if (hitDistance > distanceInsideBoundary) {
             continue;
