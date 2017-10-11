@@ -20,7 +20,7 @@ Metal::Metal(const geom::Vec3& albedo, float fuzziness)
 bool
 Metal::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const
 {
-    auto reflected = geom::reflect(rayIn.direction, rayIn.normal).normalized();
+    auto reflected = geom::reflect(rayIn.direction, rayIn.normal.normalized()).normalized();
 
     const auto hitPoint = rayIn.pointAt(rayIn.tfar);
     scattered = Ray(hitPoint, reflected + fuzziness() * geom::randomInUnitSphere(), rayIn.time);
