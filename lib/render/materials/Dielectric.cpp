@@ -32,8 +32,8 @@ Dielectric::Dielectric(const geom::Vec3& attenuation, float refractIndex)
 bool
 Dielectric::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const
 {
-    const auto& inDirection = rayIn.direction;
-    const auto& normal = rayIn.normal;
+    const auto inDirection = rayIn.direction.normalized();
+    const auto normal = rayIn.normal.normalized();
 
     auto outwardNormal = geom::Vec3();
     auto reflected = geom::reflect(inDirection, normal);
@@ -45,11 +45,11 @@ Dielectric::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) c
     if (inDirection.dot(normal) > 0) {
         outwardNormal = -normal;
         ni_over_nt = mRefractIndex;
-        cosine = mRefractIndex * inDirection.dot(normal) / inDirection.length();
+        cosine = mRefractIndex * inDirection.dot(normal);
     } else {
         outwardNormal = normal;
         ni_over_nt = 1.f / mRefractIndex;
-        cosine = -inDirection.dot(normal) / inDirection.length();
+        cosine = -inDirection.dot(normal);
     }
 
     auto refracted = geom::Vec3();
