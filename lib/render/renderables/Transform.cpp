@@ -45,7 +45,7 @@ Transform::commit(RTCDevice device, RTCScene scene)
     }
 
     // First register a new scene consisting of just this transform's renderable.
-    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
+    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1 | RTC_INTERSECT8);
     mObject->commit(device, mLocalScene);
     rtcCommit(mLocalScene);
 
@@ -55,6 +55,7 @@ Transform::commit(RTCDevice device, RTCScene scene)
     rtcSetUserData(scene, mGeomId, this);
     rtcSetBoundsFunction2(scene, mGeomId, boundsFunc, this);
     rtcSetIntersectFunction(scene, mGeomId, intersectFunc);
+    rtcSetIntersectFunction8(scene, mGeomId, intersectFunc8);
     return std::vector<unsigned>( { mGeomId });
 }
 
@@ -93,7 +94,6 @@ Transform::intersectFunc(void* userPtr,   /*!< pointer to user data */
     const auto transform = static_cast<Transform*>(userPtr);
 
     auto& ray = (Ray&)rtcRay;
-
     const auto geomID = ray.geomID;
     ray.geomID = RTC_INVALID_GEOMETRY_ID;
 
@@ -106,6 +106,34 @@ Transform::intersectFunc(void* userPtr,   /*!< pointer to user data */
         transform->transform(ray);
     } else {
         ray.geomID = geomID;
+    }
+}
+
+void
+Transform::intersectFunc8(const void* valid, /*!< pointer to valid mask */
+                          void* userPtr,     /*!< pointer to user data */
+                          RTCRay8& rtcRays,  /*!< ray packet to intersect */
+                          size_t item        /*!< item to intersect */)
+{
+    // Assume we can dereference userPtr
+    const auto transform = static_cast<Transform*>(userPtr);
+
+    auto& rays = (Ray8&)rtcRays;
+    auto geomID = rays.geomID;
+    rays.geomID.fill(RTC_INVALID_GEOMETRY_ID);
+
+    auto tmpRays = transform->preIntersect(rays);
+    rtcIntersect8(valid, transform->mLocalScene, (RTCRay8&)tmpRays);
+    rays = transform->postIntersect(tmpRays);
+
+    transform->transform(rays);
+
+    for (auto i = 0; i < 8; ++i) {
+        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
+            rays.geomID[i] = transform->mGeomId;
+        } else {
+            rays.geomID[i] = geomID[i];
+        }
     }
 }
 

@@ -47,7 +47,7 @@ Mesh::commit(RTCDevice device, RTCScene scene)
     }
 
     // First register a new scene consisting of just the triangle mesh.
-    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
+    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1 | RTC_INTERSECT8);
     auto faceCount = mTriMesh->triangles().size();
     auto vertCount = mTriMesh->verts().size();
     auto meshGeomId = rtcNewTriangleMesh(mLocalScene, RTC_GEOMETRY_STATIC, faceCount, vertCount);
@@ -63,6 +63,7 @@ Mesh::commit(RTCDevice device, RTCScene scene)
     rtcSetUserData(scene, mGeomId, this);
     rtcSetBoundsFunction2(scene, mGeomId, boundsFunc, this);
     rtcSetIntersectFunction(scene, mGeomId, intersectFunc);
+    rtcSetIntersectFunction8(scene, mGeomId, intersectFunc8);
     return std::vector<unsigned>( { mGeomId });
 }
 
@@ -105,7 +106,7 @@ Mesh::intersectFunc(void* userPtr,   /*!< pointer to user data */
             auto n2 = normals[triangle.v2];
             ray.normal = (n0 * w) + (n1 * u) + (n2 * v);
         } else {
-            ray.normal = -ray.normal.normalized();
+            ray.normal = -ray.normal;
         }
 
         const auto& uvs = mesh->uvs();
@@ -117,6 +118,57 @@ Mesh::intersectFunc(void* userPtr,   /*!< pointer to user data */
         }
     } else {
         ray.geomID = geomID;
+    }
+}
+
+void
+Mesh::intersectFunc8(const void* valid, /*!< pointer to valid mask */
+                     void* userPtr,     /*!< pointer to user data */
+                     RTCRay8& rtcRays,  /*!< ray packet to intersect */
+                     size_t item        /*!< item to intersect */)
+{
+    // Assume we can dereference userPtr
+    const auto mesh = static_cast<Mesh*>(userPtr);
+
+    auto& rays = (Ray8&)rtcRays;
+    auto geomID = rays.geomID;
+    rays.geomID.fill(RTC_INVALID_GEOMETRY_ID);
+
+    rtcIntersect8(valid, mesh->mLocalScene, rtcRays);
+
+    for (auto i = 0; i < 8; ++i) {
+        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
+            rays.geomID[i] = mesh->mGeomId;
+            rays.material[i] = mesh->material().get();
+
+            const auto u = rays.u[i], v = rays.v[i], w = 1.0f-u-v;
+            const auto& triangle = mesh->triangles()[rays.primID[i]];
+
+            const auto& normals = mesh->normals();
+            if (normals.size() > 0) {
+                auto n0 = normals[triangle.v0];
+                auto n1 = normals[triangle.v1];
+                auto n2 = normals[triangle.v2];
+                auto normal = (n0 * w) + (n1 * u) + (n2 * v);
+                rays.setNormal(i, normal);
+            } else {
+                rays.Ngx[i] = -rays.Ngx[i];
+                rays.Ngy[i] = -rays.Ngy[i];
+                rays.Ngz[i] = -rays.Ngz[i];
+            }
+
+            const auto& uvs = mesh->uvs();
+            if (uvs.size() > 0) {
+                auto uv0 = uvs[triangle.v0];
+                auto uv1 = uvs[triangle.v1];
+                auto uv2 = uvs[triangle.v2];
+                auto uv = (uv0 * w) + (uv1 * u) + (uv2 * v);
+                rays.u[i] = uv.u();
+                rays.v[i] = uv.v();
+            }
+        } else {
+            rays.geomID[i] = geomID[i];
+        }
     }
 }
 

@@ -10,9 +10,9 @@
 #include "CheckerTexture3D.h"
 #include "Dielectric.h"
 #include "GradientTexture.h"
-#include "RenderableList.h"
 #include "Lambertian.h"
 #include "Metal.h"
+#include "RenderableList.h"
 #include "Sphere.h"
 
 namespace render

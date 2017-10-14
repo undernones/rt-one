@@ -31,7 +31,7 @@ CornellBoxScene::CornellBoxScene(int width, int height)
     auto red = make_shared<Lambertian>(redTex);
     auto white = make_shared<Lambertian>(whiteTex);
     auto green = make_shared<Lambertian>(greenTex);
-    auto light = make_shared<DiffuseLight>(make_shared<ConstantTexture>(geom::Vec3(15, 15, 15)));
+    auto light = make_shared<DiffuseLight>(make_shared<ConstantTexture>(geom::Vec3(15.f)));
 
     // Walls
     list.emplace_back(make_shared<FlipNormals>(make_shared<Rectangle>(Plane::YZ, 0, 555, 0, 555, 555, green)));

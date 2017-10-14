@@ -63,7 +63,7 @@ Scene::Scene()
 
     rtcDeviceSetErrorFunction2(mDevice, errorHandler, nullptr);
 
-    mScene = rtcDeviceNewScene(mDevice, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
+    mScene = rtcDeviceNewScene(mDevice, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1 | RTC_INTERSECT8);
     if (mScene == nullptr) {
         auto error = rtcDeviceGetError(mDevice);
         auto stream = std::stringstream();

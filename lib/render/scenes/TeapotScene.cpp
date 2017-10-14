@@ -29,7 +29,7 @@ namespace render
 TeapotScene::TeapotScene(int width, int height)
     : Scene()
 {
-    auto list = std::vector<std::shared_ptr<Renderable>>();
+    auto list = vector<shared_ptr<Renderable>>();
 
     auto teapotTexture = make_shared<ConstantTexture>(geom::Vec3(0.793, 0.03, 0.081));
     auto teapotMaterial = make_shared<Lambertian>(teapotTexture);
@@ -69,14 +69,14 @@ TeapotScene::TeapotScene(int width, int height)
     auto sceneBoundary = make_shared<Sphere>(geom::Vec3(0.f), 5000, make_shared<Dielectric>(geom::Vec3(1.f), 1.5));
     list.emplace_back(make_shared<ConstantMedium>(sceneBoundary, 0.0001, make_shared<ConstantTexture>(geom::Vec3(1.f))));
 
-    mRoot = std::make_shared<RenderableList>(list);
+    mRoot = make_shared<RenderableList>(list);
     commit();
 
     auto eye = geom::Vec3(0, 50, -130);
     auto lookAt = geom::Vec3(0, 20, -10);
     auto up = geom::Vec3(0, 1, 0);
     auto focusDistance = (eye - lookAt).length();
-    auto aperture = 0.f;
+    auto aperture = 0.1f;
     mCamera = Camera(eye, lookAt, up, 55, width, height, aperture, focusDistance, 0, 1);
 }
 

@@ -23,4 +23,24 @@ FlipNormals::transform(Ray& ray) const
     ray.normal = -ray.normal;
 }
 
+void
+FlipNormals::transform(Ray8& rays) const
+{
+    for (auto i = 0; i < 8; ++i) {
+        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
+            rays.Ngx[i] = -rays.Ngx[i];
+        }
+    }
+    for (auto i = 0; i < 8; ++i) {
+        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
+            rays.Ngy[i] = -rays.Ngy[i];
+        }
+    }
+    for (auto i = 0; i < 8; ++i) {
+        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
+            rays.Ngz[i] = -rays.Ngz[i];
+        }
+    }
+}
+
 }

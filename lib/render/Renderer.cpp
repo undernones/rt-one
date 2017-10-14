@@ -62,4 +62,42 @@ Renderer::trace(Ray ray, const Scene& scene, int depth)
     }
 }
 
+geom::Vec3
+Renderer::trace(const std::array<int32_t, 8>& valid, Ray8 rays, const Scene& scene, int depth)
+{
+    for (auto i = 0; i < 8; ++i) {
+        rays.tnear[i] = EPSILON;
+    }
+    rtcIntersect8(valid.data(), scene.rtcScene(), (RTCRay8&)rays);
+
+    const auto& envMap = scene.environmentMap();
+
+    auto hitCount = 0;
+    auto result = geom::Vec3(0.f);
+    for (auto i = 0; i < 8; ++i) {
+        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
+            hitCount++;
+            auto ray = rays.ray(i);
+            const auto t = ray.tfar;
+            const auto hitPoint = ray.pointAt(t);
+
+            // Get the material
+            const auto& material = ray.material;
+
+            // Check for emissions
+            result += material->emitted(ray.uv, hitPoint);
+
+            // Scatter
+            auto scattered = Ray();
+            auto attenuation = geom::Vec3();
+            if (depth < MAX_DEPTH && material->scatter(ray, attenuation, scattered)) {
+                result += attenuation * trace(scattered, scene, depth+1);
+            }
+        } else if (envMap != nullptr) {
+            result += envMap->value({ rays.dirx[i], rays.diry[i], rays.dirz[i] });
+        }
+    }
+    return result / 8.f;
+}
+
 }

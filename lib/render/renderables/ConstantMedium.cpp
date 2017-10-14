@@ -58,7 +58,7 @@ ConstantMedium::commit(RTCDevice device, RTCScene scene)
     }
 
     // First register a new scene consisting of this medium's boundary.
-    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1);
+    mLocalScene = rtcDeviceNewScene(device, RTC_SCENE_STATIC | RTC_SCENE_INCOHERENT | RTC_SCENE_HIGH_QUALITY, RTC_INTERSECT1 | RTC_INTERSECT8);
     mBoundary->commit(device, mLocalScene);
     rtcCommit(mLocalScene);
 
@@ -68,6 +68,7 @@ ConstantMedium::commit(RTCDevice device, RTCScene scene)
     rtcSetUserData(scene, mGeomId, this);
     rtcSetBoundsFunction2(scene, mGeomId, boundsFunc, this);
     rtcSetIntersectFunction(scene, mGeomId, intersectFunc);
+    rtcSetIntersectFunction8(scene, mGeomId, intersectFunc8);
     return std::vector<unsigned>( { mGeomId });
 }
 
@@ -144,6 +145,59 @@ ConstantMedium::intersectFunc(void* userPtr,   /*!< pointer to user data */
     ray.material = medium->material().get();
     ray.geomID = medium->mGeomId;
     // No need to set the normal
+}
+
+void
+ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
+                               void* userPtr,     /*!< pointer to user data */
+                               RTCRay8& rtcRays,  /*!< ray packet to intersect */
+                               size_t item        /*!< item to intersect */)
+{
+    // Assume we can dereference userPtr
+    const auto medium = static_cast<ConstantMedium*>(userPtr);
+
+    auto rands = geom::rand8();
+    for (auto i = 0; i < 8; ++i) {
+        // Find where the ray enters the boundary.
+        auto ray1 = ((Ray8&)rtcRays).ray(i);
+        ray1.tnear = -MAXFLOAT;
+        ray1.tfar = MAXFLOAT;
+        rtcIntersect(medium->mLocalScene, (RTCRay&)ray1);
+        if (ray1.geomID == RTC_INVALID_GEOMETRY_ID) {
+            continue;
+        }
+
+        // Find where the ray exits the boundary.
+        auto ray2 = ((Ray8&)rtcRays).ray(i);
+        ray2.tnear = ray1.tfar + EPSILON;
+        ray2.tfar = MAXFLOAT;
+        rtcIntersect(medium->mLocalScene, (RTCRay&)ray2);
+        if (ray2.geomID == RTC_INVALID_GEOMETRY_ID) {
+            continue;
+        }
+
+        // Clamp to our query boundaries.
+        auto tnear = fmax(ray1.tfar, rtcRays.tnear[i]);
+        auto tfar = fmin(ray2.tfar, rtcRays.tfar[i]);
+
+        if (tnear >= tfar) {
+            continue;
+        }
+
+        auto rayLength = geom::Vec3(rtcRays.dirx[i], rtcRays.diry[i], rtcRays.dirz[i]).length();
+        auto distanceInsideBoundary = (tfar - tnear) * rayLength;
+        auto hitDistance = -(1 / medium->mDensity) * log(rands[i]);
+
+        if (hitDistance > distanceInsideBoundary) {
+            continue;
+        }
+
+        auto& rays = (Ray8&)rtcRays;
+        rays.tfar[i] = tnear + hitDistance / rayLength;
+        rays.material[i] = medium->material().get();
+        rays.geomID[i] = medium->mGeomId;
+        // No need to set the normal
+    }
 }
 
 }

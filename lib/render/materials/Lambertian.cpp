@@ -20,7 +20,7 @@ bool
 Lambertian::scatter(const Ray& rayIn, geom::Vec3& attenuation, Ray& scattered) const
 {
     const auto hitPoint = rayIn.pointAt(rayIn.tfar);
-    const auto target = hitPoint + rayIn.normal + geom::randomInUnitSphere();
+    const auto target = hitPoint + rayIn.normal.normalized() + geom::randomInUnitSphere();
     scattered = Ray(hitPoint, target - hitPoint, rayIn.time);
     attenuation = mAlbedo->value(rayIn.uv, hitPoint);
     return true;
