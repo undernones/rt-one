@@ -70,6 +70,8 @@ Renderer::trace(const std::array<int32_t, 8>& valid, Ray8 rays, const Scene& sce
     }
     rtcIntersect8(valid.data(), scene.rtcScene(), (RTCRay8&)rays);
 
+    const auto& envMap = scene.environmentMap();
+
     auto hitCount = 0;
     auto result = geom::Vec3(0.f);
     for (auto i = 0; i < 8; ++i) {
@@ -91,25 +93,11 @@ Renderer::trace(const std::array<int32_t, 8>& valid, Ray8 rays, const Scene& sce
             if (depth < MAX_DEPTH && material->scatter(ray, attenuation, scattered)) {
                 result += attenuation * trace(scattered, scene, depth+1);
             }
+        } else if (envMap != nullptr) {
+            result += envMap->value({ rays.dirx[i], rays.diry[i], rays.dirz[i] });
         }
     }
-    if (hitCount > 0) {
-        return result / static_cast<float>(hitCount);
-    }
-
-    const auto& envMap = scene.environmentMap();
-    if (envMap != nullptr) {
-        auto values = envMap->value8(rays.dirx, rays.diry, rays.dirz);
-        return (values[0] +
-                values[1] +
-                values[2] +
-                values[3] +
-                values[4] +
-                values[5] +
-                values[6] +
-                values[7]) / 8.f;
-    }
-    return geom::Vec3(0.f);
+    return result / 8.f;
 }
 
 }
