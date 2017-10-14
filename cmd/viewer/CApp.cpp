@@ -311,7 +311,7 @@ CApp::OnRender()
     for (auto row = 0; row < mImage.rows(); ++row) {
 #endif
         auto s = std::array<float, 8>();
-        auto t  = std::array<float, 8>();
+        auto t = std::array<float, 8>();
 
         for (auto col = 0; col < mImage.cols(); ++col) {
             auto rands = geom::rand8();
