@@ -308,8 +308,9 @@ CApp::OnRender()
     for (auto row = 0; row < mImage.rows(); ++row) {
 #endif
         for (auto col = 0; col < mImage.cols(); ++col) {
-            const auto s = (col + drand48()) / mImage.cols();
-            const auto t = (row + drand48()) / mImage.rows();
+            auto rands = geom::rand2();
+            const auto s = (col + rands[0]) / mImage.cols();
+            const auto t = (row + rands[1]) / mImage.rows();
             auto ray = camera.getRay(s, t);
 
             // Keep a running average of samples.
