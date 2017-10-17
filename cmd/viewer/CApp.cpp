@@ -241,8 +241,18 @@ CApp::OnMouseMotion(const SDL_MouseMotionEvent& event)
         // cartesian.
         const auto& oldCamera = mScene->camera();
 
-        // Compute the offset from the mouse movement
-        auto sphericalOffset = geom::Vec3(0, geom::toRadians(-event.xrel), geom::toRadians(-event.yrel));
+        // Compute the offset from the mouse movement, constraining the rotation depending on the
+        // keyboard state.
+        auto offsetX = geom::toRadians(-event.xrel);
+        auto offsetY = geom::toRadians(-event.yrel);
+
+        const auto state = SDL_GetKeyboardState(nullptr);
+        if (state[SDL_SCANCODE_X] != 0 && state[SDL_SCANCODE_Y] == 0) {
+            offsetY = 0.f;
+        } else if (state[SDL_SCANCODE_Y] != 0 && state[SDL_SCANCODE_X] == 0) {
+            offsetX = 0.f;
+        }
+        auto sphericalOffset = geom::Vec3(0, offsetX, offsetY);
 
         // This is the vector we will be rotating
         auto lookToCamera = oldCamera.position() - oldCamera.lookAt();
