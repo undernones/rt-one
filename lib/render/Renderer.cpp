@@ -62,7 +62,7 @@ Renderer::trace(Ray ray, const Scene& scene, int depth)
     }
 }
 
-geom::Vec3
+std::array<geom::Vec3, 8>
 Renderer::trace(const std::array<int32_t, 8>& valid, Ray8 rays, const Scene& scene, int depth)
 {
     for (auto i = 0; i < 8; ++i) {
@@ -73,7 +73,7 @@ Renderer::trace(const std::array<int32_t, 8>& valid, Ray8 rays, const Scene& sce
     const auto& envMap = scene.environmentMap();
 
     auto hitCount = 0;
-    auto result = geom::Vec3(0.f);
+    auto result = std::array<geom::Vec3, 8>();
     for (auto i = 0; i < 8; ++i) {
         if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
             hitCount++;
@@ -85,19 +85,19 @@ Renderer::trace(const std::array<int32_t, 8>& valid, Ray8 rays, const Scene& sce
             const auto& material = ray.material;
 
             // Check for emissions
-            result += material->emitted(ray.uv, hitPoint);
+            result[i] = material->emitted(ray.uv, hitPoint);
 
             // Scatter
             auto scattered = Ray();
             auto attenuation = geom::Vec3();
             if (depth < MAX_DEPTH && material->scatter(ray, attenuation, scattered)) {
-                result += attenuation * trace(scattered, scene, depth+1);
+                result[i] += attenuation * trace(scattered, scene, depth+1);
             }
         } else if (envMap != nullptr) {
-            result += envMap->value({ rays.dirx[i], rays.diry[i], rays.dirz[i] });
+            result[i] = envMap->value({ rays.dirx[i], rays.diry[i], rays.dirz[i] });
         }
     }
-    return result / 8.f;
+    return result;
 }
 
 }

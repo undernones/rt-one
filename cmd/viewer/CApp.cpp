@@ -115,7 +115,7 @@ CApp::OnExecute()
 bool
 CApp::OnInit()
 {
-    mScene = std::make_unique<render::BookOneScene>(nx, ny);
+    mScene = std::make_unique<render::TeapotScene>(nx, ny);
     mUpVector = mScene->camera().up();
 
     // Verify the validity of the camera.
@@ -323,21 +323,26 @@ CApp::OnRender()
         auto s = std::array<float, 8>();
         auto t = std::array<float, 8>();
 
-        for (auto col = 0; col < mImage.cols(); ++col) {
+        for (auto col = 0; col < mImage.cols(); col += 8) {
+            auto valid = std::array<int32_t, 8>({-1,-1,-1,-1,-1,-1,-1,-1});
             auto rands = geom::rand8();
             for (auto i = 0; i < 8; ++i) {
-                s[i] = (col + rands[i]) * colsInv;
-                t[i] = (row + rands[i]) * rowsInv;
+                if (col < mImage.cols()) {
+                    s[i] = (col + i + rands[i]) * colsInv;
+                    t[i] = (row + 0 + rands[i]) * rowsInv;
+                } else {
+                    valid[i] = 0;
+                }
             }
             auto ray = camera.getRays(s, t);
 
             // Keep a running average of samples.
-            auto valid = std::array<int32_t, 8>({-1,-1,-1,-1,-1,-1,-1,-1});
-            const auto sample = render::Renderer::trace(valid, ray, *mScene);
-            const auto current = mImage.value(row, col);
-            const auto newValue = current + (sample - current) / mSampleCount;
-
-            mImage.setValue(row, col, newValue);
+            const auto samples = render::Renderer::trace(valid, ray, *mScene);
+            for (auto i = 0; i < 8 && (col + i) < mImage.cols(); ++i) {
+                const auto current = mImage.value(row, col + i);
+                const auto newValue = current + (samples[i] - current) / mSampleCount;
+                mImage.setValue(row, col + i, newValue);
+            }
         }
 #if PARALLEL
     });
@@ -349,7 +354,7 @@ CApp::OnRender()
     auto diff = std::chrono::duration<double, std::milli>(end - start).count();
     totalTimeMs += diff;
     auto fps = ++totalPasses / (totalTimeMs / 1000);
-    std::cout << diff << " ms,\t" << fps << " FPS\t" << mSampleCount << " passes (" << (mSampleCount * 8) << " samples)" << std::endl;
+    std::cout << diff << " ms,\t" << fps << " FPS\t" << mSampleCount << " samples" << std::endl;
 
     showImage(mImage, mChannel, mRenderer, mTexture);
 }
