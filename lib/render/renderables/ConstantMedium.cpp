@@ -156,29 +156,40 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
     // Assume we can dereference userPtr
     const auto medium = static_cast<ConstantMedium*>(userPtr);
 
+    auto& rays = (Ray8&)rtcRays;
+
+    // Keep track of which rays are valid, starting with the input valid flags.
+    auto localValid = std::array<int, 8>();
+    memcpy(localValid.data(), valid, sizeof(int) * 8);
+
+    // Find where the rays enter the boundary.
+    auto enterRays = rays;
+    enterRays.tnear.fill(-MAXFLOAT);
+    enterRays.tfar.fill(MAXFLOAT);
+    rtcIntersect8(localValid.data(), medium->mLocalScene, (RTCRay8&)enterRays);
+    for (auto i = 0; i < 8; ++i) {
+        if (enterRays.geomID[i] == RTC_INVALID_GEOMETRY_ID) {
+            localValid[i] = 0;
+        }
+    }
+
+    // Find where the rays exit the boundary.
+    auto exitRays = rays;
+    for (auto i = 0; i < 8; ++i) {
+        exitRays.tnear[i] = enterRays.tfar[i] + EPSILON;
+        exitRays.tfar[i] = MAXFLOAT;
+    }
+    rtcIntersect8(localValid.data(), medium->mLocalScene, (RTCRay8&)exitRays);
+
     auto rands = geom::rand8();
     for (auto i = 0; i < 8; ++i) {
-        // Find where the ray enters the boundary.
-        auto ray1 = ((Ray8&)rtcRays).ray(i);
-        ray1.tnear = -MAXFLOAT;
-        ray1.tfar = MAXFLOAT;
-        rtcIntersect(medium->mLocalScene, (RTCRay&)ray1);
-        if (ray1.geomID == RTC_INVALID_GEOMETRY_ID) {
-            continue;
-        }
-
-        // Find where the ray exits the boundary.
-        auto ray2 = ((Ray8&)rtcRays).ray(i);
-        ray2.tnear = ray1.tfar + EPSILON;
-        ray2.tfar = MAXFLOAT;
-        rtcIntersect(medium->mLocalScene, (RTCRay&)ray2);
-        if (ray2.geomID == RTC_INVALID_GEOMETRY_ID) {
+        if (exitRays.geomID[i] == RTC_INVALID_GEOMETRY_ID) {
             continue;
         }
 
         // Clamp to our query boundaries.
-        auto tnear = fmax(ray1.tfar, rtcRays.tnear[i]);
-        auto tfar = fmin(ray2.tfar, rtcRays.tfar[i]);
+        auto tnear = fmax(enterRays.tfar[i], rtcRays.tnear[i]);
+        auto tfar = fmin(exitRays.tfar[i], rtcRays.tfar[i]);
 
         if (tnear >= tfar) {
             continue;
