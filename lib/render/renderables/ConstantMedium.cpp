@@ -179,22 +179,23 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
     exitRays.tfar = MAXFLOAT;
     rtcIntersect8(localValid.data(), medium->mLocalScene, (RTCRay8&)exitRays);
 
+    // Clamp to our query boundaries.
+    auto tnear = simd::fmax(enterRays.tfar, (simd::float8&)rtcRays.tnear);
+    auto tfar = simd::fmin(exitRays.tfar, (simd::float8&)rtcRays.tfar);
+    auto trange = tfar - tnear;
+
     auto rands = geom::rand8();
     for (auto i = 0; i < 8; ++i) {
         if (exitRays.geomID[i] == RTC_INVALID_GEOMETRY_ID) {
             continue;
         }
 
-        // Clamp to our query boundaries.
-        auto tnear = fmax(enterRays.tfar[i], rtcRays.tnear[i]);
-        auto tfar = fmin(exitRays.tfar[i], rtcRays.tfar[i]);
-
-        if (tnear >= tfar) {
+        if (trange[i] < 0) {
             continue;
         }
 
         auto rayLength = geom::Vec3(rtcRays.dirx[i], rtcRays.diry[i], rtcRays.dirz[i]).length();
-        auto distanceInsideBoundary = (tfar - tnear) * rayLength;
+        auto distanceInsideBoundary = trange[i] * rayLength;
         auto hitDistance = -(1 / medium->mDensity) * log(rands[i]);
 
         if (hitDistance > distanceInsideBoundary) {
@@ -202,7 +203,7 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
         }
 
         auto& rays = (Ray8&)rtcRays;
-        rays.tfar[i] = tnear + hitDistance / rayLength;
+        rays.tfar[i] = tnear[i] + hitDistance / rayLength;
         rays.material[i] = medium->material().get();
         rays.geomID[i] = medium->mGeomId;
         // No need to set the normal

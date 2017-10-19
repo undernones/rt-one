@@ -86,7 +86,7 @@ BookTwoScene::BookTwoScene(int width, int height)
     auto eye = geom::Vec3(378, 280, -610);
     auto lookAt = geom::Vec3(278, 240, 0);
     auto up = geom::Vec3(0, 1, 0);
-    auto focusDistance = 10.f;
+    auto focusDistance = (eye - lookAt).length();
     auto aperture = 0.f;
     auto t0 = 0.f;
     auto t1 = 1.f;
