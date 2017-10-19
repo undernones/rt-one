@@ -39,15 +39,9 @@ Ray8
 Translate::preIntersect(const Ray8& rays) const
 {
     auto result = rays;
-    for (auto i = 0; i < 8; ++i) {
-        result.orgx[i] -= mDisplacement.x();
-    }
-    for (auto i = 0; i < 8; ++i) {
-        result.orgy[i] -= mDisplacement.y();
-    }
-    for (auto i = 0; i < 8; ++i) {
-        result.orgz[i] -= mDisplacement.z();
-    }
+    result.orgx -= mDisplacement.x();
+    result.orgy -= mDisplacement.y();
+    result.orgz -= mDisplacement.z();
     return result;
 }
 
@@ -55,15 +49,9 @@ Ray8
 Translate::postIntersect(const Ray8& rays) const
 {
     auto result = rays;
-    for (auto i = 0; i < 8; ++i) {
-        result.orgx[i] += mDisplacement.x();
-    }
-    for (auto i = 0; i < 8; ++i) {
-        result.orgy[i] += mDisplacement.y();
-    }
-    for (auto i = 0; i < 8; ++i) {
-        result.orgz[i] += mDisplacement.z();
-    }
+    result.orgx += mDisplacement.x();
+    result.orgy += mDisplacement.y();
+    result.orgz += mDisplacement.z();
     return result;
 }
 

@@ -159,16 +159,16 @@ public:
 
     /* ray data */
 public:
-    std::array<float, 8> orgx;  //!< x coordinate of ray origin
-    std::array<float, 8> orgy;  //!< y coordinate of ray origin
-    std::array<float, 8> orgz;  //!< z coordinate of ray origin
+    simd::float8 orgx;  //!< x coordinate of ray origin
+    simd::float8 orgy;  //!< y coordinate of ray origin
+    simd::float8 orgz;  //!< z coordinate of ray origin
 
-    std::array<float, 8> dirx;  //!< x coordinate of ray direction
-    std::array<float, 8> diry;  //!< y coordinate of ray direction
-    std::array<float, 8> dirz;  //!< z coordinate of ray direction
+    simd::float8 dirx;  //!< x coordinate of ray direction
+    simd::float8 diry;  //!< y coordinate of ray direction
+    simd::float8 dirz;  //!< z coordinate of ray direction
 
-    std::array<float, 8> tnear; //!< Start of ray segment
-    std::array<float, 8> tfar;  //!< End of ray segment (set to hit distance)
+    simd::float8 tnear; //!< Start of ray segment
+    simd::float8 tfar;  //!< End of ray segment (set to hit distance)
 
     std::array<float, 8> time;  //!< Time of this ray for motion blur
     std::array<unsigned, 8> mask;  //!< Used to mask out objects during traversal

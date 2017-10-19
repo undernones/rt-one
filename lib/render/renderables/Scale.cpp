@@ -48,38 +48,14 @@ Scale::preIntersect(const Ray8& rays) const
     auto result = rays;
 
     // Origin
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.orgx[i] /= mScale.x();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.orgy[i] /= mScale.y();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.orgz[i] /= mScale.z();
-        }
-    }
+    result.orgx /= mScale.x();
+    result.orgy /= mScale.y();
+    result.orgz /= mScale.z();
 
     // Direction
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.dirx[i] /= mScale.x();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.diry[i] /= mScale.y();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.dirz[i] /= mScale.z();
-        }
-    }
+    result.dirx /= mScale.x();
+    result.diry /= mScale.y();
+    result.dirz /= mScale.z();
 
     return result;
 }
@@ -90,38 +66,14 @@ Scale::postIntersect(const Ray8& rays) const
     auto result = rays;
 
     // Origin
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.orgx[i] *= mScale.x();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.orgy[i] *= mScale.y();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.orgz[i] *= mScale.z();
-        }
-    }
+    result.orgx *= mScale.x();
+    result.orgy *= mScale.y();
+    result.orgz *= mScale.z();
 
     // Direction
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.dirx[i] *= mScale.x();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.diry[i] *= mScale.y();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            result.dirz[i] *= mScale.z();
-        }
-    }
+    result.dirx *= mScale.x();
+    result.diry *= mScale.y();
+    result.dirz *= mScale.z();
 
     return result;
 }
@@ -132,15 +84,7 @@ Scale::transform(Ray8& rays) const
     for (auto i = 0; i < 8; ++i) {
         if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
             rays.Ngx[i] /= mScale.x();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
             rays.Ngy[i] /= mScale.y();
-        }
-    }
-    for (auto i = 0; i < 8; ++i) {
-        if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
             rays.Ngz[i] /= mScale.z();
         }
     }

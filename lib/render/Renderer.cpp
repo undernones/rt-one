@@ -65,9 +65,7 @@ Renderer::trace(Ray ray, const Scene& scene, int depth)
 std::array<geom::Vec3, 8>
 Renderer::trace(const std::array<int32_t, 8>& valid, Ray8 rays, const Scene& scene, int depth)
 {
-    for (auto i = 0; i < 8; ++i) {
-        rays.tnear[i] = EPSILON;
-    }
+    rays.tnear = EPSILON;
     rtcIntersect8(valid.data(), scene.rtcScene(), (RTCRay8&)rays);
 
     const auto& envMap = scene.environmentMap();

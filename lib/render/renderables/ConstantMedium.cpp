@@ -164,8 +164,8 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
 
     // Find where the rays enter the boundary.
     auto enterRays = rays;
-    enterRays.tnear.fill(-MAXFLOAT);
-    enterRays.tfar.fill(MAXFLOAT);
+    enterRays.tnear = -MAXFLOAT;
+    enterRays.tfar = MAXFLOAT;
     rtcIntersect8(localValid.data(), medium->mLocalScene, (RTCRay8&)enterRays);
     for (auto i = 0; i < 8; ++i) {
         if (enterRays.geomID[i] == RTC_INVALID_GEOMETRY_ID) {
@@ -175,10 +175,8 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
 
     // Find where the rays exit the boundary.
     auto exitRays = rays;
-    for (auto i = 0; i < 8; ++i) {
-        exitRays.tnear[i] = enterRays.tfar[i] + EPSILON;
-        exitRays.tfar[i] = MAXFLOAT;
-    }
+    exitRays.tnear = enterRays.tfar + EPSILON;
+    exitRays.tfar = MAXFLOAT;
     rtcIntersect8(localValid.data(), medium->mLocalScene, (RTCRay8&)exitRays);
 
     auto rands = geom::rand8();

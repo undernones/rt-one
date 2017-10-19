@@ -59,12 +59,9 @@ intersectFunc8(const void* valid, /*!< pointer to valid mask */
     // Assume we can dereference userPtr
     const auto sphere = static_cast<render::Sphere*>(userPtr);
 
-    auto validFlags = (int*)valid;
     auto& rays = (render::Ray8&)rtcRays;
 
     for (auto i = 0; i < 8; ++i) {
-        if (validFlags[i] == 0) continue;
-
         auto ray = rays.ray(i);
         if (sphere->hit(ray)) {
             rays.tnear[i] = ray.tnear;
