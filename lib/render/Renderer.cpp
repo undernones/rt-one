@@ -70,11 +70,9 @@ Renderer::trace(const std::array<int32_t, 8>& valid, Ray8 rays, const Scene& sce
 
     const auto& envMap = scene.environmentMap();
 
-    auto hitCount = 0;
     auto result = std::array<geom::Vec3, 8>();
     for (auto i = 0; i < 8; ++i) {
         if (rays.geomID[i] != RTC_INVALID_GEOMETRY_ID) {
-            hitCount++;
             auto ray = rays.ray(i);
             const auto t = ray.tfar;
             const auto hitPoint = ray.pointAt(t);
