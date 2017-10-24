@@ -326,10 +326,11 @@ CApp::OnRender()
         for (auto col = 0; col < mImage.cols(); col += 8) {
             auto valid = std::array<int32_t, 8>({-1,-1,-1,-1,-1,-1,-1,-1});
             auto rands = geom::rand8();
+            auto randt = geom::rand8();
             for (auto i = 0; i < 8; ++i) {
                 if (col < mImage.cols()) {
                     s[i] = (col + i + rands[i]) * colsInv;
-                    t[i] = (row + 0 + rands[i]) * rowsInv;
+                    t[i] = (row + 0 + randt[i]) * rowsInv;
                 } else {
                     valid[i] = 0;
                 }
