@@ -182,7 +182,7 @@ public:
     std::array<float, 8> u;     //!< Barycentric u coordinate of hit
     std::array<float, 8> v;     //!< Barycentric v coordinate of hit
 
-    std::array<unsigned, 8> geomID;  //!< geometry ID
+    simd::uint8 geomID;              //!< geometry ID
     std::array<unsigned, 8> primID;  //!< primitive ID
     std::array<unsigned, 8> instID;  //!< instance ID
 

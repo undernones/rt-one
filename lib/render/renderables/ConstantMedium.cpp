@@ -158,6 +158,11 @@ ConstantMedium::intersectFunc8(const void* valid, /*!< pointer to valid mask */
 
     auto& rays = (Ray8&)rtcRays;
 
+    if (simd::any(rays.geomID == medium->geomId())) {
+        // We already intersected with this volume. Move along.
+        return;
+    }
+
     // Keep track of which rays are valid, starting with the input valid flags.
     auto localValid = std::array<int, 8>();
     memcpy(localValid.data(), valid, sizeof(int) * 8);

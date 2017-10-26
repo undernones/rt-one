@@ -160,7 +160,7 @@ Rectangle::intersectFunc8(const void* valid, /*!< pointer to valid mask */
 
     auto& rays = (Ray8&)rtcRays;
     auto geomID = rays.geomID;
-    rays.geomID.fill(RTC_INVALID_GEOMETRY_ID);
+    rays.geomID = RTC_INVALID_GEOMETRY_ID;
 
     rtcIntersect8(valid, rect->mLocalScene, rtcRays);
 
