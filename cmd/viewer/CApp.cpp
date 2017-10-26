@@ -88,6 +88,11 @@ CApp::CApp(int argc, const char* argv[])
     , mSampleCount(0)
     , mChannel(Channel::ALL)
 {
+#if PARALLEL
+    std::cout << "Multi-threaded" << std::endl;
+#else
+    std::cout << "Single threaded" << std::endl;
+#endif
 }
 
 int
