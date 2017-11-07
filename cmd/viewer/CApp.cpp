@@ -34,6 +34,8 @@
 #define PARALLEL 1
 #endif
 
+#define SINGLE_RAY 1
+
 namespace
 {
 
@@ -325,6 +327,20 @@ CApp::OnRender()
 #else
     for (auto row = 0; row < mImage.rows(); ++row) {
 #endif
+#if SINGLE_RAY
+        for (auto col = 0; col < mImage.cols(); ++col) {
+            const auto rands = geom::rand2();
+            const auto s = (col + rands[0]) * colsInv;
+            const auto t = (row + rands[1]) * rowsInv;
+            auto ray = camera.getRay(s, t);
+
+            const auto sample = render::Renderer::trace(ray, *mScene);
+
+            // Keep a running average of samples.
+            const auto current = mImage.value(row, col);
+            const auto newValue = current + (sample - current) / mSampleCount;
+            mImage.setValue(row, col, newValue);
+#else
         auto s = std::array<float, 8>();
         auto t = std::array<float, 8>();
 
@@ -349,6 +365,8 @@ CApp::OnRender()
                 const auto newValue = current + (samples[i] - current) / mSampleCount;
                 mImage.setValue(row, col + i, newValue);
             }
+        }
+#endif
         }
 #if PARALLEL
     });
