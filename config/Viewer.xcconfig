@@ -1,0 +1,9 @@
+//
+//  Copyright © 2017 Undernones. All rights reserved.
+//
+
+#include "Base.xcconfig"
+
+PRODUCT_NAME = viewer
+
+CLANG_CXX_LANGUAGE_STANDARD = c++14

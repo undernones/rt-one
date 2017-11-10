@@ -32,6 +32,8 @@ public:
     int cols() const { return mCols; }
     float aspectRatio() const { return mAspectRatio; }
 
+    const std::vector<geom::Vec3>& values() { return mValues; }
+
     std::vector<uint32_t> getRgba() const;
     std::vector<uint32_t> rToRgba() const;
     std::vector<uint32_t> gToRgba() const;

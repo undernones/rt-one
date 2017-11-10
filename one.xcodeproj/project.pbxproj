@@ -25,6 +25,8 @@
 		F71873DC1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873DA1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp */; };
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F73CD6601FB18420005C2C8B /* libIlmImf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F73CD65F1FB18420005C2C8B /* libIlmImf.a */; };
+		F73CD6641FB18747005C2C8B /* libHalf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F73CD6631FB18747005C2C8B /* libHalf.a */; };
 		F754BC671F50FADF00A75D49 /* AABB.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC651F50FADF00A75D49 /* AABB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F754BC681F50FADF00A75D49 /* AABB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F754BC661F50FADF00A75D49 /* AABB.cpp */; };
 		F754BC6C1F5100E100A75D49 /* Texture.h in Headers */ = {isa = PBXBuildFile; fileRef = F754BC6A1F5100E100A75D49 /* Texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -212,6 +214,10 @@
 		F71B88CA1F44883400D4F3A4 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
 		F71B88CF1F44890100D4F3A4 /* libgeom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgeom.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F72A47031F676B3400B690FA /* libembree.2.16.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libembree.2.16.5.dylib; path = ../../../../opt/local/lib/libembree.2.16.5.dylib; sourceTree = "<group>"; };
+		F73CD65E1FB17E9D005C2C8B /* Viewer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Viewer.xcconfig; sourceTree = "<group>"; };
+		F73CD65F1FB18420005C2C8B /* libIlmImf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIlmImf.a; path = ../../../../usr/local/Cellar/openexr/2.2.0/lib/libIlmImf.a; sourceTree = "<group>"; };
+		F73CD6611FB186DB005C2C8B /* libImath.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libImath.a; path = ../../../../usr/local/Cellar/ilmbase/2.2.0/lib/libImath.a; sourceTree = "<group>"; };
+		F73CD6631FB18747005C2C8B /* libHalf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHalf.a; path = ../../../../usr/local/Cellar/ilmbase/2.2.0/lib/libHalf.a; sourceTree = "<group>"; };
 		F754BC651F50FADF00A75D49 /* AABB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABB.h; sourceTree = "<group>"; };
 		F754BC661F50FADF00A75D49 /* AABB.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AABB.cpp; sourceTree = "<group>"; };
 		F754BC6A1F5100E100A75D49 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
@@ -355,6 +361,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F73CD6641FB18747005C2C8B /* libHalf.a in Frameworks */,
+				F73CD6601FB18420005C2C8B /* libIlmImf.a in Frameworks */,
 				F7B7EF521F621D42005BC65A /* libembree.dylib in Frameworks */,
 				F7E95A4A1F4FD65A00B962C0 /* libtbb.dylib in Frameworks */,
 				F7BF51071F4D37C20045DE27 /* libSDL2_image.a in Frameworks */,
@@ -406,6 +414,9 @@
 		F71B88C31F43CC2D00D4F3A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F73CD6631FB18747005C2C8B /* libHalf.a */,
+				F73CD6611FB186DB005C2C8B /* libImath.a */,
+				F73CD65F1FB18420005C2C8B /* libIlmImf.a */,
 				F72A47031F676B3400B690FA /* libembree.2.16.5.dylib */,
 				F7B7EF511F621D42005BC65A /* libembree.dylib */,
 				F7E95A491F4FD65A00B962C0 /* libtbb.dylib */,
@@ -420,6 +431,7 @@
 			children = (
 				F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */,
 				F755BCCA1F7341CE00ED1379 /* One.xcconfig */,
+				F73CD65E1FB17E9D005C2C8B /* Viewer.xcconfig */,
 			);
 			path = config;
 			sourceTree = "<group>";
@@ -1228,21 +1240,33 @@
 		};
 		F7BF50FD1F4D0EC40045DE27 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F73CD65E1FB17E9D005C2C8B /* Viewer.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				GCC_DYNAMIC_NO_PIC = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/openexr/2.2.0/lib,
+					/usr/local/Cellar/ilmbase/2.2.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		F7BF50FE1F4D0EC40045DE27 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F73CD65E1FB17E9D005C2C8B /* Viewer.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/openexr/2.2.0/lib,
+					/usr/local/Cellar/ilmbase/2.2.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

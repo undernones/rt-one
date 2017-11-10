@@ -7,3 +7,5 @@ Download and install manually:
 brew install sdl2
 brew install sdl2_image
 brew install tbb
+brew install openexr
+brew install ilmbase

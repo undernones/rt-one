@@ -24,6 +24,7 @@ public:
     void OnMouseButtonUp(const SDL_MouseButtonEvent& event);
     void OnMouseMotion(const SDL_MouseMotionEvent& event);
     void OnMouseWheel(const SDL_MouseWheelEvent& event);
+    void OnSave();
     void OnLoop();
     void OnRender();
     void OnCleanup();
