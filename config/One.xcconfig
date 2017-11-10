@@ -5,4 +5,3 @@
 #include "Base.xcconfig"
 
 PRODUCT_NAME = one
-
