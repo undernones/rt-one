@@ -23,6 +23,7 @@
 		F71873D81F6A04EE00D4BD02 /* Isotropic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873D61F6A04EE00D4BD02 /* Isotropic.cpp */; };
 		F71873DB1F6A0EEC00D4BD02 /* CornellSmokeScene.h in Headers */ = {isa = PBXBuildFile; fileRef = F71873D91F6A0EEC00D4BD02 /* CornellSmokeScene.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F71873DC1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71873DA1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp */; };
+		F718D7581FB812D800E1D692 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F718D7571FB812D800E1D692 /* Settings.cpp */; };
 		F71B88B51F43379000D4F3A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F71B88B41F43379000D4F3A4 /* main.cpp */; };
 		F71B88D31F4489A800D4F3A4 /* Vec3.h in Headers */ = {isa = PBXBuildFile; fileRef = F71B88CA1F44883400D4F3A4 /* Vec3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F73CD6601FB18420005C2C8B /* libIlmImf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F73CD65F1FB18420005C2C8B /* libIlmImf.a */; };
@@ -208,6 +209,8 @@
 		F71873D61F6A04EE00D4BD02 /* Isotropic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Isotropic.cpp; sourceTree = "<group>"; };
 		F71873D91F6A0EEC00D4BD02 /* CornellSmokeScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CornellSmokeScene.h; sourceTree = "<group>"; };
 		F71873DA1F6A0EEC00D4BD02 /* CornellSmokeScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CornellSmokeScene.cpp; sourceTree = "<group>"; };
+		F718D7561FB812D800E1D692 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		F718D7571FB812D800E1D692 /* Settings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
 		F71B88B11F43379000D4F3A4 /* one */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = one; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B88B41F43379000D4F3A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F71B88C71F43CCC800D4F3A4 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
@@ -578,6 +581,8 @@
 				F7BF50FA1F4D0EC40045DE27 /* main.cpp */,
 				F7BF51001F4D32D60045DE27 /* CApp.h */,
 				F7BF50FF1F4D32D60045DE27 /* CApp.cpp */,
+				F718D7561FB812D800E1D692 /* Settings.h */,
+				F718D7571FB812D800E1D692 /* Settings.cpp */,
 			);
 			name = viewer;
 			path = cmd/viewer;
@@ -953,6 +958,7 @@
 			files = (
 				F7BF50FB1F4D0EC40045DE27 /* main.cpp in Sources */,
 				F7BF51011F4D32D60045DE27 /* CApp.cpp in Sources */,
+				F718D7581FB812D800E1D692 /* Settings.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

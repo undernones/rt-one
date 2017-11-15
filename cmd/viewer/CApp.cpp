@@ -31,6 +31,9 @@
 #include <render/SuperSimpleScene.h>
 #include <render/TeapotScene.h>
 
+// App
+#include "Settings.h"
+
 #if DEBUG
 #define PARALLEL 0
 #else
@@ -302,20 +305,20 @@ CApp::OnMouseWheel(const SDL_MouseWheelEvent& event)
 void
 CApp::OnSave()
 {
-    const auto directory = "/Users/stephen_ward/Desktop/";
-
     auto filename = std::stringstream();
-    filename << directory << "one.exr";
+    filename << "one-" << mSampleCount << ".exr";
+
+    const auto path = Settings::saveDir() + filename.str();
 
     Imf::Array<Imf::Rgba> pixels(mImage.rows() * mImage.cols());
     auto i = 0;
     for (const auto& pixel : mImage.values()) {
         pixels[i++] = Imf::Rgba(pixel.r(), pixel.g(), pixel.b(), 1.f);
     }
-    Imf::RgbaOutputFile file("/Users/stephen_ward/Desktop/one.exr", mImage.cols(), mImage.rows());
+    Imf::RgbaOutputFile file(path.c_str(), mImage.cols(), mImage.rows());
     file.setFrameBuffer(pixels, 1, mImage.cols());
     file.writePixels(mImage.rows());
-    std::cout << "saving" << std::endl;
+    std::cout << "saving to " << path << std::endl;
 }
 
 void
