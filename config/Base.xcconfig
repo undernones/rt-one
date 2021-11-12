@@ -2,6 +2,9 @@
 //  Copyright © 2017 Undernones. All rights reserved.
 //
 
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
 SDKROOT = macosx
 
 // If enabled both #include <header.h>-style and #include "header.h"-style directives will search the paths in "User Header Search Paths" before "Header Search Paths", with the consequence that user headers (such as your own String.h header) would have precedence over system headers when using #include <header.h>. This is done using the -iquote flag for the paths provided in "User Header Search Paths". If disabled and your compiler fully supports separate user paths, user headers will only be accessible with #include "header.h"-style preprocessor directives.
